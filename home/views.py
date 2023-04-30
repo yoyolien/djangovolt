@@ -28,10 +28,9 @@ def requestapi(request):
     electdata=request.GET.get('e')
     mlapiurl = f"http://127.0.0.1:8000/predict/?value={electdata}&userid={userid}"
     print(userid,electdata)
-
     response = requests.get(mlapiurl)
     print(response.status_code)
-    print(response.content)
+    # print(response.content)
     result = json.loads(response.content)
     try:
         d = predictionresult.objects.get(userid=str(userid))
