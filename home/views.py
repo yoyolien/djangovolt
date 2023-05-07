@@ -36,7 +36,7 @@ def requestapi(request):
         d = predictionresult.objects.get(userid=str(userid))
         pr = json.JSONDecoder().decode(d.result)
         if result['len']<96:
-            pr[str(datetime.now().date())] = [result['sum']]
+            pr[str(datetime.now().date())] = [result['sum'],0]
         elif result['len']==96:
             pr[str(datetime.now().date())].append(result['result']['label'][0])
             pr[str(datetime.now().date())][0] = result['sum']
