@@ -23,6 +23,8 @@ def createuser(request):
         d.result = json.dumps(pr)
         d.save()
         return redirect('index')
+
+
 def requestapi(request):
     userid=request.GET.get('u')
     electdata=request.GET.get('e')
