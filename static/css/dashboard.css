@@ -28,6 +28,7 @@
   height: 100px; /* 讓高度根據寬度自動調整 */
   /*bottom: 0; !* 將圖片底部對齊容器底部 *!*/
   padding: 0px;
+  display: inline-block;
 }
 
 .cutimage{

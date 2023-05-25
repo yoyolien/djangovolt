@@ -129,6 +129,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
         </div>
         
         <script>
+{#            todo:chart#}
           // import { ctPointLabels } from 'chartist';
           // import ChartistTooltip from 'chartist-plugin-tooltips-updated';
           //  const ctPointLabels = require('ctPointLabels');
@@ -521,28 +522,37 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
               <a href="#" class="btn btn-sm btn-primary">See all</a>
             </div>
               {#todo:tree#}
+
               <div class="card-body">
-                <!--              <div class="box1"><img src="{% static 'backgroundtree.png' %}" ><div class="box2"><img src="{% static 'tree.png' %}" ></div></div>-->
-{#                  <div class="bgtree"><img class="tree" src="{% static 'tree.png' %}" ><p style="z-index: 1;text-align:center;color: black"; >{{ todayusage }}</p></div>#}
-<div class="image-container">
-        <div class="cutimage">
-            <img src="{% static 'tree.png' %}">
-        </div></div>
-            </div>
+                  {% for i in treec %}
+                  <div class="image-container">
+                    <div class="cutimage">
+                        <img src="{% static 'tree.png' %}">
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+
             <a href="https://www.flaticon.com/free-stickers/joshua-tree" title="joshua tree stickers">Joshua tree stickers created by Gohsantosadrive - Flaticon</a>
           </div>
             民國111年電力排碳係數是每度0.509公斤CO2e
         </div>
         <script type="text/javascript">
+
             {#var tree=0.509*{{ wholeusage|safe }}/550.5*100;#}
-            var tree=0.509*500/550*100;
+            var treear = {{ treec|safe }}
+            var tree=0.509*100/550*100;
             console.log(tree);
-            var attr=String.raw`height:${tree}px;top:${100-tree}px`;
-            console.log(attr);
-            document.getElementsByClassName("cutimage")[0].setAttribute("style",attr);
+            setTimeout(function (){
+                treear.forEach(function(item, index, array){
+                var attr=String.raw`height:${item*100}px;top:${100-item*100}px;`;
+                document.getElementsByClassName("cutimage")[index].setAttribute("style",attr);
+            },200);
+            })
             window.onresize = function(){
                 {#document.getElementsByClassName("cutimage")[0].setAttribute("style","height:${tree}px;top:${100-tree}px");#}
             };
+            console.log({{ treec }});
         </script>
         <div class="col-12 col-xxl-6 mb-4">
           <div class="card border-0 shadow">

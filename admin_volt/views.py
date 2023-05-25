@@ -23,8 +23,17 @@ def dashboard(request):
   dayusage = [result[i][0] for i in result]
   dayusage = list(map(lambda x:x/1000,dayusage))
   daypredictresult = [result[i][1] for i in result]
+  tree = 0.509*sum(dayusage)/550.5
+  tree = 2.9
 
   print(label,dayusage,daypredictresult)
+  treec=[]
+  for i in range(int(tree)+1):
+    if i +1<tree:
+      treec.append(1)
+    else:
+      treec.append(tree-i)
+  print(treec,tree)
   context = {
     'segment': 'dashboard',
     'ele': dayusage,
@@ -32,6 +41,7 @@ def dashboard(request):
     'presult': daypredictresult,
     "todayusage":dayusage[-1],
     "wholeusage":sum(dayusage),
+    "treec":treec,
   }
   return render(request, 'pages/dashboard/dashboard.html', context)
 
