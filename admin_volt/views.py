@@ -1,3 +1,5 @@
+import random
+
 from django.shortcuts import render, redirect
 from admin_volt.forms import RegistrationForm, LoginForm, UserPasswordResetForm, UserPasswordChangeForm, UserSetPasswordForm
 from django.contrib.auth.views import LoginView, PasswordResetView, PasswordChangeView, PasswordResetConfirmView
@@ -5,7 +7,7 @@ from django.contrib.auth import logout
 from home.models import predictionresult
 from django.contrib.auth.decorators import login_required
 import json
-from datetime import datetime
+import datetime
 # Index
 def index(request):
   return render(request, 'pages/index.html')
@@ -13,34 +15,46 @@ def index(request):
 # Dashboard
 def dashboard(request):
   # 資料傳入dashboard.html
-  predictionandele = predictionresult.objects.get(userid=0)
-  result = json.JSONDecoder().decode(predictionandele.result)
-  # try:
-  #   del result[str(datetime.now().date())]
-  # except:
-    # pass
-  label = [i for i in result]
-  dayusage = [result[i][0] for i in result]
-  dayusage = list(map(lambda x:x/1000,dayusage))
-  daypredictresult = [result[i][1] for i in result]
-  tree = 0.509*sum(dayusage)/550.5
-  tree = 2.9
+  # predictionandele = predictionresult.objects.get(userid=0)
+  # result = json.JSONDecoder().decode(predictionandele.result)
+  # label = [i for i in result]
+  # dayusage = [result[i][0] for i in result]
+  # dayusage = list(map(lambda x:x/1000,dayusage))
+  # daypredictresult = [result[i][1] for i in result]
+  # tree = 0.509*sum(dayusage)/550.5
 
-  print(label,dayusage,daypredictresult)
+  arr = [i for i in range(1, 6)]
+  a = [i for i in range(1, 26)]
+  b = []
+  date = []
+  ele = []
+  for i in range(1, 31):
+    date.append(str(datetime.date(2023, 4, i))[5:])
+    ele.append(random.randint(10, 60))
+    b.append({'x: ' + str(datetime.date(2023, 4, i)), 'y: ' + str(random.randint(10, 60))})
+
+
+  tree = 7.5
   treec=[]
   for i in range(int(tree)+1):
     if i +1<tree:
-      treec.append(1)
+      treec.append([100,0])
     else:
-      treec.append(tree-i)
+      treec.append([100*(tree-i),100-100*(tree-i)])
   print(treec,tree)
   context = {
     'segment': 'dashboard',
-    'ele': dayusage,
-    'date': label,
-    'presult': daypredictresult,
-    "todayusage":dayusage[-1],
-    "wholeusage":sum(dayusage),
+    # 'ele': dayusage,
+    # 'date': label,
+    # 'presult': daypredictresult,
+    # "todayusage":dayusage[-1],
+    # "wholeusage":sum(dayusage),
+    'arr': arr,
+    'a': a,
+    'date': date,
+    'ele': ele,
+    'standard': 35,
+    'b': b,
     "treec":treec,
   }
   return render(request, 'pages/dashboard/dashboard.html', context)

@@ -5,35 +5,15 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
 <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
 <link type="text/css" href="{% static 'css/dashboard.css' %}" rel="stylesheet">
-
-<!-- <script src="
-https://cdn.jsdelivr.net/npm/chartist-plugin-tooltips@0.0.17/dist/chartist-plugin-tooltip.min.js
-"></script> -->
-<!-- <script src="
+<script src="
 https://cdn.jsdelivr.net/npm/chartist-plugin-pointlabels@0.0.6/dist/chartist-plugin-pointlabels.min.js
-"></script> -->
+"></script>
 <script src="
 https://cdn.jsdelivr.net/npm/chartist-plugin-zoom@0.6.0/dist/chartist-plugin-zoom.min.js
 "></script>
 <script src="
 https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugin-threshold.min.js
 "></script>
-<script>
-  var defaultOptions = {
-  threshold: 0,
-  classNames: {
-    aboveThreshold: 'ct-threshold-above',
-    belowThreshold: 'ct-threshold-below'
-  },
-  maskNames: {
-    aboveThreshold: 'ct-threshold-mask-above',
-    belowThreshold: 'ct-threshold-mask-below'
-  }
-};
-</script>
-<!-- <link rel="stylesheet" href="https://github.com/tmmdata/chartist-plugin-tooltip/blob/master/dist/chartist-plugin-tooltip.css.map">
-<script src="https://github.com/tmmdata/chartist-plugin-tooltip/blob/master/dist/chartist-plugin-tooltip.min.js.map"></script> -->
-<!-- <script type="module" src="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.js"></script> -->
   <div class="py-4">
     <div class="dropdown">
       <button class="btn btn-gray-800 d-inline-flex align-items-center me-2 dropdown-toggle" data-bs-toggle="dropdown"
@@ -110,120 +90,23 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
       <div class="card bg-yellow-100 border-0 shadow">
         <div class="card-header d-sm-flex flex-row align-items-center flex-0">
           <div class="d-block mb-3 mb-sm-0">
-            <div class="fs-5 fw-normal mb-2">Sales Value</div>
+            <div class="fs-5 fw-normal mb-2" id="year">1</div>
             <h2 class="fs-3 fw-extrabold">$10,567</h2>
             <div class="small mt-2">
-              <span class="fw-normal me-2">Yesterday</span>
+              <span class="fw-normal me-2">與昨日相比</span>
               <span class="fas fa-angle-up text-success"></span>
-              <span class="text-success fw-bold">10.57%</span>
+              <span class="text-success fw-bold" id="compare">10.57%</span>
             </div>
           </div>
           <div class="d-flex ms-auto">
-            <a href="#" class="btn btn-secondary text-dark btn-sm me-2"  id="week-btn">Week</a>
-            <a href="#" class="btn btn-dark btn-sm me-3" id="month-btn">Month</a>
+            <a href="#" class="btn btn-secondary text-dark btn-sm me-2"  id="day-btn">Day</a>
+            <a href="#" class="btn btn-dark btn-sm me-3" id="week-btn">Week</a>
           </div>
         </div>
-        <div class="card-body p-2" style="overflow-x: auto;">
+        <div class="card-body p-2" id="containbox" style="overflow-x: auto;">
           <div class=" ct-double-octave ct-series-g" id ="chart1" style="display: block;"></div>
-          <div class=" ct-double-octave ct-series-g" id="chart2" style="display: none;"></div>
+          <div class=" ct-double-octave ct-series-g" id ="chart2" style="display: block"></div>
         </div>
-        
-        <script>
-{#            todo:chart#}
-          // import { ctPointLabels } from 'chartist';
-          // import ChartistTooltip from 'chartist-plugin-tooltips-updated';
-          //  const ctPointLabels = require('ctPointLabels');
-          var date = {{ date|safe }};
-          var ele = {{ ele|safe }};
-          console.log(date,ele);
-
-          var overstandard=0;
-          var sum=0;
-
-          for (var i = 0; i < ele.length; i++) {
-            sum += ele[i];
-          };
-          var standard = Math.round(sum/ele.length);
-          console.log(sum);
-          for (var i = 0; i < ele.length; i++)if(ele[i]>=standard)overstandard++;
-
-          console.log(overstandard);
-
-          // chart1 chart2繪製
-          new Chartist.Line('#chart1', {
-            labels: date,
-            series: [ele],
-          },{
-            showArea: true,
-            axisY: {
-              onlyInteger: true
-            },
-            plugins: [
-              Chartist.plugins.ctThreshold({
-                threshold: standard
-              })
-            ]
-          }
-          );
-          
-          new Chartist.Line('#chart2', {
-            // labels: mylist,
-            // series: [a],
-            series: [[
-              {x: 10, y: 100},
-              {x: 20, y: 50},
-              {x: 30, y: 25},
-              {x: 44, y: 66},
-              {x: 55, y: 44},
-              {x: 69, y: 22},
-
-            ]]
-          }, {
-            axisX: {
-              type: Chartist.AutoScaleAxis,
-              onlyInteger: true
-            },
-            // axisY: {
-            //   type: Chartist.AutoScaleAxis
-            // },
-            plugins : [
-              Chartist.plugins.zoom({
-                resetOnRightMouseBtn: true,
-                // pointClipOffset: 3
-              })
-            ]
-          });
-
-          const weekBtn = document.getElementById("week-btn");
-          const monthBtn = document.getElementById("month-btn");
-
-          weekBtn.addEventListener("click", function(){
-            // weekBtn跟monthbtn屬性交換
-            weekBtn.classList.remove("btn", "btn-dark", "btn-sm", "me-3");
-            weekBtn.classList.add("btn", "btn-secondary", "text-dark", "btn-sm", "me-2");
-            monthBtn.classList.remove("btn", "btn-secondary", "text-dark", "btn-sm", "me-2");
-            monthBtn.classList.add("btn", "btn-dark", "btn-sm", "me-3");
-
-            // 點擊week時顯示chart1，隱藏chart2
-            document.getElementById('chart1').style.display = "block";
-            document.getElementById('chart2').style.display = "none";
-            chart1.__chartist__.update();
-          });
-          
-          
-          monthBtn.addEventListener("click", function(){
-            // weekBtn跟monthbtn屬性交換
-            monthBtn.classList.remove("btn", "btn-dark", "btn-sm", "me-3");
-            monthBtn.classList.add("btn", "btn-secondary", "text-dark", "btn-sm", "me-2");
-            weekBtn.classList.remove("btn", "btn-secondary", "text-dark", "btn-sm", "me-2");
-            weekBtn.classList.add("btn", "btn-dark", "btn-sm", "me-3");
-
-            // 點擊week時顯示chart2，隱藏chart1
-            document.getElementById('chart2').style.display = "block";
-            document.getElementById('chart1').style.display = "none";
-            chart2.__chartist__.update();
-          });
-        </script>
       </div>
     </div>
     <div class="col-12 col-sm-6 col-xl-4 mb-4">
@@ -232,9 +115,32 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
           <div class="row d-block d-xl-flex align-items-center">
             <div
               class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+              <!-- 電量圖示 -->
               <div class="icon-shape icon-shape-primary rounded me-4 me-sm-0">
-                <svg class="icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path id="primary" d="M17.76,10.63,9,21l2.14-8H7.05a1,1,0,0,1-1-1.36l3.23-8a1.05,1.05,0,0,1,1-.64h4.34a1,1,0,0,1,1,1.36L13.7,9H17A1,1,0,0,1,17.76,10.63Z" style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path>                </svg>
+                <svg width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <defs>
+                    <polygon id="thunder-a" points="2.977 8.161 8.269 9.241 .218 18.519 1.882 19.604 12.128 8.161 5.893 6.809 8.821 .998 7.387 .185"/>
+                    <path id="thunder-c" d="M10.2577032,5.88540233 L13.3683613,6.4682972 C14.894984,6.75436548 15.5271239,8.59550311 14.4981974,9.75899885 L5.15432684,20.3249168 C3.62851509,22.0502834 0.875362777,20.253925 1.83997631,18.1623916 L4.9166534,11.4913543 L2.63023839,11.061225 C1.27422934,10.8061273 0.577759703,9.28698125 1.26946216,8.09308716 L5.3804761,0.997384038 C5.7381351,0.380056504 6.3975623,0 7.11101395,0 L10.1949866,0 C11.7353835,0 12.697534,1.66821829 11.9261411,3.00155082 L10.2577032,5.88540233 Z M10.1949866,2 L7.11101395,2 L3,9.09570312 L7.80692226,10 L3.65612945,19 L13,8.43408203 L7.11101395,7.33056641 L10.1949866,2 Z"/>
+                  </defs>
+                  <g fill="none" fill-rule="evenodd" transform="translate(4 2)">
+                    <g transform="translate(2)">
+                      <mask id="thunder-b" fill="#ffffff">
+                        <use xlink:href="#thunder-a"/>
+                      </mask>
+                      <use fill="#D8D8D8" xlink:href="#thunder-a"/>
+                      <g fill="#FFA0A0" mask="url(#thunder-b)">
+                        <rect width="24" height="24" transform="translate(-6 -2)"/>
+                      </g>
+                    </g>
+                    <mask id="thunder-d" fill="#ffffff">
+                      <use xlink:href="#thunder-c"/>
+                    </mask>
+                    <use fill="#000000" fill-rule="nonzero" xlink:href="#thunder-c"/>
+                    <g fill="#7600FF" mask="url(#thunder-d)">
+                      <rect width="24" height="24" transform="translate(-4 -2)"/>
+                    </g>
+                  </g>
+                </svg>
               </div>
               <div class="d-sm-none">
                 <h2 class="h5">Customers</h2>
@@ -246,55 +152,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                 <h2 class="h6 text-gray-400 mb-0">平均電力用量</h2>
                 <h3 class="fw-extrabold mb-2"><span id="average used"></span>度</h3>
               </div>
-<!--              <small class="d-flex align-items-center text-gray-500">-->
-<!--                Feb 1 - Apr 1,-->
-<!--                <svg class="icon icon-xxs text-gray-500 ms-2 me-1" fill="currentColor" viewBox="0 0 20 20"-->
-<!--                  xmlns="http://www.w3.org/2000/svg">-->
-<!--                  <path fill-rule="evenodd"-->
-<!--                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z"-->
-<!--                    clip-rule="evenodd"></path>-->
-<!--                </svg>-->
-<!--                USA-->
-<!--              </small>-->
-<!--              <div class="small d-flex mt-1">-->
-<!--                <div>Since last month <svg class="icon icon-xs text-success" fill="currentColor" viewBox="0 0 20 20"-->
-<!--                    xmlns="http://www.w3.org/2000/svg">-->
-<!--                    <path fill-rule="evenodd"-->
-<!--                      d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"-->
-<!--                      clip-rule="evenodd"></path>-->
-<!--                  </svg><span class="text-success fw-bolder">22%</span></div>-->
-<!--              </div>-->
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 col-sm-6 col-xl-4 mb-4">
-      <div class="card border-0 shadow">
-        <div class="card-body">
-          <div class="row d-block d-xl-flex align-items-center">
-            <div
-              class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
-              <div class="icon-shape icon-shape-secondary rounded me-4 me-sm-0">
-                <!-- svg繪圖 -->
-                <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path opacity="0.1" d="M10.2501 5.147L3.64909 17.0287C2.9085 18.3618 3.87244 20 5.39741 20H18.5994C20.1243 20 21.0883 18.3618 20.3477 17.0287L13.7467 5.147C12.9847 3.77538 11.0121 3.77538 10.2501 5.147Z" fill="#323232"/>
-                  <path d="M12 10V13" stroke="#323232" stroke-width="2" stroke-linecap="round"/>
-                  <path d="M12 16V15.9888" stroke="#323232" stroke-width="2" stroke-linecap="round"/>
-                  <path d="M10.2515 5.147L3.65056 17.0287C2.90997 18.3618 3.8739 20 5.39887 20H18.6008C20.1258 20 21.0897 18.3618 20.3491 17.0287L13.7482 5.147C12.9861 3.77538 11.0135 3.77538 10.2515 5.147Z" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-              <div class="d-sm-none">
-                <h2 class="fw-extrabold h5">Revenue</h2>
-                <h3 class="mb-1">$43,594</h3>
-              </div>
-            </div>
-            <div class="col-12 col-xl-7 px-xl-0">
-              <div class="d-none d-sm-block">
-                <h2 class="h6 text-gray-400 mb-0">使用異常天數</h2>
-                <h3 class="fw-extrabold mb-2"><span id="overstandard"></span>天</h3>
-              </div>
-              <!-- <small class="d-flex align-items-center text-gray-500">
+              <small class="d-flex align-items-center text-gray-500">
                 Feb 1 - Apr 1,
                 <svg class="icon icon-xxs text-gray-500 ms-2 me-1" fill="currentColor" viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg">
@@ -302,16 +160,16 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                     d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z"
                     clip-rule="evenodd"></path>
                 </svg>
-                GER
-              </small> -->
-              <!-- <div class="small d-flex mt-1">
-                <div>Since last month <svg class="icon icon-xs text-danger" fill="currentColor" viewBox="0 0 20 20"
+                USA
+              </small>
+              <div class="small d-flex mt-1">
+                <div>Since last week <svg class="icon icon-xs text-success" fill="currentColor" viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
                       clip-rule="evenodd"></path>
-                  </svg><span class="text-danger fw-bolder">2%</span></div>
-              </div> -->
+                  </svg><span class="text-success fw-bolder">22%</span></div>
+              </div>
             </div>
           </div>
         </div>
@@ -323,8 +181,8 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
           <div class="row d-block d-xl-flex align-items-center">
             <div
               class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
-              <div class="icon-shape icon-shape-tertiary rounded me-4 me-sm-0">
-                <!-- svg繪圖 -->
+              <!-- 警告圖示 -->
+              <div class="icon-shape icon-shape-secondary rounded me-4 me-sm-0">
                 <svg width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                   <defs>
                     <polygon id="alert-a" points="2.758 .388 19.133 .388 21.288 4.068 19.896 4.965 2.592 4.965 .87 4.068"/>
@@ -351,16 +209,95 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                 </svg>
               </div>
               <div class="d-sm-none">
+                <h2 class="fw-extrabold h5">Revenue</h2>
+                <h3 class="mb-1">$43,594</h3>
+              </div>
+            </div>
+            <div class="col-12 col-xl-7 px-xl-0">
+              <div class="d-none d-sm-block">
+                <h2 class="h6 text-gray-400 mb-0">使用異常天數</h2>
+                <h3 class="fw-extrabold mb-2"><span id="overstandard"></span>天</h3>
+              </div>
+              <small class="d-flex align-items-center text-gray-500">
+                Feb 1 - Apr 1,
+                <svg class="icon icon-xxs text-gray-500 ms-2 me-1" fill="currentColor" viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                GER
+              </small>
+              <div class="small d-flex mt-1">
+                <div>Since last week <svg class="icon icon-xs text-danger" fill="currentColor" viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      clip-rule="evenodd"></path>
+                  </svg><span class="text-danger fw-bolder">2%</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-xl-4 mb-4">
+      <div class="card border-0 shadow">
+        <div class="card-body">
+          <div class="row d-block d-xl-flex align-items-center">
+            <div
+              class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+              <!-- 樹圖案 -->
+              <div class="icon-shape icon-shape-tertiary rounded me-4 me-sm-0">
+                <svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                  width="800px" height="800px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+                <g>
+                  <path fill="#394240" d="M56.414,48.586L47.828,40H51c0.809,0,1.538-0.486,1.848-1.234s0.139-1.607-0.434-2.18L43.828,28H47
+                    c0.809,0,1.538-0.486,1.848-1.234s0.139-1.607-0.434-2.18L39.828,16H43c0.809,0,1.538-0.486,1.848-1.234s0.139-1.607-0.434-2.18
+                    l-12-12C32.023,0.195,31.512,0,31,0s-1.023,0.195-1.414,0.586l-12,12c-0.572,0.572-0.743,1.432-0.434,2.18S18.191,16,19,16h3.172
+                    l-8.586,8.586c-0.572,0.572-0.743,1.432-0.434,2.18S14.191,28,15,28h3.172l-8.586,8.586c-0.572,0.572-0.743,1.432-0.434,2.18
+                    S10.191,40,11,40h3.172l-8.586,8.586c-0.572,0.572-0.743,1.432-0.434,2.18S6.191,52,7,52h20v11c0,0.553,0.447,1,1,1h6
+                    c0.553,0,1-0.447,1-1V52h20c0.809,0,1.538-0.486,1.848-1.234S56.986,49.158,56.414,48.586z M20,14c-0.547,0-0.789-0.211,0-1
+                    c0.641-0.641,9-9,10-10s1-1,2,0c0,0,9.303,9.305,9.999,10s0.61,1,0.001,1C41.679,14,20.127,14,20,14z M16,26
+                    c-0.547,0-0.766-0.234,0-1c0.444-0.443,5.951-5.951,9-9h12c3.001,3,8.384,8.385,9,9c0.859,0.859,0.469,1,0,1
+                    C45.75,26,16.127,26,16,26z M12,38c-0.609,0-0.773-0.227,0-1c0.461-0.461,5.956-5.955,9-9h20c3.07,3.07,8.634,8.635,9,9
+                    c0.648,0.648,0.656,1,0,1C49.479,38,12.135,38,12,38z M33,62h-4V52h4V62z M54,50c-1,0-45.297,0-46,0c-0.484,0-0.797-0.203,0-1
+                    c0.478-0.477,5.96-5.961,9-9h28c3.065,3.066,8.614,8.615,9.002,9.002C54.695,49.695,54.578,50,54,50z"/>
+                  <g>
+                    <path fill="#B4CCB9" d="M20,14c0.127,0,21.679,0,22,0c0.609,0,0.695-0.305-0.001-1S32,3,32,3c-1-1-1-1-2,0s-9.359,9.359-10,10
+                      C19.211,13.789,19.453,14,20,14z"/>
+                    <path fill="#B4CCB9" d="M16,26c0.127,0,29.75,0,30,0c0.469,0,0.859-0.141,0-1c-0.616-0.615-5.999-6-9-9H25
+                      c-3.049,3.049-8.556,8.557-9,9C15.234,25.766,15.453,26,16,26z"/>
+                    <path fill="#B4CCB9" d="M12,38c0.135,0,37.479,0,38,0c0.656,0,0.648-0.352,0-1c-0.366-0.365-5.93-5.93-9-9H21
+                      c-3.044,3.045-8.539,8.539-9,9C11.227,37.773,11.391,38,12,38z"/>
+                    <path fill="#B4CCB9" d="M54.002,49.002C53.614,48.615,48.065,43.066,45,40H17c-3.04,3.039-8.522,8.523-9,9
+                      c-0.797,0.797-0.484,1,0,1c0.703,0,45,0,46,0C54.578,50,54.695,49.695,54.002,49.002z"/>
+                  </g>
+                  <rect x="29" y="52" fill="#506C7F" width="4" height="10"/>
+                </g>
+                </svg>
+              </div>
+              <div class="d-sm-none">
                 <h2 class="fw-extrabold h5"> Bounce Rate</h2>
                 <h3 class="mb-1">50.88%</h3>
               </div>
             </div>
             <div class="col-12 col-xl-7 px-xl-0">
               <div class="d-none d-sm-block">
-                <h2 class="h6 text-gray-400 mb-0">今日用電</h2>
-                <h3 class="fw-extrabold mb-2">{{ todayusage }}度</h3>
+                <h2 class="h6 text-gray-400 mb-0"> Bounce Rate</h2>
+                <h3 class="fw-extrabold mb-2"><span id="tree"></span>棵</h3>
               </div>
-
+              <small class="text-gray-500">
+                Feb 1 - Apr 1
+              </small>
+              <div class="small d-flex mt-1">
+                <div>Since last week <svg class="icon icon-xs text-success" fill="currentColor" viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                      d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+                      clip-rule="evenodd"></path>
+                  </svg><span class="text-success fw-bolder">4%</span></div>
+              </div>
             </div>
           </div>
         </div>
@@ -368,8 +305,173 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
     </div>
     <!-- 修改平均電力用量，使用異常天數 -->
     <script>
+      var date={{ date|safe }};
+      var ele={{ ele|safe }};
+      var weekdate=[];
+      var weekele=[];
+      var year=2023;
+      var t=0,n=0;
+      var startdate;
+      var overstandard=0;
+      var sum=0;
+      var weeksum=0;
+      var weekstandard;
+      var today=ele[29];
+      var yesterday=ele[28];
+
+      var throwawayNode1;
+      var throwawayNode2;
+      var chartElement1 = document.getElementById('chart1');
+      var chartElement2 = document.getElementById('chart2');
+      var yearview=document.getElementById('year');
+      var compare=document.getElementById('compare');
+
+      console.log(today);
+      console.log(yesterday);
+
+      if (today>=yesterday){
+        compare.textContent=String(Math.round((today/yesterday-1)*100))+'% ↑';
+        compare.classList.remove("text-success");
+        compare.classList.add("text-danger");
+      }
+      else{
+        compare.textContent=String(Math.round((1-today/yesterday)*100))+'% ↓';
+      }
+      yearview.textContent=String(year)+'年';
+      startdate=date[0];
+      for (var i = 0; i < ele.length; i++) {
+        sum += ele[i];
+        n++;
+        if(n%7==0){
+          n=0;
+          weekdate.push(String(startdate)+'-'+String(date[i]));
+          weekele.push(sum-t);
+          t=sum;
+        }
+      };
+      var standard=Math.round(sum/30);
+      for (var i = 0; i < ele.length; i++) {
+        if(ele[i]>=standard)overstandard++;
+      };
+
+      for (var i = 0; i < weekele.length; i++) {
+        weeksum += weekele[i];
+      };
+
+      weekstandard=Math.round(weeksum/4);
+
+      // chart1 chart2繪製
+      var chart1 = new Chartist.Line('#chart1', {
+        labels: date,
+        series: [ele],
+      },{
+        showArea: true,
+        axisY: {
+          onlyInteger: true
+        },
+        plugins: [
+          Chartist.plugins.ctThreshold({
+            threshold: standard,
+          }),
+          Chartist.plugins.ctPointLabels({
+            textAnchor: 'middle'
+          })
+        ]
+      }
+      );
+
+
+      // chart1.update();
+      // console.log(throwawayNode1);
+
+      console.log(weekdate);
+      console.log(weekele);
+
+      var chart2 = new Chartist.Line('#chart2', {
+          labels: weekdate,
+          series: [weekele],
+        }, {
+          showArea: true,
+          axisY: {
+            onlyInteger: true
+          },
+          plugins: [
+            Chartist.plugins.ctThreshold({
+              threshold: weekstandard,
+            }),
+            Chartist.plugins.ctPointLabels({
+              textAnchor: 'middle'
+            })
+          ]
+        });
+      // 銷毀圖表對象
+      setTimeout(function() {
+        chart2.detach();
+      // 從 DOM 中移除圖表元素
+        throwawayNode2=chartElement2.parentNode.removeChild(chartElement2);
+        console.log(throwawayNode2);
+      }, 200);
+
+
+      // 銷毀圖表對象
+      // chart2.detach();
+      // 從 DOM 中移除圖表元素
+      // throwawayNode2=chartElement2.parentNode.removeChild(chartElement2);
+      // document.getElementById("containbox").appendChild(throwawayNode1);
+      // console.log(throwawayNode2);
+      // chart1.update();
+
+      const dayBtn = document.getElementById("day-btn");
+      const weekBtn = document.getElementById("week-btn");
       document.getElementById('average used').textContent = standard;
       document.getElementById('overstandard').textContent = overstandard;
+      document.getElementById('tree').textContent = Math.round(sum/20);
+
+      dayBtn.addEventListener("click", function(){
+        // dayBtn跟weekbtn屬性交換
+        dayBtn.classList.remove("btn", "btn-dark", "btn-sm", "me-3");
+        dayBtn.classList.add("btn", "btn-secondary", "text-dark", "btn-sm", "me-2");
+        weekBtn.classList.remove("btn", "btn-secondary", "text-dark", "btn-sm", "me-2");
+        weekBtn.classList.add("btn", "btn-dark", "btn-sm", "me-3");
+
+        // 如果圖表元素存在，則刪除
+        if (chartElement2) {
+          // 銷毀圖表對象
+          chart2.detach();
+          // 從 DOM 中移除圖表元素
+          throwawayNode2=chartElement2.parentNode.removeChild(chartElement2);
+          console.log(throwawayNode2);
+          document.getElementById("containbox").appendChild(throwawayNode1);
+        }
+
+        document.getElementById('average used').textContent = Math.round(standard);
+        chart1.update();
+      });
+
+
+
+      weekBtn.addEventListener("click", function(){
+        // dayBtn跟weekbtn屬性交換
+        weekBtn.classList.remove("btn", "btn-dark", "btn-sm", "me-3");
+        weekBtn.classList.add("btn", "btn-secondary", "text-dark", "btn-sm", "me-2");
+        dayBtn.classList.remove("btn", "btn-secondary", "text-dark", "btn-sm", "me-2");
+        dayBtn.classList.add("btn", "btn-dark", "btn-sm", "me-3");
+
+        // 如果圖表元素存在，則刪除
+        if (chartElement1) {
+          // 銷毀圖表對象
+          chart1.detach();
+          // 從 DOM 中移除圖表元素
+          throwawayNode1 = chartElement1.parentNode.removeChild(chartElement1);
+          console.log(throwawayNode1);
+          document.getElementById("containbox").appendChild(throwawayNode2);
+        }
+
+        document.getElementById('average used').textContent = weekstandard;
+        // chart.update();
+        chart2.update();
+      });
+
     </script>
 
   </div>
@@ -381,7 +483,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
             <div class="card-header">
               <div class="row align-items-center">
                 <div class="col">
-                  <h2 class="fs-5 fw-bold mb-0">Page visits</h2>
+                  <h2 class="fs-5 fw-bold mb-0" id="compare2">近日比較</h2>
                 </div>
                 <div class="col text-end">
                   <a href="#" class="btn btn-sm btn-primary">See all</a>
@@ -392,24 +494,24 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th class="border-bottom" scope="col">Page name</th>
-                    <th class="border-bottom" scope="col">Page Views</th>
-                    <th class="border-bottom" scope="col">Page Value</th>
-                    <th class="border-bottom" scope="col">Bounce rate</th>
+                    <th class="border-bottom" scope="col">日期</th>
+                    <th class="border-bottom" scope="col">用電量</th>
+                    <th class="border-bottom" scope="col">需要種幾棵樹</th>
+                    <th class="border-bottom" scope="col">與前一日相比</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <th class="text-gray-900" scope="row">
+                <tbody id="tb">
+                  <tr id="trr">
+                    <th class="text-gray-900" scope="row" id="date2">
                       /demo/admin/index.html
                     </th>
-                    <td class="fw-bolder text-gray-500">
+                    <td class="fw-bolder" id="ele2">
                       3,225
                     </td>
-                    <td class="fw-bolder text-gray-500">
+                    <td class="fw-bolder" id="tree2">
                       $20
                     </td>
-                    <td class="fw-bolder text-gray-500">
+                    <td class="fw-bolder" id="rate">
                       <div class="d-flex">
                         <svg class="icon icon-xs text-danger me-2" fill="currentColor" viewBox="0 0 20 20"
                           xmlns="http://www.w3.org/2000/svg">
@@ -421,100 +523,59 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                       </div>
                     </td>
                   </tr>
-                  <tr>
-                    <th class="text-gray-900" scope="row">
-                      /demo/admin/forms.html
-                    </th>
-                    <td class="fw-bolder text-gray-500">
-                      2,987
-                    </td>
-                    <td class="fw-bolder text-gray-500">
-                      0
-                    </td>
-                    <td class="fw-bolder text-gray-500">
-                      <div class="d-flex">
-                        <svg class="icon icon-xs text-success me-2" fill="currentColor" viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg">
-                          <path fill-rule="evenodd"
-                            d="M14.707 12.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l2.293-2.293a1 1 0 011.414 0z"
-                            clip-rule="evenodd"></path>
-                        </svg>
-                        43,24%
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th class="text-gray-900" scope="row">
-                      /demo/admin/util.html
-                    </th>
-                    <td class="fw-bolder text-gray-500">
-                      2,844
-                    </td>
-                    <td class="fw-bolder text-gray-500">
-                      294
-                    </td>
-                    <td class="fw-bolder text-gray-500">
-                      <div class="d-flex">
-                        <svg class="icon icon-xs text-success me-2" fill="currentColor" viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg">
-                          <path fill-rule="evenodd"
-                            d="M14.707 12.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l2.293-2.293a1 1 0 011.414 0z"
-                            clip-rule="evenodd"></path>
-                        </svg>
-                        32,35%
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th class="text-gray-900" scope="row">
-                      /demo/admin/validation.html
-                    </th>
-                    <td class="fw-bolder text-gray-500">
-                      2,050
-                    </td>
-                    <td class="fw-bolder text-gray-500">
-                      $147
-                    </td>
-                    <td class="fw-bolder text-gray-500">
-                      <div class="d-flex">
-                        <svg class="icon icon-xs text-danger me-2" fill="currentColor" viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg">
-                          <path fill-rule="evenodd"
-                            d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
-                            clip-rule="evenodd"></path>
-                        </svg>
-                        50,87%
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th class="text-gray-900" scope="row">
-                      /demo/admin/modals.html
-                    </th>
-                    <td class="fw-bolder text-gray-500">
-                      1,483
-                    </td>
-                    <td class="fw-bolder text-gray-500">
-                      $19
-                    </td>
-                    <td class="fw-bolder text-gray-500">
-                      <div class="d-flex">
-                        <svg class="icon icon-xs text-success me-2" fill="currentColor" viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg">
-                          <path fill-rule="evenodd"
-                            d="M14.707 12.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l2.293-2.293a1 1 0 011.414 0z"
-                            clip-rule="evenodd"></path>
-                        </svg>
-                        26,12%
-                      </div>
-                    </td>
-                  </tr>
+
                 </tbody>
+                <script>
+                  var dates=[];
+                  var eles=[];
+                  var rate=[];
+                  dates.push(date[date.length-1]);
+                  eles.push(ele[date.length-1]);
+                  for(var i=date.length-2;i>date.length-7;i--){
+                    dates.push(date[i]);
+                    eles.push(ele[i]);
+                  }
+                  for(var i=1;i<eles.length;i++){
+                    console.log(eles[i-1],eles[i])
+                    if(eles[i-1]>eles[i])rate.push('↑ '+String(Math.round((eles[i-1]/eles[i]-1)*100))+' %');
+                    else if(eles[i-1]<eles[i]) rate.push('↓ '+String(Math.round((1-eles[i-1]/eles[i])*100))+' %');
+                    else rate.push(String(Math.round((1-eles[i-1]/eles[i])*100))+' %')
+                  }
+
+                  // console.log(dates);
+                  // console.log(eles);
+
+
+
+                  setTimeout(function() {
+                    var tb=document.getElementById("tb");
+                    var origin_node=document.getElementById("trr");
+                    tb.removeChild(origin_node);
+                    var node;
+                    var dateElement;
+
+                    // compare.classList.add("text-danger");
+
+                    for(var i=0;i<5;i++){
+                      node = origin_node.cloneNode(true);
+                      node.children["date2"].textContent=dates[i];
+                      node.children["ele2"].textContent=eles[i];
+                      node.children["rate"].textContent=rate[i];
+                      if(rate[i][0]=='↑')node.children["rate"].classList.add("text-danger");
+                      else node.children["rate"].classList.add("text-success");
+                      if(eles[i]>standard)node.children["ele2"].classList.add("text-danger");
+                      else if(eles[i]<standard)node.children["ele2"].classList.add("text-success");
+                      node.setAttribute('id',String(i));
+                      tb.appendChild(node);
+                    }
+
+                  console.log(tb);
+                  }, 200);
+                </script>
               </table>
             </div>
           </div>
         </div>
-
         <div class="col-12 col-xxl-6 mb-4">
           <div class="card border-0 shadow">
             <div class="card-header border-bottom d-flex align-items-center justify-content-between">
@@ -524,11 +585,12 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
               {#todo:tree#}
 
               <div class="card-body">
-                  {% for i in treec %}
+                  {% for i,j in treec %}
                   <div class="image-container">
-                    <div class="cutimage">
+                    <div class="cutimage" style="height: {{ i }}%; top: {{j}}%;">
                         <img src="{% static 'tree.png' %}">
                     </div>
+
                   </div>
                   {% endfor %}
                 </div>
@@ -537,23 +599,6 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
           </div>
             民國111年電力排碳係數是每度0.509公斤CO2e
         </div>
-        <script type="text/javascript">
-
-            {#var tree=0.509*{{ wholeusage|safe }}/550.5*100;#}
-            var treear = {{ treec|safe }}
-            var tree=0.509*100/550*100;
-            console.log(tree);
-            setTimeout(function (){
-                treear.forEach(function(item, index, array){
-                var attr=String.raw`height:${item*100}px;top:${100-item*100}px;`;
-                document.getElementsByClassName("cutimage")[index].setAttribute("style",attr);
-            },200);
-            })
-            window.onresize = function(){
-                {#document.getElementsByClassName("cutimage")[0].setAttribute("style","height:${tree}px;top:${100-tree}px");#}
-            };
-            console.log({{ treec }});
-        </script>
         <div class="col-12 col-xxl-6 mb-4">
           <div class="card border-0 shadow">
             <div class="card-header border-bottom d-flex align-items-center justify-content-between">
