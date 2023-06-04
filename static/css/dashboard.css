@@ -28,6 +28,21 @@
   display: flex; /* 將這個容器的子元素變為 flex items */
   flex-wrap: wrap; /* 如果需要，允許元素換行 */
 }
+.post-container {
+    overflow-x: scroll; /* 让div水平滚动 */
+    white-space: nowrap; /* 防止贴文换行 */
+    width: 100%; /* 设置div宽度 */
+    height: 100%;
+    }
+
+.post {
+    display: inline-block; /* 将贴文变为行内块元素 */
+    width: 50%; /* 设置贴文宽度为外部容器的50% */
+    height: 50%; /* 设置贴文高度为外部容器的50% */
+    margin-right: 10px; /* 设置贴文之间的间距 */
+    background-color: #f1f1f1; /* 设置贴文背景颜色 */
+    vertical-align: top; /* 对齐贴文内容到顶部 */
+    }
 @media (max-width: 600px) {
   .image-container {
     width: 50px;
