@@ -43,6 +43,10 @@
     background-color: #f1f1f1; /* 设置贴文背景颜色 */
     vertical-align: top; /* 对齐贴文内容到顶部 */
     }
+.carousel-item img{
+    height:300px;
+    width: 100px;
+}
 @media (max-width: 600px) {
   .image-container {
     width: 50px;
