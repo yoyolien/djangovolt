@@ -111,7 +111,7 @@ input:checked + .slide-container .slide-image {
 }
 
 input:checked + .slide-container .carousel-controls label {
-     display: block;
+    display: block;
 }
 
 input#img-1:checked ~ .carousel-dots label#img-dot-1,
