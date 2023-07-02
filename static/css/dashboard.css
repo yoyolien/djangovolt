@@ -2,7 +2,6 @@
 }
 
 ul.slides {
-    /* display: block; */
     display: block;
     position: relative;
     height: 300px;
