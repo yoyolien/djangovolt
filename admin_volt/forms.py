@@ -62,3 +62,9 @@ class UserPasswordChangeForm(PasswordChangeForm):
     new_password2 = forms.CharField(max_length=50, widget=forms.PasswordInput(attrs={
         'class': 'form-control', 'placeholder': 'Confirm New Password'
     }), label="Confirm New Password")
+
+from home.models import Slide
+class SlideForm(forms.ModelForm):
+    class Meta:
+        model = Slide
+        fields = ('image', 'title', 'description', 'order')

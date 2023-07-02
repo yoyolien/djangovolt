@@ -8,7 +8,7 @@
       display: inline-block;
       /* border-bottom: 1px dotted black; */
   }
-  
+
   .tooltipa .tooltiptext {
       visibility: hidden;
       width: 120px;
@@ -17,16 +17,16 @@
       text-align: left;
       border-radius: 6px;
       padding: 5px 0;
-  
+
       /* 定位 */
       position: absolute;
       z-index: 1;
   }
-  
+
   .tooltipa:hover .tooltiptext {
       visibility: visible;
   }
-  
+
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
 <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
@@ -40,31 +40,6 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-zoom@0.6.0/dist/chartist-plugin-zoo
 <script src="
 https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugin-threshold.min.js
 "></script>
-<style>
-  .ct-line.ct-threshold-above, .ct-point.ct-threshold-above, .ct-bar.ct-threshold-above {
-  stroke: #f05b4f;
-}
-
-.ct-line.ct-threshold-below, .ct-point.ct-threshold-below, .ct-bar.ct-threshold-below {
-  stroke: #59922b;
-}
-
-.ct-area.ct-threshold-above {
-  fill: #f05b4f;
-}
-
-.ct-area.ct-threshold-below {
-  fill: #59922b;
-}
-.ct-series-a .ct-bar.ct-threshold-above {
-  stroke: #f05b4f;
-}
-
-.ct-series-a .ct-bar.ct-threshold-below {
-  stroke: #59922b;
-}
-</style>
-
   <div class="py-4">
     <div class="dropdown">
       <button class="btn btn-gray-800 d-inline-flex align-items-center me-2 dropdown-toggle" data-bs-toggle="dropdown"
@@ -136,8 +111,6 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
     });
     </script>
   </div> -->
-
-
   <div class="row">
     <div class="col-12 mb-4">
       <div class="card bg-yellow-100 border-0 shadow">
@@ -275,7 +248,6 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                   </g>
                 </svg>
               </div>
-              <!--  -->
               <div class="d-sm-none">
                 <h2 class="fw-extrabold h5">Revenue</h2>
                 <h3 class="mb-1">$43,594</h3>
@@ -317,7 +289,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
               class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
               <!-- 樹圖案 -->
               <div class="icon-shape icon-shape-tertiary rounded me-4 me-sm-0">
-                <svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                <svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                   width="800px" height="800px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
                 <g>
                   <path fill="#394240" d="M56.414,48.586L47.828,40H51c0.809,0,1.538-0.486,1.848-1.234s0.139-1.607-0.434-2.18L43.828,28H47
@@ -345,7 +317,6 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                 </g>
                 </svg>
               </div>
-              <!--  -->
               <div class="d-sm-none">
                 <h2 class="fw-extrabold h5"> Bounce Rate</h2>
                 <h3 class="mb-1">50.88%</h3>
@@ -408,7 +379,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
       var compare=document.getElementById('compare');
       var monthSelect = document.getElementById('monthSelect');
       startdate=date[0];
-      
+
       console.log(eleall);
       function calculate_month_rate(){
         if (monthele[4]>=monthele[3]){
@@ -448,7 +419,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
         }
         console.log(monthele);
       }
-      
+
 
 
       // 定義選取月份的事件處理函式
@@ -482,10 +453,10 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
       standard=Math.round(total/61);
       calculate_month_rate();
       calculate_overstandard()
-      
+
       // 添加事件監聽器，偵測下拉選單的變更事件
       monthSelect.addEventListener('change', handleMonthChange);
-      
+
 
       for (var i = 0; i < weekele.length; i++) {
         weeksum += weekele[i];
@@ -706,7 +677,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
             <div class="card-header border-bottom d-flex align-items-center justify-content-between">
               <h2 class="fs-5 fw-bold mb-0">電力使用:{{ wholeusage }}</h2>
               <!-- <a href="#" class="btn btn-sm btn-primary">See all</a> -->
-              
+
               <div class="tooltipa">
                 <svg class="icon icon-s text-gray-500 ms-2 me-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -720,8 +691,8 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                   <span >民國111年電力排碳係數是每度0.509公斤CO2e
                   <a href="https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=1&menu_id=40&news_id=100931" class="text-danger">點我查看</a></span>
                 </div>
-                
-                
+
+
               </div>
             </div>
               {#todo:tree#}
@@ -739,7 +710,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
 
             <a href="https://www.flaticon.com/free-stickers/joshua-tree" title="joshua tree stickers">Joshua tree stickers created by Gohsantosadrive - Flaticon</a>
           </div>
-            <!-- 民國111年電力排碳係數是每度0.509公斤CO2e -->
+            民國111年電力排碳係數是每度0.509公斤CO2e
         </div>
         <div class="col-12 col-xxl-6 mb-4">
           <div class="card border-0 shadow">
@@ -852,7 +823,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
     <div class="col-12 col-xl-4">
       <div class="col-12 px-0 mb-4">
         <div class="card border-0 shadow">
-            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div id="carouselExampleCaptions" class="carousel carousel-dark slide" data-bs-ride="carousel">
               <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -860,21 +831,21 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
               </div>
               <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <img src="{% static 'inf0.jpg' %}" class="d-block w-100 " alt="...">
+                  <img src="{% static 'inf0.jpg' %}" class="d-block w-100" alt="...">
                   <div class="">
                     <h5>First slide label</h5>
                     <p>Some representative placeholder content for the first slide.</p>
                   </div>
                 </div>
                 <div class="carousel-item">
-                  <img src="{% static 'inf1.jpg' %}" class="d-block w-100" alt="...">
+                  <img src="{% static 'inf1.png' %}" class="d-block w-100" alt="...">
                   <div class="">
                     <h5>Second slide label</h5>
                     <p>Some representative placeholder content for the second slide.</p>
                   </div>
                 </div>
                 <div class="carousel-item">
-                  <img src="{% static 'inf3.jpg' %}" class="d-block w-100" alt="...">
+                  <img src="..." class="d-block w-100" alt="...">
                   <div class="">
                     <h5>Third slide label</h5>
                     <p>Some representative placeholder content for the third slide.</p>

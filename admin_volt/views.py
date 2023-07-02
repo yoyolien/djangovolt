@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from admin_volt.forms import RegistrationForm, LoginForm, UserPasswordResetForm, UserPasswordChangeForm, UserSetPasswordForm
 from django.contrib.auth.views import LoginView, PasswordResetView, PasswordChangeView, PasswordResetConfirmView
 from django.contrib.auth import logout
-from home.models import predictionresult
+from home.models import predictionresult,Slide
 from django.contrib.auth.decorators import login_required
 import json
 import datetime
@@ -12,6 +12,9 @@ import datetime
 def index(request):
   return render(request, 'pages/index.html')
 
+  def slide_list(request):
+    slides = Slide.objects.all()
+    return render(request, 'slide_list.html', {'slides': slides})
 # Dashboard
 def dashboard(request):
   # 資料傳入dashboard.html
