@@ -2,7 +2,7 @@
 }
 
 ul.slides {
-    /* df: block; */
+    /* display: block; */
     display: block;
     position: relative;
     height: 300px;
