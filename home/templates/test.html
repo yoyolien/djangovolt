@@ -1,0 +1,165 @@
+{#{% for item in eledata %}#}
+    {{ eledata.result }}
+{#{% endfor %}#}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+<div>
+    <label for="scale-select">Scale:</label>
+    <select id="scale-select">
+      <option value="week">Week</option>
+      <option value="month" selected>Month</option>
+      <option value="year">Year</option>
+    </select>
+    <label for="zoom-in">Zoom In:</label>
+    <button id="zoom-in">+</button>
+    <label for="zoom-out">Zoom Out:</label>
+    <button id="zoom-out">-</button>
+  </div>
+  <canvas id="myChart"></canvas>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="module">
+      import Chart from 'chart.js/auto'
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: [1,2,3],
+        datasets: [{
+          label: 'Electricity Usage',
+          data: [3,21,1],
+          borderColor: 'blue',
+          borderWidth: 2,
+          pointRadius: 1 // 禁用点标记以获得更好的缩放效果
+        }]
+      },
+      options: {
+        scales: {
+          xAxes: [{
+            type: 'time',
+            distribution: 'linear'
+          }],
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        },
+        pan: {
+          enabled: true,
+          mode: 'xy'
+        },
+        zoom: {
+          enabled: true,
+          mode: 'xy',
+          speed: 10
+        }
+      }
+    });
+
+    var scaleSelect = document.getElementById('scale-select');
+    scaleSelect.addEventListener('change', function() {
+      var selectedScale = this.value;
+      if (selectedScale === 'week') {
+        chart.options.scales.xAxes[0].time.unit = 'day';
+        chart.options.scales.xAxes[0].time.stepSize = 7;
+        }
+      else if (selectedScale === 'month') {
+        chart.options.scales.xAxes[0].time.unit = 'day';
+        chart.options.scales.xAxes[0].time.stepSize = 30;
+        }
+      else if (selectedScale === 'year') {
+        chart.options.scales.xAxes[0].time.unit = 'month';
+        chart.options.scales.xAxes[0].time.stepSize = 12;
+        }
+        chart.update();
+        });
+    var zoomInButton = document.getElementById('zoom-in');
+        zoomInButton.addEventListener('click', function() {
+          chart.zoom(0.5, 0.5); // 缩小 50%
+        });
+
+    var zoomOutButton = document.getElementById('zoom-out');
+    zoomOutButton.addEventListener('click', function() {
+      chart.zoom(2, 2); // 放大 200%
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+<div>
+    <label for="scale-select">Scale:</label>
+    <select id="scale-select">
+      <option value="week">Week</option>
+      <option value="month" selected>Month</option>
+      <option value="year">Year</option>
+    </select>
+    <label for="zoom-in">Zoom In:</label>
+    <button id="zoom-in">+</button>
+    <label for="zoom-out">Zoom Out:</label>
+    <button id="zoom-out">-</button>
+  </div>
+  <canvas id="myChart"></canvas>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="module">
+      import Chart from 'chart.js/auto'
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: [1,2,3],
+        datasets: [{
+          label: 'Electricity Usage',
+          data: [3,21,1],
+          borderColor: 'blue',
+          borderWidth: 2,
+          pointRadius: 1 // 禁用点标记以获得更好的缩放效果
+        }]
+      },
+      options: {
+        scales: {
+          xAxes: [{
+            type: 'time',
+            distribution: 'linear'
+          }],
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        },
+        pan: {
+          enabled: true,
+          mode: 'xy'
+        },
+        zoom: {
+          enabled: true,
+          mode: 'xy',
+          speed: 10
+        }
+      }
+    });
+
+    var scaleSelect = document.getElementById('scale-select');
+    scaleSelect.addEventListener('change', function() {
+      var selectedScale = this.value;
+      if (selectedScale === 'week') {
+        chart.options.scales.xAxes[0].time.unit = 'day';
+        chart.options.scales.xAxes[0].time.stepSize = 7;
+        }
+      else if (selectedScale === 'month') {
+        chart.options.scales.xAxes[0].time.unit = 'day';
+        chart.options.scales.xAxes[0].time.stepSize = 30;
+        }
+      else if (selectedScale === 'year') {
+        chart.options.scales.xAxes[0].time.unit = 'month';
+        chart.options.scales.xAxes[0].time.stepSize = 12;
+        }
+        chart.update();
+        });
+    var zoomInButton = document.getElementById('zoom-in');
+        zoomInButton.addEventListener('click', function() {
+          chart.zoom(0.5, 0.5); // 缩小 50%
+        });
+
+    var zoomOutButton = document.getElementById('zoom-out');
+    zoomOutButton.addEventListener('click', function() {
+      chart.zoom(2, 2); // 放大 200%
+    });
+</script>
