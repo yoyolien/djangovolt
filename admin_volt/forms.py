@@ -67,4 +67,4 @@ from home.models import Slide
 class SlideForm(forms.ModelForm):
     class Meta:
         model = Slide
-        fields = ('image', 'title', 'description', 'order')
+        fields = ('id', 'title', 'description', 'image')

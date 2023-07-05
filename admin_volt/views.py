@@ -8,15 +8,23 @@ from home.models import predictionresult,Slide
 from django.contrib.auth.decorators import login_required
 import json
 import datetime
+import os
 # Index
 def index(request):
   return render(request, 'pages/index.html')
 
-  def slide_list(request):
-    slides = Slide.objects.all()
-    return render(request, 'slide_list.html', {'slides': slides})
 # Dashboard
 def dashboard(request):
+  slide_folder = 'static/slides'  # 静态文件夹路径
+  slides_id = list(Slide.objects.values_list('id', flat=True))
+  for filename in os.listdir(slide_folder):
+    if filename not in slides_id:
+      if filename.startswith('slide'):
+        slide = Slide()
+        slide.image = os.path.join(slide_folder, filename)
+        slide.id=filename
+        slide.save()
+  slides = list(Slide.objects.all())
   # 資料傳入dashboard.html
   # predictionandele = predictionresult.objects.get(userid=0)
   # result = json.JSONDecoder().decode(predictionandele.result)
@@ -53,6 +61,7 @@ def dashboard(request):
     else:
       treec.append([100*(tree-i),100-100*(tree-i)])
   print(treec,tree)
+  print(slides)
   context = {
     'segment': 'dashboard',
     # 'ele': dayusage,
@@ -68,6 +77,7 @@ def dashboard(request):
     'standard': 35,
     'b': b,
     "treec":treec,
+    "slides":slides,
   }
   return render(request, 'pages/dashboard/dashboard.html', context)
 
