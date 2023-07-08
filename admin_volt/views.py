@@ -15,15 +15,7 @@ def index(request):
 
 # Dashboard
 def dashboard(request):
-  slide_folder = 'static/slides'  # 静态文件夹路径
-  slides_id = list(Slide.objects.values_list('id', flat=True))
-  for filename in os.listdir(slide_folder):
-    if filename not in slides_id:
-      if filename.startswith('slide'):
-        slide = Slide()
-        slide.image = os.path.join(slide_folder, filename)
-        slide.id=filename
-        slide.save()
+
   slides = list(Slide.objects.all())
   # 資料傳入dashboard.html
   # predictionandele = predictionresult.objects.get(userid=0)

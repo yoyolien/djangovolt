@@ -875,10 +875,10 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
         <img src="{{ slide.image.url }}">
     </div>
       <div class="carousel-controls">
-        <label for="{{ slide.next_id }}" class="prev-slide">
+        <label for="{{ slide.prev_id }}" class="prev-slide">
           <span>&lsaquo;</span>
       </label>
-        <label for="{{ slide.prev_id }}" class="next-slide">
+        <label for="{{ slide.next_id }}" class="next-slide">
           <span>&rsaquo;</span>
       </label>
     </div>
@@ -886,9 +886,9 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
 {% endfor %}
 
       <div class="carousel-dots">
-        <label for="img-1" class="carousel-dot" id="img-dot-1"></label>
-        <label for="img-2" class="carousel-dot" id="img-dot-2"></label>
-        <label for="img-3" class="carousel-dot" id="img-dot-3"></label>
+          {% for slide in slides %}
+            <label for="{{ slide.id }}" class="carousel-dot" id="{{ slide.id }}-dot"></label>
+          {% endfor %}
       </div>
     </ul>
   </div>

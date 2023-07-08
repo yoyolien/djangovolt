@@ -12,5 +12,7 @@ class Slide(models.Model):
     image = models.ImageField(upload_to='slides')
     title = models.CharField(max_length=100)
     description = models.TextField()
+    prev_id=models.TextField(null=True)
+    next_id=models.TextField(null=True)
     def __str__(self):
         return self.id
