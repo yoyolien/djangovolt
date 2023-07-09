@@ -15,7 +15,7 @@ def index(request):
 
 # Dashboard
 def dashboard(request):
-
+  print(request.user)
   slides = list(Slide.objects.all())
   # 資料傳入dashboard.html
   # predictionandele = predictionresult.objects.get(userid=0)
