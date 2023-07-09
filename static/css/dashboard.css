@@ -76,13 +76,13 @@ ul.slides input {
 }
 
 .carousel-controls .prev-slide {
-    width: 10%;
+    width: 20%;
     text-align: left;
     left: 0;
 }
 
 .carousel-controls .next-slide {
-    width: 10%;
+    width: 20%;
     text-align: right;
     right: 0;
 }

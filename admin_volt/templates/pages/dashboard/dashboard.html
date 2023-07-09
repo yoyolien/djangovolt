@@ -884,7 +884,6 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
     </div>
   </li>
 {% endfor %}
-
       <div class="carousel-dots">
           {% for slide in slides %}
             <label for="{{ slide.id }}" class="carousel-dot" id="{{ slide.id }}-dot"></label>
@@ -893,7 +892,10 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
     </ul>
   </div>
 </div>
-
+<script>
+    var a=document.getElementById("img-0-dot")
+    a.click()
+</script>
         </div>
       </div>
       <div class="col-12 px-0 mb-4">
