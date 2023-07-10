@@ -882,14 +882,16 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
           <span>&rsaquo;</span>
       </label>
     </div>
+    <div class="titleanddes"></div>
   </li>
 {% endfor %}
-      <div class="carousel-dots">
+    </ul>
+
+  <div class="carousel-dots">
           {% for slide in slides %}
             <label for="{{ slide.id }}" class="carousel-dot" id="{{ slide.id }}-dot"></label>
           {% endfor %}
       </div>
-    </ul>
   </div>
 </div>
 <script>

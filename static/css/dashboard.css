@@ -6,7 +6,7 @@
 ul.slides {
     display: block;
     position: relative;
-    height: 300px;
+    height: 400px;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -35,7 +35,7 @@ ul.slides input {
     display: block;
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: 70%;
     top: 0;
     opacity: 0;
     transition: all .7s ease-in-out;
@@ -46,7 +46,9 @@ ul.slides input {
     min-width: 100%;
     height: 100%;
 }
-
+.titleanddes{
+    top:70%;
+}
 .carousel-controls {
     position: absolute;
     top: 0;
