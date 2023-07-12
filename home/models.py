@@ -10,7 +10,7 @@ class predictionresult(models.Model):
 class Slide(models.Model):
     id= models.TextField(primary_key=True)
     image = models.ImageField(upload_to='slides')
-    title = models.CharField(max_length=100)
+    link = models.TextField()
     description = models.TextField()
     prev_id=models.TextField(null=True)
     next_id=models.TextField(null=True)
