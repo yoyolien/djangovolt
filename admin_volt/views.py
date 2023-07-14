@@ -157,7 +157,7 @@ def register_view(request):
 
 class UserLoginView(LoginView):
   form_class = LoginForm
-  template_name = 'accounts/sign-in.html'
+  template_name = 'accounts/login-form-20/index.html'
 
 class UserPasswordChangeView(PasswordChangeView):
   template_name = 'accounts/password-change.html'
