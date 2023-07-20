@@ -1,5 +1,7 @@
-import random
+import random,urllib.request
 
+import requests
+from bs4 import BeautifulSoup
 from django.shortcuts import render, redirect
 from admin_volt.forms import RegistrationForm, LoginForm, UserPasswordResetForm, UserPasswordChangeForm, UserSetPasswordForm
 from django.contrib.auth.views import LoginView, PasswordResetView, PasswordChangeView, PasswordResetConfirmView
@@ -9,6 +11,46 @@ from django.contrib.auth.decorators import login_required
 import json
 import datetime
 import os
+def requesttaipower():
+  url = "https://www.taipower.com.tw/tc/news.aspx?mid=17"
+  save_path = "static/slides/"
+  print(save_path)
+  titles=[]
+  links=[]
+  imglinks=[]
+  # 發送GET請求並取得響應
+  response = requests.get(url)
+  # 檢查是否成功取得響應
+  if response.status_code == 200:
+    Slide.objects.all().delete()
+    soup = BeautifulSoup(response.text, "html.parser")
+    # 找到包含新聞列表的 div 元素
+    box_list_div = soup.find("div", class_="box_list")
+    # 找到所有的 li 元素
+    news_list = box_list_div.find_all("li")
+    for i,news in enumerate(news_list):
+          title = news.select_one("a").text.strip()
+          # title=title.replace(" ", "").replace("\n", "").replace("\t", "")
+          img = news.select_one("img")["src"]
+          link = news.select_one("a")["href"]
+          titles.append(title)
+          links.append(f"https://www.taipower.com.tw/tc/{link}")
+          imglinks.append("https://www.taipower.com.tw" + img)
+    slides=[]
+    for i,title in enumerate(titles):
+      slide = Slide()
+      slide.link=links[i]
+      slide.image = imglinks[i]
+      slide.description=title
+      slide.id = "img-" + str(i)
+      slide.save()
+      slides.append(slide)
+    for index, slide in enumerate(slides):
+      slide.prev_id = slides[index - 1].id
+      slide.next_id = slides[(index + 1) % len(slides)].id
+      slide.save()
+  else:
+    print("無法取得響應")
 # Index
 def index(request):
   return render(request, 'pages/index.html')
@@ -18,7 +60,7 @@ def dashboard(request):
   print(request.user)
   slides = list(Slide.objects.all())
   # 資料傳入dashboard.html
-  # predictionandele = predictionresult.objects.get(userid=0)
+  # predictionandele = predictionresult.objects.get(userid=request.user.id)
   # result = json.JSONDecoder().decode(predictionandele.result)
   # label = [i for i in result]
   # dayusage = [result[i][0] for i in result]

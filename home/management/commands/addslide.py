@@ -7,7 +7,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         Slide.objects.all().delete()
-        slide_folder = 'static/slides'  # 静态文件夹路径
+        slide_folder = 'static/slides' 
         slides=[]
         slides_id = list(Slide.objects.values_list('id', flat=True))
         if len(slides_id) !=len(os.listdir(slide_folder)):

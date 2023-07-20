@@ -641,8 +641,6 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                   // console.log(dates);
                   // console.log(eles);
 
-
-
                   setTimeout(function() {
                     var tb=document.getElementById("tb");
                     var origin_node=document.getElementById("trr");
@@ -871,10 +869,10 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
 {% for slide in slides %}
     <input type="radio" name="radio-buttons" id="{{ slide.id }}" />
     <li class="slide-container">
-      <div class="slide-image">
-        <a href="{{ slide.link }}" target="_blank"><img src="{{ slide.image.url }}" ></a>
+      <a src="{{ slide.link }}" target="_blank"><div class="slide-image">
+        <img src="{{ slide.image }}" >
           <div class="">{{ slide.description }}</div>
-      </div>
+      </div></a>
       <div class="carousel-controls">
         <label for="{{ slide.prev_id }}" class="prev-slide">
           <span>&lsaquo;</span>
