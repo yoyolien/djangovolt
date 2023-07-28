@@ -21,6 +21,6 @@ urlpatterns = [
     path('', include('home.urls')),
     path("admin/", admin.site.urls),
     path("", include('admin_volt.urls')),
-    path('test/',home.views.todashboard),
+    path('test/',home.views.test),
     path('createuser/',home.views.createuser),
 ]

@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AnonymousUser
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from home.models import predictionresult,eledata
+from home.models import predictionresult,eledata,Slide
 from datetime import datetime
 import requests,json,csv,io
 # Create your views here.
@@ -77,6 +77,11 @@ def requestapi(request):
     }
     return render(request,'test.html',context=context)
 
-def todashboard(request):
-    a=predictionresult.objects.all()
-    return render(request,'test.html',{'a':a})
+def test(request):
+    a=Slide.objects.all()
+    print(a)
+    return render(request,'test.html',{"fslide":a[0],'slides':a[1:]})
+def testt():
+    a=Slide.objects.all()
+    print(a[0].image)
+    return

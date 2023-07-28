@@ -33,16 +33,20 @@ def requesttaipower():
           # title=title.replace(" ", "").replace("\n", "").replace("\t", "")
           img = news.select_one("img")["src"]
           link = news.select_one("a")["href"]
+          if "/upload/" in img:
+            img_link = f"https://www.taipower.com.tw{img}"
+          else:
+            img_link = f"https://www.taipower.com.tw/tc/{img}"
           titles.append(title)
           links.append(f"https://www.taipower.com.tw/tc/{link}")
-          imglinks.append("https://www.taipower.com.tw" + img)
+          imglinks.append(img_link)
     slides=[]
     for i,title in enumerate(titles):
       slide = Slide()
       slide.link=links[i]
       slide.image = imglinks[i]
       slide.description=title
-      slide.id = "img-" + str(i)
+      slide.id = "img-" + str(i+1)
       slide.save()
       slides.append(slide)
     for index, slide in enumerate(slides):
@@ -56,6 +60,7 @@ def index(request):
   return render(request, 'pages/index.html')
 
 # Dashboard
+@login_required(login_url="/accounts/login/")
 def dashboard(request):
   print(request.user)
   slides = list(Slide.objects.all())
@@ -111,7 +116,8 @@ def dashboard(request):
     'standard': 35,
     'b': b,
     "treec":treec,
-    "slides":slides,
+    "slides":slides[1:],
+    "fslide":slides[0],
   }
   return render(request, 'pages/dashboard/dashboard.html', context)
 

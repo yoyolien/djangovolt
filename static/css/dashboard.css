@@ -1,137 +1,48 @@
-.carousel {
-
-
+#carouselExampleIndicators {
+    height: 300px;
 }
-
-ul.slides {
-    display: block;
-    position: relative;
-    height: 400px;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    list-style: none;
-}
-
-.slides * {
-    user-select: none;
-    -ms-user-select: none;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -webkit-touch-callout: none;
-}
-
-ul.slides input {
-    display: none;
-}
-
-
-.slide-container {
-    display: block;
-}
-
-.slide-image {
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 70%;
-    top: 0;
-    opacity: 0;
-    transition: all .7s ease-in-out;
-}
-
-.slide-image img {
-    width: auto;
-    min-width: 100%;
-    height: 100%;
+.carimg{
+  height: 200px;
 }
 .titleanddes{
     top:70%;
 }
-.carousel-controls {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 999;
-    font-size: 100px;
-    line-height: 300px;
-    color: #fff;
+ol.carousel-indicators {
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+}
+.carousel-control-next-icon::before,
+.carousel-control-prev-icon::before  {
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+}
+ol.carousel-indicators li,
+ol.carousel-indicators li.active {
+  float: left;
+  width: 33%;
+  height: 10px;
+  margin: 0;
+  border-radius: 0;
+  border: 0;
+  opacity: 0.6;
+  background: white;
 }
 
-.carousel-controls label {
-    display: none;
-    position: absolute;
-    padding: 0 20px;
-    opacity: 0;
-    transition: opacity .2s;
-    cursor: pointer;
+ol.carousel-indicators li.active {
+  float: left;
+  width: 33%;
+  height: 10px;
+  margin: 0;
+  border-radius: 0;
+  border: 0;
+  background: gray;
+  opacity: 0.7;
 }
-
-.slide-image:hover + .carousel-controls label{
-    opacity: 0.5;
-}
-
-.carousel-controls label:hover {
-    opacity: 1;
-}
-
-.carousel-controls .prev-slide {
-    width: 20%;
-    text-align: left;
-    left: 0;
-}
-
-.carousel-controls .next-slide {
-    width: 20%;
-    text-align: right;
-    right: 0;
-}
-
-.carousel-dots {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 10px;
-    z-index: 999;
-    text-align: center;
-}
-
-.carousel-dots .carousel-dot {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #0a0a0a;
-    opacity: 0.5;
-    margin: 10px;
-}
-
-input:checked + .slide-container .slide-image {
-    opacity: 1;
-    transform: scale(1);
-    transition: opacity 1s ease-in-out;
-}
-
-input:checked + .slide-container .carousel-controls label {
-    display: block;
-}
-
-input#img-0:checked ~ .carousel-dots label#img-0-dot,
-input#img-1:checked ~ .carousel-dots label#img-1-dot,
-input#img-2:checked ~ .carousel-dots label#img-2-dot,
-input#img-3:checked ~ .carousel-dots label#img-3-dot,
-input#img-4:checked ~ .carousel-dots label#img-4-dot,
-input#img-5:checked ~ .carousel-dots label#img-5-dot,
-input#img-6:checked ~ .carousel-dots label#img-6-dot {
-	opacity: 1;
-}
-
-
-input:checked + .slide-container .nav label { display: block; }
-
-
 .image-container {
   background-image: url("/static/backgroundtree.png");
   background-size: contain;
@@ -177,10 +88,6 @@ input:checked + .slide-container .nav label { display: block; }
     background-color: #f1f1f1; /* 设置贴文背景颜色 */
     vertical-align: top; /* 对齐贴文内容到顶部 */
     }
-.carousel-item img{
-    height:300px;
-    width: 100px;
-}
 @media (max-width: 600px) {
   .image-container {
     width: 50px;
