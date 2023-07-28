@@ -6,8 +6,10 @@ from django.dispatch import receiver
 import os
 # Create your models here.
 class predictionresult(models.Model):
-    user = models.OneToOneField(User,default=None, on_delete=models.CASCADE,primary_key=True)
+    id= models.TextField(primary_key=True,auto_created=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     result=models.TextField(null=False)
+    date = models.TextField()
 class Slide(models.Model):
     id= models.TextField(primary_key=True)
     image = models.TextField()

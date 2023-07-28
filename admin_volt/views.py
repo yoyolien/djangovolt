@@ -6,7 +6,8 @@ from django.shortcuts import render, redirect
 from admin_volt.forms import RegistrationForm, LoginForm, UserPasswordResetForm, UserPasswordChangeForm, UserSetPasswordForm
 from django.contrib.auth.views import LoginView, PasswordResetView, PasswordChangeView, PasswordResetConfirmView
 from django.contrib.auth import logout
-from home.models import predictionresult,Slide
+from home.models import *
+from home.views import requestmlresult
 from django.contrib.auth.decorators import login_required
 import json
 import datetime
@@ -62,16 +63,15 @@ def index(request):
 # Dashboard
 @login_required(login_url="/accounts/login/")
 def dashboard(request):
-  print(request.user)
+  requestmlresult(request.user)
   slides = list(Slide.objects.all())
   # 資料傳入dashboard.html
-  # predictionandele = predictionresult.objects.get(userid=request.user.id)
-  # result = json.JSONDecoder().decode(predictionandele.result)
-  # label = [i for i in result]
-  # dayusage = [result[i][0] for i in result]
-  # dayusage = list(map(lambda x:x/1000,dayusage))
-  # daypredictresult = [result[i][1] for i in result]
-  # tree = 0.509*sum(dayusage)/550.5
+  prediction = predictionresult.objects.filter(user_id=request.user.id)
+  result = list(map(lambda x: x.result[-5], prediction))
+  ele = eledata.objects.filter(user_id=request.user.id)
+  label = [i.report_time for i in ele]
+  dayusage = [sum(map(float, e.daliyusage.split(","))) / 1000 for e in ele]
+  tree = 0.509*sum(dayusage)/550.5
 
   arr = [i for i in range(1, 6)]
   a = [i for i in range(1, 26)]
@@ -92,27 +92,24 @@ def dashboard(request):
     # b.append({'x: ' + str(datetime.date(2023, 4, i)), 'y: ' + str(random.randint(10, 60))})
  
 
-  tree = 7.5
   treec=[]
   for i in range(int(tree)+1):
     if i +1<tree:
       treec.append([100,0])
     else:
       treec.append([100*(tree-i),100-100*(tree-i)])
-  print(treec,tree)
-  print(slides)
   context = {
     'segment': 'dashboard',
-    # 'ele': dayusage,
-    # 'date': label,
-    # 'presult': daypredictresult,
-    # "todayusage":dayusage[-1],
-    # "wholeusage":sum(dayusage),
+    'ele': dayusage,
+    'date': label,
+    'presult': result,
+    "todayusage":dayusage[-1],
+    "wholeusage":sum(dayusage),
 
     'arr': arr,
     'a': a,
-    'date': date,
-    'ele': ele,
+    # 'date': date,
+    # 'ele': ele,
     'standard': 35,
     'b': b,
     "treec":treec,

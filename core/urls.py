@@ -22,5 +22,4 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include('admin_volt.urls')),
     path('test/',home.views.test),
-    path('createuser/',home.views.createuser),
 ]
