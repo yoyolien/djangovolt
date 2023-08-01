@@ -69,49 +69,36 @@ def dashboard(request):
   prediction = predictionresult.objects.filter(user_id=request.user.id)
   result = list(map(lambda x: x.result[-5], prediction))
   ele = eledata.objects.filter(user_id=request.user.id)
-  label = [i.report_time for i in ele]
-  dayusage = [sum(map(float, e.daliyusage.split(","))) / 1000 for e in ele]
-  tree = 0.509*sum(dayusage)/550.5
+  label = [[] for _ in range(12)]
+  dayusage = [[] for _ in range(12)]
+  print(request.user.id)
 
-  arr = [i for i in range(1, 6)]
-  a = [i for i in range(1, 26)]
-  b = []
-  date = []
-  ele = []
-
-  for i in range(1,13):
-    date.append([])
-    ele.append([])
-  for i in range(1, 31):
-    date[3].append(str(datetime.date(2023, 4, i))[8:])
-    ele[3].append(random.randint(10, 60))
-    # b.append({'x: ' + str(datetime.date(2023, 4, i)), 'y: ' + str(random.randint(10, 60))})
-  for i in range(1, 32):
-    date[4].append(str(datetime.date(2023, 5, i))[8:])
-    ele[4].append(random.randint(10, 60))
-    # b.append({'x: ' + str(datetime.date(2023, 4, i)), 'y: ' + str(random.randint(10, 60))})
- 
-
+  for i in ele:
+    month = i.report_time.month
+    usage = sum(map(float, i.daliyusage.split(",")))/1000
+    usage = float('%.2f'%usage)
+    label[month - 1].append(i.report_time.day)
+    dayusage[month - 1].append(usage)
+  mu = [float('%.2f'%sum(i)) for i in dayusage]
+  wu = float('%.2f'%sum(mu))
+  tree = 0.509 * wu / 550.5
   treec=[]
   for i in range(int(tree)+1):
     if i +1<tree:
       treec.append([100,0])
     else:
       treec.append([100*(tree-i),100-100*(tree-i)])
+
   context = {
     'segment': 'dashboard',
     'ele': dayusage,
     'date': label,
     'presult': result,
-    "todayusage":dayusage[-1],
-    "wholeusage":sum(dayusage),
+    "todayusage":dayusage[-1][-1],
+    "monthusage":mu,
+    "wholeusage":wu,
 
-    'arr': arr,
-    'a': a,
-    # 'date': date,
-    # 'ele': ele,
-    'standard': 35,
-    'b': b,
+    'standard': [float('%.2f'%(sum(i)/len(i))) for i in dayusage],
     "treec":treec,
     "slides":slides[1:],
     "fslide":slides[0],

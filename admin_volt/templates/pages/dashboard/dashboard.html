@@ -104,16 +104,6 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
       </div>
     </div>
   </div>
-  <!-- <div>
-    <div class="ct-chart ct-golden-section" id="chart1"></div>
-    <script>
-    var mylist = {{ arr|safe }};
-    new Chartist.Line('#chart1', {
-    labels: mylist,
-    series: [[100, 120, 180, 200, 150, 300, 150]]
-    });
-    </script>
-  </div> -->
   <div class="row">
     <div class="col-12 mb-4">
       <div class="card bg-yellow-100 border-0 shadow">
@@ -355,45 +345,33 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
     </div>
     <!-- 修改平均電力用量，使用異常天數 -->
     <script>
-      var dateall={{ date|safe }};
-      var eleall={{ ele|safe }};
-      console.log(dateall);
+      var dateall={{ date|safe }};//以陣列存放個月日期 ex.一月dateall[0]=>[1,2,3...,31]
+      var eleall={{ ele|safe }};//電力用量,跟dateall是對應的
+        console.log(eleall);
+
+      var total = {{ wholeusage|safe }}
       var date=dateall[4];
       var ele=eleall[4];
-      var weekdate=[];
-      var weekele=[];
+      var weekdate=[];//存放日期從改成天改成周的資料
+      var weekele=[];//周電力用量
       var year=2023;
-      var t=0,n=0,total=0;
+      var t=0,n=0;
       var startdate;
-      var standard;
-      var overstandard=0;
-      var sum=0;
-      var weeksum=0;
-      var weekstandard;
-      var today=ele[29];
-      var yesterday=ele[28];
-      var monthele=[0,0,0,0,0,0,0,0,0,0,0,0]
-      var throwawayNode1;
-      var throwawayNode2;
-      var chartElement1 = document.getElementById('chart1');
-      var chartElement2 = document.getElementById('chart2');
-      var monthview=document.getElementById('monthview');
+      var standard = {{ standard|safe }};//平均值
+      var overstandard=0;//日電力用量平均值
+      var sum={{ wholeusage|safe }};//電力用量總和
+      var weeksum=0;//周電力用量總和
+      var weekstandard;//月電力用量平均值
+      var monthele= {{monthusage|safe}};
+      var throwawayNode1;//用來存放繪出圖形的節點
+      var throwawayNode2;//用來存放繪出圖形的節點
+      var chartElement1 = document.getElementById('chart1');//日電力圖表
+      var chartElement2 = document.getElementById('chart2');//周電力圖表
+      // var monthview=document.getElementById('monthview');
       var use=document.getElementById('use');
-      var compare=document.getElementById('compare');
-      var monthSelect = document.getElementById('monthSelect');
+      var compare=document.getElementById('compare');//與上月相比
+      var monthSelect = document.getElementById('monthSelect');//月份選單
       startdate=date[0];
-
-      console.log(eleall,"ele");
-      function calculate_month_rate(){
-        if (monthele[4]>=monthele[3]){
-          compare.textContent=String(Math.round((monthele[4]/monthele[3]-1)*100))+'% ↑';
-          compare.classList.remove("text-success");
-          compare.classList.add("text-danger");
-        }
-        else{
-          compare.textContent=String(Math.round((1-monthele[4]/monthele[3])*100))+'% ↓';
-        }
-      }
       function weekcalculate() {
         t=0;
         sum=0;
@@ -411,32 +389,21 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
           }
         };
       }
-      function calculate_month_ele(){
-        t=0;
-        for (var i = 0; i < eleall.length; i++) {
-          for (var j = 0; j < eleall[i].length; j++) {
-            total=total+eleall[i][j];
-          }
-          monthele[i]=total-t;
-          t=total;
-        }
-        console.log(monthele);
-      }
-
-
 
       // 定義選取月份的事件處理函式
       function handleMonthChange() {
         var selectedMonth = monthSelect.value;
+        var thv= standard[selectedMonth-1]
+          average.textContent = thv;
           date=dateall[selectedMonth-1];
           ele=eleall[selectedMonth-1];
           weekcalculate();
           use.textContent='總共使用'+String(monthele[selectedMonth-1])+'度';
-          calculate_overstandard();
+          calculate_overstandard(selectedMonth-1);
           document.getElementById('overstandard').textContent = overstandard;
           chart1.update({
             labels: date,
-            series: [ele]
+            series: [eleall[selectedMonth-1]]
           });
           chart2.update({
             labels: weekdate,
@@ -445,17 +412,16 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
         // 在這裡執行您希望觸發的動作
       }
 
-      function calculate_overstandard(){
+      function calculate_overstandard(a){
         overstandard=0;
         for (var i = 0; i < ele.length; i++) {
-          if(ele[i]>=standard)overstandard++;
+          if(ele[i]>=standard[a])overstandard++;
         };
+        console.log(standard[a])
       }
       weekcalculate();
-      calculate_month_ele();
-      standard=Math.round(total/61);
-      calculate_month_rate();
-      calculate_overstandard()
+
+      calculate_overstandard(0)
 
       // 添加事件監聽器，偵測下拉選單的變更事件
       monthSelect.addEventListener('change', handleMonthChange);
@@ -463,6 +429,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
 
       for (var i = 0; i < weekele.length; i++) {
         weeksum += weekele[i];
+        console.log(weeksum);
       };
 
       weekstandard=Math.round(weeksum/4);
@@ -471,7 +438,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
       // chart1 chart2繪製
       var chart1 = new Chartist.Line('#chart1', {
         labels: date,
-        series: [ele],
+        series: [eleall[0]],
       },{
         showArea: true,
         axisY: {
@@ -479,7 +446,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
         },
         plugins: [
           Chartist.plugins.ctThreshold({
-            threshold: standard,
+            threshold: standard[0],
           }),
           Chartist.plugins.ctPointLabels({
             textAnchor: 'middle'
@@ -514,9 +481,9 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
 
       const dayBtn = document.getElementById("day-btn");
       const weekBtn = document.getElementById("week-btn");
-      document.getElementById('average used').textContent = standard;
+      const average = document.getElementById('average used')
+      average.textContent = standard[0];
       document.getElementById('overstandard').textContent = overstandard;
-      document.getElementById('tree').textContent = Math.round(sum/20);
 
       dayBtn.addEventListener("click", function(){
         // dayBtn跟weekbtn屬性交換
@@ -533,8 +500,6 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
           throwawayNode2=chartElement2.parentNode.removeChild(chartElement2);
           document.getElementById("containbox").appendChild(throwawayNode1);
         }
-
-        document.getElementById('average used').textContent = Math.round(standard);
         chart1.update();
       });
 
