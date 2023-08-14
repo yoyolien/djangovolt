@@ -10,6 +10,35 @@ def index(request):
 
     # Page from the theme 
     return render(request, 'pages/index.html')
+def chart(request):
+    month = int(request.GET.get('m'))
+    # year = int(request.GET.get('y'))
+    prediction = predictionresult.objects.filter(user_id=request.user.id,date__month=month)
+    print(prediction,request.user)
+    result = list(map(lambda x: x.result[-5], prediction))
+    ele = eledata.objects.filter(user_id=request.user.id,report_time__month=month)
+    label = [i.report_time.day for i in ele]
+    dayusage = [sum(map(float, i.daliyusage.split(","))) / 1000 for i in ele]
+
+    # for i in ele:
+    #     month = i.report_time.month
+    #     usage = sum(map(float, i.daliyusage.split(","))) / 1000
+    #     usage = float('%.2f' % usage)
+    #     label[month - 1].append(i.report_time.day)
+    #     dayusage[month - 1].append(usage)
+
+    wu = float('%.2f' % sum(dayusage))
+    print(label,dayusage)
+    context={
+        'ele': dayusage,
+        'date': label,
+        'presult': result,
+        "todayusage":dayusage,
+        "wholeusage":wu,
+        'standard': wu/len(label),
+    }
+
+    return render(request, 'chart.html', context)
 def upload_data_view(request):
     if request.method == 'POST' and request.FILES.get('csv_file'):
         with io.TextIOWrapper(request.FILES["csv_file"], encoding="utf-8") as csvfile:

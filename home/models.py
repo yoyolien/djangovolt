@@ -9,7 +9,7 @@ class predictionresult(models.Model):
     id= models.TextField(primary_key=True,auto_created=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     result=models.TextField(null=False)
-    date = models.TextField()
+    date = models.DateField()
 class Slide(models.Model):
     id= models.TextField(primary_key=True)
     image = models.TextField()

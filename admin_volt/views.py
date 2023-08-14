@@ -65,7 +65,6 @@ def index(request):
 def dashboard(request):
   requestmlresult(request.user)
   slides = list(Slide.objects.all())
-  # 資料傳入dashboard.html
   prediction = predictionresult.objects.filter(user_id=request.user.id)
   result = list(map(lambda x: x.result[-5], prediction))
   ele = eledata.objects.filter(user_id=request.user.id)
@@ -79,10 +78,12 @@ def dashboard(request):
     usage = float('%.2f'%usage)
     label[month - 1].append(i.report_time.day)
     dayusage[month - 1].append(usage)
+
   mu = [float('%.2f'%sum(i)) for i in dayusage]
   wu = float('%.2f'%sum(mu))
   tree = 0.509 * wu / 550.5
   treec=[]
+
   for i in range(int(tree)+1):
     if i +1<tree:
       treec.append([100,0])

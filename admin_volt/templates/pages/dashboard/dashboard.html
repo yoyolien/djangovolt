@@ -1,289 +1,330 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
 {% block content %}
-<style>
-  .tooltipa {
-      position: relative;
-      display: inline-block;
-      /* border-bottom: 1px dotted black; */
-  }
+    <style>
+        .tooltipa {
+            position: relative;
+            display: inline-block;
+            /* border-bottom: 1px dotted black; */
+        }
 
-  .tooltipa .tooltiptext {
-      visibility: hidden;
-      width: 120px;
-      background-color: black;
-      color: #fff;
-      text-align: left;
-      border-radius: 6px;
-      padding: 5px 0;
+        .tooltipa .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: left;
+            border-radius: 6px;
+            padding: 5px 0;
 
-      /* 定位 */
-      position: absolute;
-      z-index: 1;
-  }
+            /* 定位 */
+            position: absolute;
+            z-index: 1;
+        }
 
-  .tooltipa:hover .tooltiptext {
-      visibility: visible;
-  }
+        .tooltipa:hover .tooltiptext {
+            visibility: visible;
+        }
 
-</style>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
-<script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
-<link type="text/css" href="{% static 'css/dashboard.css' %}" rel="stylesheet">
-<script src="
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <link type="text/css" href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+    <script src="
 https://cdn.jsdelivr.net/npm/chartist-plugin-pointlabels@0.0.6/dist/chartist-plugin-pointlabels.min.js
 "></script>
-<script src="
+    <script src="
 https://cdn.jsdelivr.net/npm/chartist-plugin-zoom@0.6.0/dist/chartist-plugin-zoom.min.js
 "></script>
-<script src="
+    <script src="
 https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugin-threshold.min.js
 "></script>
-  <div class="py-4">
-    <div class="dropdown">
-      <button class="btn btn-gray-800 d-inline-flex align-items-center me-2 dropdown-toggle" data-bs-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-        <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-        </svg>
-        New Task
-      </button>
-      <div class="dropdown-menu dashboard-dropdown dropdown-menu-start mt-2 py-1">
-        <a class="dropdown-item d-flex align-items-center" href="#">
-          <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z">
-            </path>
-          </svg>
-          Add User
-        </a>
-        <a class="dropdown-item d-flex align-items-center" href="#">
-          <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z">
-            </path>
-          </svg>
-          Add Widget
-        </a>
-        <a class="dropdown-item d-flex align-items-center" href="#">
-          <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z">
-            </path>
-            <path d="M9 13h2v5a1 1 0 11-2 0v-5z"></path>
-          </svg>
-          Upload Files
-        </a>
-        <a class="dropdown-item d-flex align-items-center" href="#">
-          <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd"
-              d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-              clip-rule="evenodd"></path>
-          </svg>
-          Preview Security
-        </a>
-        <div role="separator" class="dropdown-divider my-1"></div>
-        <a class="dropdown-item d-flex align-items-center" href="#">
-          <svg class="dropdown-icon text-danger me-2" fill="currentColor" viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd"
-              d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z"
-              clip-rule="evenodd"></path>
-          </svg>
-          Upgrade to Pro
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12 mb-4">
-      <div class="card bg-yellow-100 border-0 shadow">
-        <div class="card-header d-sm-flex flex-row align-items-center flex-0">
-          <div class="d-block mb-3 mb-sm-0">
-            <div class="fs-5 fw-normal mb-2">
-              <select id="monthSelect">
-                <option value="1">1月</option>
-                <option value="2">2月</option>
-                <option value="3">3月</option>
-                <option value="4">4月</option>
-                <option value="5">5月</option>
-                <option value="6">6月</option>
-                <option value="7">7月</option>
-                <option value="8">8月</option>
-                <option value="9">9月</option>
-                <option value="10">10月</option>
-                <option value="11">11月</option>
-                <option value="12">12月</option>
-            </select></div>
-            <h2 class="fs-3 fw-extrabold" id="use"></h2>
-            <div class="small mt-2">
-              <span class="fw-normal me-2">與上月相比</span>
-              <span class="fas fa-angle-up text-success"></span>
-              <span class="text-success fw-bold" id="compare">10.57%</span>
-            </div>
-          </div>
-          <div class="d-flex ms-auto">
-            <a href="#" class="btn btn-secondary text-dark btn-sm me-2"  id="day-btn">Day</a>
-            <a href="#" class="btn btn-dark btn-sm me-3" id="week-btn">Week</a>
-          </div>
-        </div>
-        <div class="card-body p-2" id="containbox" style="overflow-x: auto;">
-          <div class=" ct-double-octave ct-series-g" id ="chart1" style="display: block;"></div>
-          <div class=" ct-double-octave ct-series-g" id ="chart2" style="display: block"></div>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 col-sm-6 col-xl-4 mb-4">
-      <div class="card border-0 shadow">
-        <div class="card-body">
-          <div class="row d-block d-xl-flex align-items-center">
-            <div
-              class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
-              <!-- 電量圖示 -->
-              <div class="icon-shape icon-shape-primary rounded me-4 me-sm-0">
-                <svg width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                  <defs>
-                    <polygon id="thunder-a" points="2.977 8.161 8.269 9.241 .218 18.519 1.882 19.604 12.128 8.161 5.893 6.809 8.821 .998 7.387 .185"/>
-                    <path id="thunder-c" d="M10.2577032,5.88540233 L13.3683613,6.4682972 C14.894984,6.75436548 15.5271239,8.59550311 14.4981974,9.75899885 L5.15432684,20.3249168 C3.62851509,22.0502834 0.875362777,20.253925 1.83997631,18.1623916 L4.9166534,11.4913543 L2.63023839,11.061225 C1.27422934,10.8061273 0.577759703,9.28698125 1.26946216,8.09308716 L5.3804761,0.997384038 C5.7381351,0.380056504 6.3975623,0 7.11101395,0 L10.1949866,0 C11.7353835,0 12.697534,1.66821829 11.9261411,3.00155082 L10.2577032,5.88540233 Z M10.1949866,2 L7.11101395,2 L3,9.09570312 L7.80692226,10 L3.65612945,19 L13,8.43408203 L7.11101395,7.33056641 L10.1949866,2 Z"/>
-                  </defs>
-                  <g fill="none" fill-rule="evenodd" transform="translate(4 2)">
-                    <g transform="translate(2)">
-                      <mask id="thunder-b" fill="#ffffff">
-                        <use xlink:href="#thunder-a"/>
-                      </mask>
-                      <use fill="#D8D8D8" xlink:href="#thunder-a"/>
-                      <g fill="#FFA0A0" mask="url(#thunder-b)">
-                        <rect width="24" height="24" transform="translate(-6 -2)"/>
-                      </g>
-                    </g>
-                    <mask id="thunder-d" fill="#ffffff">
-                      <use xlink:href="#thunder-c"/>
-                    </mask>
-                    <use fill="#000000" fill-rule="nonzero" xlink:href="#thunder-c"/>
-                    <g fill="#7600FF" mask="url(#thunder-d)">
-                      <rect width="24" height="24" transform="translate(-4 -2)"/>
-                    </g>
-                  </g>
+    <div class="py-4">
+        <div class="dropdown">
+            <button class="btn btn-gray-800 d-inline-flex align-items-center me-2 dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                 </svg>
-              </div>
-              <div class="d-sm-none">
-                <h2 class="h5">Customers</h2>
-                <h3 class="fw-extrabold mb-1">345,678</h3>
-              </div>
+                New Task
+            </button>
+            <div class="dropdown-menu dashboard-dropdown dropdown-menu-start mt-2 py-1">
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                    <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path
+                                d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z">
+                        </path>
+                    </svg>
+                    Add User
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                    <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path
+                                d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z">
+                        </path>
+                    </svg>
+                    Add Widget
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                    <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path
+                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z">
+                        </path>
+                        <path d="M9 13h2v5a1 1 0 11-2 0v-5z"></path>
+                    </svg>
+                    Upload Files
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                    <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                              clip-rule="evenodd"></path>
+                    </svg>
+                    Preview Security
+                </a>
+                <div role="separator" class="dropdown-divider my-1"></div>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                    <svg class="dropdown-icon text-danger me-2" fill="currentColor" viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z"
+                              clip-rule="evenodd"></path>
+                    </svg>
+                    Upgrade to Pro
+                </a>
             </div>
-            <div class="col-12 col-xl-7 px-xl-0">
-              <div class="d-none d-sm-block">
-                <h2 class="h6 text-gray-400 mb-0">平均電力用量</h2>
-                <h3 class="fw-extrabold mb-2"><span id="average used"></span>度</h3>
-              </div>
-              <small class="d-flex align-items-center text-gray-500">
-                Feb 1 - Apr 1,
-                <svg class="icon icon-xxs text-gray-500 ms-2 me-1" fill="currentColor" viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z"
-                    clip-rule="evenodd"></path>
-                </svg>
-                USA
-              </small>
-              <div class="small d-flex mt-1">
-                <div>Since last week <svg class="icon icon-xs text-success" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                      d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
-                      clip-rule="evenodd"></path>
-                  </svg><span class="text-success fw-bolder">22%</span></div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-    <div class="col-12 col-sm-6 col-xl-4 mb-4">
-      <div class="card border-0 shadow">
-        <div class="card-body">
-          <div class="row d-block d-xl-flex align-items-center">
-            <div
-              class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
-              <!-- 警告圖示 -->
-              <div class="icon-shape icon-shape-secondary rounded me-4 me-sm-0">
-                <svg width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                  <defs>
-                    <polygon id="alert-a" points="2.758 .388 19.133 .388 21.288 4.068 19.896 4.965 2.592 4.965 .87 4.068"/>
-                    <path id="alert-c" d="M12,2 L3,18 L21,18 L12,2 Z M10.2568489,1.01947752 C11.0214571,-0.33982584 12.9785429,-0.33982584 13.7431511,1.01947752 L22.7431511,17.0194775 C23.4930806,18.3526856 22.529653,20 21,20 L3,20 C1.47034705,20 0.506919374,18.3526856 1.25684893,17.0194775 L10.2568489,1.01947752 Z M11,11 L11,16 C11,16.5522847 11.4477153,17 12,17 C12.5522847,17 13,16.5522847 13,16 L13,11 C13,10.4477153 12.5522847,10 12,10 C11.4477153,10 11,10.4477153 11,11 Z M12,9 C12.5522847,9 13,8.55228475 13,8 C13,7.44771525 12.5522847,7 12,7 C11.4477153,7 11,7.44771525 11,8 C11,8.55228475 11.4477153,9 12,9 Z"/>
-                  </defs>
-                  <g fill="none" fill-rule="evenodd" transform="translate(0 2)">
-                    <g transform="translate(1 14)">
-                      <mask id="alert-b" fill="#ffffff">
-                        <use xlink:href="#alert-a"/>
-                      </mask>
-                      <use fill="#D8D8D8" xlink:href="#alert-a"/>
-                      <g fill="#FFA0A0" mask="url(#alert-b)">
-                        <rect width="24" height="24" transform="translate(-1 -16)"/>
-                      </g>
-                    </g>
-                    <mask id="alert-d" fill="#ffffff">
-                      <use xlink:href="#alert-c"/>
-                    </mask>
-                    <use fill="#000000" fill-rule="nonzero" xlink:href="#alert-c"/>
-                    <g fill="#7600FF" mask="url(#alert-d)">
-                      <rect width="24" height="24" transform="translate(0 -2)"/>
-                    </g>
-                  </g>
-                </svg>
-              </div>
-              <div class="d-sm-none">
-                <h2 class="fw-extrabold h5">Revenue</h2>
-                <h3 class="mb-1">$43,594</h3>
-              </div>
+    <div class="row">
+        <div class="col-12 mb-4">
+            <div class="card bg-yellow-100 border-0 shadow">
+                <div class="card-header d-sm-flex flex-row align-items-center flex-0">
+                    <div class="d-block mb-3 mb-sm-0">
+                        <div class="fs-5 fw-normal mb-2">
+                            <select id="monthSelect">
+                                <option value="1">1月</option>
+                                <option value="2">2月</option>
+                                <option value="3">3月</option>
+                                <option value="4">4月</option>
+                                <option value="5">5月</option>
+                                <option value="6">6月</option>
+                                <option value="7">7月</option>
+                                <option value="8">8月</option>
+                                <option value="9">9月</option>
+                                <option value="10">10月</option>
+                                <option value="11">11月</option>
+                                <option value="12">12月</option>
+                            </select></div>
+                        <h2 class="fs-3 fw-extrabold" id="use"></h2>
+                        <div class="small mt-2">
+                            <span class="fw-normal me-2">與上月相比</span>
+                            <span class="fas fa-angle-up text-success"></span>
+                            <span class="text-success fw-bold" id="compare">10.57%</span>
+                        </div>
+                    </div>
+                    <div class="d-flex ms-auto">
+                        <a href="#" class="btn btn-secondary text-dark btn-sm me-2" id="day-btn">Day</a>
+                        <a href="#" class="btn btn-dark btn-sm me-3" id="week-btn">Week</a>
+                    </div>
+                </div>
+                <div class="card-body p-2" id="containbox" style="overflow-x: auto;">
+                    <div class="ct-double-octave ct-series-g" id="chart1d" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-g" id="chart2d" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-g" id="chart3d" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-g" id="chart4d" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-g" id="chart5d" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-g" id="chart6d" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-g" id="chart7d" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-g" id="chart8d" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-g" id="chart9d" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-g" id="chart10d" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-g" id="chart11d" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-g" id="chart12d" style="display: block;"></div>
+
+                    <div class="ct-double-octave ct-series-g" id="chart1k" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-g" id="chart2k" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-g" id="chart3k" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-g" id="chart4k" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-g" id="chart5k" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-g" id="chart6k" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-g" id="chart7k" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-g" id="chart8k" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-g" id="chart9k" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-g" id="chart10k" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-g" id="chart11k" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-g" id="chart12k" style="display: block;"></div>
+                </div>
             </div>
-            <div class="col-12 col-xl-7 px-xl-0">
-              <div class="d-none d-sm-block">
-                <h2 class="h6 text-gray-400 mb-0">使用異常天數</h2>
-                <h3 class="fw-extrabold mb-2"><span id="overstandard"></span>天</h3>
-              </div>
-              <small class="d-flex align-items-center text-gray-500">
-                Feb 1 - Apr 1
-                <!-- <svg class="icon icon-xxs text-gray-500 ms-2 me-1" fill="currentColor" viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z"
-                    clip-rule="evenodd"></path>
-                </svg>
-                GER -->
-              </small>
-              <div class="small d-flex mt-1">
-                <div>Since last week <svg class="icon icon-xs text-danger" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clip-rule="evenodd"></path>
-                  </svg><span class="text-danger fw-bolder">2%</span></div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-    <div class="col-12 col-sm-6 col-xl-4 mb-4">
-      <div class="card border-0 shadow">
-        <div class="card-body">
-          <div class="row d-block d-xl-flex align-items-center">
-            <div
-              class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
-              <!-- 樹圖案 -->
-              <div class="icon-shape icon-shape-tertiary rounded me-4 me-sm-0">
-                <svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                  width="800px" height="800px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+        <div class="col-12 col-sm-6 col-xl-4 mb-4">
+            <div class="card border-0 shadow">
+                <div class="card-body">
+                    <div class="row d-block d-xl-flex align-items-center">
+                        <div
+                                class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                            <!-- 電量圖示 -->
+                            <div class="icon-shape icon-shape-primary rounded me-4 me-sm-0">
+                                <svg width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                     xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs>
+                                        <polygon id="thunder-a"
+                                                 points="2.977 8.161 8.269 9.241 .218 18.519 1.882 19.604 12.128 8.161 5.893 6.809 8.821 .998 7.387 .185"/>
+                                        <path id="thunder-c"
+                                              d="M10.2577032,5.88540233 L13.3683613,6.4682972 C14.894984,6.75436548 15.5271239,8.59550311 14.4981974,9.75899885 L5.15432684,20.3249168 C3.62851509,22.0502834 0.875362777,20.253925 1.83997631,18.1623916 L4.9166534,11.4913543 L2.63023839,11.061225 C1.27422934,10.8061273 0.577759703,9.28698125 1.26946216,8.09308716 L5.3804761,0.997384038 C5.7381351,0.380056504 6.3975623,0 7.11101395,0 L10.1949866,0 C11.7353835,0 12.697534,1.66821829 11.9261411,3.00155082 L10.2577032,5.88540233 Z M10.1949866,2 L7.11101395,2 L3,9.09570312 L7.80692226,10 L3.65612945,19 L13,8.43408203 L7.11101395,7.33056641 L10.1949866,2 Z"/>
+                                    </defs>
+                                    <g fill="none" fill-rule="evenodd" transform="translate(4 2)">
+                                        <g transform="translate(2)">
+                                            <mask id="thunder-b" fill="#ffffff">
+                                                <use xlink:href="#thunder-a"/>
+                                            </mask>
+                                            <use fill="#D8D8D8" xlink:href="#thunder-a"/>
+                                            <g fill="#FFA0A0" mask="url(#thunder-b)">
+                                                <rect width="24" height="24" transform="translate(-6 -2)"/>
+                                            </g>
+                                        </g>
+                                        <mask id="thunder-d" fill="#ffffff">
+                                            <use xlink:href="#thunder-c"/>
+                                        </mask>
+                                        <use fill="#000000" fill-rule="nonzero" xlink:href="#thunder-c"/>
+                                        <g fill="#7600FF" mask="url(#thunder-d)">
+                                            <rect width="24" height="24" transform="translate(-4 -2)"/>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="d-sm-none">
+                                <h2 class="h5">Customers</h2>
+                                <h3 class="fw-extrabold mb-1">345,678</h3>
+                            </div>
+                        </div>
+                        <div class="col-12 col-xl-7 px-xl-0">
+                            <div class="d-none d-sm-block">
+                                <h2 class="h6 text-gray-400 mb-0">平均電力用量</h2>
+                                <h3 class="fw-extrabold mb-2"><span id="average used"></span>度</h3>
+                            </div>
+                            <small class="d-flex align-items-center text-gray-500">
+                                Feb 1 - Apr 1,
+                                <svg class="icon icon-xxs text-gray-500 ms-2 me-1" fill="currentColor"
+                                     viewBox="0 0 20 20"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                          d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z"
+                                          clip-rule="evenodd"></path>
+                                </svg>
+                                USA
+                            </small>
+                            <div class="small d-flex mt-1">
+                                <div>Since last week
+                                    <svg class="icon icon-xs text-success" fill="currentColor" viewBox="0 0 20 20"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                              d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+                                              clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-success fw-bolder">22%</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-4 mb-4">
+            <div class="card border-0 shadow">
+                <div class="card-body">
+                    <div class="row d-block d-xl-flex align-items-center">
+                        <div
+                                class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                            <!-- 警告圖示 -->
+                            <div class="icon-shape icon-shape-secondary rounded me-4 me-sm-0">
+                                <svg width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                     xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs>
+                                        <polygon id="alert-a"
+                                                 points="2.758 .388 19.133 .388 21.288 4.068 19.896 4.965 2.592 4.965 .87 4.068"/>
+                                        <path id="alert-c"
+                                              d="M12,2 L3,18 L21,18 L12,2 Z M10.2568489,1.01947752 C11.0214571,-0.33982584 12.9785429,-0.33982584 13.7431511,1.01947752 L22.7431511,17.0194775 C23.4930806,18.3526856 22.529653,20 21,20 L3,20 C1.47034705,20 0.506919374,18.3526856 1.25684893,17.0194775 L10.2568489,1.01947752 Z M11,11 L11,16 C11,16.5522847 11.4477153,17 12,17 C12.5522847,17 13,16.5522847 13,16 L13,11 C13,10.4477153 12.5522847,10 12,10 C11.4477153,10 11,10.4477153 11,11 Z M12,9 C12.5522847,9 13,8.55228475 13,8 C13,7.44771525 12.5522847,7 12,7 C11.4477153,7 11,7.44771525 11,8 C11,8.55228475 11.4477153,9 12,9 Z"/>
+                                    </defs>
+                                    <g fill="none" fill-rule="evenodd" transform="translate(0 2)">
+                                        <g transform="translate(1 14)">
+                                            <mask id="alert-b" fill="#ffffff">
+                                                <use xlink:href="#alert-a"/>
+                                            </mask>
+                                            <use fill="#D8D8D8" xlink:href="#alert-a"/>
+                                            <g fill="#FFA0A0" mask="url(#alert-b)">
+                                                <rect width="24" height="24" transform="translate(-1 -16)"/>
+                                            </g>
+                                        </g>
+                                        <mask id="alert-d" fill="#ffffff">
+                                            <use xlink:href="#alert-c"/>
+                                        </mask>
+                                        <use fill="#000000" fill-rule="nonzero" xlink:href="#alert-c"/>
+                                        <g fill="#7600FF" mask="url(#alert-d)">
+                                            <rect width="24" height="24" transform="translate(0 -2)"/>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="d-sm-none">
+                                <h2 class="fw-extrabold h5">Revenue</h2>
+                                <h3 class="mb-1">$43,594</h3>
+                            </div>
+                        </div>
+                        <div class="col-12 col-xl-7 px-xl-0">
+                            <div class="d-none d-sm-block">
+                                <h2 class="h6 text-gray-400 mb-0">使用異常天數</h2>
+                                <h3 class="fw-extrabold mb-2"><span id="overstandard"></span>天</h3>
+                            </div>
+                            <small class="d-flex align-items-center text-gray-500">
+                                Feb 1 - Apr 1
+                                <!-- <svg class="icon icon-xxs text-gray-500 ms-2 me-1" fill="currentColor" viewBox="0 0 20 20"
+                                  xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z"
+                                    clip-rule="evenodd"></path>
+                                </svg>
+                                GER -->
+                            </small>
+                            <div class="small d-flex mt-1">
+                                <div>Since last week
+                                    <svg class="icon icon-xs text-danger" fill="currentColor" viewBox="0 0 20 20"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                              clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-danger fw-bolder">2%</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-4 mb-4">
+            <div class="card border-0 shadow">
+                <div class="card-body">
+                    <div class="row d-block d-xl-flex align-items-center">
+                        <div
+                                class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                            <!-- 樹圖案 -->
+                            <div class="icon-shape icon-shape-tertiary rounded me-4 me-sm-0">
+                                <svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                     xmlns:xlink="http://www.w3.org/1999/xlink"
+                                     width="800px" height="800px" viewBox="0 0 64 64" enable-background="new 0 0 64 64"
+                                     xml:space="preserve">
                 <g>
                   <path fill="#394240" d="M56.414,48.586L47.828,40H51c0.809,0,1.538-0.486,1.848-1.234s0.139-1.607-0.434-2.18L43.828,28H47
                     c0.809,0,1.538-0.486,1.848-1.234s0.139-1.607-0.434-2.18L39.828,16H43c0.809,0,1.538-0.486,1.848-1.234s0.139-1.607-0.434-2.18
@@ -296,665 +337,681 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                     C45.75,26,16.127,26,16,26z M12,38c-0.609,0-0.773-0.227,0-1c0.461-0.461,5.956-5.955,9-9h20c3.07,3.07,8.634,8.635,9,9
                     c0.648,0.648,0.656,1,0,1C49.479,38,12.135,38,12,38z M33,62h-4V52h4V62z M54,50c-1,0-45.297,0-46,0c-0.484,0-0.797-0.203,0-1
                     c0.478-0.477,5.96-5.961,9-9h28c3.065,3.066,8.614,8.615,9.002,9.002C54.695,49.695,54.578,50,54,50z"/>
-                  <g>
+                    <g>
                     <path fill="#B4CCB9" d="M20,14c0.127,0,21.679,0,22,0c0.609,0,0.695-0.305-0.001-1S32,3,32,3c-1-1-1-1-2,0s-9.359,9.359-10,10
                       C19.211,13.789,19.453,14,20,14z"/>
-                    <path fill="#B4CCB9" d="M16,26c0.127,0,29.75,0,30,0c0.469,0,0.859-0.141,0-1c-0.616-0.615-5.999-6-9-9H25
+                        <path fill="#B4CCB9" d="M16,26c0.127,0,29.75,0,30,0c0.469,0,0.859-0.141,0-1c-0.616-0.615-5.999-6-9-9H25
                       c-3.049,3.049-8.556,8.557-9,9C15.234,25.766,15.453,26,16,26z"/>
-                    <path fill="#B4CCB9" d="M12,38c0.135,0,37.479,0,38,0c0.656,0,0.648-0.352,0-1c-0.366-0.365-5.93-5.93-9-9H21
+                        <path fill="#B4CCB9" d="M12,38c0.135,0,37.479,0,38,0c0.656,0,0.648-0.352,0-1c-0.366-0.365-5.93-5.93-9-9H21
                       c-3.044,3.045-8.539,8.539-9,9C11.227,37.773,11.391,38,12,38z"/>
-                    <path fill="#B4CCB9" d="M54.002,49.002C53.614,48.615,48.065,43.066,45,40H17c-3.04,3.039-8.522,8.523-9,9
+                        <path fill="#B4CCB9" d="M54.002,49.002C53.614,48.615,48.065,43.066,45,40H17c-3.04,3.039-8.522,8.523-9,9
                       c-0.797,0.797-0.484,1,0,1c0.703,0,45,0,46,0C54.578,50,54.695,49.695,54.002,49.002z"/>
                   </g>
-                  <rect x="29" y="52" fill="#506C7F" width="4" height="10"/>
+                    <rect x="29" y="52" fill="#506C7F" width="4" height="10"/>
                 </g>
                 </svg>
-              </div>
-              <div class="d-sm-none">
-                <h2 class="fw-extrabold h5"> Bounce Rate</h2>
-                <h3 class="mb-1">50.88%</h3>
-              </div>
+                            </div>
+                            <div class="d-sm-none">
+                                <h2 class="fw-extrabold h5"> Bounce Rate</h2>
+                                <h3 class="mb-1">50.88%</h3>
+                            </div>
+                        </div>
+                        <div class="col-12 col-xl-7 px-xl-0">
+                            <div class="d-none d-sm-block">
+                                <h2 class="h6 text-gray-400 mb-0">樹</h2>
+                                <h3 class="fw-extrabold mb-2"><span id="overstandard"></span>59棵</h3>
+                            </div>
+                            <small class="d-flex align-items-center text-gray-500">
+                                Feb 1 - Apr 1
+                                <!-- <svg class="icon icon-xxs text-gray-500 ms-2 me-1" fill="currentColor" viewBox="0 0 20 20"
+                                  xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z"
+                                    clip-rule="evenodd"></path>
+                                </svg>
+                                GER -->
+                            </small>
+                            <div class="small d-flex mt-1">
+                                <div>Since last week
+                                    <svg class="icon icon-xs text-danger" fill="currentColor" viewBox="0 0 20 20"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                              clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-danger fw-bolder">2%</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-12 col-xl-7 px-xl-0">
-              <div class="d-none d-sm-block">
-                <h2 class="h6 text-gray-400 mb-0">樹</h2>
-                <h3 class="fw-extrabold mb-2"><span id="overstandard"></span>59棵</h3>
-              </div>
-              <small class="d-flex align-items-center text-gray-500">
-                Feb 1 - Apr 1
-                <!-- <svg class="icon icon-xxs text-gray-500 ms-2 me-1" fill="currentColor" viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z"
-                    clip-rule="evenodd"></path>
-                </svg>
-                GER -->
-              </small>
-              <div class="small d-flex mt-1">
-                <div>Since last week <svg class="icon icon-xs text-danger" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clip-rule="evenodd"></path>
-                  </svg><span class="text-danger fw-bolder">2%</span></div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-    <!-- 修改平均電力用量，使用異常天數 -->
-    <script>
-      var dateall={{ date|safe }};//以陣列存放個月日期 ex.一月dateall[0]=>[1,2,3...,31]
-      var eleall={{ ele|safe }};//電力用量,跟dateall是對應的
-        console.log(eleall);
+        <!-- 修改平均電力用量，使用異常天數 -->
+        <script>
+            var m = 0;
+            var dateall ={{ date|safe }};//以陣列存放個月日期 ex.一月dateall[0]=>[1,2,3...,31]
+            var eleall ={{ ele|safe }};//電力用量,跟dateall是對應的
+            var date = dateall[1];
+            var ele = eleall[1];
+            var total = {{ wholeusage|safe }};
+            var weekdate = [];//存放日期從改成天改成周的資料
+            var weekele = [];//周電力用量
+            var year = 2023;
+            var t = 0, n = 0;
+            var startdate;
+            var standard = {{ standard|safe }};//平均值
+            var overstandard = 0;//日電力用量平均值
+            var sum ={{ wholeusage|safe }};//電力用量總和
+            var weeksum = 0;//周電力用量總和
+            var weekstandard=[];//月電力用量平均值
+            var monthele = {{ monthusage|safe }};
+            var throwawayNode1 = [];//用來存放繪出圖形的節點
+            var throwawayNode2 = [];//用來存放繪出圖形的節點
+            var chartElements1 = [];
+            var chartElements2 = [];
+            for (var i = 1; i <= 12; i++) {
+                chartElements1.push(document.getElementById('chart' + i + 'd'));
+                throwawayNode1.push(document.getElementById('chart' + i + 'd'));
+                chartElements2.push(document.getElementById('chart' + i + 'k'));
+                throwawayNode2.push(document.getElementById('chart' + i + 'k'));
+            }
+            // var monthview=document.getElementById('monthview');
+            var use = document.getElementById('use');
+            var compare = document.getElementById('compare');//與上月相比
+            var monthSelect = document.getElementById('monthSelect');//月份選單
+            startdate = date[0];
 
-      var total = {{ wholeusage|safe }}
-      var date=dateall[4];
-      var ele=eleall[4];
-      var weekdate=[];//存放日期從改成天改成周的資料
-      var weekele=[];//周電力用量
-      var year=2023;
-      var t=0,n=0;
-      var startdate;
-      var standard = {{ standard|safe }};//平均值
-      var overstandard=0;//日電力用量平均值
-      var sum={{ wholeusage|safe }};//電力用量總和
-      var weeksum=0;//周電力用量總和
-      var weekstandard;//月電力用量平均值
-      var monthele= {{monthusage|safe}};
-      var throwawayNode1;//用來存放繪出圖形的節點
-      var throwawayNode2;//用來存放繪出圖形的節點
-      var chartElement1 = document.getElementById('chart1');//日電力圖表
-      var chartElement2 = document.getElementById('chart2');//周電力圖表
-      // var monthview=document.getElementById('monthview');
-      var use=document.getElementById('use');
-      var compare=document.getElementById('compare');//與上月相比
-      var monthSelect = document.getElementById('monthSelect');//月份選單
-      startdate=date[0];
-      function weekcalculate() {
-        t=0;
-        sum=0;
-        n=0;
-        weekdate.length=0;
-        weekele.length=0;
-        for (var i = 0; i < ele.length; i++) {
-          sum += ele[i];
-          n++;
-          if(n%7==0){
-            n=0;
-            weekdate.push(String(startdate)+'-'+String(date[i]));
-            weekele.push(sum-t);
-            t=sum;
-          }
-        };
-      }
-
-      // 定義選取月份的事件處理函式
-      function handleMonthChange() {
-        var selectedMonth = monthSelect.value;
-        var thv= standard[selectedMonth-1]
-          average.textContent = thv;
-          date=dateall[selectedMonth-1];
-          ele=eleall[selectedMonth-1];
-          weekcalculate();
-          use.textContent='總共使用'+String(monthele[selectedMonth-1])+'度';
-          calculate_overstandard(selectedMonth-1);
-          document.getElementById('overstandard').textContent = overstandard;
-          chart1.update({
-            labels: date,
-            series: [eleall[selectedMonth-1]]
-          });
-          chart2.update({
-            labels: weekdate,
-            series: [weekele]
-          });
-        // 在這裡執行您希望觸發的動作
-      }
-
-      function calculate_overstandard(a){
-        overstandard=0;
-        for (var i = 0; i < ele.length; i++) {
-          if(ele[i]>=standard[a])overstandard++;
-        };
-        console.log(standard[a])
-      }
-      weekcalculate();
-
-      calculate_overstandard(0)
-
-      // 添加事件監聽器，偵測下拉選單的變更事件
-      monthSelect.addEventListener('change', handleMonthChange);
-
-
-      for (var i = 0; i < weekele.length; i++) {
-        weeksum += weekele[i];
-        console.log(weeksum);
-      };
-
-      weekstandard=Math.round(weeksum/4);
-      // monthview.textContent=String(year)+'年'+String(date[0].slice(0,2)+'月');
-      use.textContent='總共使用'+String(monthele[4])+'度';
-      // chart1 chart2繪製
-      var chart1 = new Chartist.Line('#chart1', {
-        labels: date,
-        series: [eleall[0]],
-      },{
-        showArea: true,
-        axisY: {
-          onlyInteger: true
-        },
-        plugins: [
-          Chartist.plugins.ctThreshold({
-            threshold: standard[0],
-          }),
-          Chartist.plugins.ctPointLabels({
-            textAnchor: 'middle'
-          })
-        ]
-      }
-      );
-
-      var chart2 = new Chartist.Line('#chart2', {
-          labels: weekdate,
-          series: [weekele],
-        }, {
-          showArea: true,
-          axisY: {
-            onlyInteger: true
-          },
-          plugins: [
-            Chartist.plugins.ctThreshold({
-              threshold: standard*7,
-            }),
-            Chartist.plugins.ctPointLabels({
-              textAnchor: 'middle'
-            })
-          ]
-        });
-      // 銷毀圖表對象
-      setTimeout(function() {
-        chart2.detach();
-      // 從 DOM 中移除圖表元素
-        throwawayNode2=chartElement2.parentNode.removeChild(chartElement2);
-      }, 200);
-
-      const dayBtn = document.getElementById("day-btn");
-      const weekBtn = document.getElementById("week-btn");
-      const average = document.getElementById('average used')
-      average.textContent = standard[0];
-      document.getElementById('overstandard').textContent = overstandard;
-
-      dayBtn.addEventListener("click", function(){
-        // dayBtn跟weekbtn屬性交換
-        dayBtn.classList.remove("btn", "btn-dark", "btn-sm", "me-3");
-        dayBtn.classList.add("btn", "btn-secondary", "text-dark", "btn-sm", "me-2");
-        weekBtn.classList.remove("btn", "btn-secondary", "text-dark", "btn-sm", "me-2");
-        weekBtn.classList.add("btn", "btn-dark", "btn-sm", "me-3");
-
-        // 如果圖表元素存在，則刪除
-        if (chartElement2) {
-          // 銷毀圖表對象
-          chart2.detach();
-          // 從 DOM 中移除圖表元素
-          throwawayNode2=chartElement2.parentNode.removeChild(chartElement2);
-          document.getElementById("containbox").appendChild(throwawayNode1);
-        }
-        chart1.update();
-      });
-
-
-
-      weekBtn.addEventListener("click", function(){
-        // dayBtn跟weekbtn屬性交換
-        weekBtn.classList.remove("btn", "btn-dark", "btn-sm", "me-3");
-        weekBtn.classList.add("btn", "btn-secondary", "text-dark", "btn-sm", "me-2");
-        dayBtn.classList.remove("btn", "btn-secondary", "text-dark", "btn-sm", "me-2");
-        dayBtn.classList.add("btn", "btn-dark", "btn-sm", "me-3");
-
-        // 如果圖表元素存在，則刪除
-        if (chartElement1) {
-          // 銷毀圖表對象
-          chart1.detach();
-          // 從 DOM 中移除圖表元素
-          throwawayNode1 = chartElement1.parentNode.removeChild(chartElement1);
-          document.getElementById("containbox").appendChild(throwawayNode2);
-        }
-
-        document.getElementById('average used').textContent = weekstandard;
-        // chart.update();
-        chart2.update();
-      });
-
-    </script>
-
-  </div>
-  <div class="row">
-    <div class="col-12 col-xl-8">
-      <div class="row">
-        <div class="col-12 mb-4">
-          <div class="card border-0 shadow">
-            <div class="card-header">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h2 class="fs-5 fw-bold mb-0" id="compare2">近日比較</h2>
-                </div>
-                <div class="col text-end">
-                  <div class="tooltipa">
-                    <svg class="icon icon-s text-gray-500 ms-2 me-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M0.877075 7.49972C0.877075 3.84204 3.84222 0.876892 7.49991 0.876892C11.1576 0.876892 14.1227 3.84204 14.1227 7.49972C14.1227 11.1574 11.1576 14.1226 7.49991 14.1226C3.84222 14.1226 0.877075 11.1574 0.877075 7.49972ZM7.49991 1.82689C4.36689 1.82689 1.82708 4.36671 1.82708 7.49972C1.82708 10.6327 4.36689 13.1726 7.49991 13.1726C10.6329 13.1726 13.1727 10.6327 13.1727 7.49972C13.1727 4.36671 10.6329 1.82689 7.49991 1.82689ZM8.24993 10.5C8.24993 10.9142 7.91414 11.25 7.49993 11.25C7.08571 11.25 6.74993 10.9142 6.74993 10.5C6.74993 10.0858 7.08571 9.75 7.49993 9.75C7.91414 9.75 8.24993 10.0858 8.24993 10.5ZM6.05003 6.25C6.05003 5.57211 6.63511 4.925 7.50003 4.925C8.36496 4.925 8.95003 5.57211 8.95003 6.25C8.95003 6.74118 8.68002 6.99212 8.21447 7.27494C8.16251 7.30651 8.10258 7.34131 8.03847 7.37854L8.03841 7.37858C7.85521 7.48497 7.63788 7.61119 7.47449 7.73849C7.23214 7.92732 6.95003 8.23198 6.95003 8.7C6.95004 9.00376 7.19628 9.25 7.50004 9.25C7.8024 9.25 8.04778 9.00601 8.05002 8.70417L8.05056 8.7033C8.05924 8.6896 8.08493 8.65735 8.15058 8.6062C8.25207 8.52712 8.36508 8.46163 8.51567 8.37436L8.51571 8.37433C8.59422 8.32883 8.68296 8.27741 8.78559 8.21506C9.32004 7.89038 10.05 7.35382 10.05 6.25C10.05 4.92789 8.93511 3.825 7.50003 3.825C6.06496 3.825 4.95003 4.92789 4.95003 6.25C4.95003 6.55376 5.19628 6.8 5.50003 6.8C5.80379 6.8 6.05003 6.55376 6.05003 6.25Z"
-                        fill="#000000"
-                      />
-                    </svg>
-                    <span class="tooltiptext">近五天的用電量變化比較</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="table-responsive">
-              <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                  <tr>
-                    <th class="border-bottom" scope="col">日期</th>
-                    <th class="border-bottom" scope="col">用電量</th>
-                    <th class="border-bottom" scope="col">需要種幾棵樹</th>
-                    <th class="border-bottom" scope="col">與前一日相比</th>
-                  </tr>
-                </thead>
-                <tbody id="tb">
-                  <tr id="trr">
-                    <th class="text-gray-900" scope="row" id="date2">
-                      /demo/admin/index.html
-                    </th>
-                    <td class="fw-bolder" id="ele2">
-                      3,225
-                    </td>
-                    <td class="fw-bolder" id="tree2">
-                      $20
-                    </td>
-                    <td class="fw-bolder" id="rate">
-                      <div class="d-flex">
-                        <svg class="icon icon-xs text-danger me-2" fill="currentColor" viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg">
-                          <path fill-rule="evenodd"
-                            d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
-                            clip-rule="evenodd"></path>
-                        </svg>
-                        42,55%
-                      </div>
-                    </td>
-                  </tr>
-
-                </tbody>
-                <script>
-                  var dates=[];
-                  var eles=[];
-                  var rate=[];
-                  dates.push(date[date.length-1]);
-                  eles.push(ele[date.length-1]);
-                  for(var i=date.length-2;i>date.length-7;i--){
-                    dates.push(date[i]);
-                    eles.push(ele[i]);
-                  }
-                  for(var i=1;i<eles.length;i++){
-                    console.log(eles[i-1],eles[i])
-                    if(eles[i-1]>eles[i])rate.push('↑ '+String(Math.round((eles[i-1]/eles[i]-1)*100))+' %');
-                    else if(eles[i-1]<eles[i]) rate.push('↓ '+String(Math.round((1-eles[i-1]/eles[i])*100))+' %');
-                    else rate.push(String(Math.round((1-eles[i-1]/eles[i])*100))+' %')
-                  }
-
-                  // console.log(dates);
-                  // console.log(eles);
-
-                  setTimeout(function() {
-                    var tb=document.getElementById("tb");
-                    var origin_node=document.getElementById("trr");
-                    tb.removeChild(origin_node);
-                    var node;
-                    var dateElement;
-
-                    // compare.classList.add("text-danger");
-
-                    for(var i=0;i<5;i++){
-                      node = origin_node.cloneNode(true);
-                      node.children["date2"].textContent=dates[i];
-                      node.children["ele2"].textContent=eles[i];
-                      node.children["rate"].textContent=rate[i];
-                      if(rate[i][0]=='↑')node.children["rate"].classList.add("text-danger");
-                      else node.children["rate"].classList.add("text-success");
-                      if(eles[i]>standard)node.children["ele2"].classList.add("text-danger");
-                      else if(eles[i]<standard)node.children["ele2"].classList.add("text-success");
-                      node.setAttribute('id',String(i));
-                      tb.appendChild(node);
+            function weekcalculate() {
+                for (var i = 0; i < 12; i++) {
+                    var wele = [];
+                    var sum =0;
+                    for (var j = 0; j < eleall[i].length; j++) {
+                        if ((j+1)%7==0 || j==eleall[i].length){
+                            wele.push(sum);
+                            continue;
+                        }
+                        sum+=eleall[i][j];
                     }
+                    weekele.push(wele);
+                }
+            }
 
-                  console.log(tb);
-                  }, 200);
-                </script>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-xxl-6 mb-4">
-          <div class="card border-0 shadow">
-            <div class="card-header border-bottom d-flex align-items-center justify-content-between">
-              <h2 class="fs-5 fw-bold mb-0">電力使用:{{ wholeusage }}</h2>
-              <!-- <a href="#" class="btn btn-sm btn-primary">See all</a> -->
+            // 定義選取月份的事件處理函式
+            function handleMonthChange() {
+                var selectedMonth = monthSelect.value;
+                var thv = standard[selectedMonth - 1];
+                average.textContent = thv;
+                weekcalculate();
+                use.textContent = '總共使用' + String(monthele[selectedMonth - 1]) + '度';
+                calculate_overstandard(selectedMonth - 1);
+                document.getElementById('overstandard').textContent = overstandard;
+                chartElements1[m].parentNode.removeChild(chartElements1[m]);
+                document.getElementById("containbox").appendChild(throwawayNode1[selectedMonth - 1]);
+                m = selectedMonth - 1;
+            }
 
-              <div class="tooltipa">
-                <svg class="icon icon-s text-gray-500 ms-2 me-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M0.877075 7.49972C0.877075 3.84204 3.84222 0.876892 7.49991 0.876892C11.1576 0.876892 14.1227 3.84204 14.1227 7.49972C14.1227 11.1574 11.1576 14.1226 7.49991 14.1226C3.84222 14.1226 0.877075 11.1574 0.877075 7.49972ZM7.49991 1.82689C4.36689 1.82689 1.82708 4.36671 1.82708 7.49972C1.82708 10.6327 4.36689 13.1726 7.49991 13.1726C10.6329 13.1726 13.1727 10.6327 13.1727 7.49972C13.1727 4.36671 10.6329 1.82689 7.49991 1.82689ZM8.24993 10.5C8.24993 10.9142 7.91414 11.25 7.49993 11.25C7.08571 11.25 6.74993 10.9142 6.74993 10.5C6.74993 10.0858 7.08571 9.75 7.49993 9.75C7.91414 9.75 8.24993 10.0858 8.24993 10.5ZM6.05003 6.25C6.05003 5.57211 6.63511 4.925 7.50003 4.925C8.36496 4.925 8.95003 5.57211 8.95003 6.25C8.95003 6.74118 8.68002 6.99212 8.21447 7.27494C8.16251 7.30651 8.10258 7.34131 8.03847 7.37854L8.03841 7.37858C7.85521 7.48497 7.63788 7.61119 7.47449 7.73849C7.23214 7.92732 6.95003 8.23198 6.95003 8.7C6.95004 9.00376 7.19628 9.25 7.50004 9.25C7.8024 9.25 8.04778 9.00601 8.05002 8.70417L8.05056 8.7033C8.05924 8.6896 8.08493 8.65735 8.15058 8.6062C8.25207 8.52712 8.36508 8.46163 8.51567 8.37436L8.51571 8.37433C8.59422 8.32883 8.68296 8.27741 8.78559 8.21506C9.32004 7.89038 10.05 7.35382 10.05 6.25C10.05 4.92789 8.93511 3.825 7.50003 3.825C6.06496 3.825 4.95003 4.92789 4.95003 6.25C4.95003 6.55376 5.19628 6.8 5.50003 6.8C5.80379 6.8 6.05003 6.55376 6.05003 6.25Z"
-                    fill="#000000"
-                  />
-                </svg>
-                <div class="tooltiptext">
-                  <span >民國111年電力排碳係數是每度0.509公斤CO2e
-                  <a href="https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=1&menu_id=40&news_id=100931" class="text-danger">點我查看</a></span>
-                </div>
+            function calculate_overstandard(a) {
+                overstandard = 0;
+                for (var i = 0; i < ele.length; i++) {
+                    if (ele[i] >= standard[a]) overstandard++;
+                }
+                ;
+                console.log(standard[a])
+            }
+
+            weekcalculate();
+
+            calculate_overstandard(0)
+
+            // 添加事件監聽器，偵測下拉選單的變更事件
+            monthSelect.addEventListener('change', handleMonthChange);
 
 
-              </div>
-            </div>
-              {#todo:tree#}
+            for (var i = 0; i < weekele.length; i++) {
+                weeksum += weekele[i];
+                console.log(weeksum);
+            }
+            // monthview.textContent=String(year)+'年'+String(date[0].slice(0,2)+'月');
+            use.textContent = '總共使用' + String(monthele[4]) + '度';
+            var chartArrayd = [];
+            var chartArrayw = [];
+            for (var i = 0; i < 12; i++) {
+                var chart = new Chartist.Line('#chart' + (i + 1) + 'd', {
+                    labels: dateall[i],
+                    series: [eleall[i]],
+                }, {
+                    showArea: true,
+                    axisY: {
+                        onlyInteger: true
+                    },
+                    plugins: [
+                        Chartist.plugins.ctThreshold({
+                            threshold: standard[i],
+                        }),
+                        Chartist.plugins.ctPointLabels({
+                            textAnchor: 'middle'
+                        })
+                    ]
+                });
+                chartArrayd.push(chart);
+            }
 
-              <div class="card-body">
-                  {% for i,j in treec %}
-                  <div class="image-container">
-                    <div class="cutimage" style="height: {{ i }}%; top: {{j}}%;">
-                        <img src="{% static 'tree.png' %}">
-                    </div>
+            var chart2 = new Chartist.Line('#chart2', {
+                labels: weekdate,
+                series: [weekele],
+            }, {
+                showArea: true,
+                axisY: {
+                    onlyInteger: true
+                },
+                plugins: [
+                    Chartist.plugins.ctThreshold({
+                        threshold: standard[0] * 7,
+                    }),
+                    Chartist.plugins.ctPointLabels({
+                        textAnchor: 'middle'
+                    })
+                ]
+            })
+            // 銷毀圖表對象
+            setTimeout(function () {
+                throwawayNode2[0] = chartElements2[0].parentNode.removeChild(chartElements2[0]);
+                for (var i = 1; i < 12; i++) {
+                    throwawayNode1[i] = chartElements1[i].parentNode.removeChild(chartElements1[i]);
+                    throwawayNode2[i] = chartElements2[i].parentNode.removeChild(chartElements2[i]);
+                }
+            }, 200);
+            console.log(throwawayNode1, chartElements1);
+            const dayBtn = document.getElementById("day-btn");
+            const weekBtn = document.getElementById("week-btn");
+            const average = document.getElementById('average used')
+            average.textContent = standard[0];
+            document.getElementById('overstandard').textContent = overstandard;
 
-                  </div>
-                  {% endfor %}
-                </div>
+            dayBtn.addEventListener("click", function () {
+                // dayBtn跟weekbtn屬性交換
+                dayBtn.classList.remove("btn", "btn-dark", "btn-sm", "me-3");
+                dayBtn.classList.add("btn", "btn-secondary", "text-dark", "btn-sm", "me-2");
+                weekBtn.classList.remove("btn", "btn-secondary", "text-dark", "btn-sm", "me-2");
+                weekBtn.classList.add("btn", "btn-dark", "btn-sm", "me-3");
 
-            <a href="https://www.flaticon.com/free-stickers/joshua-tree" title="joshua tree stickers">Joshua tree stickers created by Gohsantosadrive - Flaticon</a>
-          </div>
-            民國111年電力排碳係數是每度0.509公斤CO2e
-        </div>
-        <div class="col-12 col-xxl-6 mb-4">
-          <div class="card border-0 shadow">
-            <div class="card-header border-bottom d-flex align-items-center justify-content-between">
-              <h2 class="fs-5 fw-bold mb-0">Progress track</h2>
-              <a href="#" class="btn btn-sm btn-primary">See tasks</a>
-            </div>
-            <div class="card-body">
-              <!-- Project 1 -->
-              <div class="row mb-4">
-                <div class="col-auto">
-                  <svg class="icon icon-sm text-gray-500" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
-                    <path fill-rule="evenodd"
-                      d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                </div>
-                <div class="col">
-                  <div class="progress-wrapper">
-                    <div class="progress-info">
-                      <div class="h6 mb-0">Rocket - SaaS Template</div>
-                      <div class="small fw-bold text-gray-500"><span>75 %</span></div>
-                    </div>
-                    <div class="progress mb-0">
-                      <div class="progress-bar bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0"
-                        aria-valuemax="100" style="width: 75%;"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Project 2 -->
-              <div class="row align-items-center mb-4">
-                <div class="col-auto">
-                  <svg class="icon icon-sm text-gray-500" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
-                    <path fill-rule="evenodd"
-                      d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                </div>
-                <div class="col">
-                  <div class="progress-wrapper">
-                    <div class="progress-info">
-                      <div class="h6 mb-0">Themesberg - Design System</div>
-                      <div class="small fw-bold text-gray-500"><span>60 %</span></div>
-                    </div>
-                    <div class="progress mb-0">
-                      <div class="progress-bar bg-success" role="progressbar" aria-valuenow="60" aria-valuemin="0"
-                        aria-valuemax="100" style="width: 60%;"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Project 3 -->
-              <div class="row align-items-center mb-4">
-                <div class="col-auto">
-                  <svg class="icon icon-sm text-gray-500" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
-                    <path fill-rule="evenodd"
-                      d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                </div>
-                <div class="col">
-                  <div class="progress-wrapper">
-                    <div class="progress-info">
-                      <div class="h6 mb-0">Homepage Design in Figma</div>
-                      <div class="small fw-bold text-gray-500"><span>45 %</span></div>
-                    </div>
-                    <div class="progress mb-0">
-                      <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="45" aria-valuemin="0"
-                        aria-valuemax="100" style="width: 45%;"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Project 4 -->
-              <div class="row align-items-center mb-3">
-                <div class="col-auto">
-                  <svg class="icon icon-sm text-gray-500" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
-                    <path fill-rule="evenodd"
-                      d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                </div>
-                <div class="col">
-                  <div class="progress-wrapper">
-                    <div class="progress-info">
-                      <div class="h6 mb-0">Backend for Themesberg v2</div>
-                      <div class="small fw-bold text-gray-500"><span>34 %</span></div>
-                    </div>
-                    <div class="progress mb-0">
-                      <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="34" aria-valuemin="0"
-                        aria-valuemax="100" style="width: 34%;"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+                // 如果圖表元素存在，則刪除
+                if (chartElement2) {
+                    // 銷毀圖表對象
+                    chart2.detach();
+                    // 從 DOM 中移除圖表元素
+                    throwawayNode2 = chartElement2.parentNode.removeChild(chartElement2);
+                    document.getElementById("containbox").appendChild(throwawayNode1);
+                }
+                chart1.update();
+            });
+
+
+            weekBtn.addEventListener("click", function () {
+                // dayBtn跟weekbtn屬性交換
+                weekBtn.classList.remove("btn", "btn-dark", "btn-sm", "me-3");
+                weekBtn.classList.add("btn", "btn-secondary", "text-dark", "btn-sm", "me-2");
+                dayBtn.classList.remove("btn", "btn-secondary", "text-dark", "btn-sm", "me-2");
+                dayBtn.classList.add("btn", "btn-dark", "btn-sm", "me-3");
+
+                // 如果圖表元素存在，則刪除
+                if (chartElement1) {
+                    // 銷毀圖表對象
+                    chart1.detach();
+                    // 從 DOM 中移除圖表元素
+                    throwawayNode1 = chartElement1.parentNode.removeChild(chartElement1);
+                    document.getElementById("containbox").appendChild(throwawayNode2);
+                }
+
+                document.getElementById('average used').textContent = weekstandard;
+                // chart.update();
+                chart2.update();
+            });
+
+        </script>
+
     </div>
-    <div class="col-12 col-xl-4">
-      <div class="col-12 px-0 mb-4">
-        <div class="card border-0 shadow">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-              <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                  {% for slide in slides %}
-                <li data-target="#carouselExampleIndicators" data-slide-to="{{ forloop.counter }}"></li>
-                  {% endfor %}
-              </ol>
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <a href="{{ fslide.link }}" target="_blank" ><img class="d-block w-100 carimg" src="{{ fslide.image }}" alt="0"></a>{{ fslide.description }}</div>
+    <div class="row">
+        <div class="col-12 col-xl-8">
+            <div class="row">
+                <div class="col-12 mb-4">
+                    <div class="card border-0 shadow">
+                        <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h2 class="fs-5 fw-bold mb-0" id="compare2">近日比較</h2>
+                                </div>
+                                <div class="col text-end">
+                                    <div class="tooltipa">
+                                        <svg class="icon icon-s text-gray-500 ms-2 me-1" fill="currentColor"
+                                             viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                    fill-rule="evenodd"
+                                                    clip-rule="evenodd"
+                                                    d="M0.877075 7.49972C0.877075 3.84204 3.84222 0.876892 7.49991 0.876892C11.1576 0.876892 14.1227 3.84204 14.1227 7.49972C14.1227 11.1574 11.1576 14.1226 7.49991 14.1226C3.84222 14.1226 0.877075 11.1574 0.877075 7.49972ZM7.49991 1.82689C4.36689 1.82689 1.82708 4.36671 1.82708 7.49972C1.82708 10.6327 4.36689 13.1726 7.49991 13.1726C10.6329 13.1726 13.1727 10.6327 13.1727 7.49972C13.1727 4.36671 10.6329 1.82689 7.49991 1.82689ZM8.24993 10.5C8.24993 10.9142 7.91414 11.25 7.49993 11.25C7.08571 11.25 6.74993 10.9142 6.74993 10.5C6.74993 10.0858 7.08571 9.75 7.49993 9.75C7.91414 9.75 8.24993 10.0858 8.24993 10.5ZM6.05003 6.25C6.05003 5.57211 6.63511 4.925 7.50003 4.925C8.36496 4.925 8.95003 5.57211 8.95003 6.25C8.95003 6.74118 8.68002 6.99212 8.21447 7.27494C8.16251 7.30651 8.10258 7.34131 8.03847 7.37854L8.03841 7.37858C7.85521 7.48497 7.63788 7.61119 7.47449 7.73849C7.23214 7.92732 6.95003 8.23198 6.95003 8.7C6.95004 9.00376 7.19628 9.25 7.50004 9.25C7.8024 9.25 8.04778 9.00601 8.05002 8.70417L8.05056 8.7033C8.05924 8.6896 8.08493 8.65735 8.15058 8.6062C8.25207 8.52712 8.36508 8.46163 8.51567 8.37436L8.51571 8.37433C8.59422 8.32883 8.68296 8.27741 8.78559 8.21506C9.32004 7.89038 10.05 7.35382 10.05 6.25C10.05 4.92789 8.93511 3.825 7.50003 3.825C6.06496 3.825 4.95003 4.92789 4.95003 6.25C4.95003 6.55376 5.19628 6.8 5.50003 6.8C5.80379 6.8 6.05003 6.55376 6.05003 6.25Z"
+                                                    fill="#000000"
+                                            />
+                                        </svg>
+                                        <span class="tooltiptext">近五天的用電量變化比較</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush">
+                                <thead class="thead-light">
+                                <tr>
+                                    <th class="border-bottom" scope="col">日期</th>
+                                    <th class="border-bottom" scope="col">用電量</th>
+                                    <th class="border-bottom" scope="col">需要種幾棵樹</th>
+                                    <th class="border-bottom" scope="col">與前一日相比</th>
+                                </tr>
+                                </thead>
+                                <tbody id="tb">
+                                <tr id="trr">
+                                    <th class="text-gray-900" scope="row" id="date2">
+                                        /demo/admin/index.html
+                                    </th>
+                                    <td class="fw-bolder" id="ele2">
+                                        3,225
+                                    </td>
+                                    <td class="fw-bolder" id="tree2">
+                                        $20
+                                    </td>
+                                    <td class="fw-bolder" id="rate">
+                                        <div class="d-flex">
+                                            <svg class="icon icon-xs text-danger me-2" fill="currentColor"
+                                                 viewBox="0 0 20 20"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                      d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
+                                                      clip-rule="evenodd"></path>
+                                            </svg>
+                                            42,55%
+                                        </div>
+                                    </td>
+                                </tr>
 
-                  {% for slide in slides %}
-                      <div class="carousel-item"><a href="{{ slide.link }}" target="_blank">
-                      <img class="d-block w-100 carimg" src="{{slide.image}}" alt="{{ forloop.counter }}"></a>
-                      {{ slide.description }}
-                     </div>
-                  {% endfor %}
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
+                                </tbody>
+                                <script>
+                                    var dates = [];
+                                    var eles = [];
+                                    var rate = [];
+                                    dates.push(date[date.length - 1]);
+                                    eles.push(ele[date.length - 1]);
+                                    for (var i = date.length - 2; i > date.length - 7; i--) {
+                                        dates.push(date[i]);
+                                        eles.push(ele[i]);
+                                    }
+                                    for (var i = 1; i < eles.length; i++) {
+                                        console.log(eles[i - 1], eles[i])
+                                        if (eles[i - 1] > eles[i]) rate.push('↑ ' + String(Math.round((eles[i - 1] / eles[i] - 1) * 100)) + ' %');
+                                        else if (eles[i - 1] < eles[i]) rate.push('↓ ' + String(Math.round((1 - eles[i - 1] / eles[i]) * 100)) + ' %');
+                                        else rate.push(String(Math.round((1 - eles[i - 1] / eles[i]) * 100)) + ' %')
+                                    }
 
-        </div>
+                                    // console.log(dates);
+                                    // console.log(eles);
 
-      </div>
-      <div class="col-12 px-0 mb-4">
-        <div class="card border-0 shadow">
-          <div class="card-body">
-            <div class="d-flex align-items-center justify-content-between border-bottom pb-3">
-              <div>
-                <div class="h6 mb-0 d-flex align-items-center">
-                  <svg class="icon icon-xs text-gray-500 me-2" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                  Global Rank
+                                    setTimeout(function () {
+                                        var tb = document.getElementById("tb");
+                                        var origin_node = document.getElementById("trr");
+                                        tb.removeChild(origin_node);
+                                        var node;
+                                        var dateElement;
+
+                                        // compare.classList.add("text-danger");
+
+                                        for (var i = 0; i < 5; i++) {
+                                            node = origin_node.cloneNode(true);
+                                            node.children["date2"].textContent = dates[i];
+                                            node.children["ele2"].textContent = eles[i];
+                                            node.children["rate"].textContent = rate[i];
+                                            if (rate[i][0] == '↑') node.children["rate"].classList.add("text-danger");
+                                            else node.children["rate"].classList.add("text-success");
+                                            if (eles[i] > standard) node.children["ele2"].classList.add("text-danger");
+                                            else if (eles[i] < standard) node.children["ele2"].classList.add("text-success");
+                                            node.setAttribute('id', String(i));
+                                            tb.appendChild(node);
+                                        }
+
+                                        console.log(tb);
+                                    }, 200);
+                                </script>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div>
-                <a href="#" class="d-flex align-items-center fw-bold">
-                  #755
-                  <svg class="icon icon-xs text-gray-500 ms-1" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                      d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                </a>
-              </div>
+                <div class="col-12 col-xxl-6 mb-4">
+                    <div class="card border-0 shadow">
+                        <div class="card-header border-bottom d-flex align-items-center justify-content-between">
+                            <h2 class="fs-5 fw-bold mb-0">電力使用:{{ wholeusage }}</h2>
+                            <!-- <a href="#" class="btn btn-sm btn-primary">See all</a> -->
+
+                            <div class="tooltipa">
+                                <svg class="icon icon-s text-gray-500 ms-2 me-1" fill="currentColor" viewBox="0 0 20 20"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                            fill-rule="evenodd"
+                                            clip-rule="evenodd"
+                                            d="M0.877075 7.49972C0.877075 3.84204 3.84222 0.876892 7.49991 0.876892C11.1576 0.876892 14.1227 3.84204 14.1227 7.49972C14.1227 11.1574 11.1576 14.1226 7.49991 14.1226C3.84222 14.1226 0.877075 11.1574 0.877075 7.49972ZM7.49991 1.82689C4.36689 1.82689 1.82708 4.36671 1.82708 7.49972C1.82708 10.6327 4.36689 13.1726 7.49991 13.1726C10.6329 13.1726 13.1727 10.6327 13.1727 7.49972C13.1727 4.36671 10.6329 1.82689 7.49991 1.82689ZM8.24993 10.5C8.24993 10.9142 7.91414 11.25 7.49993 11.25C7.08571 11.25 6.74993 10.9142 6.74993 10.5C6.74993 10.0858 7.08571 9.75 7.49993 9.75C7.91414 9.75 8.24993 10.0858 8.24993 10.5ZM6.05003 6.25C6.05003 5.57211 6.63511 4.925 7.50003 4.925C8.36496 4.925 8.95003 5.57211 8.95003 6.25C8.95003 6.74118 8.68002 6.99212 8.21447 7.27494C8.16251 7.30651 8.10258 7.34131 8.03847 7.37854L8.03841 7.37858C7.85521 7.48497 7.63788 7.61119 7.47449 7.73849C7.23214 7.92732 6.95003 8.23198 6.95003 8.7C6.95004 9.00376 7.19628 9.25 7.50004 9.25C7.8024 9.25 8.04778 9.00601 8.05002 8.70417L8.05056 8.7033C8.05924 8.6896 8.08493 8.65735 8.15058 8.6062C8.25207 8.52712 8.36508 8.46163 8.51567 8.37436L8.51571 8.37433C8.59422 8.32883 8.68296 8.27741 8.78559 8.21506C9.32004 7.89038 10.05 7.35382 10.05 6.25C10.05 4.92789 8.93511 3.825 7.50003 3.825C6.06496 3.825 4.95003 4.92789 4.95003 6.25C4.95003 6.55376 5.19628 6.8 5.50003 6.8C5.80379 6.8 6.05003 6.55376 6.05003 6.25Z"
+                                            fill="#000000"
+                                    />
+                                </svg>
+                                <div class="tooltiptext">
+                  <span>民國111年電力排碳係數是每度0.509公斤CO2e
+                  <a href="https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=1&menu_id=40&news_id=100931"
+                     class="text-danger">點我查看</a></span>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            {% for i,j in treec %}
+                                <div class="image-container">
+                                    <div class="cutimage" style="height: {{ i }}%; top: {{ j }}%;">
+                                        <img src="{% static 'tree.png' %}">
+                                    </div>
+
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <a href="https://www.flaticon.com/free-stickers/joshua-tree" title="joshua tree stickers">Joshua
+                            tree stickers created by Gohsantosadrive - Flaticon</a>
+                    </div>
+                    民國111年電力排碳係數是每度0.509公斤CO2e
+                </div>
+                <div class="col-12 col-xxl-6 mb-4">
+                    <div class="card border-0 shadow">
+                        <div class="card-header border-bottom d-flex align-items-center justify-content-between">
+                            <h2 class="fs-5 fw-bold mb-0">Progress track</h2>
+                            <a href="#" class="btn btn-sm btn-primary">See tasks</a>
+                        </div>
+                        <div class="card-body">
+                            <!-- Project 1 -->
+                            <div class="row mb-4">
+                                <div class="col-auto">
+                                    <svg class="icon icon-sm text-gray-500" fill="currentColor" viewBox="0 0 20 20"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+                                        <path fill-rule="evenodd"
+                                              d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"
+                                              clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div class="col">
+                                    <div class="progress-wrapper">
+                                        <div class="progress-info">
+                                            <div class="h6 mb-0">Rocket - SaaS Template</div>
+                                            <div class="small fw-bold text-gray-500"><span>75 %</span></div>
+                                        </div>
+                                        <div class="progress mb-0">
+                                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="75"
+                                                 aria-valuemin="0"
+                                                 aria-valuemax="100" style="width: 75%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Project 2 -->
+                            <div class="row align-items-center mb-4">
+                                <div class="col-auto">
+                                    <svg class="icon icon-sm text-gray-500" fill="currentColor" viewBox="0 0 20 20"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+                                        <path fill-rule="evenodd"
+                                              d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"
+                                              clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div class="col">
+                                    <div class="progress-wrapper">
+                                        <div class="progress-info">
+                                            <div class="h6 mb-0">Themesberg - Design System</div>
+                                            <div class="small fw-bold text-gray-500"><span>60 %</span></div>
+                                        </div>
+                                        <div class="progress mb-0">
+                                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="60"
+                                                 aria-valuemin="0"
+                                                 aria-valuemax="100" style="width: 60%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Project 3 -->
+                            <div class="row align-items-center mb-4">
+                                <div class="col-auto">
+                                    <svg class="icon icon-sm text-gray-500" fill="currentColor" viewBox="0 0 20 20"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+                                        <path fill-rule="evenodd"
+                                              d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"
+                                              clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div class="col">
+                                    <div class="progress-wrapper">
+                                        <div class="progress-info">
+                                            <div class="h6 mb-0">Homepage Design in Figma</div>
+                                            <div class="small fw-bold text-gray-500"><span>45 %</span></div>
+                                        </div>
+                                        <div class="progress mb-0">
+                                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="45"
+                                                 aria-valuemin="0"
+                                                 aria-valuemax="100" style="width: 45%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Project 4 -->
+                            <div class="row align-items-center mb-3">
+                                <div class="col-auto">
+                                    <svg class="icon icon-sm text-gray-500" fill="currentColor" viewBox="0 0 20 20"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+                                        <path fill-rule="evenodd"
+                                              d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"
+                                              clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div class="col">
+                                    <div class="progress-wrapper">
+                                        <div class="progress-info">
+                                            <div class="h6 mb-0">Backend for Themesberg v2</div>
+                                            <div class="small fw-bold text-gray-500"><span>34 %</span></div>
+                                        </div>
+                                        <div class="progress mb-0">
+                                            <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="34"
+                                                 aria-valuemin="0"
+                                                 aria-valuemax="100" style="width: 34%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="d-flex align-items-center justify-content-between border-bottom py-3">
-              <div>
-                <div class="h6 mb-0 d-flex align-items-center">
-                  <svg class="icon icon-xs text-gray-500 me-2" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                      d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                  Country Rank
-                </div>
-                <div class="small card-stats">
-                  United States
-                  <svg class="icon icon-xs text-success" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                      d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                </div>
-              </div>
-              <div>
-                <a href="#" class="d-flex align-items-center fw-bold">
-                  #32
-                  <svg class="icon icon-xs text-gray-500 ms-1" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                      d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                </a>
-              </div>
-            </div>
-            <div class="d-flex align-items-center justify-content-between pt-3">
-              <div>
-                <div class="h6 mb-0 d-flex align-items-center">
-                  <svg class="icon icon-xs text-gray-500 me-2" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                      d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z"
-                      clip-rule="evenodd"></path>
-                    <path d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z"></path>
-                  </svg>
-                  Category Rank
-                </div>
-                <div class="small card-stats">
-                  Computers Electronics > Technology
-                  <svg class="icon icon-xs text-success" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                      d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                </div>
-              </div>
-              <div>
-                <a href="#" class="d-flex align-items-center fw-bold">
-                  #11
-                  <svg class="icon icon-xs text-gray-500 ms-1" fill="currentColor" viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                      d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z"
-                      clip-rule="evenodd"></path>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-      <div class="col-12 px-0">
-        <div class="card border-0 shadow">
-          <div class="card-body">
-            <h2 class="fs-5 fw-bold mb-1">Acquisition</h2>
-            <p>Tells you where your visitors originated from, such as search engines, social networks or website
-              referrals.</p>
-            <div class="d-block">
-              <div class="d-flex align-items-center me-5">
-                <div class="icon-shape icon-sm icon-shape-danger rounded me-3">
-                  <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                      d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11 4a1 1 0 10-2 0v4a1 1 0 102 0V7zm-3 1a1 1 0 10-2 0v3a1 1 0 102 0V8zM8 9a1 1 0 00-2 0v2a1 1 0 102 0V9z"
-                      clip-rule="evenodd"></path>
-                  </svg>
+        <div class="col-12 col-xl-4">
+            <div class="col-12 px-0 mb-4">
+                <div class="card border-0 shadow">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            {% for slide in slides %}
+                                <li data-target="#carouselExampleIndicators" data-slide-to="{{ forloop.counter }}"></li>
+                            {% endfor %}
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <a href="{{ fslide.link }}" target="_blank"><img class="d-block w-100 carimg"
+                                                                                 src="{{ fslide.image }}"
+                                                                                 alt="0"></a>{{ fslide.description }}
+                            </div>
+
+                            {% for slide in slides %}
+                                <div class="carousel-item"><a href="{{ slide.link }}" target="_blank">
+                                    <img class="d-block w-100 carimg" src="{{ slide.image }}"
+                                         alt="{{ forloop.counter }}"></a>
+                                    {{ slide.description }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                           data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                           data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+
                 </div>
-                <div class="d-block">
-                  <label class="mb-0">Bounce Rate</label>
-                  <h4 class="mb-0">33.50%</h4>
-                </div>
-              </div>
-              <div class="d-flex align-items-center pt-3">
-                <div class="icon-shape icon-sm icon-shape-purple rounded me-3">
-                  <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z">
-                    </path>
-                  </svg>
-                </div>
-                <div class="d-block">
-                  <label class="mb-0">Sessions</label>
-                  <h4 class="mb-0">9,567</h4>
-                </div>
-              </div>
+
             </div>
-          </div>
+            <div class="col-12 px-0 mb-4">
+                <div class="card border-0 shadow">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center justify-content-between border-bottom pb-3">
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    <svg class="icon icon-xs text-gray-500 me-2" fill="currentColor" viewBox="0 0 20 20"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                              d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z"
+                                              clip-rule="evenodd"></path>
+                                    </svg>
+                                    Global Rank
+                                </div>
+                            </div>
+                            <div>
+                                <a href="#" class="d-flex align-items-center fw-bold">
+                                    #755
+                                    <svg class="icon icon-xs text-gray-500 ms-1" fill="currentColor" viewBox="0 0 20 20"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                              d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z"
+                                              clip-rule="evenodd"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between border-bottom py-3">
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    <svg class="icon icon-xs text-gray-500 me-2" fill="currentColor" viewBox="0 0 20 20"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                              d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z"
+                                              clip-rule="evenodd"></path>
+                                    </svg>
+                                    Country Rank
+                                </div>
+                                <div class="small card-stats">
+                                    United States
+                                    <svg class="icon icon-xs text-success" fill="currentColor" viewBox="0 0 20 20"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                              d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+                                              clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div>
+                                <a href="#" class="d-flex align-items-center fw-bold">
+                                    #32
+                                    <svg class="icon icon-xs text-gray-500 ms-1" fill="currentColor" viewBox="0 0 20 20"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                              d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z"
+                                              clip-rule="evenodd"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between pt-3">
+                            <div>
+                                <div class="h6 mb-0 d-flex align-items-center">
+                                    <svg class="icon icon-xs text-gray-500 me-2" fill="currentColor" viewBox="0 0 20 20"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                              d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z"
+                                              clip-rule="evenodd"></path>
+                                        <path d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z"></path>
+                                    </svg>
+                                    Category Rank
+                                </div>
+                                <div class="small card-stats">
+                                    Computers Electronics > Technology
+                                    <svg class="icon icon-xs text-success" fill="currentColor" viewBox="0 0 20 20"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                              d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+                                              clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div>
+                                <a href="#" class="d-flex align-items-center fw-bold">
+                                    #11
+                                    <svg class="icon icon-xs text-gray-500 ms-1" fill="currentColor" viewBox="0 0 20 20"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                              d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z"
+                                              clip-rule="evenodd"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 px-0">
+                <div class="card border-0 shadow">
+                    <div class="card-body">
+                        <h2 class="fs-5 fw-bold mb-1">Acquisition</h2>
+                        <p>Tells you where your visitors originated from, such as search engines, social networks or
+                            website
+                            referrals.</p>
+                        <div class="d-block">
+                            <div class="d-flex align-items-center me-5">
+                                <div class="icon-shape icon-sm icon-shape-danger rounded me-3">
+                                    <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                              d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11 4a1 1 0 10-2 0v4a1 1 0 102 0V7zm-3 1a1 1 0 10-2 0v3a1 1 0 102 0V8zM8 9a1 1 0 00-2 0v2a1 1 0 102 0V9z"
+                                              clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div class="d-block">
+                                    <label class="mb-0">Bounce Rate</label>
+                                    <h4 class="mb-0">33.50%</h4>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center pt-3">
+                                <div class="icon-shape icon-sm icon-shape-purple rounded me-3">
+                                    <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                                d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div class="d-block">
+                                    <label class="mb-0">Sessions</label>
+                                    <h4 class="mb-0">9,567</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 
 {% endblock content %}
