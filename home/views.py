@@ -83,30 +83,3 @@ def test(request):
     a=Slide.objects.all()
     print(a)
     return render(request,'test.html',{"fslide":a[0],'slides':a[1:]})
-
-# def requestapi(request):
-#     userid=request.GET.get('u')
-#     electdata=request.GET.get('e')
-#     mlapiurl = f"http://127.0.0.1:8000/predict/?value={electdata}&userid={userid}"
-#     print(userid,electdata)
-#     response = requests.get(mlapiurl)
-#     print(response.status_code)
-#     # print(response.content)
-#     result = json.loads(response.content)
-#     try:
-#         d = predictionresult.objects.get(userid=str(userid))
-#         pr = json.JSONDecoder().decode(d.result)
-#         if result['len']<96:
-#             pr[str(datetime.now().date())] = [result['sum'],0]
-#         elif result['len']==96:
-#             pr[str(datetime.now().date())].append(result['result']['label'][0])
-#             pr[str(datetime.now().date())][0] = result['sum']
-#         d.result = json.dumps(pr)
-#         d.save()
-#     except predictionresult.DoesNotExist:
-#         return redirect('index')
-#     d = predictionresult.objects.get(userid=str(userid))
-#     context={
-#         "eledata":d,
-#     }
-#     return render(request,'test.html',context=context)
