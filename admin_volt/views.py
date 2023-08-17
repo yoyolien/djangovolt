@@ -186,7 +186,7 @@ def register_view(request):
     form = RegistrationForm()
   
   context = { 'form': form }
-  return render(request, 'accounts/sign-up.html', context)
+  return render(request, 'accounts/login-form-20/register.html', context)
 
 class UserLoginView(LoginView):
   form_class = LoginForm
