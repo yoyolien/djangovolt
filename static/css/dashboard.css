@@ -1,6 +1,9 @@
 #carouselExampleIndicators {
     height: 300px;
 }
+#sdgcarouselExampleIndicators {
+    height: 100%;
+}
 .carimg{
   height: 240px;
 }
