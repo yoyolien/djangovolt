@@ -60,7 +60,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                         </div>
                     </div>
                     <div class="d-flex ms-auto">
-                        <a href="#" class="btn btn-secondary text-dark btn-sm me-2" id="day-btn">Day</a>
+                        <a href="#" class="btn btn-secondary text-dark btn-sm me-3" id="day-btn">Day</a>
                         <a href="#" class="btn btn-dark btn-sm me-3" id="week-btn">Week</a>
                         <select id="monthSelect">
                             <option value="1">1月</option>
@@ -454,8 +454,8 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                 p = 0;
                 // dayBtn跟weekbtn屬性交換
                 dayBtn.classList.remove("btn", "btn-dark", "btn-sm", "me-3");
-                dayBtn.classList.add("btn", "btn-secondary", "text-dark", "btn-sm", "me-2");
-                weekBtn.classList.remove("btn", "btn-secondary", "text-dark", "btn-sm", "me-2");
+                dayBtn.classList.add("btn", "btn-secondary", "text-dark", "btn-sm", "me-3");
+                weekBtn.classList.remove("btn", "btn-secondary", "text-dark", "btn-sm", "me-3");
                 weekBtn.classList.add("btn", "btn-dark", "btn-sm", "me-3");
                 chartElements2[m].parentNode.removeChild(chartElements2[m]);
                 document.getElementById("containbox").appendChild(throwawayNode1[m])
@@ -466,8 +466,8 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                 p = 1;
                 // dayBtn跟weekbtn屬性交換
                 weekBtn.classList.remove("btn", "btn-dark", "btn-sm", "me-3");
-                weekBtn.classList.add("btn", "btn-secondary", "text-dark", "btn-sm", "me-2");
-                dayBtn.classList.remove("btn", "btn-secondary", "text-dark", "btn-sm", "me-2");
+                weekBtn.classList.add("btn", "btn-secondary", "text-dark", "btn-sm", "me-3");
+                dayBtn.classList.remove("btn", "btn-secondary", "text-dark", "btn-sm", "me-3");
                 dayBtn.classList.add("btn", "btn-dark", "btn-sm", "me-3");
                 chartElements1[m].parentNode.removeChild(chartElements1[m]);
                 document.getElementById("containbox").appendChild(throwawayNode2[m]);
