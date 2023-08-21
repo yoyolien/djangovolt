@@ -77,7 +77,6 @@ def dashboard(request):
         ele = eledata.objects.filter(user_id=request.user.id)
         label = [[] for _ in range(12)]
         dayusage = [[] for _ in range(12)]
-        print(request.user.id)
 
         for i in ele:
             month = i.report_time.month
