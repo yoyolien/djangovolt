@@ -96,7 +96,7 @@ def dashboard(request):
                 treec.append([100, 0])
             else:
                 treec.append([100 * (tree - i), 100 - 100 * (tree - i)])
-
+        print(tree)
         context = {
             'segment': 'dashboard',
             'ele': dayusage,

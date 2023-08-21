@@ -21954,7 +21954,7 @@ textarea.form-control-lg {
 }
 @media (min-width: 768px) {
   .sidebar.contracted + .content {
-    margin-left: 95px;
+    /*margin-left: 95px;*/
   }
 }
 
@@ -21989,7 +21989,7 @@ textarea.form-control-lg {
 }
 @media (min-width: 992px) {
   .content {
-    margin-left: 260px;
+    /*margin-left: 260px;*/
   }
 }
 
