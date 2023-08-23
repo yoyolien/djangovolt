@@ -28,7 +28,7 @@
 
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
@@ -115,38 +115,41 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                                 class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
                             <!-- 電量圖示 -->
                             <div class="icon-shape icon-shape-primary rounded me-4 me-sm-0">
-                                <svg width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                  <defs>
-                                    <polygon id="thunder-a" points="2.977 8.161 8.269 9.241 .218 18.519 1.882 19.604 12.128 8.161 5.893 6.809 8.821 .998 7.387 .185"/>
-                                    <path id="thunder-c" d="M10.2577032,5.88540233 L13.3683613,6.4682972 C14.894984,6.75436548 15.5271239,8.59550311 14.4981974,9.75899885 L5.15432684,20.3249168 C3.62851509,22.0502834 0.875362777,20.253925 1.83997631,18.1623916 L4.9166534,11.4913543 L2.63023839,11.061225 C1.27422934,10.8061273 0.577759703,9.28698125 1.26946216,8.09308716 L5.3804761,0.997384038 C5.7381351,0.380056504 6.3975623,0 7.11101395,0 L10.1949866,0 C11.7353835,0 12.697534,1.66821829 11.9261411,3.00155082 L10.2577032,5.88540233 Z M10.1949866,2 L7.11101395,2 L3,9.09570312 L7.80692226,10 L3.65612945,19 L13,8.43408203 L7.11101395,7.33056641 L10.1949866,2 Z"/>
-                                  </defs>
-                                  <g fill="none" fill-rule="evenodd" transform="translate(4 2)">
-                                    <g transform="translate(2)">
-                                      <mask id="thunder-b" fill="#ffffff">
-                                        <use xlink:href="#thunder-a"/>
-                                      </mask>
-                                      <use fill="#D8D8D8" xlink:href="#thunder-a"/>
-                                      <g fill="#FFA0A0" mask="url(#thunder-b)">
-                                        <rect width="24" height="24" transform="translate(-6 -2)"/>
-                                      </g>
+                                <svg width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                     xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <defs>
+                                        <polygon id="thunder-a"
+                                                 points="2.977 8.161 8.269 9.241 .218 18.519 1.882 19.604 12.128 8.161 5.893 6.809 8.821 .998 7.387 .185"/>
+                                        <path id="thunder-c"
+                                              d="M10.2577032,5.88540233 L13.3683613,6.4682972 C14.894984,6.75436548 15.5271239,8.59550311 14.4981974,9.75899885 L5.15432684,20.3249168 C3.62851509,22.0502834 0.875362777,20.253925 1.83997631,18.1623916 L4.9166534,11.4913543 L2.63023839,11.061225 C1.27422934,10.8061273 0.577759703,9.28698125 1.26946216,8.09308716 L5.3804761,0.997384038 C5.7381351,0.380056504 6.3975623,0 7.11101395,0 L10.1949866,0 C11.7353835,0 12.697534,1.66821829 11.9261411,3.00155082 L10.2577032,5.88540233 Z M10.1949866,2 L7.11101395,2 L3,9.09570312 L7.80692226,10 L3.65612945,19 L13,8.43408203 L7.11101395,7.33056641 L10.1949866,2 Z"/>
+                                    </defs>
+                                    <g fill="none" fill-rule="evenodd" transform="translate(4 2)">
+                                        <g transform="translate(2)">
+                                            <mask id="thunder-b" fill="#ffffff">
+                                                <use xlink:href="#thunder-a"/>
+                                            </mask>
+                                            <use fill="#D8D8D8" xlink:href="#thunder-a"/>
+                                            <g fill="#FFA0A0" mask="url(#thunder-b)">
+                                                <rect width="24" height="24" transform="translate(-6 -2)"/>
+                                            </g>
+                                        </g>
+                                        <mask id="thunder-d" fill="#ffffff">
+                                            <use xlink:href="#thunder-c"/>
+                                        </mask>
+                                        <use fill="#000000" fill-rule="nonzero" xlink:href="#thunder-c"/>
+                                        <g fill="#7600FF" mask="url(#thunder-d)">
+                                            <rect width="24" height="24" transform="translate(-4 -2)"/>
+                                        </g>
                                     </g>
-                                    <mask id="thunder-d" fill="#ffffff">
-                                      <use xlink:href="#thunder-c"/>
-                                    </mask>
-                                    <use fill="#000000" fill-rule="nonzero" xlink:href="#thunder-c"/>
-                                    <g fill="#7600FF" mask="url(#thunder-d)">
-                                      <rect width="24" height="24" transform="translate(-4 -2)"/>
-                                    </g>
-                                  </g>
                                 </svg>
-                              </div>
+                            </div>
                         </div>
                         <div class="col-12 col-xl-7 px-xl-0">
                             <div class="d-none d-sm-block">
                                 <h2 class="h6 text-gray-400 mb-0">該月平均電力用量</h2>
                                 <h3 class="fw-extrabold mb-2"><span id="average used"></span>度</h3>
                             </div>
-                           
+
                         </div>
                     </div>
                 </div>
@@ -266,7 +269,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                                     <div class="col text-end">
                                         <div class="tooltipa">
                                             <svg class="icon icon-s text-gray-500 ms-2 me-1" fill="currentColor"
-                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                 <path
                                                         fill-rule="evenodd"
                                                         clip-rule="evenodd"
@@ -303,11 +306,11 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                                         <td class="fw-bolder" id="rate">
                                             <div class="d-flex">
                                                 <svg class="icon icon-xs text-danger me-2" fill="currentColor"
-                                                    viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
+                                                     viewBox="0 0 20 20"
+                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path fill-rule="evenodd"
-                                                        d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
-                                                        clip-rule="evenodd"></path>
+                                                          d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
+                                                          clip-rule="evenodd"></path>
                                                 </svg>
                                             </div>
                                         </td>
@@ -322,10 +325,11 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                             <div class="card-header border-bottom d-flex align-items-center justify-content-between">
                                 <h2 class="fs-5 fw-bold mb-0">電力使用:{{ wholeusage }}</h2>
                                 <!-- <a href="#" class="btn btn-sm btn-primary">See all</a> -->
-    
+
                                 <div class="tooltipa">
-                                    <svg class="icon icon-s text-gray-500 ms-2 me-1" fill="currentColor" viewBox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
+                                    <svg class="icon icon-s text-gray-500 ms-2 me-1" fill="currentColor"
+                                         viewBox="0 0 20 20"
+                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
                                                 fill-rule="evenodd"
                                                 clip-rule="evenodd"
@@ -336,36 +340,36 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                                     <div class="tooltiptext">
                                         <span> 民國111年電力排碳係數為每度0.509公斤CO2e
                                         <a href="https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=1&menu_id=40&news_id=100931"
-                                        class="text-danger">點我查看</a></span>
+                                           class="text-danger">點我查看</a></span>
                                     </div>
-    
-    
+
+
                                 </div>
                             </div>
-    
+
                             <div class="card-body">
                                 {% for i,j in treec %}
                                     <div class="image-container">
                                         <div class="cutimage" style="height: {{ i }}%; top: {{ j }}%;">
                                             <img src="{% static 'tree.png' %}">
                                         </div>
-    
+
                                     </div>
                                 {% endfor %}
                             </div>
-    
-                            <a href="https://www.flaticon.com/free-stickers/joshua-tree" 
-                                title="joshua tree stickers"
-                                style="font-size: 10px;">
+
+                            <a href="https://www.flaticon.com/free-stickers/joshua-tree"
+                               title="joshua tree stickers"
+                               style="font-size: 10px;">
                                 Joshua tree stickers created by Gohsantosadrive - Flaticon
                             </a>
                         </div>
                     </div>
-    
+
                 </div>
             </div>
             <div class="col-12 col-xl-4">
-    
+
                 <div class="card border-0 shadow mb-4">
                     <div class="card-header">
                         <div class="row align-items-center">
@@ -386,8 +390,8 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <a href="{{ fslide.link }}" target="_blank"><img class="d-block w-100 carimg"
-                                                                                src="{{ fslide.image }}"
-                                                                                alt="0"></a>
+                                                                                 src="{{ fslide.image }}"
+                                                                                 alt="0"></a>
                                 <div><p class="text-justify font-weight-bold">
                                     {{ fslide.description }}</p>
                                 </div>
@@ -395,7 +399,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                             {% for slide in slides %}
                                 <div class="carousel-item"><a href="{{ slide.link }}" target="_blank">
                                     <img class="d-block w-100 carimg" src="{{ slide.image }}"
-                                        alt="{{ forloop.counter }}"></a>
+                                         alt="{{ forloop.counter }}"></a>
                                     <div><p class="text-justify font-weight-bold">
                                         {{ slide.description }}</p>
                                     </div>
@@ -403,12 +407,12 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                             {% endfor %}
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
-                            data-slide="prev">
+                           data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
                         </a>
                         <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
-                            data-slide="next">
+                           data-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>
@@ -473,42 +477,50 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                             </div>
                             <div class="carousel-item">
                                 <a href="https://futurecity.cw.com.tw/article/1295" target="_blank">
-                                    <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_10.png' %}" alt="SDG 10">
+                                    <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_10.png' %}"
+                                         alt="SDG 10">
                                 </a>
                             </div>
                             <div class="carousel-item">
                                 <a href="https://futurecity.cw.com.tw/article/1294" target="_blank">
-                                    <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_11.png' %}" alt="SDG 11">
+                                    <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_11.png' %}"
+                                         alt="SDG 11">
                                 </a>
                             </div>
                             <div class="carousel-item">
                                 <a href="https://futurecity.cw.com.tw/article/1293" target="_blank">
-                                    <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_12.png' %}" alt="SDG 12">
+                                    <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_12.png' %}"
+                                         alt="SDG 12">
                                 </a>
                             </div>
                             <div class="carousel-item">
                                 <a href="https://futurecity.cw.com.tw/article/1292" target="_blank">
-                                    <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_13.png' %}" alt="SDG 13">
+                                    <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_13.png' %}"
+                                         alt="SDG 13">
                                 </a>
                             </div>
                             <div class="carousel-item">
                                 <a href="https://futurecity.cw.com.tw/article/1291" target="_blank">
-                                    <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_14.png' %}" alt="SDG 14">
+                                    <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_14.png' %}"
+                                         alt="SDG 14">
                                 </a>
                             </div>
                             <div class="carousel-item">
                                 <a href="https://futurecity.cw.com.tw/article/1290" target="_blank">
-                                    <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_15.png' %}" alt="SDG 15">
+                                    <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_15.png' %}"
+                                         alt="SDG 15">
                                 </a>
                             </div>
                             <div class="carousel-item">
                                 <a href="https://futurecity.cw.com.tw/article/1289" target="_blank">
-                                    <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_16.png' %}" alt="SDG 16">
+                                    <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_16.png' %}"
+                                         alt="SDG 16">
                                 </a>
                             </div>
                             <div class="carousel-item">
                                 <a href="https://futurecity.cw.com.tw/article/1288" target="_blank">
-                                    <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_17.png' %}" alt="SDG 17">
+                                    <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_17.png' %}"
+                                         alt="SDG 17">
                                 </a>
                             </div>
                         </div>
@@ -525,231 +537,237 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                     </div>
                 </div>
             </div>
-    
+
         </div>
-        </div>
-        <script>
-            var m = 0;
-            var dateall ={{ date|safe }};//以陣列存放個月日期 ex.一月dateall[0]=>[1,2,3...,31]
-            var eleall ={{ ele|safe }};//電力用量,跟dateall是對應的
-            var total = {{ wholeusage|safe }};
-            var weekdate = [];//存放日期從改成天改成周的資料
-            var year = 2023;
-            var standard = {{ standard|safe }};//平均值
-            var overstandard = 0;//日電力用量平均值
-            var sum ={{ wholeusage|safe }};//電力用量總和
-            var monthele = {{ monthusage|safe }};
-            var throwawayNode1 = [];//用來存放繪出圖形的節點
-            var throwawayNode2 = [];//用來存放繪出圖形的節點
-            var chartElements1 = [];
-            var chartElements2 = [];
-            var wele = [];
-            var p = 0;
+    </div>
+    <script>
+        var m = 0;
+        var dateall ={{ date|safe }};//以陣列存放個月日期 ex.一月dateall[0]=>[1,2,3...,31]
+        var eleall ={{ ele|safe }};//電力用量,跟dateall是對應的
+        var total = {{ wholeusage|safe }};
+        var weekdate = [];//存放日期從改成天改成周的資料
+        var year = 2023;
+        var standard = {{ standard|safe }};//平均值
+        var overstandard = 0;//日電力用量平均值
+        var sum ={{ wholeusage|safe }};//電力用量總和
+        var monthele = {{ monthusage|safe }};
+        var throwawayNode1 = [];//用來存放繪出圖形的節點
+        var throwawayNode2 = [];//用來存放繪出圖形的節點
+        var chartElements1 = [];
+        var chartElements2 = [];
+        var wele = [];
+        var p = 0;
+        var mtree = [];
 
-            for (var i = 1; i <= 12; i++) {
-                chartElements1.push(document.getElementById('chart' + i + 'd'));
-                throwawayNode1.push(document.getElementById('chart' + i + 'd'));
-                chartElements2.push(document.getElementById('chart' + i + 'k'));
-                throwawayNode2.push(document.getElementById('chart' + i + 'k'));
-            }
-            var use = document.getElementById('use');
-            var compare = document.getElementById('compare');//與上月相比
-            var monthSelect = document.getElementById('monthSelect');//月份選單
-            var month_compare=[0,0,0,0,0,0,0,0,0,0,0,0];
-            function calculate_month_rate(){
-                       
-                for(var i=1;i<13;i++){
-                    console.log(monthele[i],monthele[i-1]);
-                        if (monthele[i]>=monthele[i-1]){
-                            month_compare[i]=((Math.round((monthele[i]/monthele[i-1]-1)*100))+'% ↑');
-                        }
-                        else{
-                           month_compare[i]=(String(Math.round((1-monthele[i]/monthele[i-1])*100))+'% ↓');
-                        }
-                }
-                        
-            }
-            calculate_month_rate();
-            
-            function month_rate_switch(){
-                if (monthele[m]>=monthele[m-1]){
-                    compare.textContent=String(Math.round((monthele[m]/monthele[m-1]-1)*100))+'% ↑';
-                    compare.classList.remove("text-danger");
-                    compare.classList.add("text-success");
-                }
-                else{
-                    compare.textContent=String(Math.round((1-monthele[m]/monthele[m-1])*100))+'% ↓';
-                }
-            }
-            function weekcalculate() {
-                for (var i = 0; i < 12; i++) {
-                    var name = [];
-                    var wele_n = [];
-                    var a = 1;
-                    var sumw = 0;
-                    for (var j = 0; j < eleall[i].length; j++) {
-                        console.log(j)
-                        sumw += eleall[i][j];
-                        if ((j + 1) % 7 == 0 || j == eleall[i].length - 1) {
-                            wele_n.push(sumw);
-                            if (a == 1)
-                                name.push(a + '-' + String(j + 1));
-                            else
-                                name.push(a + 1 + '-' + String(j + 1));
-                            a = j + 1;
-                            sumw = 0;
-                            continue;
-                        }
-                    }
-                    weekdate.push(name);
-                    wele.push(wele_n);
-                }
-            }
-            
-            console.log(eleall[6]);
-
-            function handleMonthChange() {
-                var selectedMonth = monthSelect.value;
-                var thv = standard[selectedMonth - 1];
-                average.textContent = thv;
-                use.textContent = String(selectedMonth) + '月總共使用' + String(monthele[selectedMonth - 1]) + '度';
-                if (selectedMonth != 1)
-                    calculate_month_rate(selectedMonth - 1);
-                else compare.textContent = "查無資料";
-                calculate_overstandard(selectedMonth - 1);
-                document.getElementById('overstandard').textContent = overstandard;
-                if (p == 0) {
-                    chartElements1[m].parentNode.removeChild(chartElements1[m]);
-                    document.getElementById("containbox").appendChild(throwawayNode1[selectedMonth - 1]);
-                } else {
-                    chartElements2[m].parentNode.removeChild(chartElements2[m]);
-                    document.getElementById("containbox").appendChild(throwawayNode2[selectedMonth - 1]);
-                }
-                m = selectedMonth - 1;
-                month_rate_switch();
-            }
-            
-            var tb=document.getElementById("tb");
-            var origin_node=document.getElementById("trr");
-            tb.removeChild(origin_node);
-            var node;
-            var dateElement;
-
-            function calculate_overstandard(a) {
-                overstandard = 0;
-                for (var i = 0; i < eleall[a].length; i++) {
-                    if (eleall[a][i] >= standard[a]) overstandard++;
-                }
-            }
-            function list_rate(){
-                setTimeout(function() {
-                    console.log("nnnnnnnnn");
-                            
-                    console.log(monthele);
-                    console.log(month_compare);
-                    // compare.classList.add("text-danger");
-                    node = origin_node.cloneNode(true);
-                    node.children["date2"].textContent=1;
-                    node.children["ele2"].textContent=monthele[0];
-                    var rate;
-                    for(var i=1;i<13;i++){
-                        node = origin_node.cloneNode(true);
-                        node.children["date2"].textContent=i;
-                        node.children["ele2"].textContent=monthele[i-1];
-                        
-                        if (monthele[i-1]>=monthele[i-2]){
-                            node.children["rate"].textContent=month_compare[i-1];
-                            node.children["rate"].classList.add("text-danger");
-                        }
-                        else {
-                            node.children["rate"].textContent=month_compare[i-1];
-                            node.children["rate"].classList.add("text-success");
-                        }
-                        // if(eles[i]>standard)node.children["ele2"].classList.add("text-danger");
-                         // else if(eles[i]<standard)node.children["ele2"].classList.add("text-success");
-                        node.setAttribute('id',String(i));
-                        tb.appendChild(node);
-                    }    
-                }, 200);
-            }
-            list_rate();
-            weekcalculate();
-            calculate_overstandard(0);
-
-            // 添加事件監聽器，偵測下拉選單的變更事件
-            monthSelect.addEventListener('change', handleMonthChange);
-            use.textContent = '1月總共使用' + String(monthele[4]) + '度';
+        function calmtree() {
             for (var i = 0; i < 12; i++) {
-                var chart = new Chartist.Line('#chart' + (i + 1) + 'd', {
-                    labels: dateall[i],
-                    series: [eleall[i]],
-                }, {
-                    showArea: true,
-                    axisY: {
-                        onlyInteger: true
-                    },
-                    plugins: [
-                        Chartist.plugins.ctThreshold({
-                            threshold: standard[i],
-                        }),
-                        Chartist.plugins.ctPointLabels({
-                            textAnchor: 'middle'
-                        })
-                    ]
-                });
-                var chart = new Chartist.Line('#chart' + (i + 1) + 'k', {
-                    labels: weekdate[i],
-                    series: [wele[i]],
-                }, {
-                    showArea: true,
-                    axisY: {
-                        onlyInteger: true
-                    },
-                    plugins: [
-                        Chartist.plugins.ctPointLabels({
-                            textAnchor: 'middle'
-                        })
-                    ]
-                });
+                mtree.push(0.509 * monthele[i] / 550.5);
+                mtree[i] = mtree[i].toFixed(2);
             }
-            // 銷毀圖表對象
+            console.log(mtree);
+        }
+
+        calmtree();
+        for (var i = 1; i <= 12; i++) {
+            chartElements1.push(document.getElementById('chart' + i + 'd'));
+            throwawayNode1.push(document.getElementById('chart' + i + 'd'));
+            chartElements2.push(document.getElementById('chart' + i + 'k'));
+            throwawayNode2.push(document.getElementById('chart' + i + 'k'));
+        }
+        var use = document.getElementById('use');
+        var compare = document.getElementById('compare');//與上月相比
+        var monthSelect = document.getElementById('monthSelect');//月份選單
+        var month_compare = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+        function calculate_month_rate() {
+
+            for (var i = 1; i < 13; i++) {
+                if (monthele[i] >= monthele[i - 1]) {
+                    month_compare[i] = ((Math.round((monthele[i] / monthele[i - 1] - 1) * 100)) + '% ↑');
+                } else {
+                    month_compare[i] = (String(Math.round((1 - monthele[i] / monthele[i - 1]) * 100)) + '% ↓');
+                }
+            }
+
+        }
+
+        calculate_month_rate();
+
+        function month_rate_switch() {
+            if (monthele[m] >= monthele[m - 1]) {
+                compare.textContent = String(Math.round((monthele[m] / monthele[m - 1] - 1) * 100)) + '% ↑';
+                compare.classList.remove("text-danger");
+                compare.classList.add("text-success");
+            } else {
+                compare.textContent = String(Math.round((1 - monthele[m] / monthele[m - 1]) * 100)) + '% ↓';
+            }
+        }
+
+        function weekcalculate() {
+            for (var i = 0; i < 12; i++) {
+                var name = [];
+                var wele_n = [];
+                var a = 1;
+                var sumw = 0;
+                for (var j = 0; j < eleall[i].length; j++) {
+                    sumw += eleall[i][j];
+                    if ((j + 1) % 7 == 0 || j == eleall[i].length - 1) {
+                        wele_n.push(sumw.toFixed(2));
+                        if (a == 1)
+                            name.push(a + '-' + String(j + 1));
+                        else
+                            name.push(a + 1 + '-' + String(j + 1));
+                        a = j + 1;
+                        sumw = 0;
+                        continue;
+                    }
+                }
+                weekdate.push(name);
+                wele.push(wele_n);
+            }
+        }
+
+
+        function handleMonthChange() {
+            var selectedMonth = monthSelect.value;
+            var thv = standard[selectedMonth - 1];
+            average.textContent = thv;
+            use.textContent = String(selectedMonth) + '月總共使用' + String(monthele[selectedMonth - 1]) + '度';
+            if (selectedMonth != 1)
+                calculate_month_rate(selectedMonth - 1);
+            else compare.textContent = "查無資料";
+            calculate_overstandard(selectedMonth - 1);
+            document.getElementById('overstandard').textContent = overstandard;
+            if (p == 0) {
+                chartElements1[m].parentNode.removeChild(chartElements1[m]);
+                document.getElementById("containbox").appendChild(throwawayNode1[selectedMonth - 1]);
+            } else {
+                chartElements2[m].parentNode.removeChild(chartElements2[m]);
+                document.getElementById("containbox").appendChild(throwawayNode2[selectedMonth - 1]);
+            }
+            m = selectedMonth - 1;
+            month_rate_switch();
+        }
+
+        var tb = document.getElementById("tb");
+        var origin_node = document.getElementById("trr");
+        tb.removeChild(origin_node);
+        var node;
+        var dateElement;
+
+        function calculate_overstandard(a) {
+            overstandard = 0;
+            for (var i = 0; i < eleall[a].length; i++) {
+                if (eleall[a][i] >= standard[a]) overstandard++;
+            }
+        }
+
+        function list_rate() {
             setTimeout(function () {
-                throwawayNode2[0] = chartElements2[0].parentNode.removeChild(chartElements2[0]);
-                for (var i = 1; i < 12; i++) {
-                    throwawayNode1[i] = chartElements1[i].parentNode.removeChild(chartElements1[i]);
-                    throwawayNode2[i] = chartElements2[i].parentNode.removeChild(chartElements2[i]);
+                // compare.classList.add("text-danger");
+                node = origin_node.cloneNode(true);
+                node.children["date2"].textContent = 1;
+                node.children["ele2"].textContent = monthele[0];
+                var rate;
+                for (var i = 1; i < 13; i++) {
+                    node = origin_node.cloneNode(true);
+                    node.children["date2"].textContent = i;
+                    node.children["ele2"].textContent = monthele[i - 1];
+                    node.children["tree2"].textContent = mtree[i-1]+"棵";
+
+                    if (monthele[i - 1] >= monthele[i - 2]) {
+                        node.children["rate"].textContent = month_compare[i - 1];
+                        node.children["rate"].classList.add("text-danger");
+                    } else {
+                        node.children["rate"].textContent = month_compare[i - 1];
+                        node.children["rate"].classList.add("text-success");
+                    }
+                    // if(eles[i]>standard)node.children["ele2"].classList.add("text-danger");
+                    // else if(eles[i]<standard)node.children["ele2"].classList.add("text-success");
+                    node.setAttribute('id', String(i));
+                    tb.appendChild(node);
                 }
             }, 200);
-            const dayBtn = document.getElementById("day-btn");
-            const weekBtn = document.getElementById("week-btn");
-            const average = document.getElementById('average used')
-            average.textContent = standard[0];
-            document.getElementById('overstandard').textContent = overstandard;
+        }
 
-            dayBtn.addEventListener("click", function () {
-                p = 0;
-                // dayBtn跟weekbtn屬性交換
-                dayBtn.classList.remove("btn", "btn-dark", "btn-sm", "me-3");
-                dayBtn.classList.add("btn", "btn-secondary", "text-dark", "btn-sm", "me-3");
-                weekBtn.classList.remove("btn", "btn-secondary", "text-dark", "btn-sm", "me-3");
-                weekBtn.classList.add("btn", "btn-dark", "btn-sm", "me-3");
-                chartElements2[m].parentNode.removeChild(chartElements2[m]);
-                document.getElementById("containbox").appendChild(throwawayNode1[m])
+        list_rate();
+        weekcalculate();
+        calculate_overstandard(0);
+
+        // 添加事件監聽器，偵測下拉選單的變更事件
+        monthSelect.addEventListener('change', handleMonthChange);
+        use.textContent = '1月總共使用' + String(monthele[4]) + '度';
+        for (var i = 0; i < 12; i++) {
+            var chart = new Chartist.Line('#chart' + (i + 1) + 'd', {
+                labels: dateall[i],
+                series: [eleall[i]],
+            }, {
+                showArea: true,
+                axisY: {
+                    onlyInteger: true
+                },
+                plugins: [
+                    Chartist.plugins.ctThreshold({
+                        threshold: standard[i],
+                    }),
+                    Chartist.plugins.ctPointLabels({
+                        textAnchor: 'middle'
+                    })
+                ]
             });
-
-
-            weekBtn.addEventListener("click", function () {
-                p = 1;
-                // dayBtn跟weekbtn屬性交換
-                weekBtn.classList.remove("btn", "btn-dark", "btn-sm", "me-3");
-                weekBtn.classList.add("btn", "btn-secondary", "text-dark", "btn-sm", "me-3");
-                dayBtn.classList.remove("btn", "btn-secondary", "text-dark", "btn-sm", "me-3");
-                dayBtn.classList.add("btn", "btn-dark", "btn-sm", "me-3");
-                chartElements1[m].parentNode.removeChild(chartElements1[m]);
-                document.getElementById("containbox").appendChild(throwawayNode2[m]);
+            var chart = new Chartist.Line('#chart' + (i + 1) + 'k', {
+                labels: weekdate[i],
+                series: [wele[i]],
+            }, {
+                showArea: true,
+                axisY: {
+                    onlyInteger: true
+                },
+                plugins: [
+                    Chartist.plugins.ctPointLabels({
+                        textAnchor: 'middle'
+                    })
+                ]
             });
+        }
+        // 銷毀圖表對象
+        setTimeout(function () {
+            throwawayNode2[0] = chartElements2[0].parentNode.removeChild(chartElements2[0]);
+            for (var i = 1; i < 12; i++) {
+                throwawayNode1[i] = chartElements1[i].parentNode.removeChild(chartElements1[i]);
+                throwawayNode2[i] = chartElements2[i].parentNode.removeChild(chartElements2[i]);
+            }
+        }, 200);
+        const dayBtn = document.getElementById("day-btn");
+        const weekBtn = document.getElementById("week-btn");
+        const average = document.getElementById('average used')
+        average.textContent = standard[0];
+        document.getElementById('overstandard').textContent = overstandard;
 
-        </script>
+        dayBtn.addEventListener("click", function () {
+            p = 0;
+            // dayBtn跟weekbtn屬性交換
+            dayBtn.classList.remove("btn", "btn-dark", "btn-sm", "me-3");
+            dayBtn.classList.add("btn", "btn-secondary", "text-dark", "btn-sm", "me-3");
+            weekBtn.classList.remove("btn", "btn-secondary", "text-dark", "btn-sm", "me-3");
+            weekBtn.classList.add("btn", "btn-dark", "btn-sm", "me-3");
+            chartElements2[m].parentNode.removeChild(chartElements2[m]);
+            document.getElementById("containbox").appendChild(throwawayNode1[m])
+        });
+
+
+        weekBtn.addEventListener("click", function () {
+            p = 1;
+            // dayBtn跟weekbtn屬性交換
+            weekBtn.classList.remove("btn", "btn-dark", "btn-sm", "me-3");
+            weekBtn.classList.add("btn", "btn-secondary", "text-dark", "btn-sm", "me-3");
+            dayBtn.classList.remove("btn", "btn-secondary", "text-dark", "btn-sm", "me-3");
+            dayBtn.classList.add("btn", "btn-dark", "btn-sm", "me-3");
+            chartElements1[m].parentNode.removeChild(chartElements1[m]);
+            document.getElementById("containbox").appendChild(throwawayNode2[m]);
+        });
+
+    </script>
 
     </div>
 

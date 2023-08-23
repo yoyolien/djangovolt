@@ -103,7 +103,6 @@ def dashboard(request):
             "todayusage": dayusage[-1][-1],
             "monthusage": mu,
             "wholeusage": wu,
-
             'standard': [float('%.2f' % (sum(i) / len(i))) for i in dayusage],
             "treec": treec,
             "slides": slides[1:],
