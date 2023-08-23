@@ -1,7 +1,7 @@
 {% load static %}
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
   	<title>Login 10</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,26 +19,13 @@
 			<div class="row justify-content-center align-self-center">
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap p-0">
-		      	<h3 class="mb-4 text-center">帳號登入</h3>
-		      	<form action="" method="post" class="signin-form">
+						<h1 class="mb-2 text-center font-weight-bold">臺東大學智慧節能管理系統</h1>
+						<h3 class="mb-4 text-center">帳號登入</h3>
+					<form action="" method="post" class="signin-form">
 					{% csrf_token %}
 		      		<div class="form-group">
 		      			{{ form.username }}
 		      		</div>
-					  <!-- <div class="form-group mb-4">
-						<label for="email">{{ form.username.label }}</label>
-						<div class="input-group">
-						  <span class="input-group-text" id="basic-addon1">
-							<svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20"
-							  xmlns="http://www.w3.org/2000/svg">
-							  <path fill-rule="evenodd"
-								d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
-								clip-rule="evenodd"></path>
-							</svg>
-						  </span>
-
-						</div>
-					  </div> -->
 	            <div class="form-group">
 					{{ form.password }}
 	            </div>
@@ -69,9 +56,9 @@
 	</section>
 
 	<script src="{% static "login-form-20/js/jquery.min.js"%}"></script>
-  <script src="{% static "login-form-20/js/popper.js"%}"></script>
-  <script src="{% static "login-form-20/js/bootstrap.min.js"%}"></script>
-  <script src="{% static "login-form-20/js/main.js"%}"></script>
+	<script src="{% static "login-form-20/js/popper.js"%}"></script>
+	<script src="{% static "login-form-20/js/bootstrap.min.js"%}"></script>
+	<script src="{% static "login-form-20/js/main.js"%}"></script>
 
 	</body>
 </html>
