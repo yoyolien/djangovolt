@@ -77,12 +77,10 @@ def dashboard(request):
         ele = eledata.objects.filter(user_id=request.user.id)
         label = [[] for _ in range(12)]
         dayusage = [[] for _ in range(12)]
-        print(ele)
         for i in ele:
             month = i.report_time.month
             usage = sum(map(lambda x:float(x)/4, i.daliyusage.split(",")))/1000
             usage = float('%.2f' % usage)
-            print(usage)
             label[month - 1].append(i.report_time.day)
             dayusage[month - 1].append(usage)
 
