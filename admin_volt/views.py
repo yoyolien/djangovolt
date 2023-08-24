@@ -15,6 +15,7 @@ import datetime
 import os
 
 
+
 def requesttaipower():
     url = "https://www.taipower.com.tw/tc/news.aspx?mid=17"
     save_path = "static/slides/"
