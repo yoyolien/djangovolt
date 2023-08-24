@@ -547,7 +547,8 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
             var chartElements2 = [];
             var wele = [];
             var p = 0;
-
+            var treemu={{ treemu|safe }};
+            console.log(treemu);
             for (var i = 1; i <= 12; i++) {
                 chartElements1.push(document.getElementById('chart' + i + 'd'));
                 throwawayNode1.push(document.getElementById('chart' + i + 'd'));
@@ -658,6 +659,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                         node = origin_node.cloneNode(true);
                         node.children["date2"].textContent=i;
                         node.children["ele2"].textContent=monthele[i-1];
+                        node.children["tree2"].textContent=treemu[i-1]+"棵";
                         
                         if (monthele[i-1]>=monthele[i-2]){
                             node.children["rate"].textContent=month_compare[i-1];
