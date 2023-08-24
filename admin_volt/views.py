@@ -88,7 +88,6 @@ def dashboard(request):
         mu = [float('%.2f' % sum(i)) for i in dayusage]
         wu = float('%.2f' % sum(mu))
         tree = 0.509 * wu / 550.5
-        treemu = [round(0.509 * i / 550.5,2) for i in mu]
         treec = []
 
         for i in range(int(tree) + 1):
@@ -106,7 +105,6 @@ def dashboard(request):
             "wholeusage": wu,
             'standard': [float('%.2f' % (sum(i) / len(i))) for i in dayusage],
             "treec": treec,
-            "treemu": treemu,
             "slides": slides[1:],
             "fslide": slides[0],
         }

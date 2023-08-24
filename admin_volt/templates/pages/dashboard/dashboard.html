@@ -309,11 +309,9 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                                                         d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
                                                         clip-rule="evenodd"></path>
                                                 </svg>
-                                                42,55%
                                             </div>
                                         </td>
                                     </tr>
-    
                                     </tbody>
                                 </table>
                             </div>
@@ -529,87 +527,94 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
             </div>
     
         </div>
-        </div>
-        <script>
-            var m = 0;
-            var dateall ={{ date|safe }};//以陣列存放個月日期 ex.一月dateall[0]=>[1,2,3...,31]
-            var eleall ={{ ele|safe }};//電力用量,跟dateall是對應的
-            var total = {{ wholeusage|safe }};
-            var weekdate = [];//存放日期從改成天改成周的資料
-            var year = 2023;
-            var standard = {{ standard|safe }};//平均值
-            var overstandard = 0;//日電力用量平均值
-            var sum ={{ wholeusage|safe }};//電力用量總和
-            var monthele = {{ monthusage|safe }};
-            var throwawayNode1 = [];//用來存放繪出圖形的節點
-            var throwawayNode2 = [];//用來存放繪出圖形的節點
-            var chartElements1 = [];
-            var chartElements2 = [];
-            var wele = [];
-            var p = 0;
-            var treemu={{ treemu|safe }};
-            console.log(treemu);
-            for (var i = 1; i <= 12; i++) {
-                chartElements1.push(document.getElementById('chart' + i + 'd'));
-                throwawayNode1.push(document.getElementById('chart' + i + 'd'));
-                chartElements2.push(document.getElementById('chart' + i + 'k'));
-                throwawayNode2.push(document.getElementById('chart' + i + 'k'));
+    </div>
+    <script>
+        var m = 0;
+        var dateall ={{ date|safe }};//以陣列存放個月日期 ex.一月dateall[0]=>[1,2,3...,31]
+        var eleall ={{ ele|safe }};//電力用量,跟dateall是對應的
+        var total = {{ wholeusage|safe }};
+        var weekdate = [];//存放日期從改成天改成周的資料
+        var year = 2023;
+        var standard = {{ standard|safe }};//平均值
+        var overstandard = 0;//日電力用量平均值
+        var sum ={{ wholeusage|safe }};//電力用量總和
+        var monthele = {{ monthusage|safe }};
+        var throwawayNode1 = [];//用來存放繪出圖形的節點
+        var throwawayNode2 = [];//用來存放繪出圖形的節點
+        var chartElements1 = [];
+        var chartElements2 = [];
+        var wele = [];
+        var p = 0;
+        var mtree = [];
+
+        function calmtree() {
+            for (var i = 0; i < 12; i++) {
+                mtree.push(0.509 * monthele[i] / 550.5);
+                mtree[i] = mtree[i].toFixed(2);
             }
-            var use = document.getElementById('use');
-            var compare = document.getElementById('compare');//與上月相比
-            var monthSelect = document.getElementById('monthSelect');//月份選單
-            var month_compare=[0,0,0,0,0,0,0,0,0,0,0,0];
-            function calculate_month_rate(){
-                       
-                for(var i=1;i<13;i++){
-                    console.log(monthele[i],monthele[i-1]);
-                        if (monthele[i]>=monthele[i-1]){
-                            month_compare[i]=((Math.round((monthele[i]/monthele[i-1]-1)*100))+'% ↑');
-                        }
-                        else{
-                           month_compare[i]=(String(Math.round((1-monthele[i]/monthele[i-1])*100))+'% ↓');
-                        }
-                }
-                        
-            }
-            calculate_month_rate();
-            
-            function month_rate_switch(){
-                if (monthele[m]>=monthele[m-1]){
-                    compare.textContent=String(Math.round((monthele[m]/monthele[m-1]-1)*100))+'% ↑';
-                    compare.classList.remove("text-danger");
-                    compare.classList.add("text-success");
-                }
-                else{
-                    compare.textContent=String(Math.round((1-monthele[m]/monthele[m-1])*100))+'% ↓';
+            console.log(mtree);
+        }
+
+        calmtree();
+        for (var i = 1; i <= 12; i++) {
+            chartElements1.push(document.getElementById('chart' + i + 'd'));
+            throwawayNode1.push(document.getElementById('chart' + i + 'd'));
+            chartElements2.push(document.getElementById('chart' + i + 'k'));
+            throwawayNode2.push(document.getElementById('chart' + i + 'k'));
+        }
+        var use = document.getElementById('use');
+        var compare = document.getElementById('compare');//與上月相比
+        var monthSelect = document.getElementById('monthSelect');//月份選單
+        var month_compare = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+        function calculate_month_rate() {
+
+            for (var i = 1; i < 13; i++) {
+                if (monthele[i] >= monthele[i - 1]) {
+                    month_compare[i] = ((Math.round((monthele[i] / monthele[i - 1] - 1) * 100)) + '% ↑');
+                } else {
+                    month_compare[i] = (String(Math.round((1 - monthele[i] / monthele[i - 1]) * 100)) + '% ↓');
                 }
             }
-            function weekcalculate() {
-                for (var i = 0; i < 12; i++) {
-                    var name = [];
-                    var wele_n = [];
-                    var a = 1;
-                    var sumw = 0;
-                    for (var j = 0; j < eleall[i].length; j++) {
-                        console.log(j)
-                        sumw += eleall[i][j];
-                        if ((j + 1) % 7 == 0 || j == eleall[i].length - 1) {
-                            wele_n.push(sumw);
-                            if (a == 1)
-                                name.push(a + '-' + String(j + 1));
-                            else
-                                name.push(a + 1 + '-' + String(j + 1));
-                            a = j + 1;
-                            sumw = 0;
-                            continue;
-                        }
+
+        }
+
+        calculate_month_rate();
+
+        function month_rate_switch() {
+            if (monthele[m] >= monthele[m - 1]) {
+                compare.textContent = String(Math.round((monthele[m] / monthele[m - 1] - 1) * 100)) + '% ↑';
+                compare.classList.remove("text-danger");
+                compare.classList.add("text-success");
+            } else {
+                compare.textContent = String(Math.round((1 - monthele[m] / monthele[m - 1]) * 100)) + '% ↓';
+            }
+        }
+
+        function weekcalculate() {
+            for (var i = 0; i < 12; i++) {
+                var name = [];
+                var wele_n = [];
+                var a = 1;
+                var sumw = 0;
+                for (var j = 0; j < eleall[i].length; j++) {
+                    sumw += eleall[i][j];
+                    if ((j + 1) % 7 == 0 || j == eleall[i].length - 1) {
+                        wele_n.push(sumw.toFixed(2));
+                        if (a == 1)
+                            name.push(a + '-' + String(j + 1));
+                        else
+                            name.push(a + 1 + '-' + String(j + 1));
+                        a = j + 1;
+                        sumw = 0;
+                        continue;
                     }
-                    weekdate.push(name);
-                    wele.push(wele_n);
                 }
+                weekdate.push(name);
+                wele.push(wele_n);
             }
-            
-            console.log(eleall[6]);
+        }
+
 
             function handleMonthChange() {
                 var selectedMonth = monthSelect.value;
@@ -638,47 +643,44 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
             var node;
             var dateElement;
 
-            function calculate_overstandard(a) {
-                overstandard = 0;
-                for (var i = 0; i < eleall[a].length; i++) {
-                    if (eleall[a][i] >= standard[a]) overstandard++;
-                }
+        function calculate_overstandard(a) {
+            overstandard = 0;
+            for (var i = 0; i < eleall[a].length; i++) {
+                if (eleall[a][i] >= standard[a]) overstandard++;
             }
-            function list_rate(){
-                setTimeout(function() {
-                    console.log("nnnnnnnnn");
-                            
-                    console.log(monthele);
-                    console.log(month_compare);
-                    // compare.classList.add("text-danger");
+        }
+
+        function list_rate() {
+            setTimeout(function () {
+                // compare.classList.add("text-danger");
+                node = origin_node.cloneNode(true);
+                node.children["date2"].textContent = 1;
+                node.children["ele2"].textContent = monthele[0];
+                var rate;
+                for (var i = 1; i < 13; i++) {
                     node = origin_node.cloneNode(true);
-                    node.children["date2"].textContent=1;
-                    node.children["ele2"].textContent=monthele[0];
-                    var rate;
-                    for(var i=1;i<13;i++){
-                        node = origin_node.cloneNode(true);
-                        node.children["date2"].textContent=i;
-                        node.children["ele2"].textContent=monthele[i-1];
-                        node.children["tree2"].textContent=treemu[i-1]+"棵";
-                        
-                        if (monthele[i-1]>=monthele[i-2]){
-                            node.children["rate"].textContent=month_compare[i-1];
-                            node.children["rate"].classList.add("text-danger");
-                        }
-                        else {
-                            node.children["rate"].textContent=month_compare[i-1];
-                            node.children["rate"].classList.add("text-success");
-                        }
-                        // if(eles[i]>standard)node.children["ele2"].classList.add("text-danger");
-                         // else if(eles[i]<standard)node.children["ele2"].classList.add("text-success");
-                        node.setAttribute('id',String(i));
-                        tb.appendChild(node);
-                    }    
-                }, 200);
-            }
-            list_rate();
-            weekcalculate();
-            calculate_overstandard(0);
+                    node.children["date2"].textContent = i;
+                    node.children["ele2"].textContent = monthele[i - 1];
+                    node.children["tree2"].textContent = mtree[i-1]+"棵";
+
+                    if (monthele[i - 1] >= monthele[i - 2]) {
+                        node.children["rate"].textContent = month_compare[i - 1];
+                        node.children["rate"].classList.add("text-danger");
+                    } else {
+                        node.children["rate"].textContent = month_compare[i - 1];
+                        node.children["rate"].classList.add("text-success");
+                    }
+                    // if(eles[i]>standard)node.children["ele2"].classList.add("text-danger");
+                    // else if(eles[i]<standard)node.children["ele2"].classList.add("text-success");
+                    node.setAttribute('id', String(i));
+                    tb.appendChild(node);
+                }
+            }, 200);
+        }
+
+        list_rate();
+        weekcalculate();
+        calculate_overstandard(0);
 
             // 添加事件監聽器，偵測下拉選單的變更事件
             monthSelect.addEventListener('change', handleMonthChange);
