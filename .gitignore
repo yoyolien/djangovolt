@@ -13,3 +13,5 @@ env
 *.sqlite*
 
 .env
+db.sqlite3
+*.sqlite3
