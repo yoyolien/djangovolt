@@ -105,6 +105,9 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                     <div class="ct-double-octave ct-series-g" id="chart11k" style="display: block;"></div>
                     <div class="ct-double-octave ct-series-g" id="chart12k" style="display: block;"></div>
                 </div>
+                <div class="card-body p-2" id="containbox" style="overflow-x: auto;">
+                    <div class="ct-double-octave ct-series-g" id="chart1" style="display: block;"></div>
+                </div>
             </div>
         </div>
         <div class="col-12 col-sm-6 col-xl-4 mb-4">
@@ -576,6 +579,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
         var total = {{ wholeusage|safe }};
         var weekdate = [];//存放日期從改成天改成周的資料
         var year = 2023;
+        var result={{ presult|safe }};
         var standard = {{ standard|safe }};//平均值
         var overstandard = 0;//日電力用量平均值
         var sum ={{ wholeusage|safe }};//電力用量總和
@@ -587,13 +591,13 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
         var wele = [];
         var p = 0;
         var mtree = [];
-
+        console.log(result);
         function calmtree() {
             for (var i = 0; i < 12; i++) {
                 mtree.push(0.509 * monthele[i] / 550.5);
                 mtree[i] = mtree[i].toFixed(2);
             }
-            console.log(mtree);
+            // console.log(mtree);
         }
 
         calmtree();
@@ -623,7 +627,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
         calculate_month_rate();
 
         function month_rate_switch() {
-            console.log(m);
+            // console.log(m);
             if(m==0)compare.textContent="NaN";
             else if (monthele[m] >= monthele[m - 1]) {
                 compare.textContent = String(Math.round((monthele[m] / monthele[m - 1] - 1) * 100)) + '% ↑';
@@ -728,6 +732,42 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
         calculate_overstandard(0);
 
         // 添加事件監聽器，偵測下拉選單的變更事件
+
+//------------------------------------------------------------------------
+
+var chart = new Chartist.Line('#chart1', {
+                labels: ['A', 'B', 'C', 'D', 'E'],
+                series: [[5, 10, 15, 12, 8]]
+            }, {
+                showArea: true,
+                fullWidth: true,
+                axisY: {
+                    onlyInteger: true
+                },
+                plugins: [
+                    Chartist.plugins.ctPointLabels({
+                        textAnchor: 'middle'
+                    })
+                ]
+            });
+
+chart.on('draw', function(context) {
+    if (context.type === 'point') {
+        console.log(context)
+        // 檢查是否是目標座標 {B, 10}
+        if (context.index == 1 ) {
+            console.log("hee")
+            context.element.attr({
+                class: 'ct-point ct-threshold-above'  // 屬性改為紅色
+            });
+        }
+    }
+});
+        
+
+// ------------------------------------------------------------------------
+
+        
         monthSelect.addEventListener('change', handleMonthChange);
         use.textContent = '1月總共使用' + String(monthele[0]) + '度';
         for (var i = 0; i < 12; i++) {
@@ -736,6 +776,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                 series: [eleall[i]],
             }, {
                 showArea: true,
+                fullWidth: true,
                 axisY: {
                     onlyInteger: true
                 },
@@ -753,6 +794,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                 series: [wele[i]],
             }, {
                 showArea: true,
+                fullWidth: true,
                 axisY: {
                     onlyInteger: true
                 },
