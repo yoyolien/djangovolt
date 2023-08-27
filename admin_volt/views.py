@@ -25,13 +25,13 @@ def dashboard(request):
         requestmlresult(request.user)
         slides = list(Slide.objects.all())
         prediction = predictionresult.objects.filter(user_id=request.user.id)
-        result = list(map(lambda x: x.result[-5], prediction))
+        result = [x.result[-5] for x in prediction]
         ele = eledata.objects.filter(user_id=request.user.id)
         label = [[] for _ in range(12)]
         dayusage = [[] for _ in range(12)]
         for i in ele:
             month = i.report_time.month
-            usage = sum(map(lambda x: float(x) / 4, i.daliyusage.split(","))) / 1000
+            usage = sum(float(x) / 4 for x in i.daliyusage.split(",")) / 1000
             usage = float('%.2f' % usage)
             label[month - 1].append(i.report_time.day)
             dayusage[month - 1].append(usage)
