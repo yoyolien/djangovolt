@@ -251,7 +251,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                         <div class="col-12 col-xl-7 px-xl-0">
                             <div class="d-none d-sm-block">
                                 <h2 class="h6 text-gray-400 mb-0">該月需種植樹木數</h2>
-                                <h3 class="fw-extrabold mb-2"><span id="overstandard"></span>59棵</h3>
+                                <h3 class="fw-extrabold mb-2"><span id="tree"></span>59棵</h3>
                             </div>
                         </div>
                     </div>
@@ -584,6 +584,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
         var overstandard = 0;//日電力用量平均值
         var sum ={{ wholeusage|safe }};//電力用量總和
         var monthele = {{ monthusage|safe }};
+        var tree = document.getElementById("tree");
         var throwawayNode1 = [];//用來存放繪出圖形的節點
         var throwawayNode2 = [];//用來存放繪出圖形的節點
         var chartElements1 = [];
@@ -684,6 +685,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
             }
             m = selectedMonth - 1;
             month_rate_switch();
+            tree.textContent=mtree[m];
         }
 
         var tb = document.getElementById("tb");
@@ -727,6 +729,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
             }, 200);
         }
         compare.textContent = "NaN";
+        tree.textContent=mtree[0];
         list_rate();
         weekcalculate();
         calculate_overstandard(0);
@@ -754,7 +757,7 @@ var chart = new Chartist.Line('#chart1', {
 chart.on('draw', function(context) {
     if (context.type === 'point') {
         console.log(context)
-        // 檢查是否是目標座標 {B, 10}
+        // 檢查是否是目標座標 
         if (context.index == 1 ) {
             console.log("hee")
             context.element.attr({
