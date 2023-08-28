@@ -260,8 +260,54 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
         </div>
         <!-- 修改平均電力用量，使用異常天數 -->
         <div class="row">
+
             <div class="col-12 col-xl-8">
                 <div class="row">
+                    <div class="col-12 col-xxl-6 mb-4">
+                        <div class="card border-0 shadow">
+                            <div class="card-header border-bottom d-flex align-items-center justify-content-between">
+                                <h2 class="fs-5 fw-bold mb-0">今年電力使用共: {{ wholeusage }} 度 約等於需要種植 {{ treec|length }} 棵樹</h2>
+                                <!-- <a href="#" class="btn btn-sm btn-primary">See all</a> -->
+
+                                <div class="tooltipa">
+                                    <svg class="icon icon-s text-gray-500 ms-2 me-1" fill="currentColor"
+                                         viewBox="0 0 20 20"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                                fill-rule="evenodd"
+                                                clip-rule="evenodd"
+                                                d="M0.877075 7.49972C0.877075 3.84204 3.84222 0.876892 7.49991 0.876892C11.1576 0.876892 14.1227 3.84204 14.1227 7.49972C14.1227 11.1574 11.1576 14.1226 7.49991 14.1226C3.84222 14.1226 0.877075 11.1574 0.877075 7.49972ZM7.49991 1.82689C4.36689 1.82689 1.82708 4.36671 1.82708 7.49972C1.82708 10.6327 4.36689 13.1726 7.49991 13.1726C10.6329 13.1726 13.1727 10.6327 13.1727 7.49972C13.1727 4.36671 10.6329 1.82689 7.49991 1.82689ZM8.24993 10.5C8.24993 10.9142 7.91414 11.25 7.49993 11.25C7.08571 11.25 6.74993 10.9142 6.74993 10.5C6.74993 10.0858 7.08571 9.75 7.49993 9.75C7.91414 9.75 8.24993 10.0858 8.24993 10.5ZM6.05003 6.25C6.05003 5.57211 6.63511 4.925 7.50003 4.925C8.36496 4.925 8.95003 5.57211 8.95003 6.25C8.95003 6.74118 8.68002 6.99212 8.21447 7.27494C8.16251 7.30651 8.10258 7.34131 8.03847 7.37854L8.03841 7.37858C7.85521 7.48497 7.63788 7.61119 7.47449 7.73849C7.23214 7.92732 6.95003 8.23198 6.95003 8.7C6.95004 9.00376 7.19628 9.25 7.50004 9.25C7.8024 9.25 8.04778 9.00601 8.05002 8.70417L8.05056 8.7033C8.05924 8.6896 8.08493 8.65735 8.15058 8.6062C8.25207 8.52712 8.36508 8.46163 8.51567 8.37436L8.51571 8.37433C8.59422 8.32883 8.68296 8.27741 8.78559 8.21506C9.32004 7.89038 10.05 7.35382 10.05 6.25C10.05 4.92789 8.93511 3.825 7.50003 3.825C6.06496 3.825 4.95003 4.92789 4.95003 6.25C4.95003 6.55376 5.19628 6.8 5.50003 6.8C5.80379 6.8 6.05003 6.55376 6.05003 6.25Z"
+                                                fill="#000000"
+                                        />
+                                    </svg>
+                                    <div class="tooltiptext">
+                                        <span> 民國111年電力排碳係數為每度0.509公斤CO2e
+                                        <a href="https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=1&menu_id=40&news_id=100931"
+                                           class="text-danger">點我查看</a></span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                {% for i,j in treec %}
+                                    <div class="image-container">
+                                        <div class="cutimage" style="height: {{ i }}%; top: {{ j }}%;">
+                                            <img src="{% static 'tree.png' %}">
+                                        </div>
+
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+                            <a href="https://www.flaticon.com/free-stickers/joshua-tree"
+                               title="joshua tree stickers"
+                               style="font-size: 10px;">
+                                Joshua tree stickers created by Gohsantosadrive - Flaticon
+                            </a>
+                        </div>
+                    </div>
                     <div class="col-12 mb-4">
                         <div class="card border-0 shadow">
                             <div class="card-header">
@@ -309,51 +355,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-xxl-6 mb-4">
-                        <div class="card border-0 shadow">
-                            <div class="card-header border-bottom d-flex align-items-center justify-content-between">
-                                <h2 class="fs-5 fw-bold mb-0">電力使用:{{ wholeusage }}</h2>
-                                <!-- <a href="#" class="btn btn-sm btn-primary">See all</a> -->
 
-                                <div class="tooltipa">
-                                    <svg class="icon icon-s text-gray-500 ms-2 me-1" fill="currentColor"
-                                         viewBox="0 0 20 20"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                                fill-rule="evenodd"
-                                                clip-rule="evenodd"
-                                                d="M0.877075 7.49972C0.877075 3.84204 3.84222 0.876892 7.49991 0.876892C11.1576 0.876892 14.1227 3.84204 14.1227 7.49972C14.1227 11.1574 11.1576 14.1226 7.49991 14.1226C3.84222 14.1226 0.877075 11.1574 0.877075 7.49972ZM7.49991 1.82689C4.36689 1.82689 1.82708 4.36671 1.82708 7.49972C1.82708 10.6327 4.36689 13.1726 7.49991 13.1726C10.6329 13.1726 13.1727 10.6327 13.1727 7.49972C13.1727 4.36671 10.6329 1.82689 7.49991 1.82689ZM8.24993 10.5C8.24993 10.9142 7.91414 11.25 7.49993 11.25C7.08571 11.25 6.74993 10.9142 6.74993 10.5C6.74993 10.0858 7.08571 9.75 7.49993 9.75C7.91414 9.75 8.24993 10.0858 8.24993 10.5ZM6.05003 6.25C6.05003 5.57211 6.63511 4.925 7.50003 4.925C8.36496 4.925 8.95003 5.57211 8.95003 6.25C8.95003 6.74118 8.68002 6.99212 8.21447 7.27494C8.16251 7.30651 8.10258 7.34131 8.03847 7.37854L8.03841 7.37858C7.85521 7.48497 7.63788 7.61119 7.47449 7.73849C7.23214 7.92732 6.95003 8.23198 6.95003 8.7C6.95004 9.00376 7.19628 9.25 7.50004 9.25C7.8024 9.25 8.04778 9.00601 8.05002 8.70417L8.05056 8.7033C8.05924 8.6896 8.08493 8.65735 8.15058 8.6062C8.25207 8.52712 8.36508 8.46163 8.51567 8.37436L8.51571 8.37433C8.59422 8.32883 8.68296 8.27741 8.78559 8.21506C9.32004 7.89038 10.05 7.35382 10.05 6.25C10.05 4.92789 8.93511 3.825 7.50003 3.825C6.06496 3.825 4.95003 4.92789 4.95003 6.25C4.95003 6.55376 5.19628 6.8 5.50003 6.8C5.80379 6.8 6.05003 6.55376 6.05003 6.25Z"
-                                                fill="#000000"
-                                        />
-                                    </svg>
-                                    <div class="tooltiptext">
-                                        <span> 民國111年電力排碳係數為每度0.509公斤CO2e
-                                        <a href="https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=1&menu_id=40&news_id=100931"
-                                           class="text-danger">點我查看</a></span>
-                                    </div>
-
-
-                                </div>
-                            </div>
-
-                            <div class="card-body">
-                                {% for i,j in treec %}
-                                    <div class="image-container">
-                                        <div class="cutimage" style="height: {{ i }}%; top: {{ j }}%;">
-                                            <img src="{% static 'tree.png' %}">
-                                        </div>
-
-                                    </div>
-                                {% endfor %}
-                            </div>
-
-                            <a href="https://www.flaticon.com/free-stickers/joshua-tree"
-                               title="joshua tree stickers"
-                               style="font-size: 10px;">
-                                Joshua tree stickers created by Gohsantosadrive - Flaticon
-                            </a>
-                        </div>
-                    </div>
 
                 </div>
             </div>
@@ -380,13 +382,13 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                             var title = data.title;
                             var link = data.link;
                             console.log(title, link);
-                            createli(title,link);
+                            createli(title, link);
                         })
                         .catch(error => {
                             console.log(error);
                         });
 
-                    function createli(title,link) {
+                    function createli(title, link) {
                         {
                             ul = document.querySelector(".list-group");
                             ul.removeChild(document.querySelector(".list-group-item"));
@@ -569,7 +571,6 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     <script>
@@ -579,7 +580,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
         var total = {{ wholeusage|safe }};
         var weekdate = [];//存放日期從改成天改成周的資料
         var year = 2023;
-        var result={{ presult|safe }};
+        var result ={{ presult|safe }};
         var standard = {{ standard|safe }};//平均值
         var overstandard = 0;//日電力用量平均值
         var sum ={{ wholeusage|safe }};//電力用量總和
@@ -593,6 +594,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
         var p = 0;
         var mtree = [];
         console.log(result);
+
         function calmtree() {
             for (var i = 0; i < 12; i++) {
                 mtree.push(0.509 * monthele[i] / 550.5);
@@ -629,7 +631,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
 
         function month_rate_switch() {
             // console.log(m);
-            if(m==0)compare.textContent="NaN";
+            if (m == 0) compare.textContent = "NaN";
             else if (monthele[m] >= monthele[m - 1]) {
                 compare.textContent = String(Math.round((monthele[m] / monthele[m - 1] - 1) * 100)) + '% ↑';
                 compare.classList.remove("text-success");
@@ -728,6 +730,7 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                 }
             }, 200);
         }
+
         compare.textContent = "NaN";
         tree.textContent=mtree[0];
         list_rate();
@@ -736,28 +739,28 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
 
         // 添加事件監聽器，偵測下拉選單的變更事件
 
-//------------------------------------------------------------------------
+        //------------------------------------------------------------------------
 
-var chart = new Chartist.Line('#chart1', {
-                labels: ['A', 'B', 'C', 'D', 'E'],
-                series: [[5, 10, 15, 12, 8]]
-            }, {
-                showArea: true,
-                fullWidth: true,
-                axisY: {
-                    onlyInteger: true
-                },
-                plugins: [
-                    Chartist.plugins.ctPointLabels({
-                        textAnchor: 'middle'
-                    })
-                ]
-            });
+        var chart = new Chartist.Line('#chart1', {
+            labels: ['A', 'B', 'C', 'D', 'E'],
+            series: [[5, 10, 15, 12, 8]]
+        }, {
+            showArea: true,
+            fullWidth: true,
+            axisY: {
+                onlyInteger: true
+            },
+            plugins: [
+                Chartist.plugins.ctPointLabels({
+                    textAnchor: 'middle'
+                })
+            ]
+        });
 
 chart.on('draw', function(context) {
     if (context.type === 'point') {
         console.log(context)
-        // 檢查是否是目標座標 
+        // 檢查是否是目標座標 {B, 10}
         if (context.index == 1 ) {
             console.log("hee")
             context.element.attr({
@@ -768,9 +771,9 @@ chart.on('draw', function(context) {
 });
         
 
-// ------------------------------------------------------------------------
+        // ------------------------------------------------------------------------
 
-        
+
         monthSelect.addEventListener('change', handleMonthChange);
         use.textContent = '1月總共使用' + String(monthele[0]) + '度';
         for (var i = 0; i < 12; i++) {
