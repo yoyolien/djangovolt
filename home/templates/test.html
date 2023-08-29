@@ -1,38 +1,57 @@
-<div class="fs-5 fw-normal mb-2">
-              <select id="monthSelect">
-                <option value="1">1月</option>
-                <option value="2">2月</option>
-                <option value="3">3月</option>
-                <option value="4">4月</option>
-                <option value="5">5月</option>
-                <option value="6">6月</option>
-                <option value="7">7月</option>
-                <option value="8">8月</option>
-                <option value="9">9月</option>
-                <option value="10">10月</option>
-                <option value="11">11月</option>
-                <option value="12">12月</option>
-            </select></div>
-<!-- 在HTML中創建一個區塊 -->
-<div id="content"></div>
+<!doctype html>
+<html lang="en">
+<head>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+		  rel="stylesheet"
+		  integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+		  crossorigin="anonymous">
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+		crossorigin="anonymous"></script>
+<button type="button"
+		class="btn btn-primary"
+		data-bs-toggle="modal"
+		data-bs-target="#exampleModal"
+		data-bs-whatever="@mdo">Open modal for @mdo
+</button>
 
-<script>
-    const monthSelect = document.getElementById("monthSelect")
-    handleMonthChange();
-    function handleMonthChange() {
-        var a = monthSelect.value;
-        console.log(a)
-        // 使用Fetch API來請求HTML內容
-        fetch(`http://127.0.0.1:8000/requestchart/?m=${a}`)
-          .then(response => response.text())
-          .then(htmlContent => {
-            // 將HTML內容放置在網頁上
-            const contentDiv = document.getElementById('content');
-            contentDiv.innerHTML = htmlContent;
-          })
-          .catch(error => {
-            console.error('請求失敗：', error);
-          });
-    }
-    monthSelect.addEventListener('change', handleMonthChange);
-</script>
+<div class="modal fade"
+	 id="exampleModal"
+	 tabindex="-1"
+	 aria-labelledby="exampleModalLabel"
+	 aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title"
+					id="exampleModalLabel">New message</h5>
+				<button type="button"
+						class="btn-close"
+						data-bs-dismiss="modal"
+						aria-label="Close"></button>
+			</div>
+			<form method="POST"
+				  action="{% url 'upload_data' %}"
+				  enctype="multipart/form-data">
+				{% csrf_token %}
+				<div class="modal-body">
+					<input type="file"
+						   name="csv_file">
+				</div>
+				<div class="modal-footer">
+					<button type="button"
+							class="btn btn-secondary"
+							data-bs-dismiss="modal">Close
+					</button>
+					<button type="submit"
+							class="btn btn-primary">上傳
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>
