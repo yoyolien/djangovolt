@@ -40,7 +40,7 @@ def dashboard(request):
         wu = float('%.2f' % sum(mu))
         tree = 0.509 * wu / 550.5
         treec = []
-
+        
         for i in range(int(tree) + 1):
             if i + 1 < tree:
                 treec.append([100, 0])

@@ -105,9 +105,6 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                     <div class="ct-double-octave ct-series-g" id="chart11k" style="display: block;"></div>
                     <div class="ct-double-octave ct-series-g" id="chart12k" style="display: block;"></div>
                 </div>
-                <div class="card-body p-2" id="containbox" style="overflow-x: auto;">
-                    <div class="ct-double-octave ct-series-g" id="chart1" style="display: block;"></div>
-                </div>
             </div>
         </div>
         <div class="col-12 col-sm-6 col-xl-4 mb-4">
@@ -593,8 +590,18 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
         var wele = [];
         var p = 0;
         var mtree = [];
-        console.log(result);
-
+        var month_result=[];
+        var first_day=[];
+        // console.log(result);
+        function s(){
+            for(var i=0;i<12;i++){
+                // console.log(eleall[i].length);
+                month_result.push(result.slice(0,eleall[i].length));
+                result=result.slice(eleall[i].length);
+            }
+        }
+        s();
+        console.log(month_result);
         function calmtree() {
             for (var i = 0; i < 12; i++) {
                 mtree.push(0.509 * monthele[i] / 550.5);
@@ -730,9 +737,21 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
                 }
             }, 200);
         }
+        function build_first_day(){
+            for(var i=0;i<12;i++){
+                first_day[i]=eleall[i][0];
+            }
+        }
+        function find_month(t){
+            for(var i=0;i<12;i++){
+                if(t==first_day[i])return[i];
+            }
+        }
 
         compare.textContent = "NaN";
         tree.textContent=mtree[0];
+        build_first_day();
+        console.log(first_day);
         list_rate();
         weekcalculate();
         calculate_overstandard(0);
@@ -740,61 +759,64 @@ https://cdn.jsdelivr.net/npm/chartist-plugin-threshold@0.0.2/dist/chartist-plugi
         // 添加事件監聽器，偵測下拉選單的變更事件
 
         //------------------------------------------------------------------------
-
-        var chart = new Chartist.Line('#chart1', {
-            labels: ['A', 'B', 'C', 'D', 'E'],
-            series: [[5, 10, 15, 12, 8]]
-        }, {
-            showArea: true,
-            fullWidth: true,
-            axisY: {
-                onlyInteger: true
-            },
-            plugins: [
-                Chartist.plugins.ctPointLabels({
-                    textAnchor: 'middle'
-                })
-            ]
-        });
-
-chart.on('draw', function(context) {
-    if (context.type === 'point') {
-        console.log(context)
-        // 檢查是否是目標座標 {B, 10}
-        if (context.index == 1 ) {
-            console.log("hee")
-            context.element.attr({
-                class: 'ct-point ct-threshold-above'  // 屬性改為紅色
-            });
-        }
-    }
-});
         
 
         // ------------------------------------------------------------------------
-
-
+        var x=0;
+        var chart=[];
         monthSelect.addEventListener('change', handleMonthChange);
         use.textContent = '1月總共使用' + String(monthele[0]) + '度';
         for (var i = 0; i < 12; i++) {
-            var chart = new Chartist.Line('#chart' + (i + 1) + 'd', {
+            
+            // var chart = new Chartist.Line('#chart' + (i + 1) + 'd', {
+            //     labels: dateall[i],
+            //     series: [eleall[i]],
+            // }, {
+            //     showArea: true,
+            //     fullWidth: true,
+            //     axisY: {
+            //         onlyInteger: true
+            //     },
+            //     plugins: [
+            //         Chartist.plugins.ctThreshold({
+            //             threshold: standard[i],
+            //         }),
+            //         Chartist.plugins.ctPointLabels({
+            //             textAnchor: 'middle'
+            //         })
+            //     ]
+            // });
+
+
+            chart = new Chartist.Line('#chart' + (i + 1) + 'd', {
                 labels: dateall[i],
-                series: [eleall[i]],
+                series: [eleall[i]]
             }, {
-                showArea: true,
+                // showArea: true,
                 fullWidth: true,
                 axisY: {
                     onlyInteger: true
                 },
                 plugins: [
-                    Chartist.plugins.ctThreshold({
-                        threshold: standard[i],
-                    }),
                     Chartist.plugins.ctPointLabels({
                         textAnchor: 'middle'
                     })
                 ]
             });
+            chart.on('draw', function(context) {
+                if (context.type === 'point') {
+                    // console.log(context.series[0]);
+                    x=find_month(context.series[0]);
+                    // console.log(x);
+                    if (month_result[x][context.index] == "1" ) {
+                        context.element.attr({
+                            class: 'ct-point ct-threshold-above'  // 屬性改為紅色
+                        });
+                    }
+                }
+            });
+
+
             var chart = new Chartist.Line('#chart' + (i + 1) + 'k', {
                 labels: weekdate[i],
                 series: [wele[i]],
