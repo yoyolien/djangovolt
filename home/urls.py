@@ -8,5 +8,6 @@ urlpatterns = [
     # path("requestml/",views.requestmlresult),
     path("requestnttu",views.requestnttu),
     path("requesttai",views.requesttaipower),
+    path("test",views.test),
 #
 ]
