@@ -41,9 +41,9 @@ def upload_data_view(request):
 		upload_successful = False
 	csvfile.close()
 	if upload_successful:
-		return redirect('dashboard')
+		return redirect('dashboard',message="success upload")
 	else:
-		return redirect('dashboard')
+		return redirect('dashboard',message="fail")
 
 
 def requestmlresult(u):

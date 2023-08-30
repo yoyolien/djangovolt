@@ -20,11 +20,7 @@ def index(request):
 
 # Dashboard
 @login_required(login_url="/accounts/login/")
-def dashboard(request):
-    message=None
-    # if request.path:
-    #     message = "success"
-    print(request.META)
+def dashboard(request,message=None):
     try:
         requestmlresult(request.user)
         slides = list(Slide.objects.all())
