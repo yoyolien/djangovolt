@@ -25,21 +25,18 @@ def upload_data_view(request):
 			reader = csv.reader(csvfile)
 			user_id = request.user
 			print(user_id)
-			if str(user_id) == "AnonymousUser":
-				return redirect("login")
-			else:
-				next(reader)  # 跳過標題列
-				for row in reader:
-					report_time = datetime.strptime(row[0],'%Y-%m-%d').date()
-					# 使用當前登入使用者的 ID
-					daliyusage = ','.join(row[1:])
-					data = eledata(
-						user=user_id,report_time=report_time,daliyusage=daliyusage,
-						id=str(report_time) + str(user_id)
-					)
-					data.save()
-		csvfile.close()
-		return redirect("dashboard")  # 轉到上傳成功的頁面
+			next(reader)  # 跳過標題列
+			for row in reader:
+				report_time = datetime.strptime(row[0],'%Y-%m-%d').date()
+				# 使用當前登入使用者的 ID
+				daliyusage = ','.join(row[1:])
+				data = eledata(
+					user=user_id,report_time=report_time,daliyusage=daliyusage,
+					id=str(report_time) + str(user_id)
+				)
+				data.save()
+	csvfile.close()
+	return redirect("dashboard")  # 轉到上傳成功的頁面
 
 
 def requestmlresult(u):

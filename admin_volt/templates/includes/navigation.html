@@ -14,11 +14,13 @@
 
 			<!-- Navbar links -->
 			<ul class="navbar-nav align-items-center">
-			<button type="button"
-						class="btn btn-primary"
-						data-bs-toggle="modal"
-						data-bs-target="#exampleModal">upload data
-				</button>
+				{% if request.user.is_authenticated %}
+					<button type="button"
+							class="btn btn-primary"
+							data-bs-toggle="modal"
+							data-bs-target="#exampleModal">upload data
+					</button>
+				{% endif %}
 				<li class="nav-item dropdown ms-lg-3">
 					<a class="nav-link  pt-1 px-0"
 					   href="#"
@@ -144,6 +146,7 @@
 						aria-label="Close"></button>
 			</div>
 			<form method="POST"
+				  id="uploadForm"
 				  action="{% url 'upload_data' %}"
 				  enctype="multipart/form-data">
 				{% csrf_token %}
@@ -157,6 +160,7 @@
 							data-bs-dismiss="modal">Close
 					</button>
 					<button type="submit"
+							id="submitButton"
 							class="btn btn-primary">上傳
 					</button>
 				</div>
@@ -164,3 +168,40 @@
 		</div>
 	</div>
 </div>
+<div id="errorMessage"
+	 class="text-danger"></div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const uploadForm = document.getElementById("uploadForm");
+        const submitButton = document.getElementById("submitButton");
+        const errorMessage = document.getElementById("errorMessage");
+
+        uploadForm.addEventListener("submit", function (event) {
+            event.preventDefault(); // 阻止表單的預設提交行為
+            const fileInput = document.querySelector("input[name='csv_file']");
+            const file = fileInput.files[0];
+
+            if (!file) {
+                errorMessage.textContent = "請選擇要上傳的 CSV 檔案。";
+                return;
+            }
+
+            if (!file.name.endsWith(".csv")) {
+                errorMessage.textContent = "請上傳一個有效的 CSV 檔案。";
+                return;
+            }
+
+            // 使用 FileReader 讀取檔案內容
+            const fileReader = new FileReader();
+            fileReader.onload = function (event) {
+                const fileContent = event.target.result;
+                // 在這裡進行 CSV 檔案內容的檢查
+                // 例如，你可以使用逗號分隔進行分割，並檢查每個欄位是否符合要求
+                const lines = fileContent.split("\n");
+                // 進一步的檢查和處理
+            };
+
+            uploadForm.submit(); // 提交表單
+        });
+    });
+</script>
