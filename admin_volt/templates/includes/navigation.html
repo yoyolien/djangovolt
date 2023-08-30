@@ -173,7 +173,7 @@
 
 <script>
     const successMessage = "{{ message|escapejs }}"; // 確保訊息內容安全
-    if (successMessage!="None") {
+    if (successMessage=="success upload") {
         alert(successMessage); // 在頁面載入時使用 alert 顯示成功訊息
     }
     document.addEventListener("DOMContentLoaded", function () {
