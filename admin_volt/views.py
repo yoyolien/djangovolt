@@ -21,6 +21,10 @@ def index(request):
 # Dashboard
 @login_required(login_url="/accounts/login/")
 def dashboard(request):
+    message=None
+    # if request.path:
+    #     message = "success"
+    print(request.META)
     try:
         requestmlresult(request.user)
         slides = list(Slide.objects.all())
@@ -58,6 +62,7 @@ def dashboard(request):
             "treec": treec,
             "slides": slides[1:],
             "fslide": slides[0],
+            "message":message,
         }
     except:
         context = {}

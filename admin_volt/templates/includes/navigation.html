@@ -145,6 +145,8 @@
 						data-bs-dismiss="modal"
 						aria-label="Close"></button>
 			</div>
+			<div id="errorMessage"
+				 class="text-danger"></div>
 			<form method="POST"
 				  id="uploadForm"
 				  action="{% url 'upload_data' %}"
@@ -168,9 +170,12 @@
 		</div>
 	</div>
 </div>
-<div id="errorMessage"
-	 class="text-danger"></div>
+
 <script>
+    const successMessage = "{{ message|escapejs }}"; // 確保訊息內容安全
+    if (successMessage!="None") {
+        alert(successMessage); // 在頁面載入時使用 alert 顯示成功訊息
+    }
     document.addEventListener("DOMContentLoaded", function () {
         const uploadForm = document.getElementById("uploadForm");
         const submitButton = document.getElementById("submitButton");
