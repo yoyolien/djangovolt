@@ -119,9 +119,6 @@
                     <div class="ct-double-octave ct-series-g" id="chart11k" style="display: block;"></div>
                     <div class="ct-double-octave ct-series-g" id="chart12k" style="display: block;"></div>
                 </div>
-                <div class="card-body p-2" id="containbox" style="overflow-x: auto;">
-                    <div class="ct-double-octave ct-series-g" id="chart1" style="display: block;"></div>
-                </div>
             </div>
         </div>
         <div class="col-12 col-sm-6 col-xl-4 mb-4">
@@ -858,6 +855,8 @@
 
         compare.textContent = "NaN";
         tree.textContent=mtree[0];
+        build_first_day();
+        console.log(first_day);
         list_rate();
         weekcalculate();
         calculate_overstandard(0);
@@ -866,35 +865,61 @@
 
         //------------------------------------------------------------------------
 
-        var chart = new Chartist.Line('#chart1', {
-            labels: ['A', 'B', 'C', 'D', 'E'],
-            series: [[5, 10, 15, 12, 8]]
-        }, {
-            showArea: true,
-            fullWidth: true,
-            axisY: {
-                onlyInteger: true
-            },
-            plugins: [
-                Chartist.plugins.ctPointLabels({
-                    textAnchor: 'middle'
-                })
-            ]
-        });
+        // ------------------------------------------------------------------------
+        var x=0;
+        var chart=[];
+        monthSelect.addEventListener('change', handleMonthChange);
+        use.textContent = '1月總共使用' + String(monthele[0]) + '度';
+        for (var i = 0; i < 12; i++) {
 
-chart.on('draw', function(context) {
-    if (context.type === 'point') {
-        console.log(context)
-        // 檢查是否是目標座標 {B, 10}
-        if (context.index == 1 ) {
-            console.log("hee")
-            context.element.attr({
-                class: 'ct-point ct-threshold-above'  // 屬性改為紅色
+            // var chart = new Chartist.Line('#chart' + (i + 1) + 'd', {
+            //     labels: dateall[i],
+            //     series: [eleall[i]],
+            // }, {
+            //     showArea: true,
+            //     fullWidth: true,
+            //     axisY: {
+            //         onlyInteger: true
+            //     },
+            //     plugins: [
+            //         Chartist.plugins.ctThreshold({
+            //             threshold: standard[i],
+            //         }),
+            //         Chartist.plugins.ctPointLabels({
+            //             textAnchor: 'middle'
+            //         })
+            //     ]
+            //});
+
+
+            chart = new Chartist.Line('#chart' + (i + 1) + 'd', {
+                labels: dateall[i],
+                series: [eleall[i]]
+            }, {
+                // showArea: true,
+                fullWidth: true,
+                axisY: {
+                    onlyInteger: true
+                },
+                plugins: [
+                    Chartist.plugins.ctPointLabels({
+                        textAnchor: 'middle'
+                    })
+                ]
             });
-        }
-    }
-});
-        
+            chart.on('draw', function (context) {
+                if (context.type === 'point') {
+                    // console.log(context.series[0]);
+                    x = find_month(context.series[0]);
+                    // console.log(x);
+                    if (month_result[x][context.index] == "1") {
+                        context.element.attr({
+                            class: 'ct-point ct-threshold-above'  // 屬性改為紅色
+                        });
+                    }
+                }
+            });
+
 
             var chart = new Chartist.Line('#chart' + (i + 1) + 'k', {
                 labels: weekdate[i],
@@ -911,7 +936,7 @@ chart.on('draw', function(context) {
                     })
                 ]
             });
-
+        }
         // 銷毀圖表對象
         setTimeout(function () {
             throwawayNode2[0] = chartElements2[0].parentNode.removeChild(chartElements2[0]);
