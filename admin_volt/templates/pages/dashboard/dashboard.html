@@ -25,6 +25,9 @@
         .tooltipa:hover .tooltiptext {
             visibility: visible;
         }
+		.ct-series .ct-series-a {
+    color: red; /* 將折線的顏色設置為紅色 */
+}
 
 	</style>
 
@@ -69,55 +72,55 @@
 				<div class="card-body p-2"
 					 id="containbox"
 					 style="overflow-x: auto;">
-					<div class="ct-double-octave ct-series-g"
+					<div class="ct-double-octave ct-series-e"
 						 id="chart1d"
 						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-g"
+					<div class="ct-double-octave ct-series-e"
 						 id="chart2d"
 						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-g"
+					<div class="ct-double-octave ct-series-e"
 						 id="chart3d"
 						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-g"
+					<div class="ct-double-octave ct-series-e"
 						 id="chart4d"
 						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-g"
+					<div class="ct-double-octave ct-series-e"
 						 id="chart5d"
 						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-g"
+					<div class="ct-double-octave ct-series-e"
 						 id="chart6d"
 						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-g"
+					<div class="ct-double-octave ct-series-e"
 						 id="chart7d"
 						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-g"
+					<div class="ct-double-octave ct-series-e"
 						 id="chart8d"
 						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-g"
+					<div class="ct-double-octave ct-series-e"
 						 id="chart9d"
 						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-g"
+					<div class="ct-double-octave ct-series-e"
 						 id="chart10d"
 						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-g"
+					<div class="ct-double-octave ct-series-e"
 						 id="chart11d"
 						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-g"
+					<div class="ct-double-octave ct-series-e"
 						 id="chart12d"
 						 style="display: block;"></div>
 
-                    <div class="ct-double-octave ct-series-g" id="chart1k" style="display: block;"></div>
-                    <div class="ct-double-octave ct-series-g" id="chart2k" style="display: block;"></div>
-                    <div class="ct-double-octave ct-series-g" id="chart3k" style="display: block;"></div>
-                    <div class="ct-double-octave ct-series-g" id="chart4k" style="display: block;"></div>
-                    <div class="ct-double-octave ct-series-g" id="chart5k" style="display: block;"></div>
-                    <div class="ct-double-octave ct-series-g" id="chart6k" style="display: block;"></div>
-                    <div class="ct-double-octave ct-series-g" id="chart7k" style="display: block;"></div>
-                    <div class="ct-double-octave ct-series-g" id="chart8k" style="display: block;"></div>
-                    <div class="ct-double-octave ct-series-g" id="chart9k" style="display: block;"></div>
-                    <div class="ct-double-octave ct-series-g" id="chart10k" style="display: block;"></div>
-                    <div class="ct-double-octave ct-series-g" id="chart11k" style="display: block;"></div>
-                    <div class="ct-double-octave ct-series-g" id="chart12k" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-e" id="chart1k" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-e" id="chart2k" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-e" id="chart3k" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-e" id="chart4k" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-e" id="chart5k" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-e" id="chart6k" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-e" id="chart7k" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-e" id="chart8k" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-e" id="chart9k" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-e" id="chart10k" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-e" id="chart11k" style="display: block;"></div>
+                    <div class="ct-double-octave ct-series-e" id="chart12k" style="display: block;"></div>
                 </div>
             </div>
         </div>
@@ -807,11 +810,12 @@
         tb.removeChild(origin_node);
         var node;
         var dateElement;
-
+		console.log("hi");
+		console.log(result);
         function calculate_overstandard(a) {
             overstandard = 0;
-            for (var i = 0; i < eleall[a].length; i++) {
-                if (eleall[a][i] >= standard[a]) overstandard++;
+            for (var i = 0; i < month_result[a].length; i++) {
+                if (month_result[a][i] == "1") overstandard++;
             }
         }
 
