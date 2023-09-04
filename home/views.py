@@ -116,16 +116,24 @@ def requesttaipower():
 
 
 def requestnttu(reqest):
-	service = Service(executable_path="msedgedriver.exe")
-	op = webdriver.EdgeOptions()
-	op.add_argument('--headless')
-	driver = webdriver.Edge(service=service,options=op)
-	url = "https://wdsa.nttu.edu.tw/p/403-1009-424-1.php?Lang=zh-tw"
-	driver.get(url=url)
-	a = driver.find_elements(By.CLASS_NAME,'mtitle')
+	# service = Service(executable_path="msedgedriver.exe")
+	# op = webdriver.EdgeOptions()
+	# op.add_argument('--headless')
+	# driver = webdriver.Edge(service=service,options=op)
+	# url = "https://wdsa.nttu.edu.tw/p/403-1009-424-1.php?Lang=zh-tw"
+	# driver.get(url=url)
+	# a = driver.find_elements(By.CLASS_NAME,'mtitle')
+
+
+	# safari項目
+	# driver = webdriver.Safari()
+	# url = "https://wdsa.nttu.edu.tw/p/403-1009-424-1.php?Lang=zh-tw"
+	# driver.get(url=url)
+	# a = driver.find_elements(By.CLASS_NAME, 'mtitle')
+
 	titles = []
 	links = []
-	for i in a:
+	for i in a[:5]:
 		titles.append(i.text)
 		links.append(i.find_element(By.TAG_NAME,'a').get_attribute('href'))
 	a = {
