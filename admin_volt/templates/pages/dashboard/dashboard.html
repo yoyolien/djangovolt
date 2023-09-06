@@ -28,6 +28,11 @@
 		.ct-series .ct-series-a {
     color: red; /* 將折線的顏色設置為紅色 */
 }
+.ct-series .ct-area {
+  fill: purple; /* 區域填充顏色為紅色 */
+}
+
+
 
 	</style>
 
@@ -122,6 +127,11 @@
                     <div class="ct-double-octave ct-series-e" id="chart11k" style="display: block;"></div>
                     <div class="ct-double-octave ct-series-e" id="chart12k" style="display: block;"></div>
                 </div>
+				<div class="card-body p-2"
+					id="containbox"
+					style="overflow-x: auto;">
+					<div class="" id="charttest" style="width: 100%;height:400px;"></div>
+				</div>
             </div>
         </div>
         <div class="col-12 col-sm-6 col-xl-4 mb-4">
@@ -803,6 +813,7 @@
             m = selectedMonth - 1;
             month_rate_switch();
             tree.textContent = mtree[m];
+			cc(m);
         }
 
         var tb = document.getElementById("tb");
@@ -868,7 +879,114 @@
         // 添加事件監聽器，偵測下拉選單的變更事件
 
         //------------------------------------------------------------------------
+		var chartDom = document.getElementById('charttest');
+		var myChart = echarts.init(chartDom);
+		var option;
+		function cc(m){
+			
+			
+		var testdata=[];
+		
+		for(var i=0;i<eleall[0].length;i++){
+			testdata.push([dateall[0][i],eleall[0][i]])
+		}
+		
 
+		option = {
+		title: {
+			text: 'Distribution of Electricity',
+			subtext: '一月'
+		},
+		tooltip: {
+			trigger: 'axis',
+			axisPointer: {
+			type: 'cross'
+			}
+		},
+		toolbox: {
+			show: true,
+			feature: {
+			saveAsImage: {}
+			}
+		},
+		xAxis: {
+			type: 'category',
+			boundaryGap: false,
+			// prettier-ignore
+			data: dateall[m]
+		},
+		yAxis: {
+			type: 'value',
+				axisLabel: {
+			formatter: '{value} 度'
+			},
+				axisPointer: {
+				snap: true
+			}
+		},
+		visualMap: {
+			show: false,
+			dimension: 0,
+			pieces: [
+			{
+				
+				lte: 6,
+				color: 'green'
+			},
+			{
+				gt:6,
+				lte:15,
+				color:'purple'
+			},
+			{
+				gt: 15,
+				lte: eleall[m].length-1,
+				color: 'red'
+			}
+			]
+		},
+		series: [
+			{
+			markPoint: {
+        		data: [{ name: '異常', value: eleall[m][2], xAxis: 2, yAxis: eleall[m][2] }]
+      		},	
+			itemStyle : { normal: {label : {show: true}}},
+			name: 'Electricity',
+			type: 'line',
+			smooth: true,
+			// prettier-ignore
+			data: eleall[m],
+			markArea: {
+				itemStyle: {
+					color: 'rgba(255, 173, 177, 0.4)'
+				},
+				data: [
+				[
+					{
+						name: 'Morning Peak',
+						xAxis: '7'
+					},
+					{
+						xAxis: '9'
+					}
+				],
+				[
+					{
+						name: 'Evening Peak',
+						xAxis: '15'
+					},
+					{
+						xAxis: '17'
+					}
+				]
+				]
+			}
+			}
+		]
+		};
+		console.log(chartDom);
+		option && myChart.setOption(option);}
+		cc(m);
         // ------------------------------------------------------------------------
         var x=0;
         var chart=[];
@@ -893,14 +1011,14 @@
             //             textAnchor: 'middle'
             //         })
             //     ]
-            //});
+            // });
 
 
             chart = new Chartist.Line('#chart' + (i + 1) + 'd', {
                 labels: dateall[i],
                 series: [eleall[i]]
             }, {
-                // showArea: true,
+                showArea: true,
                 fullWidth: true,
                 axisY: {
                     onlyInteger: true
@@ -917,11 +1035,18 @@
                     x = find_month(context.series[0]);
                     // console.log(x);
                     if (month_result[x][context.index] == "1") {
+						// console.log(context);
                         context.element.attr({
                             class: 'ct-point ct-threshold-above'  // 屬性改為紅色
                         });
                     }
                 }
+				else if(context.type === 'area'){
+					console.log(context)
+					// context.element.attr({
+					// 	style: 'fill: red'
+					// })
+				}
             });
 
 
