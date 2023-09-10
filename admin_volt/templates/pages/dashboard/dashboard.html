@@ -883,13 +883,37 @@
 		var myChart = echarts.init(chartDom);
 		var option;
 		function cc(m){
-			
-			
-		var testdata=[];
-		
-		for(var i=0;i<eleall[0].length;i++){
-			testdata.push([dateall[0][i],eleall[0][i]])
+		var markAreadata=[];
+		var markPointData=[];
+		for (var i = 0; i < eleall[m].length; i++) {
+			console.log(month_result[m][i]);
+			if(month_result[m][i]=='1'){
+				var markPoint = {
+					coord: [i, eleall[m][i]], // 使用 [x, y] 坐標表示標記點位置
+					value: eleall[m][i],
+					name: '數值: ' + eleall[m][i] // 自定義標記點的名稱
+				};
+				var markarea = [
+					{
+						xAxis: i,
+					},
+					{
+						xAxis:i+1,
+					}
+					
+				];
+				markPointData.push(markPoint);
+				markAreadata.push(markarea);
+			}
 		}
+
+		 console.log(markAreadata);
+		 console.log("hii")
+		
+		
+		// for(var i=0;i<eleall[0].length;i++){
+		// 	testdata.push([dateall[0][i],eleall[0][i]])
+		// }
 		
 
 		option = {
@@ -924,68 +948,69 @@
 				snap: true
 			}
 		},
-		visualMap: {
-			show: false,
-			dimension: 0,
-			pieces: [
-			{
+		// visualMap: {
+		// 	show: false,
+		// 	dimension: 0,
+		// 	pieces: [
+		// 	{
 				
-				lte: 6,
-				color: 'green'
-			},
-			{
-				gt:6,
-				lte:15,
-				color:'purple'
-			},
-			{
-				gt: 15,
-				lte: eleall[m].length-1,
-				color: 'red'
-			}
-			]
-		},
+		// 		lte: 6,
+		// 		color: 'green'
+		// 	},
+		// 	{
+		// 		gt:6,
+		// 		lte:15,
+		// 		color:'purple'
+		// 	},
+		// 	{
+		// 		gt: 15,
+		// 		lte: eleall[m].length-1,
+		// 		color: 'red'
+		// 	}
+		// 	]
+		// },
 		series: [
 			{
+			data: eleall[m],	
+			
 			markPoint: {
-        		data: [{ name: '異常', value: eleall[m][2], xAxis: 2, yAxis: eleall[m][2] }]
+        		data: markPointData
       		},	
-			itemStyle : { normal: {label : {show: true}}},
+			lineStyle: {
+				color: 'black', // 指定線條的顏色
+				width: 5
+			},
+			itemStyle: {
+				color: 'black', // 普通數據點的顏色
+				borderColor: 'red', // 普通數據點的邊框顏色
+				borderWidth: 2, // 普通數據點的邊框寬度
+				opacity: 0.7 // 普通數據點的透明度
+				// 其他樣式屬性
+			},
+			label : {show: true},
 			name: 'Electricity',
 			type: 'line',
 			smooth: true,
 			// prettier-ignore
-			data: eleall[m],
+			
 			markArea: {
 				itemStyle: {
 					color: 'rgba(255, 173, 177, 0.4)'
 				},
-				data: [
-				[
-					{
-						name: 'Morning Peak',
-						xAxis: '7'
-					},
-					{
-						xAxis: '9'
-					}
-				],
-				[
-					{
-						name: 'Evening Peak',
-						xAxis: '15'
-					},
-					{
-						xAxis: '17'
-					}
-				]
-				]
+				data: markAreadata,
+				
 			}
 			}
 		]
 		};
-		console.log(chartDom);
+		// var mpd=option.series[0].markPoint.data
+		// var mkdata=option.series[0].markPoint.data
+		// console.log(mpd);
 		option && myChart.setOption(option);}
+		window.addEventListener('resize', function () {
+			// 調整圖表大小以適應新的視窗大小
+			myChart.resize();
+		});
 		cc(m);
         // ------------------------------------------------------------------------
         var x=0;
