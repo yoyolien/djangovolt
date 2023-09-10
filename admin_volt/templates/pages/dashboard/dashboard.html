@@ -919,7 +919,7 @@
 		option = {
 		title: {
 			text: 'Distribution of Electricity',
-			subtext: '一月'
+			// subtext: '一月'
 		},
 		tooltip: {
 			trigger: 'axis',
@@ -928,7 +928,7 @@
 			}
 		},
 		toolbox: {
-			show: true,
+			show: false,
 			feature: {
 			saveAsImage: {}
 			}
@@ -977,8 +977,8 @@
         		data: markPointData
       		},	
 			lineStyle: {
-				color: 'black', // 指定線條的顏色
-				width: 5
+				color: 'green', // 指定線條的顏色
+				width: 4.5
 			},
 			itemStyle: {
 				color: 'black', // 普通數據點的顏色
@@ -988,7 +988,7 @@
 				// 其他樣式屬性
 			},
 			label : {show: true},
-			name: 'Electricity',
+			name: '用電量(度)',
 			type: 'line',
 			smooth: true,
 			// prettier-ignore
