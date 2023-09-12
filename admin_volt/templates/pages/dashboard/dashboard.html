@@ -918,14 +918,26 @@
 
 		option = {
 		title: {
-			text: 'Distribution of Electricity',
+			// text: 'Distribution of Electricity',
 			// subtext: '一月'
 		},
 		tooltip: {
-			trigger: 'axis',
+			trigger: 'item',
 			axisPointer: {
-			type: 'cross'
-			}
+				type: 'cross'
+			},
+			formatter: function(arg) {
+				console.log(arg);
+				if(arg.componentType==='series'){
+					console.log(arg.componentType);
+					return m+1+'月'+arg.name+'日\r'+"<br>"+'用電量 : '+arg.value;
+				}
+				else if(arg.componentType==='markPoint'){
+					console.log(arg.componentType);
+					return m+1+'月'+dateall[m][arg.data.coord[0]]+'日'+"<br>"+'用電量 : '+arg.value
+				}
+            	else return '';
+        	}
 		},
 		toolbox: {
 			show: false,
@@ -974,7 +986,12 @@
 			data: eleall[m],	
 			
 			markPoint: {
-        		data: markPointData
+        		data: markPointData,
+				itemStyle: {
+					color: 'red', 
+					// borderColor: 'red',
+					// borderWidth: 3
+				}
       		},	
 			lineStyle: {
 				color: 'green', // 指定線條的顏色
@@ -987,7 +1004,17 @@
 				opacity: 0.7 // 普通數據點的透明度
 				// 其他樣式屬性
 			},
-			label : {show: true},
+			label : {
+				show: true,
+				formatter: function(params) {
+					if (month_result[m][params.dataIndex]=== '0') {
+						return eleall[m][i];
+					} 
+					else {
+						return '';
+					}
+				},
+			},
 			name: '用電量(度)',
 			type: 'line',
 			smooth: true,
