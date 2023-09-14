@@ -15,11 +15,11 @@
 			<!-- Navbar links -->
 			<ul class="navbar-nav align-items-center">
 				{% if request.user.is_authenticated %}
-						<!-- <button type="button"
-								class="btn btn-primary"
-								data-bs-toggle="modal"
-								data-bs-target="#exampleModal">upload data
-						</button> -->
+					<button type="button"
+							class="btn btn-primary"
+							data-bs-toggle="modal"
+							data-bs-target="#exampleModal">upload data
+					</button>
 				{% endif %}
 				<li class="nav-item dropdown ms-lg-3">
 					<a class="nav-link  pt-1 px-0"
@@ -173,7 +173,7 @@
 
 <script>
     const successMessage = "{{ message|escapejs }}"; // 確保訊息內容安全
-    if (successMessage=="success upload") {
+    if (successMessage == "success upload") {
         alert(successMessage); // 在頁面載入時使用 alert 顯示成功訊息
     }
     document.addEventListener("DOMContentLoaded", function () {
