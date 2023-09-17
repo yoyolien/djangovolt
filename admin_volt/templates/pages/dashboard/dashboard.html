@@ -74,83 +74,7 @@
 						</select>
 					</div>
 				</div>
-				<div class="card-body p-2"
-					 id="containbox"
-					 style="overflow-x: auto;">
-					<div class="ct-double-octave ct-series-e"
-						 id="chart1d"
-						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-e"
-						 id="chart2d"
-						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-e"
-						 id="chart3d"
-						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-e"
-						 id="chart4d"
-						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-e"
-						 id="chart5d"
-						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-e"
-						 id="chart6d"
-						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-e"
-						 id="chart7d"
-						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-e"
-						 id="chart8d"
-						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-e"
-						 id="chart9d"
-						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-e"
-						 id="chart10d"
-						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-e"
-						 id="chart11d"
-						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-e"
-						 id="chart12d"
-						 style="display: block;"></div>
-
-					<div class="ct-double-octave ct-series-e"
-						 id="chart1k"
-						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-e"
-						 id="chart2k"
-						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-e"
-						 id="chart3k"
-						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-e"
-						 id="chart4k"
-						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-e"
-						 id="chart5k"
-						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-e"
-						 id="chart6k"
-						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-e"
-						 id="chart7k"
-						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-e"
-						 id="chart8k"
-						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-e"
-						 id="chart9k"
-						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-e"
-						 id="chart10k"
-						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-e"
-						 id="chart11k"
-						 style="display: block;"></div>
-					<div class="ct-double-octave ct-series-e"
-						 id="chart12k"
-						 style="display: block;"></div>
-				</div>
+				
 				<div class="card-body p-2"
 					 id="containbox"
 					 style="overflow-x: auto;">
@@ -702,10 +626,6 @@
         var sum ={{ wholeusage|safe }};//電力用量總和
         var monthele = {{ monthusage|safe }};
         var tree = document.getElementById("tree");
-        var throwawayNode1 = [];//用來存放繪出圖形的節點
-        var throwawayNode2 = [];//用來存放繪出圖形的節點
-        var chartElements1 = [];
-        var chartElements2 = [];
         var wele = [];
         var p = 0;
         var mtree = [];
@@ -733,12 +653,7 @@
         }
 
         calmtree();
-        for (var i = 1; i <= 12; i++) {
-            chartElements1.push(document.getElementById('chart' + i + 'd'));
-            throwawayNode1.push(document.getElementById('chart' + i + 'd'));
-            chartElements2.push(document.getElementById('chart' + i + 'k'));
-            throwawayNode2.push(document.getElementById('chart' + i + 'k'));
-        }
+		
         var use = document.getElementById('use');
         var compare = document.getElementById('compare');//與上月相比
         var monthSelect = document.getElementById('monthSelect');//月份選單
@@ -807,13 +722,6 @@
             else compare.textContent = "查無資料";
             calculate_overstandard(selectedMonth - 1);
             document.getElementById('overstandard').textContent = overstandard;
-            if (p == 0) {
-                chartElements1[m].parentNode.removeChild(chartElements1[m]);
-                document.getElementById("containbox").appendChild(throwawayNode1[selectedMonth - 1]);
-            } else {
-                chartElements2[m].parentNode.removeChild(chartElements2[m]);
-                document.getElementById("containbox").appendChild(throwawayNode2[selectedMonth - 1]);
-            }
             m = selectedMonth - 1;
             month_rate_switch();
             tree.textContent = mtree[m];
@@ -893,6 +801,91 @@
         function cc(m) {
             var markAreadata = [];
             var markPointData = [];
+			if(p==1){
+				console.log("----------")
+				console.log(wele[m])
+				option = {
+                title: {
+                    // text: 'Distribution of Electricity',
+                    // subtext: '一月'
+                },
+                tooltip: {
+                    trigger: 'item',
+                    axisPointer: {
+                        type: 'cross'
+                    },
+                    formatter: function (arg) {
+                        console.log(arg);
+                        if (arg.componentType === 'series') {
+                            console.log(arg.componentType);
+                            return m + 1 + '月' + arg.name + '日\r' + "<br>" + '用電量 : ' + arg.value;
+                        } else if (arg.componentType === 'markPoint') {
+                            console.log(arg.componentType);
+                            return m + 1 + '月' + dateall[m][arg.data.coord[0]] + '日' + "<br>" + '用電量 : ' + arg.value
+                        } else return '';
+                    }
+                },
+                toolbox: {
+                    show: false,
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    // prettier-ignore
+                    data: weekdate[m]
+                },
+                yAxis: {
+                    type: 'value',
+                    axisLabel: {
+                        formatter: '{value} 度'
+                    },
+                    axisPointer: {
+                        snap: true
+                    }
+                },
+                series: [
+                    {
+                        data: wele[m],
+
+                        markPoint: {
+                            data: markPointData,
+                            itemStyle: {
+                                color: 'red',
+                                // borderColor: 'red',
+                                // borderWidth: 3
+                            }
+                        },
+                        lineStyle: {
+                            color: 'green', // 指定線條的顏色
+                            width: 4.5
+                        },
+                        itemStyle: {
+                            color: 'black', // 普通數據點的顏色
+                            borderColor: 'red', // 普通數據點的邊框顏色
+                            borderWidth: 2, // 普通數據點的邊框寬度
+                            opacity: 0.7 // 普通數據點的透明度
+                            // 其他樣式屬性
+                        },
+                        name: '用電量(度)',
+                        type: 'line',
+                        smooth: true,
+                        // prettier-ignore
+
+                        markArea: {
+                            itemStyle: {
+                                color: 'rgba(255, 173, 177, 0.4)'
+                            },
+                            data: markAreadata,
+
+                        }
+                    }
+                ]
+            };
+			}
+			else{
             for (var i = 0; i < eleall[m].length; i++) {
                 console.log(month_result[m][i]);
                 if (month_result[m][i] == '1') {
@@ -914,14 +907,6 @@
                     markAreadata.push(markarea);
                 }
             }
-
-            console.log(markAreadata);
-            console.log("hii")
-
-
-            // for(var i=0;i<eleall[0].length;i++){
-            // 	testdata.push([dateall[0][i],eleall[0][i]])
-            // }
 
 
             option = {
@@ -966,27 +951,6 @@
                         snap: true
                     }
                 },
-                // visualMap: {
-                // 	show: false,
-                // 	dimension: 0,
-                // 	pieces: [
-                // 	{
-
-                // 		lte: 6,
-                // 		color: 'green'
-                // 	},
-                // 	{
-                // 		gt:6,
-                // 		lte:15,
-                // 		color:'purple'
-                // 	},
-                // 	{
-                // 		gt: 15,
-                // 		lte: eleall[m].length-1,
-                // 		color: 'red'
-                // 	}
-                // 	]
-                // },
                 series: [
                     {
                         data: eleall[m],
@@ -1034,10 +998,7 @@
                         }
                     }
                 ]
-            };
-            // var mpd=option.series[0].markPoint.data
-            // var mkdata=option.series[0].markPoint.data
-            // console.log(mpd);
+            };}
             option && myChart.setOption(option);
         }
 
@@ -1051,87 +1012,8 @@
         var chart = [];
         monthSelect.addEventListener('change', handleMonthChange);
         use.textContent = '1月總共使用' + String(monthele[0]) + '度';
-        for (var i = 0; i < 12; i++) {
 
-            // var chart = new Chartist.Line('#chart' + (i + 1) + 'd', {
-            //     labels: dateall[i],
-            //     series: [eleall[i]],
-            // }, {
-            //     showArea: true,
-            //     fullWidth: true,
-            //     axisY: {
-            //         onlyInteger: true
-            //     },
-            //     plugins: [
-            //         Chartist.plugins.ctThreshold({
-            //             threshold: standard[i],
-            //         }),
-            //         Chartist.plugins.ctPointLabels({
-            //             textAnchor: 'middle'
-            //         })
-            //     ]
-            // });
-
-
-            chart = new Chartist.Line('#chart' + (i + 1) + 'd', {
-                labels: dateall[i],
-                series: [eleall[i]]
-            }, {
-                showArea: true,
-                fullWidth: true,
-                axisY: {
-                    onlyInteger: true
-                },
-                plugins: [
-                    Chartist.plugins.ctPointLabels({
-                        textAnchor: 'middle'
-                    })
-                ]
-            });
-            chart.on('draw', function (context) {
-                if (context.type === 'point') {
-                    // console.log(context.series[0]);
-                    x = find_month(context.series[0]);
-                    // console.log(x);
-                    if (month_result[x][context.index] == "1") {
-                        // console.log(context);
-                        context.element.attr({
-                            class: 'ct-point ct-threshold-above'  // 屬性改為紅色
-                        });
-                    }
-                } else if (context.type === 'area') {
-                    console.log(context)
-                    // context.element.attr({
-                    // 	style: 'fill: red'
-                    // })
-                }
-            });
-
-
-            var chart = new Chartist.Line('#chart' + (i + 1) + 'k', {
-                labels: weekdate[i],
-                series: [wele[i]],
-            }, {
-                showArea: true,
-                fullWidth: true,
-                axisY: {
-                    onlyInteger: true
-                },
-                plugins: [
-                    Chartist.plugins.ctPointLabels({
-                        textAnchor: 'middle'
-                    })
-                ]
-            });
-        }
-        // 銷毀圖表對象
-        setTimeout(function () {
-            throwawayNode2[0] = chartElements2[0].parentNode.removeChild(chartElements2[0]);
-            for (var i = 1; i < 12; i++) {
-                throwawayNode1[i] = chartElements1[i].parentNode.removeChild(chartElements1[i]);
-                throwawayNode2[i] = chartElements2[i].parentNode.removeChild(chartElements2[i]);
-            }
-        }, 200);
+        
         const dayBtn = document.getElementById("day-btn");
         const weekBtn = document.getElementById("week-btn");
         const average = document.getElementById('average used')
@@ -1145,8 +1027,7 @@
             dayBtn.classList.add("btn", "btn-secondary", "text-dark", "btn-sm", "me-3");
             weekBtn.classList.remove("btn", "btn-secondary", "text-dark", "btn-sm", "me-3");
             weekBtn.classList.add("btn", "btn-dark", "btn-sm", "me-3");
-            chartElements2[m].parentNode.removeChild(chartElements2[m]);
-            document.getElementById("containbox").appendChild(throwawayNode1[m])
+			cc(m);
         });
 
 
@@ -1157,8 +1038,7 @@
             weekBtn.classList.add("btn", "btn-secondary", "text-dark", "btn-sm", "me-3");
             dayBtn.classList.remove("btn", "btn-secondary", "text-dark", "btn-sm", "me-3");
             dayBtn.classList.add("btn", "btn-dark", "btn-sm", "me-3");
-            chartElements1[m].parentNode.removeChild(chartElements1[m]);
-            document.getElementById("containbox").appendChild(throwawayNode2[m]);
+			cc(m);
         });
 
 	</script>
