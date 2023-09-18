@@ -115,14 +115,14 @@ def requesttaipower():
 		print("無法取得響應")
 
 
-def requestnttu(reqest):
-	service = Service(executable_path="msedgedriver.exe")
-	op = webdriver.EdgeOptions()
-	op.add_argument('--headless')
-	driver = webdriver.Edge(service=service,options=op)
-	url = "https://wdsa.nttu.edu.tw/p/403-1009-424-1.php?Lang=zh-tw"
-	driver.get(url=url)
-	a = driver.find_elements(By.CLASS_NAME,'mtitle')
+def requestnttu(request):
+	# service = Service(executable_path="msedgedriver.exe")
+	# op = webdriver.EdgeOptions()
+	# op.add_argument('--headless')
+	# driver = webdriver.Edge(service=service,options=op)
+	# url = "https://wdsa.nttu.edu.tw/p/403-1009-424-1.php?Lang=zh-tw"
+	# driver.get(url=url)
+	# a = driver.find_elements(By.CLASS_NAME,'mtitle')
 
 
 	# safari項目
@@ -131,13 +131,42 @@ def requestnttu(reqest):
 	# driver.get(url=url)
 	# a = driver.find_elements(By.CLASS_NAME, 'mtitle')
 
+	# titles = []
+	# links = []
+	# for i in a[:5]:
+	# 	titles.append(i.text)
+	# 	links.append(i.find_element(By.TAG_NAME,'a').get_attribute('href'))
+	# a = {
+	# 	"title":titles,
+	# 	"link" :links
+	# }
+	# return JsonResponse(a)
+
+	user_agent = request.META['HTTP_USER_AGENT'].lower()
+
+	if "safari" in user_agent and not "chrome" in user_agent:
+		# Safari
+		driver = webdriver.Safari()
+	else:
+		# Chrome 或 Edge
+		service = Service(executable_path="msedgedriver.exe")
+		op = webdriver.EdgeOptions()
+		op.add_argument('--headless')
+		driver = webdriver.Edge(service=service,options=op)
+	# 通用的爬取操作
+	url = "https://wdsa.nttu.edu.tw/p/403-1009-424-1.php?Lang=zh-tw"
+	driver.get(url=url)
+	elements = driver.find_elements(By.CLASS_NAME, 'mtitle')
+
 	titles = []
 	links = []
-	for i in a[:5]:
+	for i in elements[:5]:
 		titles.append(i.text)
 		links.append(i.find_element(By.TAG_NAME,'a').get_attribute('href'))
-	a = {
-		"title":titles,
-		"link" :links
-	}
-	return JsonResponse(a)
+
+	data = {
+        "title": titles,
+        "link": links
+    }
+	driver.quit()
+	return JsonResponse(data)
