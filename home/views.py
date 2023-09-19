@@ -123,7 +123,7 @@ def requestnttu(request):
 	# url = "https://wdsa.nttu.edu.tw/p/403-1009-424-1.php?Lang=zh-tw"
 	# driver.get(url=url)
 	# a = driver.find_elements(By.CLASS_NAME,'mtitle')
-
+	#
 
 	# safari項目
 	# driver = webdriver.Safari()

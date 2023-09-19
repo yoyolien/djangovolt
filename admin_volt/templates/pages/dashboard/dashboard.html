@@ -408,7 +408,7 @@
 					</div>
 				</div>
 				<div class="card-body"
-					 style="height: 300px;"
+{#					 style="height: 300px;"#}
 					 id="loader-container">
 					<div class="spinner-border"
 						 role="status">
@@ -423,8 +423,8 @@
                     document.getElementById("loader-container").style.display = "none";
                 }
 
-                fetch('/requestnttu')  // 請求 /requestnttu 路由
-                    .then(response => response.json())  // 解析 JSON 數據
+                fetch('/requestnttu')
+                    .then(response => response.json())
                     .then(data => {
                         // 在這裡處理返回的 JSON 數據
                         var title = data.title;
