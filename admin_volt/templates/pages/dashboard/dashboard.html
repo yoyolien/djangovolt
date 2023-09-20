@@ -1,7 +1,7 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
 {% block content %}
-{#    <link rel="stylesheet" id="style-link-2" href="{% static "css/loading.css" %}">#}
+<!-- {#    <link rel="stylesheet" id="style-link-2" href="{% static "css/loading.css" %}">#} -->
     <style>
         .tooltipa {
             position: relative;
@@ -52,6 +52,15 @@
                         </div>
                     </div>
                     <div class="d-flex ms-auto">
+                        <label for="start-date">開始日期：</label>
+                        <input type="date" id="start-date" name="start-date"><br><br>
+
+                        <label for="end-date">結束日期：</label>
+                        <input type="date" id="end-date" name="end-date"><br><br>
+
+                        <button onclick="showSelectedDates()">顯示所選日期</button>
+                        <!-- ------------------------------------------------- -->
+
                         <a href="#"
                            class="btn btn-secondary text-dark btn-sm me-3"
                            id="day-btn">Day</a>
@@ -398,7 +407,7 @@
         </div>
         <div class="col-12 col-xl-4">
             <div class="card border-0 shadow mb-4">
-                <div class="card-header">
+                <!-- <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col">
                             <h2 class="fs-5 fw-bold mb-0">宿舍最新消息</h2>
@@ -449,7 +458,7 @@
                     }
                     hideLoader();
                 }
-            </script>
+            </script> -->
             <div class="card border-0 shadow mb-4">
                 <div class="card-header">
                     <div class="row align-items-center">
@@ -632,8 +641,53 @@
         var mtree = [];
         var month_result = [];
         var first_day = [];
+        var date=[];
+        var ele=[];
+        var t_result=[];
 
-        // console.log(result);
+        function buildData(startDate,endDate){
+            // console.log(dateall[startDate[0]-1]);
+            date=[];
+            ele=[];
+            t_result=[];
+            var start=[startDate[0]-1,dateall[startDate[0]-1].indexOf(startDate[1])];
+            var end=[endDate[0]-1,dateall[endDate[0]-1].indexOf(endDate[1])];
+            console.log(start,end);
+            console.log("se");
+            while(1){
+                console.log(start,end);
+                if(start[0]==end[0]&&start[1]==end[1]+1){
+                    return 0;
+                };
+                // console.log(start[1]);
+                if(start[1]==dateall[start[0]].length){
+                    start[0]=start[0]+1;
+                    start[1]=0;
+                    // console.log("outofrange");
+                    continue;
+                }
+                date.push(dateall[start[0]][start[1]]);
+                ele.push(eleall[start[0]][start[1]]);
+                t_result.push(month_result[start[0]][start[1]]);
+                start[1]=start[1]+1;
+            }
+        }
+
+        function showSelectedDates() {
+            var startDate = document.getElementById("start-date").value;
+            var endDate = document.getElementById("end-date").value;
+            startDate=[parseInt(startDate.slice(5,7)),parseInt(startDate.slice(8,10))];
+            endDate=[parseInt(endDate.slice(5,7)),parseInt(endDate.slice(8,10))];
+            // alert(startDate,endDate);
+            buildData(startDate,endDate);
+            
+            
+            console.log(date);
+            console.log(ele);
+            console.log(t_result);
+            cc(m);
+        }
+
         function s() {
             for (var i = 0; i < 12; i++) {
                 // console.log(eleall[i].length);
@@ -802,97 +856,17 @@
         function cc(m) {
             var markAreadata = [];
             var markPointData = [];
-            if (p == 1) {
-                console.log("----------")
-                console.log(wele[m])
-                option = {
-                    title: {
-                        // text: 'Distribution of Electricity',
-                        // subtext: '一月'
-                    },
-                    tooltip: {
-                        trigger: 'item',
-                        axisPointer: {
-                            type: 'cross'
-                        },
-                        formatter: function (arg) {
-                            console.log(arg);
-                            if (arg.componentType === 'series') {
-                                console.log(arg.componentType);
-                                return m + 1 + '月' + arg.name + '日\r' + "<br>" + '用電量 : ' + arg.value;
-                            } else if (arg.componentType === 'markPoint') {
-                                console.log(arg.componentType);
-                                return m + 1 + '月' + dateall[m][arg.data.coord[0]] + '日' + "<br>" + '用電量 : ' + arg.value
-                            } else return '';
-                        }
-                    },
-                    toolbox: {
-                        show: false,
-                        feature: {
-                            saveAsImage: {}
-                        }
-                    },
-                    xAxis: {
-                        type: 'category',
-                        boundaryGap: false,
-                        // prettier-ignore
-                        data: weekdate[m]
-                    },
-                    yAxis: {
-                        type: 'value',
-                        axisLabel: {
-                            formatter: '{value} 度'
-                        },
-                        axisPointer: {
-                            snap: true
-                        }
-                    },
-                    series: [
-                        {
-                            data: wele[m],
-
-                            markPoint: {
-                                data: markPointData,
-                                itemStyle: {
-                                    color: 'red',
-                                    // borderColor: 'red',
-                                    // borderWidth: 3
-                                }
-                            },
-                            lineStyle: {
-                                color: 'green', // 指定線條的顏色
-                                width: 4.5
-                            },
-                            itemStyle: {
-                                color: 'black', // 普通數據點的顏色
-                                borderColor: 'red', // 普通數據點的邊框顏色
-                                borderWidth: 2, // 普通數據點的邊框寬度
-                                opacity: 0.7 // 普通數據點的透明度
-                                // 其他樣式屬性
-                            },
-                            name: '用電量(度)',
-                            type: 'line',
-                            smooth: true,
-                            // prettier-ignore
-
-                            markArea: {
-                                itemStyle: {
-                                    color: 'rgba(255, 173, 177, 0.4)'
-                                },
-                                data: markAreadata,
-
-                            }
-                        }
-                    ]
-                };
-            } else {
-                for (var i = 0; i < eleall[m].length; i++) {
-                    console.log(month_result[m][i]);
-                    if (month_result[m][i] == '1') {
+                console.log(date);
+                // console.log(dateall[m]);
+                console.log(ele);
+                // console.log(eleall[m]);
+                for (var i = 0; i < ele.length; i++) {
+                    // console.log(month_result[m][i]);
+                    if (t_result[i] == '1') {
                         var markPoint = {
-                            coord: [i, eleall[m][i]], // 使用 [x, y] 坐標表示標記點位置
-                            value: eleall[m][i],
-                            name: '數值: ' + eleall[m][i] // 自定義標記點的名稱
+                            coord: [i, ele[i]], // 使用 [x, y] 坐標表示標記點位置
+                            value: ele[i],
+                            name: '數值: ' + ele[i] // 自定義標記點的名稱
                         };
                         var markarea = [
                             {
@@ -923,10 +897,10 @@
                             console.log(arg);
                             if (arg.componentType === 'series') {
                                 console.log(arg.componentType);
-                                return m + 1 + '月' + arg.name + '日\r' + "<br>" + '用電量 : ' + arg.value;
+                                // return m + 1 + '月' + arg.name + '日\r' + "<br>" + '用電量 : ' + arg.value;
                             } else if (arg.componentType === 'markPoint') {
                                 console.log(arg.componentType);
-                                return m + 1 + '月' + dateall[m][arg.data.coord[0]] + '日' + "<br>" + '用電量 : ' + arg.value
+                                // return m + 1 + '月' + dateall[m][arg.data.coord[0]] + '日' + "<br>" + '用電量 : ' + arg.value
                             } else return '';
                         }
                     },
@@ -940,7 +914,7 @@
                         type: 'category',
                         boundaryGap: false,
                         // prettier-ignore
-                        data: dateall[m]
+                        data: date
                     },
                     yAxis: {
                         type: 'value',
@@ -953,7 +927,7 @@
                     },
                     series: [
                         {
-                            data: eleall[m],
+                            data: ele,
 
                             markPoint: {
                                 data: markPointData,
@@ -977,8 +951,8 @@
                             label: {
                                 show: true,
                                 formatter: function (params) {
-                                    if (month_result[m][params.dataIndex] === '0') {
-                                        return eleall[m][i];
+                                    if (t_result[params.dataIndex] === '0') {
+                                        return ele[i];
                                     } else {
                                         return '';
                                     }
@@ -999,7 +973,7 @@
                         }
                     ]
                 };
-            }
+            
             option && myChart.setOption(option);
         }
 
