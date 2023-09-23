@@ -45,42 +45,16 @@
                         <h2 class="fs-3 fw-extrabold"
                             id="use"></h2>
                         <div class="small mt-2">
-                            <span class="fw-normal me-2">與上月相比</span>
-                            <span class="fas fa-angle-up text-success"></span>
                             <span class="text-success fw-bold"
                                   id="compare"></span>
                         </div>
                     </div>
-                    <div class="d-flex ms-auto">
+                    <div class="d-sm-flex ms-auto align-items-center">
                         <label for="start-date">開始日期：</label>
-                        <input type="date" id="start-date" name="start-date"><br><br>
+                        <input type="date"  id="start-date" name="start-date" value="2023-01-01" ><br><br>
 
                         <label for="end-date">結束日期：</label>
-                        <input type="date" id="end-date" name="end-date"><br><br>
-
-                        <button onclick="showSelectedDates()">顯示所選日期</button>
-                        <!-- ------------------------------------------------- -->
-
-                        <a href="#"
-                           class="btn btn-secondary text-dark btn-sm me-3"
-                           id="day-btn">Day</a>
-                        <a href="#"
-                           class="btn btn-dark btn-sm me-3"
-                           id="week-btn">Week</a>
-                        <select id="monthSelect">
-                            <option value="1">1月</option>
-                            <option value="2">2月</option>
-                            <option value="3">3月</option>
-                            <option value="4">4月</option>
-                            <option value="5">5月</option>
-                            <option value="6">6月</option>
-                            <option value="7">7月</option>
-                            <option value="8">8月</option>
-                            <option value="9">9月</option>
-                            <option value="10">10月</option>
-                            <option value="11">11月</option>
-                            <option value="12">12月</option>
-                        </select>
+                        <input type="date" id="end-date" name="end-date" value="2023-01-30"><br><br>
                     </div>
                 </div>
 
@@ -284,7 +258,7 @@
                         <div class="col-12 col-xl-7 px-xl-0">
                             <div class="d-none d-sm-block">
                                 <h2 class="h6 text-gray-400 mb-0">該月需種植樹木數</h2>
-                                <h3 class="fw-extrabold mb-2"><span id="tree"></span>59棵</h3>
+                                <h3 class="fw-extrabold mb-2"><span id="tree"></span>棵</h3>
                             </div>
                         </div>
                     </div>
@@ -355,7 +329,7 @@
                                 <thead class="thead-light">
                                 <tr>
                                     <th class="border-bottom"
-                                        scope="col">日期
+                                        scope="col">月份
                                     </th>
                                     <th class="border-bottom"
                                         scope="col">用電量
@@ -627,95 +601,93 @@
         var m = 0;
         var dateall ={{ date|safe }};//以陣列存放個月日期 ex.一月dateall[0]=>[1,2,3...,31]
         var eleall ={{ ele|safe }};//電力用量,跟dateall是對應的
-        var total = {{ wholeusage|safe }};
-        var weekdate = [];//存放日期從改成天改成周的資料
-        var year = 2023;
-        var result ={{ presult|safe }};
+        var resultall ={{ presult|safe }};
         var standard = {{ standard|safe }};//平均值
-        var overstandard = 0;//日電力用量平均值
         var sum ={{ wholeusage|safe }};//電力用量總和
         var monthele = {{ monthusage|safe }};
         var tree = document.getElementById("tree");
-        var wele = [];
-        var p = 0;
+        var tb = document.getElementById("tb");
+        var origin_node = document.getElementById("trr");
+        var use = document.getElementById('use');
+        var average = document.getElementById('average used')
+        var overstandard = document.getElementById('overstandard');
+        var month_compare = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         var mtree = [];
         var month_result = [];
-        var first_day = [];
         var date=[];
         var ele=[];
-        var t_result=[];
+        var result=[];
+        var startDate,endDate;
+        var sum=0;
+        var abnormal=0;
+        var ifinit=false;
+        var month=[];
+        var m=0;
 
+        // 建立所需範圍ele,date,result陣列，以便ecchart讀取
         function buildData(startDate,endDate){
-            // console.log(dateall[startDate[0]-1]);
             date=[];
             ele=[];
-            t_result=[];
+            result=[];
+            month=[];
             var start=[startDate[0]-1,dateall[startDate[0]-1].indexOf(startDate[1])];
             var end=[endDate[0]-1,dateall[endDate[0]-1].indexOf(endDate[1])];
-            console.log(start,end);
-            console.log("se");
             while(1){
-                console.log(start,end);
                 if(start[0]==end[0]&&start[1]==end[1]+1){
                     return 0;
                 };
-                // console.log(start[1]);
                 if(start[1]==dateall[start[0]].length){
                     start[0]=start[0]+1;
                     start[1]=0;
-                    // console.log("outofrange");
                     continue;
                 }
+                month.push(start[0]+1);
                 date.push(dateall[start[0]][start[1]]);
                 ele.push(eleall[start[0]][start[1]]);
-                t_result.push(month_result[start[0]][start[1]]);
+                result.push(month_result[start[0]][start[1]]);
                 start[1]=start[1]+1;
+                
             }
+            
+        }
+        
+        // 監測選月份事件重畫圖表
+        const startDateInput = document.getElementById('start-date');
+        const endDateInput = document.getElementById('end-date');
+        startDateInput.addEventListener('input', checkBothDates);
+        endDateInput.addEventListener('input', checkBothDates);
+        function checkBothDates() {
+            if(startDateInput.value && endDateInput.value){
+                startDate = document.getElementById("start-date").value;
+                endDate = document.getElementById("end-date").value;
+                var datastartDate=[parseInt(startDate.slice(5,7)),parseInt(startDate.slice(8,10))];
+                var dataendDate=[parseInt(endDate.slice(5,7)),parseInt(endDate.slice(8,10))];
+                m=parseInt(startDate.slice(5,7));
+                buildData(datastartDate,dataendDate);
+                ecchart();
+                change_values();
+            }
+            
         }
 
-        function showSelectedDates() {
-            var startDate = document.getElementById("start-date").value;
-            var endDate = document.getElementById("end-date").value;
-            startDate=[parseInt(startDate.slice(5,7)),parseInt(startDate.slice(8,10))];
-            endDate=[parseInt(endDate.slice(5,7)),parseInt(endDate.slice(8,10))];
-            // alert(startDate,endDate);
-            buildData(startDate,endDate);
-            
-            
-            console.log(date);
-            console.log(ele);
-            console.log(t_result);
-            cc(m);
-        }
-
-        function s() {
+        //以月份切割預測結果 
+        function split_result() {
             for (var i = 0; i < 12; i++) {
-                // console.log(eleall[i].length);
-                month_result.push(result.slice(0, eleall[i].length));
-                result = result.slice(eleall[i].length);
+                month_result.push(resultall.slice(0, eleall[i].length));
+                resultall = resultall.slice(eleall[i].length);
             }
         }
 
-        s();
-        console.log(month_result);
-
-        function calmtree() {
+        // 計算種幾棵樹
+        function calculate_month_tree() {
             for (var i = 0; i < 12; i++) {
                 mtree.push(0.509 * monthele[i] / 550.5);
                 mtree[i] = mtree[i].toFixed(2);
             }
-            // console.log(mtree);
         }
-
-        calmtree();
-
-        var use = document.getElementById('use');
-        var compare = document.getElementById('compare');//與上月相比
-        var monthSelect = document.getElementById('monthSelect');//月份選單
-        var month_compare = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
+        
+        // 各月用電量相比計算
         function calculate_month_rate() {
-
             for (var i = 1; i < 13; i++) {
                 if (monthele[i] >= monthele[i - 1]) {
                     month_compare[i] = ((Math.round((monthele[i] / monthele[i - 1] - 1) * 100)) + '% ↑');
@@ -723,84 +695,31 @@
                     month_compare[i] = (String(Math.round((1 - monthele[i] / monthele[i - 1]) * 100)) + '% ↓');
                 }
             }
-
+            month_compare[0]='Nan'
         }
 
-        calculate_month_rate();
-
-        function month_rate_switch() {
-            // console.log(m);
-            if (m == 0) compare.textContent = "NaN";
-            else if (monthele[m] >= monthele[m - 1]) {
-                compare.textContent = String(Math.round((monthele[m] / monthele[m - 1] - 1) * 100)) + '% ↑';
-                compare.classList.remove("text-success");
-                compare.classList.add("text-danger");
-            } else {
-                compare.textContent = String(Math.round((1 - monthele[m] / monthele[m - 1]) * 100)) + '% ↓';
-                compare.classList.remove("text-danger");
-                compare.classList.add("text-success");
+        // 計算總用電量
+        function calculate_use(arr){
+            sum=0;
+            for(var i=0;i<arr.length;i++){
+                sum+=arr[i];
+            }
+            return sum;
+        }
+        
+        // 計算異常天數
+        function calculate_overstandard() {
+            abnormal = 0;
+            for (var i = 0; i < result.length; i++) {
+                if (result[i] == "1") abnormal++;
             }
         }
 
-        function weekcalculate() {
-            for (var i = 0; i < 12; i++) {
-                var name = [];
-                var wele_n = [];
-                var a = 1;
-                var sumw = 0;
-                for (var j = 0; j < eleall[i].length; j++) {
-                    sumw += eleall[i][j];
-                    if ((j + 1) % 7 == 0 || j == eleall[i].length - 1) {
-                        wele_n.push(sumw.toFixed(2));
-                        if (a == 1)
-                            name.push(a + '-' + String(j + 1));
-                        else
-                            name.push(a + 1 + '-' + String(j + 1));
-                        a = j + 1;
-                        sumw = 0;
-                        continue;
-                    }
-                }
-                weekdate.push(name);
-                wele.push(wele_n);
-            }
-        }
-
-
-        function handleMonthChange() {
-            var selectedMonth = monthSelect.value;
-            var thv = standard[selectedMonth - 1];
-            average.textContent = thv;
-            use.textContent = String(selectedMonth) + '月總共使用' + String(monthele[selectedMonth - 1]) + '度';
-            if (selectedMonth != 1)
-                calculate_month_rate(selectedMonth - 1);
-            else compare.textContent = "查無資料";
-            calculate_overstandard(selectedMonth - 1);
-            document.getElementById('overstandard').textContent = overstandard;
-            m = selectedMonth - 1;
-            month_rate_switch();
-            tree.textContent = mtree[m];
-            cc(m);
-        }
-
-        var tb = document.getElementById("tb");
-        var origin_node = document.getElementById("trr");
+        // 列出各月用電量比較
         tb.removeChild(origin_node);
         var node;
-        var dateElement;
-        console.log("hi");
-        console.log(result);
-
-        function calculate_overstandard(a) {
-            overstandard = 0;
-            for (var i = 0; i < month_result[a].length; i++) {
-                if (month_result[a][i] == "1") overstandard++;
-            }
-        }
-
-        function list_rate() {
+        function list_month_rate() {
             setTimeout(function () {
-                // compare.classList.add("text-danger");
                 node = origin_node.cloneNode(true);
                 node.children["date2"].textContent = 1;
                 node.children["ele2"].textContent = monthele[0];
@@ -818,55 +737,46 @@
                         node.children["rate"].textContent = month_compare[i - 1];
                         node.children["rate"].classList.add("text-success");
                     }
-                    // if(eles[i]>standard)node.children["ele2"].classList.add("text-danger");
-                    // else if(eles[i]<standard)node.children["ele2"].classList.add("text-success");
                     node.setAttribute('id', String(i));
                     tb.appendChild(node);
                 }
             }, 200);
         }
 
-        function build_first_day() {
-            for (var i = 0; i < 12; i++) {
-                first_day[i] = eleall[i][0];
-            }
+        // 網頁數值變動
+        function change_values(){
+            
+            calculate_overstandard();
+            calculate_use(ele);
+
+            if(ifinit)use.textContent =startDate.slice(5,10) + '到'+ endDate.slice(5,10) + '總共使用' + String(calculate_use(ele).toFixed(2)) + '度';
+            else use.textContent = '一月總共使用' + String(sum) + '度';
+
+            average.textContent=(sum/ele.length).toFixed(2);
+            tree.textContent=(0.509 * sum / 550.5).toFixed(2);
+            overstandard.textContent=abnormal;
+
         }
 
-        function find_month(t) {
-            for (var i = 0; i < 12; i++) {
-                if (t == first_day[i]) return [i];
-            }
-        }
-
-        compare.textContent = "NaN";
-        tree.textContent = mtree[0];
-        build_first_day();
-        console.log(first_day);
-        list_rate();
-        weekcalculate();
-        calculate_overstandard(0);
-
+        // 繪製ecchart圖表
         // 添加事件監聽器，偵測下拉選單的變更事件
-
-        //------------------------------------------------------------------------
         var chartDom = document.getElementById('charttest');
         var myChart = echarts.init(chartDom);
         var option;
 
-        function cc(m) {
+        
+        function ecchart() {
+            console.log(date);
             var markAreadata = [];
             var markPointData = [];
-                console.log(date);
-                // console.log(dateall[m]);
-                console.log(ele);
-                // console.log(eleall[m]);
                 for (var i = 0; i < ele.length; i++) {
-                    // console.log(month_result[m][i]);
-                    if (t_result[i] == '1') {
+                    if (result[i] == '1') {
                         var markPoint = {
                             coord: [i, ele[i]], // 使用 [x, y] 坐標表示標記點位置
                             value: ele[i],
-                            name: '數值: ' + ele[i] // 自定義標記點的名稱
+                            name: '數值: ' + ele[i], // 自定義標記點的名稱
+                            date:date[i],
+                            month:month[i]
                         };
                         var markarea = [
                             {
@@ -881,8 +791,6 @@
                         markAreadata.push(markarea);
                     }
                 }
-
-
                 option = {
                     title: {
                         // text: 'Distribution of Electricity',
@@ -897,10 +805,10 @@
                             console.log(arg);
                             if (arg.componentType === 'series') {
                                 console.log(arg.componentType);
-                                // return m + 1 + '月' + arg.name + '日\r' + "<br>" + '用電量 : ' + arg.value;
+                                return month[arg.dataIndex] + '月' + arg.name + '日' + "<br>" + '用電量 : ' + arg.value;
                             } else if (arg.componentType === 'markPoint') {
                                 console.log(arg.componentType);
-                                // return m + 1 + '月' + dateall[m][arg.data.coord[0]] + '日' + "<br>" + '用電量 : ' + arg.value
+                                return arg.data.month + '月' + arg.data.date + '日' + "<br>" + '用電量 : ' + arg.value
                             } else return '';
                         }
                     },
@@ -925,6 +833,16 @@
                             snap: true
                         }
                     },
+                    dataZoom: [
+                        {
+                            type: 'slider',  // 類型為滑動選擇器
+                            start: 0,       // 預設選擇的起始位置
+                            // end: 50         // 預設選擇的結束位置
+                        },
+                        {
+                            type: 'inside'  // 類型為內部選擇器
+                        }
+                    ],
                     series: [
                         {
                             data: ele,
@@ -951,7 +869,7 @@
                             label: {
                                 show: true,
                                 formatter: function (params) {
-                                    if (t_result[params.dataIndex] === '0') {
+                                    if (result[params.dataIndex] === '0') {
                                         return ele[i];
                                     } else {
                                         return '';
@@ -977,45 +895,28 @@
             option && myChart.setOption(option);
         }
 
+        // 調整圖表大小以適應新的視窗大小
         window.addEventListener('resize', function () {
-            // 調整圖表大小以適應新的視窗大小
             myChart.resize();
         });
-        cc(m);
-        // ------------------------------------------------------------------------
-        var x = 0;
-        var chart = [];
-        monthSelect.addEventListener('change', handleMonthChange);
-        use.textContent = '1月總共使用' + String(monthele[0]) + '度';
 
+        // init
+        split_result();
 
-        const dayBtn = document.getElementById("day-btn");
-        const weekBtn = document.getElementById("week-btn");
-        const average = document.getElementById('average used')
-        average.textContent = standard[0];
-        document.getElementById('overstandard').textContent = overstandard;
+        ele=eleall[0];
+        date=dateall[0];
+        result=month_result[0];
+        for(var i=0;i<ele.length;i++)month.push(1);
 
-        dayBtn.addEventListener("click", function () {
-            p = 0;
-            // dayBtn跟weekbtn屬性交換
-            dayBtn.classList.remove("btn", "btn-dark", "btn-sm", "me-3");
-            dayBtn.classList.add("btn", "btn-secondary", "text-dark", "btn-sm", "me-3");
-            weekBtn.classList.remove("btn", "btn-secondary", "text-dark", "btn-sm", "me-3");
-            weekBtn.classList.add("btn", "btn-dark", "btn-sm", "me-3");
-            cc(m);
-        });
+        calculate_month_tree();
+        calculate_month_rate();
+        list_month_rate();
 
-
-        weekBtn.addEventListener("click", function () {
-            p = 1;
-            // dayBtn跟weekbtn屬性交換
-            weekBtn.classList.remove("btn", "btn-dark", "btn-sm", "me-3");
-            weekBtn.classList.add("btn", "btn-secondary", "text-dark", "btn-sm", "me-3");
-            dayBtn.classList.remove("btn", "btn-secondary", "text-dark", "btn-sm", "me-3");
-            dayBtn.classList.add("btn", "btn-dark", "btn-sm", "me-3");
-            cc(m);
-        });
-
+        ecchart();
+        
+        change_values();
+        
+        ifinit=true;
     </script>
 
     </div>
