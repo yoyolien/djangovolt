@@ -54,7 +54,7 @@
                         <input type="date"  id="start-date" name="start-date" value="2023-01-01" ><br><br>
 
                         <label for="end-date">結束日期：</label>
-                        <input type="date" id="end-date" name="end-date" value="2023-01-30"><br><br>
+                        <input type="date" id="end-date" name="end-date" value="2023-01-30" ><br><br>
                     </div>
                 </div>
 
@@ -659,8 +659,8 @@
         // 監測選月份事件重畫圖表
         const startDateInput = document.getElementById('start-date');
         const endDateInput = document.getElementById('end-date');
-        startDateInput.addEventListener('input', checkBothDates);
-        endDateInput.addEventListener('input', checkBothDates);
+        startDateInput.addEventListener('change', checkBothDates);
+        endDateInput.addEventListener('change', checkBothDates);
         function checkBothDates() {
             if(startDateInput.value && endDateInput.value){
                 startDate = document.getElementById("start-date").value;
