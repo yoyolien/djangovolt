@@ -381,7 +381,7 @@
         </div>
         <div class="col-12 col-xl-4">
             <div class="card border-0 shadow mb-4">
-                <!-- <div class="card-header">
+                <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col">
                             <h2 class="fs-5 fw-bold mb-0">宿舍最新消息</h2>
@@ -391,7 +391,7 @@
                     </div>
                 </div>
                                 <div class="card-body"
-{#                					 style="height: 300px;"#}
+                					 style="height: 300px;"
                                      id="loader-container">
                                     <div class="spinner-border"
                                          role="status">
@@ -404,7 +404,7 @@
             <script>
                 function hideLoader() {
                     document.getElementById("loader-container").style.display = "none";
-{#                    document.getElementById("style-link-2").disabled = true;#}
+                    document.getElementById("style-link-2").disabled = true;
                 }
                 fetch('/requestnttu')
                     .then(response => response.json())
@@ -432,7 +432,7 @@
                     }
                     hideLoader();
                 }
-            </script> -->
+            </script>
             <div class="card border-0 shadow mb-4">
                 <div class="card-header">
                     <div class="row align-items-center">
