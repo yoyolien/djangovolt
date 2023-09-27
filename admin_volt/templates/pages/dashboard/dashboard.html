@@ -623,6 +623,9 @@
         var ifinit=false;
         var month=[];
         var m=0;
+        var abnormal_list=[];
+        var markAreadata = [];
+        var markPointData = [];
 
         // 建立所需範圍ele,date,result陣列，以便ecchart讀取
         function buildData(startDate,endDate){
@@ -632,6 +635,8 @@
             month=[];
             var start=[startDate[0]-1,dateall[startDate[0]-1].indexOf(startDate[1])];
             var end=[endDate[0]-1,dateall[endDate[0]-1].indexOf(endDate[1])];
+            
+            if(start[1]==-1||end[1]==-1)return 1;
             while(1){
                 if(start[0]==end[0]&&start[1]==end[1]+1){
                     return 0;
@@ -648,7 +653,7 @@
                 start[1]=start[1]+1;
                 
             }
-            
+            return 0;
         }
         
         // 監測選月份事件重畫圖表
@@ -663,9 +668,15 @@
                 var datastartDate=[parseInt(startDate.slice(5,7)),parseInt(startDate.slice(8,10))];
                 var dataendDate=[parseInt(endDate.slice(5,7)),parseInt(endDate.slice(8,10))];
                 m=parseInt(startDate.slice(5,7));
-                buildData(datastartDate,dataendDate);
-                ecchart();
-                change_values();
+                
+                if(buildData(datastartDate,dataendDate)){
+                    alert("所選日期不存在")
+                }
+                else{
+                    ecchart();
+                    change_values();
+                }
+                
             }
             
         }
@@ -745,9 +756,22 @@
 
         // 網頁數值變動
         function change_values(){
-            
+            var output='';
             calculate_overstandard();
             calculate_use(ele);
+            setTimeout(function () {
+                if(abnormal>0){
+                    for(var i=0;i<markPointData.length;i++){
+                        output=output+(String(markPointData[i].month)+'月'+String(markPointData[i].date)+'日'+'\n');
+                        // console.log(String(markPointData[i].month),String(markPointData[i].date));
+                    }
+                    
+                    // console.log(markPointData);
+                    alert(output);
+                }
+                // 在這裡執行你的操作
+            }, 1000);
+            
 
             if(ifinit)use.textContent =startDate.slice(5,10) + '到'+ endDate.slice(5,10) + '總共使用' + String(calculate_use(ele).toFixed(2)) + '度';
             else use.textContent = '一月總共使用' + String(sum) + '度';
@@ -766,9 +790,9 @@
 
         
         function ecchart() {
-            console.log(date);
-            var markAreadata = [];
-            var markPointData = [];
+            // console.log(date);
+            markAreadata = [];
+            markPointData = [];
                 for (var i = 0; i < ele.length; i++) {
                     if (result[i] == '1') {
                         var markPoint = {
@@ -802,12 +826,12 @@
                             type: 'cross'
                         },
                         formatter: function (arg) {
-                            console.log(arg);
+                            // console.log(arg);
                             if (arg.componentType === 'series') {
-                                console.log(arg.componentType);
+                                // console.log(arg.componentType);
                                 return month[arg.dataIndex] + '月' + arg.name + '日' + "<br>" + '用電量 : ' + arg.value;
                             } else if (arg.componentType === 'markPoint') {
-                                console.log(arg.componentType);
+                                // console.log(arg.componentType);
                                 return arg.data.month + '月' + arg.data.date + '日' + "<br>" + '用電量 : ' + arg.value
                             } else return '';
                         }
