@@ -391,7 +391,6 @@
                     </div>
                 </div>
                                 <div class="card-body"
-                					 style="height: 300px;"
                                      id="loader-container">
                                     <div class="spinner-border"
                                          role="status">
@@ -409,6 +408,7 @@
                 fetch('/requestnttu')
                     .then(response => response.json())
                     .then(data => {
+                        hideLoader();//TODO: delet
                         // 在這裡處理返回的 JSON 數據
                         var title = data.title;
                         var link = data.link;
@@ -676,9 +676,9 @@
                     ecchart();
                     change_values();
                 }
-                
+
             }
-            
+
         }
 
         //以月份切割預測結果 
