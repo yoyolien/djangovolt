@@ -37,6 +37,50 @@
 
     </style>
     <div class="row">
+        <div class="modal fade"
+            id="hello"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog  modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            這些天數用電異常
+                        </h5>
+                        <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close">
+                        </button>
+                    </div>
+                    <div class="text-danger m-2">
+                        <ul id="abnormaldate">
+                            <!-- <li>suas</li> -->
+                        </ul>
+                    </div>
+                    <div class="m-4 text-center bg-yellow-100 rounded">
+                        <p class=" fw-bolder">檢查以下電器是否正常運作</p>
+                        <label>
+                            <input type="checkbox" name="checkbox1"> 冰箱
+                        </label>
+                        <label>
+                            <input type="checkbox" name="checkbox2"> 冷氣
+                        </label>
+                        <label>
+                            <input type="checkbox" name="checkbox3"> 電腦
+                        </label>
+                    </div>
+                    
+                        <div class="modal-footer justify-content-center">
+                            <button type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal">關閉
+                            </button>
+                        </div>
+                </div>
+            </div>
+        </div>
         <div class="col-12 mb-4">
             <div class="card bg-yellow-100 border-0 shadow">
                 <div class="card-header d-sm-flex flex-row align-items-center flex-0">
@@ -391,6 +435,7 @@
                     </div>
                 </div>
                                 <div class="card-body"
+                					 
                                      id="loader-container">
                                     <div class="spinner-border"
                                          role="status">
@@ -408,7 +453,6 @@
                 fetch('/requestnttu')
                     .then(response => response.json())
                     .then(data => {
-                        hideLoader();//TODO: delet
                         // 在這裡處理返回的 JSON 數據
                         var title = data.title;
                         var link = data.link;
@@ -626,6 +670,26 @@
         var abnormal_list=[];
         var markAreadata = [];
         var markPointData = [];
+        // $(document).ready(function() {
+        //         $('#hello').modal('show');
+        //     });
+        function test(){
+
+            $(document).ready(function() {
+                $('#hello').modal('show');
+            });
+            const abnormaldate = document.getElementById("abnormaldate");
+            while (abnormaldate.firstChild) {
+                abnormaldate.removeChild(abnormaldate.firstChild);
+            }
+            // console.log(abnormaldate);
+            // abnormaldate.removeChild(li);
+            for(var i=0;i<markPointData.length;i++){
+                var li = document.createElement('li');
+                li.textContent=(String(markPointData[i].month)+'月'+String(markPointData[i].date)+'日');
+                abnormaldate.appendChild(li);
+            }
+        }
 
         // 建立所需範圍ele,date,result陣列，以便ecchart讀取
         function buildData(startDate,endDate){
@@ -676,9 +740,9 @@
                     ecchart();
                     change_values();
                 }
-
+                
             }
-
+            
         }
 
         //以月份切割預測結果 
@@ -761,13 +825,7 @@
             calculate_use(ele);
             setTimeout(function () {
                 if(abnormal>0){
-                    for(var i=0;i<markPointData.length;i++){
-                        output=output+(String(markPointData[i].month)+'月'+String(markPointData[i].date)+'日'+'\n');
-                        // console.log(String(markPointData[i].month),String(markPointData[i].date));
-                    }
-                    
-                    // console.log(markPointData);
-                    alert(output);
+                    test();
                 }
                 // 在這裡執行你的操作
             }, 1000);
