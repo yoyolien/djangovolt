@@ -151,7 +151,10 @@ def requestnttu(request):
 		# Chrome 或 Edge
 		service = Service(executable_path="msedgedriver.exe")
 		op = webdriver.EdgeOptions()
-		op.add_argument('--headless')
+		op.add_argument("--headless")
+		op.add_argument('--no-sandbox')
+		op.add_argument('--disable-gpu')
+		op.add_argument('--disable-dev-shm-usage')
 		driver = webdriver.Edge(service=service,options=op)
 	# 通用的爬取操作
 	url = "https://wdsa.nttu.edu.tw/p/403-1009-424-1.php?Lang=zh-tw"
