@@ -161,7 +161,7 @@ ol.carousel-indicators li.active {
     left: 50%;
 }
 .sdgimg{
-    width: 15%;
+    width: 100px;
     margin: 10px;
 }
 .sdgdiv{
@@ -170,4 +170,7 @@ ol.carousel-indicators li.active {
     transition-duration: 1s; /*動畫持續時間為2秒*/
     transition-timing-function: ease; /*動畫速度曲線為急加速後減速*/
     transition-delay: .5s;
+}
+.sdgside{
+    background: #92d9b1;
 }

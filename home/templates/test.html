@@ -1,383 +1,422 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
 {% block content %}
-    <div class="card">
-        <div class="card-header">
-            <div class="row align-items-center">
-                <div class="col">
-                    <h2 class="fs-5 fw-bold mb-0">SDGs各項指標介紹</h2>
-                </div>
-                <div class="col text-end">
-                </div>
-            </div>
-        </div>
-        <div style="text-align: center;" class="sdgdiv">
-            <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_1.png' %}"
-                 class="sdgimg">
-            <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_2.png' %}"
-                 class="sdgimg">
-            <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_3.png' %}"
-                 class="sdgimg">
-            <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_4.png' %}"
-                 alt="SDG 4"
-                 class="sdgimg">
-            <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_5.png' %}"
-                 alt="SDG 5"
-                 class="sdgimg">
-            <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_6.png' %}"
-                 alt="SDG 6"
-                 class="sdgimg">
-            <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_7.png' %}"
-                 alt="SDG 7"
-                 class="sdgimg">
-            <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_8.png' %}"
-                 alt="SDG 8"
-                 class="sdgimg">
-            <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_9.png' %}"
-                 alt="SDG 9"
-                 class="sdgimg">
-            <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_10.png' %}"
-                 alt="SDG 10"
-                 class="sdgimg">
-            <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_11.png' %}"
-                 alt="SDG 11"
-                 class="sdgimg">
-            <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_12.png' %}"
-                 alt="SDG 12"
-                 class="sdgimg">
-            <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_13.png' %}"
-                 alt="SDG 13"
-                 class="sdgimg">
-            <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_14.png' %}"
-                 alt="SDG 14"
-                 class="sdgimg">
-            <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_15.png' %}"
-                 alt="SDG 15"
-                 class="sdgimg">
-            <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_16.png' %}"
-                 alt="SDG 16"
-                 class="sdgimg">
-            <img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_17.png' %}"
-                 alt="SDG 17"
-                 class="sdgimg">
-        </div>
-        <div id="carouselsdg"
-             class="carousel slide"
-             data-ride="carousel"
-             data-interval="false">
-            <div class="carousel-inner">
-                <div class="carousel-item active" id="sdg1">
-                    <h1 class="display-4">消除各地一切形式的貧窮</h1>
-                    <div class="sdginf">
-                        <div class="row justify-content-center">
-                            <div class="card bg-light mb-3 mt-3" style="max-width: 18rem;">
-                                <div class="card-header">
-                                    <strong>
-                                        萬華，原來如此》萬華，為何聚集如此多貧困者與性工作者？
-                                    </strong>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text">最近「萬華」因為疫情的發展，頓時登上全國熱搜的關鍵字，特別是街友、阿公店、茶藝館等等「名詞」，甚至成為大家茶餘飯後重要話題<a
-                                            href="https://futurecity.cw.com.tw/article/2014"><br>閱讀更多</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item" id="sdg2">
-                    <h1 class="display-4">確保糧食安全，消除飢餓，促進永續農業</h1>
-                    <div class="sdginf">
-                        <div class="row justify-content-center">
-                            <div class="card bg-light mb-3 mt-3" style="max-width: 18rem;">
-                                <div class="card-header">
-                                    <strong>
-                                        過期其實還能吃！1/3食物被丟掉，瑞士教民眾一秘訣判斷剩食安全
-                                    </strong>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text">
-                                        據統計，瑞士每年每人浪費掉90公斤食物，相當於620瑞郎（約1萬9,000元台幣）。剩食是個勞民傷財的議題，這兩年，瑞士民間與官方全面動起來，減少資源浪費<a
-                                            href="https://futurecity.cw.com.tw/article/2668"><br>閱讀更多</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item" id="sdg3">
-                    <h1 class="display-4">確保及促進各年齡層健康生活與福祉</h1>
-                    <div class="sdginf">
-                        <div class="row justify-content-center">
-                            <div class="card bg-light mb-3 mt-3" style="max-width: 18rem;">
-                                <div class="card-header">
-                                    <strong>
-                                        智慧醫療懶人包》八張圖，一次搞懂智慧醫療的定義、應用與台灣的挑戰
-                                    </strong>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text">廣達集團創辦人林百里說，智慧醫療將是台灣的「第二座護國神山」。什麼是智慧醫療？它應用到哪些科技？台灣真的做得來嗎？<a
-                                            href="https://futurecity.cw.com.tw/article/1916"><br>閱讀更多</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item" id="sdg4">
-                    <h1 class="display-4">確保有教無類、公平以及高品質的教育，及提倡終身學習</h1>
-                    <div class="sdginf">
-                        <div class="row justify-content-center">
-                            <div class="card bg-light mb-3 mt-3" style="max-width: 18rem;">
-                                <div class="card-header">
-                                    <strong>
-                                        SDGs永續閱讀是什麼？100本永續書單一次收藏
-                                    </strong>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text">一項新閱讀運動，如星火燎原般，在全球各地接力展開，在後疫情時代中更形成一股不容忽視的閱讀新浪潮<a
-                                            href="https://futurecity.cw.com.tw/article/2347"><br>閱讀更多</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item" id="sdg5">
-                    <h1 class="display-4">實現性別平等，並賦予婦女權力</h1>
-                    <div class="sdginf">
-                        <div class="row justify-content-center">
-                            <div class="card bg-light mb-3 mt-3" style="max-width: 18rem;">
-                                <div class="card-header">
-                                    <strong>
-                                        男人上下班，女人到處跑⋯⋯歐洲如何從交通打造性別平權城市？
-                                    </strong>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text">一座城市，往往是在一群男性官員、男性建築師和男性都市規劃師手中誕生的<a
-                                            href="https://futurecity.cw.com.tw/article/2360"><br>閱讀更多</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item" id="sdg6">
-                    <h1 class="display-4">確保所有人都能享有水、衛生及其永續管理</h1>
-                    <div class="sdginf">
-                        <div class="row justify-content-center">
-                            <div class="card bg-light mb-3 mt-3" style="max-width: 18rem;">
-                                <div class="card-header">
-                                    <strong>
-                                        台北怎麼變「海綿城市」？土地多吸水一公分，就能容受1000座游泳池水量
-                                    </strong>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text">透過保水的概念，利用滯洪與保水貯留設施來增加容受度，已取代過去期待迅速排水的思維，成為台北市的水利施政新目標<a
-                                            href="https://futurecity.cw.com.tw/article/870"><br>閱讀更多</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item" id="sdg7">
-                    <h1 class="display-4">確保所有的人都可取得負擔得起、可靠、永續及現代的能源</h1>
-                    <div class="sdginf">
-                        <div class="row justify-content-center">
-                            <div class="card bg-light mb-3 mt-3" style="max-width: 18rem;">
-                                <div class="card-header">
-                                    <strong>
-                                        成立能源合作社、社區團購電力，日本如何打開綠電新商機？
-                                    </strong>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text">近期中國宣布2030年碳達峰、2060年碳中和目標，地方政府為達績效紛紛祭出限電令，確保碳排放不超標<a
-                                            href="https://futurecity.cw.com.tw/article/2286"><br>閱讀更多</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item" id="sdg8">
-                    <h1 class="display-4">促進包容且永續的經濟成長，讓每個人都有一份好工作</h1>
-                    <div class="sdginf">
-                        <div class="row justify-content-center">
-                            <div class="card bg-light mb-3 mt-3" style="max-width: 18rem;">
-                                <div class="card-header">
-                                    <strong>
-                                        冰島「周休三日」大成功！工時縮短效率卻增加
-                                    </strong>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text">有關將周休二日延長為三日的相關討論近年經常被提出討論，而根據最新研究指出，冰島投入「一周工作四天」的實驗取得「壓倒性的成功」<a
-                                            href="https://futurecity.cw.com.tw/article/2102"><br>閱讀更多</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item" id="sdg9">
-                    <h1 class="display-4">建立具有韌性的基礎建設，促進包容且永續的工業，並加速創新</h1>
-                    <div class="sdginf">
-                        <div class="row justify-content-center">
-                            <div class="card bg-light mb-3 mt-3" style="max-width: 18rem;">
-                                <div class="card-header">
-                                    <strong>
-                                        趕路霸、移電箱　四年改54處通學廊道，學童不再冒險走快車道｜新北養工處
-                                    </strong>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text">「原本的路一到晚上，家長和小朋友都不敢走，」新北市新埔國中校長郭月秀剛上任就收到反應，校園旁人行道寬度不到一公尺，又布滿變電箱、電桿與不平樹穴，行人像走障礙賽；加上樹多、路燈少，成了安全死角<a
-                                            href="https://futurecity.cw.com.tw/article/2896"><br>閱讀更多</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item" id="sdg10">
-                    <h1 class="display-4">減少國內及國家間的不平等</h1>
-                    <div class="sdginf">
-                        <div class="row justify-content-center">
-                            <div class="card bg-light mb-3 mt-3" style="max-width: 18rem;">
-                                <div class="card-header">
-                                    <strong>
-                                        經濟如何復甦？1000個城市的共同解答：更綠、更公平｜疫情城市預言5
-                                    </strong>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text">新冠肺炎至今已為時一年，不僅造成國際秩序重新洗牌，對各國內部體制及規劃，也因疫情本身及複合性災害的發生，使過去治理規劃者對城市有機體所做的韌性規劃設計，被重新審視<a
-                                            href="https://futurecity.cw.com.tw/article/2182"><br>閱讀更多</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item" id="sdg11">
-                    <h1 class="display-4">建構具包容、安全、韌性及永續特質的城市與鄉村</h1>
-                    <div class="sdginf">
-                        <div class="row justify-content-center">
-                            <div class="card bg-light mb-3 mt-3" style="max-width: 18rem;">
-                                <div class="card-header">
-                                    <strong>
-                                        永續城市模範生！阿爾卑斯山谷裡的小城，為何能成為歐洲綠色首都？
-                                    </strong>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text">法國城市格勒諾布爾獲得「2022歐洲綠色首都」肯定，並贏得「永續都市移動計畫獎」。它是如何擊敗歐洲諸多優異城市，獲得國際肯定的呢？<a
-                                            href="https://futurecity.cw.com.tw/article/2267"><br>閱讀更多</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item" id="sdg12">
-                    <h1 class="display-4">促進綠色經濟，確保永續消費及生產模式</h1>
-                    <div class="sdginf">
-                        <div class="row justify-content-center">
-                            <div class="card bg-light mb-3 mt-3" style="max-width: 18rem;">
-                                <div class="card-header">
-                                    <strong>
-                                        三級警戒垃圾增4%！兩個女生設計的「循環杯」如何幫台南減廢？｜黃偉哲專欄
-                                    </strong>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text">全世界都在講的淨零減碳，台南市從大家手上的手搖杯開始做起<a
-                                            href="https://futurecity.cw.com.tw/article/2305"><br>閱讀更多</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item" id="sdg13">
-                    <h1 class="display-4">完備減緩調適行動，以因應氣候變遷及其影響</h1>
-                    <div class="sdginf">
-                        <div class="row justify-content-center">
-                            <div class="card bg-light mb-3 mt-3" style="max-width: 18rem;">
-                                <div class="card-header">
-                                    <strong>
-                                        美國每年熱死1萬多人！全球第一位「高溫長」，如何對抗城市熱浪？
-                                    </strong>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text">聽過首席執行長，你有聽過首席高溫長嗎？<a
-                                            href="https://futurecity.cw.com.tw/article/2412"><br>閱讀更多</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item" id="sdg14">
-                    <h1 class="display-4">保育及永續利用海洋生態系，以確保生物多樣性並防止海洋環境劣化</h1>
-                    <div class="sdginf">
-                        <div class="row justify-content-center">
-                            <div class="card bg-light mb-3 mt-3" style="max-width: 18rem;">
-                                <div class="card-header">
-                                    <strong>
-                                        城市圖書館｜「不傷害我的事物，我不會傷害」帛琉在觀光客護照印上孩子寫的生態誓詞
-                                    </strong>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text">對許多人來說，一生如果能有一次機會造訪帛琉潛水、釣魚，已經非常幸運了。我何其有幸，能在這美麗的島國生活兩年，也因此學到了許多寶貴的工作經驗。例如海洋保育的重要性<a
-                                            href="https://futurecity.cw.com.tw/article/904"><br>閱讀更多</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item" id="sdg15">
-                    <h1 class="display-4">保育及永續利用陸域生態系，確保生物多樣性並防止土地劣化</h1>
-                    <div class="sdginf">
-                        <div class="row justify-content-center">
-                            <div class="card bg-light mb-3 mt-3" style="max-width: 18rem;">
-                                <div class="card-header">
-                                    <strong>
-                                        將自然生態移植到現代城市　新加坡樟宜機場能，台灣能嗎？
-                                    </strong>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text">城市中，人們如何與大自然互動？現代化城市可以營造出友善動物的自然生態區嗎？<a
-                                            href="https://futurecity.cw.com.tw/article/2409"><br>閱讀更多</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item" id="sdg16">
-                    <h1 class="display-4">促進和平多元的社會，確保司法平等，建立具公信力且廣納民意的體系</h1>
-                    <div class="sdginf">
-                        <div class="row justify-content-center">
-                            <div class="card bg-light mb-3 mt-3" style="max-width: 18rem;">
-                                <div class="card-header">
-                                    <strong>
-                                        數位時代，台灣如何靠資料治理實踐海洋國家冒險精神？
-                                    </strong>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text">15到17世紀，是歐洲的地理大發現時期，期間發生了文藝復興、大航海乃至科學革命，故又稱為「發現時代」。這個時期的成就徹底翻轉世界版圖，使歐洲成為世界的中心<a
-                                            href="https://futurecity.cw.com.tw/article/2764"><br>閱讀更多</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item" id="sdg17">
-                    <h1 class="display-4">建立多元夥伴關係，協力促進永續願景</h1>
-                    <div class="sdginf">
-                        <div class="row justify-content-center">
-                            <div class="card bg-light mb-3 mt-3" style="max-width: 18rem;">
-                                <div class="card-header">
-                                    <strong>
-                                        除了17項目標，你更該知道SDGs兩大關鍵字：「所有」與「包容性」
-                                    </strong>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text">2015年底，延續千禧年發展目標，聯合國大會提出永續發展目標，期待於2030年實現社會、經濟和環境三個層面的平衡發展<a
-                                            href="https://futurecity.cw.com.tw/article/1520"><br>閱讀更多</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+	<div class="card">
+		<div class="card-header">
+			<div class="row align-items-center">
+				<div class="col">
+					<h2 class="fs-5 fw-bold mb-0">SDGs各項指標介紹</h2>
+				</div>
+				<div class="col text-end">
+				</div>
+			</div>
+		</div>
+		<div class="row card-body">
+			<div class="col-2 sdgside"></div>
+			<div style="text-align: center;"
+				 class="sdgdiv col-8">
+				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_1.png' %}"
+					 class="sdgimg">
+				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_2.png' %}"
+					 class="sdgimg">
+				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_3.png' %}"
+					 class="sdgimg">
+				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_4.png' %}"
+					 alt="SDG 4"
+					 class="sdgimg">
+				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_5.png' %}"
+					 alt="SDG 5"
+					 class="sdgimg">
+				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_6.png' %}"
+					 alt="SDG 6"
+					 class="sdgimg">
+				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_7.png' %}"
+					 alt="SDG 7"
+					 class="sdgimg">
+				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_8.png' %}"
+					 alt="SDG 8"
+					 class="sdgimg">
+				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_9.png' %}"
+					 alt="SDG 9"
+					 class="sdgimg">
+				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_10.png' %}"
+					 alt="SDG 10"
+					 class="sdgimg">
+				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_11.png' %}"
+					 alt="SDG 11"
+					 class="sdgimg">
+				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_12.png' %}"
+					 alt="SDG 12"
+					 class="sdgimg">
+				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_13.png' %}"
+					 alt="SDG 13"
+					 class="sdgimg">
+				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_14.png' %}"
+					 alt="SDG 14"
+					 class="sdgimg">
+				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_15.png' %}"
+					 alt="SDG 15"
+					 class="sdgimg">
+				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_16.png' %}"
+					 alt="SDG 16"
+					 class="sdgimg">
+				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_17.png' %}"
+					 alt="SDG 17"
+					 class="sdgimg">
+			</div>
+			<div class="col-2 sdgside"></div>
+		</div>
+		<div id="carouselsdg"
+			 class="carousel slide"
+			 data-ride="carousel"
+			 data-interval="false">
+			<div class="carousel-inner sdgside">
+				<div class="carousel-item active"
+					 id="sdg1">
+					<h1 class="display-4">消除各地一切形式的貧窮</h1>
+					<div class="sdginf">
+						<div class="row justify-content-center">
+							<div class="card bg-light mb-3 mt-3"
+								 style="max-width: 18rem;">
+								<div class="card-header">
+									<strong>
+										萬華，原來如此》萬華，為何聚集如此多貧困者與性工作者？
+									</strong>
+								</div>
+								<div class="card-body">
+									<p class="card-text">最近「萬華」因為疫情的發展，頓時登上全國熱搜的關鍵字，特別是街友、阿公店、茶藝館等等「名詞」，甚至成為大家茶餘飯後重要話題<a
+											href="https://futurecity.cw.com.tw/article/2014"><br>閱讀更多</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item"
+					 id="sdg2">
+					<h1 class="display-4">確保糧食安全，消除飢餓，促進永續農業</h1>
+					<div class="sdginf">
+						<div class="row justify-content-center">
+							<div class="card bg-light mb-3 mt-3"
+								 style="max-width: 18rem;">
+								<div class="card-header">
+									<strong>
+										過期其實還能吃！1/3食物被丟掉，瑞士教民眾一秘訣判斷剩食安全
+									</strong>
+								</div>
+								<div class="card-body">
+									<p class="card-text">
+										據統計，瑞士每年每人浪費掉90公斤食物，相當於620瑞郎（約1萬9,000元台幣）。剩食是個勞民傷財的議題，這兩年，瑞士民間與官方全面動起來，減少資源浪費<a
+											href="https://futurecity.cw.com.tw/article/2668"><br>閱讀更多</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item"
+					 id="sdg3">
+					<h1 class="display-4">確保及促進各年齡層健康生活與福祉</h1>
+					<div class="sdginf">
+						<div class="row justify-content-center">
+							<div class="card bg-light mb-3 mt-3"
+								 style="max-width: 18rem;">
+								<div class="card-header">
+									<strong>
+										智慧醫療懶人包》八張圖，一次搞懂智慧醫療的定義、應用與台灣的挑戰
+									</strong>
+								</div>
+								<div class="card-body">
+									<p class="card-text">廣達集團創辦人林百里說，智慧醫療將是台灣的「第二座護國神山」。什麼是智慧醫療？它應用到哪些科技？台灣真的做得來嗎？<a
+											href="https://futurecity.cw.com.tw/article/1916"><br>閱讀更多</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item"
+					 id="sdg4">
+					<h1 class="display-4">確保有教無類、公平以及高品質的教育，及提倡終身學習</h1>
+					<div class="sdginf">
+						<div class="row justify-content-center">
+							<div class="card bg-light mb-3 mt-3"
+								 style="max-width: 18rem;">
+								<div class="card-header">
+									<strong>
+										SDGs永續閱讀是什麼？100本永續書單一次收藏
+									</strong>
+								</div>
+								<div class="card-body">
+									<p class="card-text">一項新閱讀運動，如星火燎原般，在全球各地接力展開，在後疫情時代中更形成一股不容忽視的閱讀新浪潮<a
+											href="https://futurecity.cw.com.tw/article/2347"><br>閱讀更多</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item"
+					 id="sdg5">
+					<h1 class="display-4">實現性別平等，並賦予婦女權力</h1>
+					<div class="sdginf">
+						<div class="row justify-content-center">
+							<div class="card bg-light mb-3 mt-3"
+								 style="max-width: 18rem;">
+								<div class="card-header">
+									<strong>
+										男人上下班，女人到處跑⋯⋯歐洲如何從交通打造性別平權城市？
+									</strong>
+								</div>
+								<div class="card-body">
+									<p class="card-text">一座城市，往往是在一群男性官員、男性建築師和男性都市規劃師手中誕生的<a
+											href="https://futurecity.cw.com.tw/article/2360"><br>閱讀更多</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item"
+					 id="sdg6">
+					<h1 class="display-4">確保所有人都能享有水、衛生及其永續管理</h1>
+					<div class="sdginf">
+						<div class="row justify-content-center">
+							<div class="card bg-light mb-3 mt-3"
+								 style="max-width: 18rem;">
+								<div class="card-header">
+									<strong>
+										台北怎麼變「海綿城市」？土地多吸水一公分，就能容受1000座游泳池水量
+									</strong>
+								</div>
+								<div class="card-body">
+									<p class="card-text">透過保水的概念，利用滯洪與保水貯留設施來增加容受度，已取代過去期待迅速排水的思維，成為台北市的水利施政新目標<a
+											href="https://futurecity.cw.com.tw/article/870"><br>閱讀更多</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item"
+					 id="sdg7">
+					<h1 class="display-4">確保所有的人都可取得負擔得起、可靠、永續及現代的能源</h1>
+					<div class="sdginf">
+						<div class="row justify-content-center">
+							<div class="card bg-light mb-3 mt-3"
+								 style="max-width: 18rem;">
+								<div class="card-header">
+									<strong>
+										成立能源合作社、社區團購電力，日本如何打開綠電新商機？
+									</strong>
+								</div>
+								<div class="card-body">
+									<p class="card-text">近期中國宣布2030年碳達峰、2060年碳中和目標，地方政府為達績效紛紛祭出限電令，確保碳排放不超標<a
+											href="https://futurecity.cw.com.tw/article/2286"><br>閱讀更多</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item"
+					 id="sdg8">
+					<h1 class="display-4">促進包容且永續的經濟成長，讓每個人都有一份好工作</h1>
+					<div class="sdginf">
+						<div class="row justify-content-center">
+							<div class="card bg-light mb-3 mt-3"
+								 style="max-width: 18rem;">
+								<div class="card-header">
+									<strong>
+										冰島「周休三日」大成功！工時縮短效率卻增加
+									</strong>
+								</div>
+								<div class="card-body">
+									<p class="card-text">有關將周休二日延長為三日的相關討論近年經常被提出討論，而根據最新研究指出，冰島投入「一周工作四天」的實驗取得「壓倒性的成功」<a
+											href="https://futurecity.cw.com.tw/article/2102"><br>閱讀更多</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item"
+					 id="sdg9">
+					<h1 class="display-4">建立具有韌性的基礎建設，促進包容且永續的工業，並加速創新</h1>
+					<div class="sdginf">
+						<div class="row justify-content-center">
+							<div class="card bg-light mb-3 mt-3"
+								 style="max-width: 18rem;">
+								<div class="card-header">
+									<strong>
+										趕路霸、移電箱　四年改54處通學廊道，學童不再冒險走快車道｜新北養工處
+									</strong>
+								</div>
+								<div class="card-body">
+									<p class="card-text">「原本的路一到晚上，家長和小朋友都不敢走，」新北市新埔國中校長郭月秀剛上任就收到反應，校園旁人行道寬度不到一公尺，又布滿變電箱、電桿與不平樹穴，行人像走障礙賽；加上樹多、路燈少，成了安全死角<a
+											href="https://futurecity.cw.com.tw/article/2896"><br>閱讀更多</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item"
+					 id="sdg10">
+					<h1 class="display-4">減少國內及國家間的不平等</h1>
+					<div class="sdginf">
+						<div class="row justify-content-center">
+							<div class="card bg-light mb-3 mt-3"
+								 style="max-width: 18rem;">
+								<div class="card-header">
+									<strong>
+										經濟如何復甦？1000個城市的共同解答：更綠、更公平｜疫情城市預言5
+									</strong>
+								</div>
+								<div class="card-body">
+									<p class="card-text">新冠肺炎至今已為時一年，不僅造成國際秩序重新洗牌，對各國內部體制及規劃，也因疫情本身及複合性災害的發生，使過去治理規劃者對城市有機體所做的韌性規劃設計，被重新審視<a
+											href="https://futurecity.cw.com.tw/article/2182"><br>閱讀更多</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item"
+					 id="sdg11">
+					<h1 class="display-4">建構具包容、安全、韌性及永續特質的城市與鄉村</h1>
+					<div class="sdginf">
+						<div class="row justify-content-center">
+							<div class="card bg-light mb-3 mt-3"
+								 style="max-width: 18rem;">
+								<div class="card-header">
+									<strong>
+										永續城市模範生！阿爾卑斯山谷裡的小城，為何能成為歐洲綠色首都？
+									</strong>
+								</div>
+								<div class="card-body">
+									<p class="card-text">法國城市格勒諾布爾獲得「2022歐洲綠色首都」肯定，並贏得「永續都市移動計畫獎」。它是如何擊敗歐洲諸多優異城市，獲得國際肯定的呢？<a
+											href="https://futurecity.cw.com.tw/article/2267"><br>閱讀更多</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item"
+					 id="sdg12">
+					<h1 class="display-4">促進綠色經濟，確保永續消費及生產模式</h1>
+					<div class="sdginf">
+						<div class="row justify-content-center">
+							<div class="card bg-light mb-3 mt-3"
+								 style="max-width: 18rem;">
+								<div class="card-header">
+									<strong>
+										三級警戒垃圾增4%！兩個女生設計的「循環杯」如何幫台南減廢？｜黃偉哲專欄
+									</strong>
+								</div>
+								<div class="card-body">
+									<p class="card-text">全世界都在講的淨零減碳，台南市從大家手上的手搖杯開始做起<a
+											href="https://futurecity.cw.com.tw/article/2305"><br>閱讀更多</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item"
+					 id="sdg13">
+					<h1 class="display-4">完備減緩調適行動，以因應氣候變遷及其影響</h1>
+					<div class="sdginf">
+						<div class="row justify-content-center">
+							<div class="card bg-light mb-3 mt-3"
+								 style="max-width: 18rem;">
+								<div class="card-header">
+									<strong>
+										美國每年熱死1萬多人！全球第一位「高溫長」，如何對抗城市熱浪？
+									</strong>
+								</div>
+								<div class="card-body">
+									<p class="card-text">聽過首席執行長，你有聽過首席高溫長嗎？<a
+											href="https://futurecity.cw.com.tw/article/2412"><br>閱讀更多</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item"
+					 id="sdg14">
+					<h1 class="display-4">保育及永續利用海洋生態系，以確保生物多樣性並防止海洋環境劣化</h1>
+					<div class="sdginf">
+						<div class="row justify-content-center">
+							<div class="card bg-light mb-3 mt-3"
+								 style="max-width: 18rem;">
+								<div class="card-header">
+									<strong>
+										城市圖書館｜「不傷害我的事物，我不會傷害」帛琉在觀光客護照印上孩子寫的生態誓詞
+									</strong>
+								</div>
+								<div class="card-body">
+									<p class="card-text">對許多人來說，一生如果能有一次機會造訪帛琉潛水、釣魚，已經非常幸運了。我何其有幸，能在這美麗的島國生活兩年，也因此學到了許多寶貴的工作經驗。例如海洋保育的重要性<a
+											href="https://futurecity.cw.com.tw/article/904"><br>閱讀更多</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item"
+					 id="sdg15">
+					<h1 class="display-4">保育及永續利用陸域生態系，確保生物多樣性並防止土地劣化</h1>
+					<div class="sdginf">
+						<div class="row justify-content-center">
+							<div class="card bg-light mb-3 mt-3"
+								 style="max-width: 18rem;">
+								<div class="card-header">
+									<strong>
+										將自然生態移植到現代城市　新加坡樟宜機場能，台灣能嗎？
+									</strong>
+								</div>
+								<div class="card-body">
+									<p class="card-text">城市中，人們如何與大自然互動？現代化城市可以營造出友善動物的自然生態區嗎？<a
+											href="https://futurecity.cw.com.tw/article/2409"><br>閱讀更多</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item"
+					 id="sdg16">
+					<h1 class="display-4">促進和平多元的社會，確保司法平等，建立具公信力且廣納民意的體系</h1>
+					<div class="sdginf">
+						<div class="row justify-content-center">
+							<div class="card bg-light mb-3 mt-3"
+								 style="max-width: 18rem;">
+								<div class="card-header">
+									<strong>
+										數位時代，台灣如何靠資料治理實踐海洋國家冒險精神？
+									</strong>
+								</div>
+								<div class="card-body">
+									<p class="card-text">15到17世紀，是歐洲的地理大發現時期，期間發生了文藝復興、大航海乃至科學革命，故又稱為「發現時代」。這個時期的成就徹底翻轉世界版圖，使歐洲成為世界的中心<a
+											href="https://futurecity.cw.com.tw/article/2764"><br>閱讀更多</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item"
+					 id="sdg17">
+					<h1 class="display-4">建立多元夥伴關係，協力促進永續願景</h1>
+					<div class="sdginf">
+						<div class="row justify-content-center">
+							<div class="card bg-light mb-3 mt-3"
+								 style="max-width: 18rem;">
+								<div class="card-header">
+									<strong>
+										除了17項目標，你更該知道SDGs兩大關鍵字：「所有」與「包容性」
+									</strong>
+								</div>
+								<div class="card-body">
+									<p class="card-text">2015年底，延續千禧年發展目標，聯合國大會提出永續發展目標，期待於2030年實現社會、經濟和環境三個層面的平衡發展<a
+											href="https://futurecity.cw.com.tw/article/1520"><br>閱讀更多</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
-            </div>
-        </div>
-    </div>
-    <script>
+			</div>
+		</div>
+	</div>
+	<script>
         var sdgimg = document.querySelectorAll(".sdgimg");
         var sdgdiv = document.querySelector(".sdgdiv")
         var carsdg = document.getElementById("carouselsdg")
@@ -398,5 +437,5 @@
         for (var i = 0; i < sdgimg.length; i++) {
             sdgimg[i].addEventListener('click', moveImage(i));
         }
-    </script>
+	</script>
 {% endblock %}
