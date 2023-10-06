@@ -156,10 +156,18 @@ def requestnttu(request):
 		op.add_argument('--disable-gpu')
 		op.add_argument('--disable-dev-shm-usage')
 		driver = webdriver.Edge(service=service,options=op)
+		# linux server
+		# service = Service(executable_path="/snap/bin/chromium.chromedriver")
+		# op = webdriver.ChromeOptions()
+		# op.add_argument("--headless")
+		# op.add_argument('--no-sandbox')
+		# op.add_argument('--disable-gpu')
+		# op.add_argument('--disable-dev-shm-usage')
+		# driver = webdriver.Chrome(service=service,options=op)
 	# 通用的爬取操作
 	url = "https://wdsa.nttu.edu.tw/p/403-1009-424-1.php?Lang=zh-tw"
 	driver.get(url=url)
-	elements = driver.find_elements(By.CLASS_NAME, 'mtitle')
+	elements = driver.find_elements(By.CLASS_NAME,'mtitle')
 
 	titles = []
 	links = []
@@ -168,8 +176,8 @@ def requestnttu(request):
 		links.append(i.find_element(By.TAG_NAME,'a').get_attribute('href'))
 
 	data = {
-        "title": titles,
-        "link": links
-    }
+		"title":titles,
+		"link" :links,
+	}
 	driver.quit()
 	return JsonResponse(data)
