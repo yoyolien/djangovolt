@@ -8,7 +8,9 @@
             display: inline-block;
             /* border-bottom: 1px dotted black; */
         }
-
+        .hidden {
+      display: none;
+    }
         .tooltipa .tooltiptext {
             visibility: hidden;
             width: 120px;
@@ -48,18 +50,27 @@
                         <h5 class="modal-title" id="exampleModalLabel">
                             這些天數用電異常
                         </h5>
-                        <button type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close">
-                        </button>
                     </div>
-                    <div class="text-danger m-2">
+                    <div class=" m-2">
                         <ul id="abnormaldate">
                             <!-- <li>suas</li> -->
                         </ul>
                     </div>
-                    <div class="m-4 text-center bg-yellow-100 rounded">
+                    <div class="accordion" id="acc">
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              1月
+                            </button>
+                          </h2>
+                          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body" id="acc1">
+                              
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <!-- <div class="m-4 text-center bg-yellow-100 rounded">
                         <p class=" fw-bolder">檢查以下電器是否正常運作</p>
                         <label>
                             <input type="checkbox" name="checkbox1"> 冰箱
@@ -70,7 +81,7 @@
                         <label>
                             <input type="checkbox" name="checkbox3"> 電腦
                         </label>
-                    </div>
+                    </div> -->
                     
                         <div class="modal-footer justify-content-center">
                             <button type="button"
@@ -1011,24 +1022,72 @@
         var abnormal_list=[];
         var markAreadata = [];
         var markPointData = [];
-        // $(document).ready(function() {
-        //         $('#hello').modal('show');
-        //     });
-        function test(){
+        var ifchange=0;
+        var item=['冰箱','冷氣','熱水器'];
+        // document.getElementById(acc).removeChild();
+        var accordionItemTemplate;
+        var clonedAccordionItem;
+        
+        function add_acc_item(acc,month){
+            accordionItemTemplate = document.querySelector('.accordion-item');
+            clonedAccordionItem = accordionItemTemplate.cloneNode(true);
+            console.log("是"+month);
+            console.log(clonedAccordionItem);
+            var newMonth = month+"月";
+            var newAccordionButton = clonedAccordionItem.querySelector('.accordion-button');
+            console.log(newAccordionButton);
+            newAccordionButton.textContent = newMonth;
+            var newAccordionBody = clonedAccordionItem.querySelector('.accordion-body');
+            var newAccordionBodyId = 'acc' + month;
+            newAccordionBody.id = newAccordionBodyId;
 
+            acc.appendChild(clonedAccordionItem);
+
+            
+        }
+
+        function test(){
+            var t_acc;
             $(document).ready(function() {
                 $('#hello').modal('show');
             });
-            const abnormaldate = document.getElementById("abnormaldate");
-            while (abnormaldate.firstChild) {
-                abnormaldate.removeChild(abnormaldate.firstChild);
-            }
-            // console.log(abnormaldate);
-            // abnormaldate.removeChild(li);
+
+            const acc = document.getElementById("acc");
+            const acc_item = document.getElementById("acc_item");
+            
+
+            // while(acc.firstChild){
+            //     console.log(acc.firstChild);
+            //     acc.removeChild(acc.firstChild);
+            // }
+
+            console.log("iiiii");
+            console.log(acc);
+            
             for(var i=0;i<markPointData.length;i++){
-                var li = document.createElement('li');
-                li.textContent=(String(markPointData[i].month)+'月'+String(markPointData[i].date)+'日');
-                abnormaldate.appendChild(li);
+                console.log(markPointData[i].month);
+                if(t_acc=document.getElementById("acc"+markPointData[i].month))console.log("success");
+                else{
+                    console.log("fail");
+                    add_acc_item(acc,markPointData[i].month,clonedAccordionItem);
+                    t_acc=document.getElementById("acc"+markPointData[i].month);
+                };
+                
+                var p = document.createElement('p');
+                p.classList.add("text-danger");
+                p.textContent = String(markPointData[i].month) + '月' + String(markPointData[i].date) + '日';
+                t_acc.appendChild(p); 
+
+                
+                for(var j=0;j<item.length;j++){
+                    var label = document.createElement('label');
+                    var checkbox =document.createElement('input');
+                    label.textContent=item[j];
+                    checkbox.type='checkbox';
+                    t_acc.appendChild(label);
+                    t_acc.appendChild(checkbox);
+                }
+                
             }
         }
 
