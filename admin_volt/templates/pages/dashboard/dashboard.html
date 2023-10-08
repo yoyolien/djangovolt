@@ -436,7 +436,7 @@
         </div>
         <div class="col-12 col-xl-4">
             <div class="card border-0 shadow mb-4">
-                <div class="card-header">
+                <!-- <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col">
                             <h2 class="fs-5 fw-bold mb-0">宿舍最新消息</h2>
@@ -486,7 +486,7 @@
                     }
                     hideLoader();
                 }
-            </script>
+            </script> -->
             <div class="card border-0 shadow mb-4">
                 <div class="card-header">
                     <div class="row align-items-center">
@@ -1024,52 +1024,69 @@
         var markPointData = [];
         var ifchange=0;
         var item=['冰箱','冷氣','熱水器'];
-        // document.getElementById(acc).removeChild();
         var accordionItemTemplate;
         var clonedAccordionItem;
-        
-        function add_acc_item(acc,month){
-            accordionItemTemplate = document.querySelector('.accordion-item');
-            clonedAccordionItem = accordionItemTemplate.cloneNode(true);
-            console.log("是"+month);
-            console.log(clonedAccordionItem);
-            var newMonth = month+"月";
+        var temp,temp2;
+        var tt=0;
+        var acc = document.getElementById("acc");
+        temp=acc.cloneNode(true);
+
+        function add_acc_item(accc, month) {
+            var accordionItemTemplate = document.querySelector('.accordion-item');
+            var clonedAccordionItem = accordionItemTemplate.cloneNode(true);
+            
+
+            var head = clonedAccordionItem.querySelector('.accordion-header');
+            head.id = 'h' + month;
+
+            var btn = clonedAccordionItem.querySelector('.accordion-button');
+            btn.setAttribute('data-bs-target', '#a' + month); 
+            btn.setAttribute('aria-controls', 'a' + month); 
+
+            var collapse = clonedAccordionItem.querySelector('.accordion-collapse');
+            collapse.id = 'a' + month;
+
+            var newMonth = month + "月";
             var newAccordionButton = clonedAccordionItem.querySelector('.accordion-button');
-            console.log(newAccordionButton);
             newAccordionButton.textContent = newMonth;
+
             var newAccordionBody = clonedAccordionItem.querySelector('.accordion-body');
             var newAccordionBodyId = 'acc' + month;
             newAccordionBody.id = newAccordionBodyId;
 
-            acc.appendChild(clonedAccordionItem);
-
-            
+            accc.appendChild(clonedAccordionItem);
         }
 
+
+        
         function test(){
             var t_acc;
             $(document).ready(function() {
                 $('#hello').modal('show');
             });
-
-            const acc = document.getElementById("acc");
-            const acc_item = document.getElementById("acc_item");
             
-
-            // while(acc.firstChild){
-            //     console.log(acc.firstChild);
-            //     acc.removeChild(acc.firstChild);
-            // }
-
-            console.log("iiiii");
-            console.log(acc);
+            if(tt!=0){
+                temp2=temp;
+                
+                console.log("acc=");
+                console.log(acc);
+                
+            }
+            else{
+                temp2=acc;
+            }
+            console.log(temp2);
+            tt=tt+1;
+            console.log("temp");
+            console.log(temp);
+            // acc=temp;
             
             for(var i=0;i<markPointData.length;i++){
-                console.log(markPointData[i].month);
-                if(t_acc=document.getElementById("acc"+markPointData[i].month))console.log("success");
+                // console.log(markPointData[i].month);
+                if(t_acc=document.getElementById("acc"+markPointData[i].month));
                 else{
-                    console.log("fail");
-                    add_acc_item(acc,markPointData[i].month,clonedAccordionItem);
+                    // console.log("fail");
+                    add_acc_item(temp2,markPointData[i].month,clonedAccordionItem);
                     t_acc=document.getElementById("acc"+markPointData[i].month);
                 };
                 
@@ -1089,6 +1106,12 @@
                 }
                 
             }
+            console.log(tt+"_acc_finish");
+            console.log(acc);
+            acc.removeChild(acc.querySelector('.accordion-item'));
+            // console.log(acc);
+            console.log(tt+"_temp_finish");
+            console.log(temp);
         }
 
         // 建立所需範圍ele,date,result陣列，以便ecchart讀取
