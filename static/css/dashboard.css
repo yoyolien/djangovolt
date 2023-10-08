@@ -160,17 +160,26 @@ ol.carousel-indicators li.active {
     top: 50%;
     left: 50%;
 }
-.sdgimg{
+
+.sdgimg {
     width: 100px;
     margin: 10px;
 }
-.sdgdiv{
+
+.sdgdiv {
     background: #92d9b1;
     transition-property: all; /*元素要改變的width屬性*/
     transition-duration: 1s; /*動畫持續時間為2秒*/
     transition-timing-function: ease; /*動畫速度曲線為急加速後減速*/
     transition-delay: .5s;
 }
-.sdgside{
+
+.sdgside {
     background: #92d9b1;
+    /*padding-left:20px ;*/
+}
+
+.logo img {
+    vertical-align: middle;
+    width: 20%;
 }

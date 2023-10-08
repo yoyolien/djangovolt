@@ -1,16 +1,18 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
 {% block content %}
-<!-- {#    <link rel="stylesheet" id="style-link-2" href="{% static "css/loading.css" %}">#} -->
-    <style>
+	<!-- {#    <link rel="stylesheet" id="style-link-2" href="{% static "css/loading.css" %}">#} -->
+	<style>
         .tooltipa {
             position: relative;
             display: inline-block;
             /* border-bottom: 1px dotted black; */
         }
+
         .hidden {
-      display: none;
-    }
+            display: none;
+        }
+
         .tooltipa .tooltiptext {
             visibility: hidden;
             width: 120px;
@@ -37,40 +39,52 @@
             fill: purple; /* 區域填充顏色為紅色 */
         }
 
-    </style>
-    <div class="row">
-        <div class="modal fade"
-            id="hello"
-            tabindex="-1"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog  modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header justify-content-center">
-                        <h5 class="modal-title" id="exampleModalLabel">
-                            這些天數用電異常
-                        </h5>
-                    </div>
-                    <div class=" m-2">
-                        <ul id="abnormaldate">
-                            <!-- <li>suas</li> -->
-                        </ul>
-                    </div>
-                    <div class="accordion" id="acc">
-                        <div class="accordion-item">
-                          <h2 class="accordion-header" id="headingOne">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                              1月
-                            </button>
-                          </h2>
-                          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                            <div class="accordion-body" id="acc1">
-                              
-                            </div>
-                          </div>
-                        </div>
-                    </div>
-                    <!-- <div class="m-4 text-center bg-yellow-100 rounded">
+	</style>
+	<div class="row">
+		<div class="modal fade"
+			 id="hello"
+			 tabindex="-1"
+			 aria-labelledby="exampleModalLabel"
+			 aria-hidden="true">
+			<div class="modal-dialog  modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header justify-content-center">
+						<h5 class="modal-title"
+							id="exampleModalLabel">
+							這些天數用電異常
+						</h5>
+					</div>
+					<div class=" m-2">
+						<ul id="abnormaldate">
+							<!-- <li>suas</li> -->
+						</ul>
+					</div>
+					<div class="accordion"
+						 id="acc">
+						<div class="accordion-item">
+							<h2 class="accordion-header"
+								id="headingOne">
+								<button class="accordion-button"
+										type="button"
+										data-bs-toggle="collapse"
+										data-bs-target="#collapseOne"
+										aria-expanded="true"
+										aria-controls="collapseOne">
+									1月
+								</button>
+							</h2>
+							<div id="collapseOne"
+								 class="accordion-collapse collapse show"
+								 aria-labelledby="headingOne"
+								 data-bs-parent="#accordionExample">
+								<div class="accordion-body"
+									 id="acc1">
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- <div class="m-4 text-center bg-yellow-100 rounded">
                         <p class=" fw-bolder">檢查以下電器是否正常運作</p>
                         <label>
                             <input type="checkbox" name="checkbox1"> 冰箱
@@ -82,197 +96,203 @@
                             <input type="checkbox" name="checkbox3"> 電腦
                         </label>
                     </div> -->
-                    
-                        <div class="modal-footer justify-content-center">
-                            <button type="button"
-                                class="btn btn-secondary"
-                                data-bs-dismiss="modal">關閉
-                            </button>
-                        </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 mb-4">
-            <div class="card bg-yellow-100 border-0 shadow">
-                <div class="card-header d-sm-flex flex-row align-items-center flex-0">
-                    <div class="d-block mb-3 mb-sm-0">
 
-                        <h2 class="fs-3 fw-extrabold"
-                            id="use"></h2>
-                        <div class="small mt-2">
+					<div class="modal-footer justify-content-center">
+						<button type="button"
+								class="btn btn-secondary"
+								data-bs-dismiss="modal">關閉
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 mb-4">
+			<div class="card bg-yellow-100 border-0 shadow">
+				<div class="card-header d-sm-flex flex-row align-items-center flex-0">
+					<div class="d-block mb-3 mb-sm-0">
+
+						<h2 class="fs-3 fw-extrabold"
+							id="use"></h2>
+						<div class="small mt-2">
                             <span class="text-success fw-bold"
-                                  id="compare"></span>
-                        </div>
-                    </div>
-                    <div class="d-sm-flex ms-auto align-items-center">
-                        <label for="start-date">開始日期：</label>
-                        <input type="date"  id="start-date" name="start-date" value="2023-01-01" ><br><br>
+								  id="compare"></span>
+						</div>
+					</div>
+					<div class="d-sm-flex ms-auto align-items-center">
+						<label for="start-date">開始日期：</label>
+						<input type="date"
+							   id="start-date"
+							   name="start-date"
+							   value="2023-01-01"><br><br>
 
-                        <label for="end-date">結束日期：</label>
-                        <input type="date" id="end-date" name="end-date" value="2023-01-30" ><br><br>
-                    </div>
-                </div>
+						<label for="end-date">結束日期：</label>
+						<input type="date"
+							   id="end-date"
+							   name="end-date"
+							   value="2023-01-30"><br><br>
+					</div>
+				</div>
 
-                <div class="card-body p-2"
-                     id="containbox"
-                     style="overflow-x: auto;">
-                    <div class=""
-                         id="charttest"
-                         style="width: 100%; height: 500px;">
-                    </div>
-                </div>
-            </div>
-        </div>
+				<div class="card-body p-2"
+					 id="containbox"
+					 style="overflow-x: auto;">
+					<div class=""
+						 id="charttest"
+						 style="width: 100%; height: 500px;">
+					</div>
+				</div>
+			</div>
+		</div>
 
-    </div>
-    <div class="row">
-        <div class="col-12 col-sm-6 col-xl-4 mb-4">
-            <div class="card border-0 shadow">
-                <div class="card-body">
-                    <div class="row d-block d-xl-flex align-items-center">
-                        <div
-                                class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
-                            <!-- 電量圖示 -->
-                            <div class="icon-shape icon-shape-primary rounded me-4 me-sm-0">
-                                <svg width="800px"
-                                     height="800px"
-                                     viewBox="0 0 24 24"
-                                     xmlns="http://www.w3.org/2000/svg"
-                                     xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <defs>
-                                        <polygon id="thunder-a"
-                                                 points="2.977 8.161 8.269 9.241 .218 18.519 1.882 19.604 12.128 8.161 5.893 6.809 8.821 .998 7.387 .185"/>
-                                        <path id="thunder-c"
-                                              d="M10.2577032,5.88540233 L13.3683613,6.4682972 C14.894984,6.75436548 15.5271239,8.59550311 14.4981974,9.75899885 L5.15432684,20.3249168 C3.62851509,22.0502834 0.875362777,20.253925 1.83997631,18.1623916 L4.9166534,11.4913543 L2.63023839,11.061225 C1.27422934,10.8061273 0.577759703,9.28698125 1.26946216,8.09308716 L5.3804761,0.997384038 C5.7381351,0.380056504 6.3975623,0 7.11101395,0 L10.1949866,0 C11.7353835,0 12.697534,1.66821829 11.9261411,3.00155082 L10.2577032,5.88540233 Z M10.1949866,2 L7.11101395,2 L3,9.09570312 L7.80692226,10 L3.65612945,19 L13,8.43408203 L7.11101395,7.33056641 L10.1949866,2 Z"/>
-                                    </defs>
-                                    <g fill="none"
-                                       fill-rule="evenodd"
-                                       transform="translate(4 2)">
-                                        <g transform="translate(2)">
-                                            <mask id="thunder-b"
-                                                  fill="#ffffff">
-                                                <use xlink:href="#thunder-a"/>
-                                            </mask>
-                                            <use fill="#D8D8D8"
-                                                 xlink:href="#thunder-a"/>
-                                            <g fill="#FFA0A0"
-                                               mask="url(#thunder-b)">
-                                                <rect width="24"
-                                                      height="24"
-                                                      transform="translate(-6 -2)"/>
-                                            </g>
-                                        </g>
-                                        <mask id="thunder-d"
-                                              fill="#ffffff">
-                                            <use xlink:href="#thunder-c"/>
-                                        </mask>
-                                        <use fill="#000000"
-                                             fill-rule="nonzero"
-                                             xlink:href="#thunder-c"/>
-                                        <g fill="#7600FF"
-                                           mask="url(#thunder-d)">
-                                            <rect width="24"
-                                                  height="24"
-                                                  transform="translate(-4 -2)"/>
-                                        </g>
-                                    </g>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="col-12 col-xl-7 px-xl-0">
-                            <div class="d-none d-sm-block">
-                                <h2 class="h6 text-gray-400 mb-0">該月平均電力用量</h2>
-                                <h3 class="fw-extrabold mb-2"><span id="average used"></span>度</h3>
-                            </div>
+	</div>
+	<div class="row">
+		<div class="col-12 col-sm-6 col-xl-4 mb-4">
+			<div class="card border-0 shadow">
+				<div class="card-body">
+					<div class="row d-block d-xl-flex align-items-center">
+						<div
+								class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+							<!-- 電量圖示 -->
+							<div class="icon-shape icon-shape-primary rounded me-4 me-sm-0">
+								<svg width="800px"
+									 height="800px"
+									 viewBox="0 0 24 24"
+									 xmlns="http://www.w3.org/2000/svg"
+									 xmlns:xlink="http://www.w3.org/1999/xlink">
+									<defs>
+										<polygon id="thunder-a"
+												 points="2.977 8.161 8.269 9.241 .218 18.519 1.882 19.604 12.128 8.161 5.893 6.809 8.821 .998 7.387 .185"/>
+										<path id="thunder-c"
+											  d="M10.2577032,5.88540233 L13.3683613,6.4682972 C14.894984,6.75436548 15.5271239,8.59550311 14.4981974,9.75899885 L5.15432684,20.3249168 C3.62851509,22.0502834 0.875362777,20.253925 1.83997631,18.1623916 L4.9166534,11.4913543 L2.63023839,11.061225 C1.27422934,10.8061273 0.577759703,9.28698125 1.26946216,8.09308716 L5.3804761,0.997384038 C5.7381351,0.380056504 6.3975623,0 7.11101395,0 L10.1949866,0 C11.7353835,0 12.697534,1.66821829 11.9261411,3.00155082 L10.2577032,5.88540233 Z M10.1949866,2 L7.11101395,2 L3,9.09570312 L7.80692226,10 L3.65612945,19 L13,8.43408203 L7.11101395,7.33056641 L10.1949866,2 Z"/>
+									</defs>
+									<g fill="none"
+									   fill-rule="evenodd"
+									   transform="translate(4 2)">
+										<g transform="translate(2)">
+											<mask id="thunder-b"
+												  fill="#ffffff">
+												<use xlink:href="#thunder-a"/>
+											</mask>
+											<use fill="#D8D8D8"
+												 xlink:href="#thunder-a"/>
+											<g fill="#FFA0A0"
+											   mask="url(#thunder-b)">
+												<rect width="24"
+													  height="24"
+													  transform="translate(-6 -2)"/>
+											</g>
+										</g>
+										<mask id="thunder-d"
+											  fill="#ffffff">
+											<use xlink:href="#thunder-c"/>
+										</mask>
+										<use fill="#000000"
+											 fill-rule="nonzero"
+											 xlink:href="#thunder-c"/>
+										<g fill="#7600FF"
+										   mask="url(#thunder-d)">
+											<rect width="24"
+												  height="24"
+												  transform="translate(-4 -2)"/>
+										</g>
+									</g>
+								</svg>
+							</div>
+						</div>
+						<div class="col-12 col-xl-7 px-xl-0">
+							<div class="d-none d-sm-block">
+								<h2 class="h6 text-gray-400 mb-0">該月平均電力用量</h2>
+								<h3 class="fw-extrabold mb-2"><span id="average used"></span>度</h3>
+							</div>
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-xl-4 mb-4">
-            <div class="card border-0 shadow">
-                <div class="card-body">
-                    <div class="row d-block d-xl-flex align-items-center">
-                        <div
-                                class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
-                            <!-- 警告圖示 -->
-                            <div class="icon-shape icon-shape-secondary rounded me-4 me-sm-0">
-                                <svg width="800px"
-                                     height="800px"
-                                     viewBox="0 0 24 24"
-                                     xmlns="http://www.w3.org/2000/svg"
-                                     xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <defs>
-                                        <polygon id="alert-a"
-                                                 points="2.758 .388 19.133 .388 21.288 4.068 19.896 4.965 2.592 4.965 .87 4.068"/>
-                                        <path id="alert-c"
-                                              d="M12,2 L3,18 L21,18 L12,2 Z M10.2568489,1.01947752 C11.0214571,-0.33982584 12.9785429,-0.33982584 13.7431511,1.01947752 L22.7431511,17.0194775 C23.4930806,18.3526856 22.529653,20 21,20 L3,20 C1.47034705,20 0.506919374,18.3526856 1.25684893,17.0194775 L10.2568489,1.01947752 Z M11,11 L11,16 C11,16.5522847 11.4477153,17 12,17 C12.5522847,17 13,16.5522847 13,16 L13,11 C13,10.4477153 12.5522847,10 12,10 C11.4477153,10 11,10.4477153 11,11 Z M12,9 C12.5522847,9 13,8.55228475 13,8 C13,7.44771525 12.5522847,7 12,7 C11.4477153,7 11,7.44771525 11,8 C11,8.55228475 11.4477153,9 12,9 Z"/>
-                                    </defs>
-                                    <g fill="none"
-                                       fill-rule="evenodd"
-                                       transform="translate(0 2)">
-                                        <g transform="translate(1 14)">
-                                            <mask id="alert-b"
-                                                  fill="#ffffff">
-                                                <use xlink:href="#alert-a"/>
-                                            </mask>
-                                            <use fill="#D8D8D8"
-                                                 xlink:href="#alert-a"/>
-                                            <g fill="#FFA0A0"
-                                               mask="url(#alert-b)">
-                                                <rect width="24"
-                                                      height="24"
-                                                      transform="translate(-1 -16)"/>
-                                            </g>
-                                        </g>
-                                        <mask id="alert-d"
-                                              fill="#ffffff">
-                                            <use xlink:href="#alert-c"/>
-                                        </mask>
-                                        <use fill="#000000"
-                                             fill-rule="nonzero"
-                                             xlink:href="#alert-c"/>
-                                        <g fill="#7600FF"
-                                           mask="url(#alert-d)">
-                                            <rect width="24"
-                                                  height="24"
-                                                  transform="translate(0 -2)"/>
-                                        </g>
-                                    </g>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="col-12 col-xl-7 px-xl-0">
-                            <div class="d-none d-sm-block">
-                                <h2 class="h6 text-gray-400 mb-0">該月異常天數</h2>
-                                <h3 class="fw-extrabold mb-2"><span id="overstandard"></span>天</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-xl-4 mb-4">
-            <div class="card border-0 shadow">
-                <div class="card-body">
-                    <div class="row d-block d-xl-flex align-items-center">
-                        <div
-                                class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
-                            <!-- 樹圖案 -->
-                            <div class="icon-shape icon-shape-tertiary rounded me-4 me-sm-0">
-                                <svg version="1.0"
-                                     id="Layer_1"
-                                     xmlns="http://www.w3.org/2000/svg"
-                                     xmlns:xlink="http://www.w3.org/1999/xlink"
-                                     width="800px"
-                                     height="800px"
-                                     viewBox="0 0 64 64"
-                                     enable-background="new 0 0 64 64"
-                                     xml:space="preserve">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-sm-6 col-xl-4 mb-4">
+			<div class="card border-0 shadow">
+				<div class="card-body">
+					<div class="row d-block d-xl-flex align-items-center">
+						<div
+								class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+							<!-- 警告圖示 -->
+							<div class="icon-shape icon-shape-secondary rounded me-4 me-sm-0">
+								<svg width="800px"
+									 height="800px"
+									 viewBox="0 0 24 24"
+									 xmlns="http://www.w3.org/2000/svg"
+									 xmlns:xlink="http://www.w3.org/1999/xlink">
+									<defs>
+										<polygon id="alert-a"
+												 points="2.758 .388 19.133 .388 21.288 4.068 19.896 4.965 2.592 4.965 .87 4.068"/>
+										<path id="alert-c"
+											  d="M12,2 L3,18 L21,18 L12,2 Z M10.2568489,1.01947752 C11.0214571,-0.33982584 12.9785429,-0.33982584 13.7431511,1.01947752 L22.7431511,17.0194775 C23.4930806,18.3526856 22.529653,20 21,20 L3,20 C1.47034705,20 0.506919374,18.3526856 1.25684893,17.0194775 L10.2568489,1.01947752 Z M11,11 L11,16 C11,16.5522847 11.4477153,17 12,17 C12.5522847,17 13,16.5522847 13,16 L13,11 C13,10.4477153 12.5522847,10 12,10 C11.4477153,10 11,10.4477153 11,11 Z M12,9 C12.5522847,9 13,8.55228475 13,8 C13,7.44771525 12.5522847,7 12,7 C11.4477153,7 11,7.44771525 11,8 C11,8.55228475 11.4477153,9 12,9 Z"/>
+									</defs>
+									<g fill="none"
+									   fill-rule="evenodd"
+									   transform="translate(0 2)">
+										<g transform="translate(1 14)">
+											<mask id="alert-b"
+												  fill="#ffffff">
+												<use xlink:href="#alert-a"/>
+											</mask>
+											<use fill="#D8D8D8"
+												 xlink:href="#alert-a"/>
+											<g fill="#FFA0A0"
+											   mask="url(#alert-b)">
+												<rect width="24"
+													  height="24"
+													  transform="translate(-1 -16)"/>
+											</g>
+										</g>
+										<mask id="alert-d"
+											  fill="#ffffff">
+											<use xlink:href="#alert-c"/>
+										</mask>
+										<use fill="#000000"
+											 fill-rule="nonzero"
+											 xlink:href="#alert-c"/>
+										<g fill="#7600FF"
+										   mask="url(#alert-d)">
+											<rect width="24"
+												  height="24"
+												  transform="translate(0 -2)"/>
+										</g>
+									</g>
+								</svg>
+							</div>
+						</div>
+						<div class="col-12 col-xl-7 px-xl-0">
+							<div class="d-none d-sm-block">
+								<h2 class="h6 text-gray-400 mb-0">該月異常天數</h2>
+								<h3 class="fw-extrabold mb-2"><span id="overstandard"></span>天</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-sm-6 col-xl-4 mb-4">
+			<div class="card border-0 shadow">
+				<div class="card-body">
+					<div class="row d-block d-xl-flex align-items-center">
+						<div
+								class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+							<!-- 樹圖案 -->
+							<div class="icon-shape icon-shape-tertiary rounded me-4 me-sm-0">
+								<svg version="1.0"
+									 id="Layer_1"
+									 xmlns="http://www.w3.org/2000/svg"
+									 xmlns:xlink="http://www.w3.org/1999/xlink"
+									 width="800px"
+									 height="800px"
+									 viewBox="0 0 64 64"
+									 enable-background="new 0 0 64 64"
+									 xml:space="preserve">
                 <g>
                   <path fill="#394240"
-                        d="M56.414,48.586L47.828,40H51c0.809,0,1.538-0.486,1.848-1.234s0.139-1.607-0.434-2.18L43.828,28H47
+						d="M56.414,48.586L47.828,40H51c0.809,0,1.538-0.486,1.848-1.234s0.139-1.607-0.434-2.18L43.828,28H47
                     c0.809,0,1.538-0.486,1.848-1.234s0.139-1.607-0.434-2.18L39.828,16H43c0.809,0,1.538-0.486,1.848-1.234s0.139-1.607-0.434-2.18
                     l-12-12C32.023,0.195,31.512,0,31,0s-1.023,0.195-1.414,0.586l-12,12c-0.572,0.572-0.743,1.432-0.434,2.18S18.191,16,19,16h3.172
                     l-8.586,8.586c-0.572,0.572-0.743,1.432-0.434,2.18S14.191,28,15,28h3.172l-8.586,8.586c-0.572,0.572-0.743,1.432-0.434,2.18
@@ -283,187 +303,190 @@
                     C45.75,26,16.127,26,16,26z M12,38c-0.609,0-0.773-0.227,0-1c0.461-0.461,5.956-5.955,9-9h20c3.07,3.07,8.634,8.635,9,9
                     c0.648,0.648,0.656,1,0,1C49.479,38,12.135,38,12,38z M33,62h-4V52h4V62z M54,50c-1,0-45.297,0-46,0c-0.484,0-0.797-0.203,0-1
                     c0.478-0.477,5.96-5.961,9-9h28c3.065,3.066,8.614,8.615,9.002,9.002C54.695,49.695,54.578,50,54,50z"/>
-                    <g>
+					<g>
                     <path fill="#B4CCB9"
-                          d="M20,14c0.127,0,21.679,0,22,0c0.609,0,0.695-0.305-0.001-1S32,3,32,3c-1-1-1-1-2,0s-9.359,9.359-10,10
+						  d="M20,14c0.127,0,21.679,0,22,0c0.609,0,0.695-0.305-0.001-1S32,3,32,3c-1-1-1-1-2,0s-9.359,9.359-10,10
                       C19.211,13.789,19.453,14,20,14z"/>
-                        <path fill="#B4CCB9"
-                              d="M16,26c0.127,0,29.75,0,30,0c0.469,0,0.859-0.141,0-1c-0.616-0.615-5.999-6-9-9H25
+						<path fill="#B4CCB9"
+							  d="M16,26c0.127,0,29.75,0,30,0c0.469,0,0.859-0.141,0-1c-0.616-0.615-5.999-6-9-9H25
                       c-3.049,3.049-8.556,8.557-9,9C15.234,25.766,15.453,26,16,26z"/>
-                        <path fill="#B4CCB9"
-                              d="M12,38c0.135,0,37.479,0,38,0c0.656,0,0.648-0.352,0-1c-0.366-0.365-5.93-5.93-9-9H21
+						<path fill="#B4CCB9"
+							  d="M12,38c0.135,0,37.479,0,38,0c0.656,0,0.648-0.352,0-1c-0.366-0.365-5.93-5.93-9-9H21
                       c-3.044,3.045-8.539,8.539-9,9C11.227,37.773,11.391,38,12,38z"/>
-                        <path fill="#B4CCB9"
-                              d="M54.002,49.002C53.614,48.615,48.065,43.066,45,40H17c-3.04,3.039-8.522,8.523-9,9
+						<path fill="#B4CCB9"
+							  d="M54.002,49.002C53.614,48.615,48.065,43.066,45,40H17c-3.04,3.039-8.522,8.523-9,9
                       c-0.797,0.797-0.484,1,0,1c0.703,0,45,0,46,0C54.578,50,54.695,49.695,54.002,49.002z"/>
                   </g>
-                    <rect x="29"
-                          y="52"
-                          fill="#506C7F"
-                          width="4"
-                          height="10"/>
+					<rect x="29"
+						  y="52"
+						  fill="#506C7F"
+						  width="4"
+						  height="10"/>
                 </g>
                 </svg>
-                            </div>
-                            <div class="d-sm-none">
-                                <h2 class="fw-extrabold h5"> Bounce Rate</h2>
-                                <h3 class="mb-1">50.88%</h3>
-                            </div>
-                        </div>
-                        <div class="col-12 col-xl-7 px-xl-0">
-                            <div class="d-none d-sm-block">
-                                <h2 class="h6 text-gray-400 mb-0">該月需種植樹木數</h2>
-                                <h3 class="fw-extrabold mb-2"><span id="tree"></span>棵</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-xl-8">
-            <div class="row">
-                <div class="col-12 col-xxl-6 mb-4">
-                    <div class="card border-0 shadow">
-                        <div class="card-header border-bottom d-flex align-items-center justify-content-between">
-                            <h2 class="fs-5 fw-bold mb-0">今年電力使用共: {{ wholeusage }} 度
-                                約需要種植 {{ treec|length }} 棵樹</h2>
-                            <!-- <a href="#" class="btn btn-sm btn-primary">See all</a> -->
+							</div>
+							<div class="d-sm-none">
+								<h2 class="fw-extrabold h5"> Bounce Rate</h2>
+								<h3 class="mb-1">50.88%</h3>
+							</div>
+						</div>
+						<div class="col-12 col-xl-7 px-xl-0">
+							<div class="d-none d-sm-block">
+								<h2 class="h6 text-gray-400 mb-0">該月需種植樹木數</h2>
+								<h3 class="fw-extrabold mb-2"><span id="tree"></span>棵</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-xl-8">
+			<div class="row">
+				<div class="col-12 col-xxl-6 mb-4">
+					<div class="card border-0 shadow">
+						<div class="card-header border-bottom d-flex align-items-center justify-content-between">
+							<h2 class="fs-5 fw-bold mb-0">今年電力使用共: {{ wholeusage }} 度
+														  約需要種植 {{ treec|length }} 棵樹</h2>
+							<!-- <a href="#" class="btn btn-sm btn-primary">See all</a> -->
 
-                            <div class="tooltipa">
-                                <svg class="icon icon-s text-gray-500 ms-2 me-1"
-                                     fill="currentColor"
-                                     viewBox="0 0 20 20"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                            fill-rule="evenodd"
-                                            clip-rule="evenodd"
-                                            d="M0.877075 7.49972C0.877075 3.84204 3.84222 0.876892 7.49991 0.876892C11.1576 0.876892 14.1227 3.84204 14.1227 7.49972C14.1227 11.1574 11.1576 14.1226 7.49991 14.1226C3.84222 14.1226 0.877075 11.1574 0.877075 7.49972ZM7.49991 1.82689C4.36689 1.82689 1.82708 4.36671 1.82708 7.49972C1.82708 10.6327 4.36689 13.1726 7.49991 13.1726C10.6329 13.1726 13.1727 10.6327 13.1727 7.49972C13.1727 4.36671 10.6329 1.82689 7.49991 1.82689ZM8.24993 10.5C8.24993 10.9142 7.91414 11.25 7.49993 11.25C7.08571 11.25 6.74993 10.9142 6.74993 10.5C6.74993 10.0858 7.08571 9.75 7.49993 9.75C7.91414 9.75 8.24993 10.0858 8.24993 10.5ZM6.05003 6.25C6.05003 5.57211 6.63511 4.925 7.50003 4.925C8.36496 4.925 8.95003 5.57211 8.95003 6.25C8.95003 6.74118 8.68002 6.99212 8.21447 7.27494C8.16251 7.30651 8.10258 7.34131 8.03847 7.37854L8.03841 7.37858C7.85521 7.48497 7.63788 7.61119 7.47449 7.73849C7.23214 7.92732 6.95003 8.23198 6.95003 8.7C6.95004 9.00376 7.19628 9.25 7.50004 9.25C7.8024 9.25 8.04778 9.00601 8.05002 8.70417L8.05056 8.7033C8.05924 8.6896 8.08493 8.65735 8.15058 8.6062C8.25207 8.52712 8.36508 8.46163 8.51567 8.37436L8.51571 8.37433C8.59422 8.32883 8.68296 8.27741 8.78559 8.21506C9.32004 7.89038 10.05 7.35382 10.05 6.25C10.05 4.92789 8.93511 3.825 7.50003 3.825C6.06496 3.825 4.95003 4.92789 4.95003 6.25C4.95003 6.55376 5.19628 6.8 5.50003 6.8C5.80379 6.8 6.05003 6.55376 6.05003 6.25Z"
-                                            fill="#000000"
-                                    />
-                                </svg>
-                                <div class="tooltiptext">
+							<div class="tooltipa">
+								<svg class="icon icon-s text-gray-500 ms-2 me-1"
+									 fill="currentColor"
+									 viewBox="0 0 20 20"
+									 xmlns="http://www.w3.org/2000/svg">
+									<path
+											fill-rule="evenodd"
+											clip-rule="evenodd"
+											d="M0.877075 7.49972C0.877075 3.84204 3.84222 0.876892 7.49991 0.876892C11.1576 0.876892 14.1227 3.84204 14.1227 7.49972C14.1227 11.1574 11.1576 14.1226 7.49991 14.1226C3.84222 14.1226 0.877075 11.1574 0.877075 7.49972ZM7.49991 1.82689C4.36689 1.82689 1.82708 4.36671 1.82708 7.49972C1.82708 10.6327 4.36689 13.1726 7.49991 13.1726C10.6329 13.1726 13.1727 10.6327 13.1727 7.49972C13.1727 4.36671 10.6329 1.82689 7.49991 1.82689ZM8.24993 10.5C8.24993 10.9142 7.91414 11.25 7.49993 11.25C7.08571 11.25 6.74993 10.9142 6.74993 10.5C6.74993 10.0858 7.08571 9.75 7.49993 9.75C7.91414 9.75 8.24993 10.0858 8.24993 10.5ZM6.05003 6.25C6.05003 5.57211 6.63511 4.925 7.50003 4.925C8.36496 4.925 8.95003 5.57211 8.95003 6.25C8.95003 6.74118 8.68002 6.99212 8.21447 7.27494C8.16251 7.30651 8.10258 7.34131 8.03847 7.37854L8.03841 7.37858C7.85521 7.48497 7.63788 7.61119 7.47449 7.73849C7.23214 7.92732 6.95003 8.23198 6.95003 8.7C6.95004 9.00376 7.19628 9.25 7.50004 9.25C7.8024 9.25 8.04778 9.00601 8.05002 8.70417L8.05056 8.7033C8.05924 8.6896 8.08493 8.65735 8.15058 8.6062C8.25207 8.52712 8.36508 8.46163 8.51567 8.37436L8.51571 8.37433C8.59422 8.32883 8.68296 8.27741 8.78559 8.21506C9.32004 7.89038 10.05 7.35382 10.05 6.25C10.05 4.92789 8.93511 3.825 7.50003 3.825C6.06496 3.825 4.95003 4.92789 4.95003 6.25C4.95003 6.55376 5.19628 6.8 5.50003 6.8C5.80379 6.8 6.05003 6.55376 6.05003 6.25Z"
+											fill="#000000"
+									/>
+								</svg>
+								<div class="tooltiptext">
                                         <span> 民國111年電力排碳係數為每度0.509公斤CO2e
                                         <a href="https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=1&menu_id=40&news_id=100931"
-                                           class="text-danger">點我查看</a></span>
-                                </div>
+										   class="text-danger">點我查看</a></span>
+								</div>
 
-                            </div>
-                        </div>
+							</div>
+						</div>
 
-                        <div class="card-body">
-                            {% for i,j in treec %}
-                                <div class="image-container">
-                                    <div class="cutimage"
-                                         style="height: {{ i }}%; top: {{ j }}%;">
-                                        <img src="{% static 'tree.png' %}">
-                                    </div>
+						<div class="card-body">
+							{% for i,j in treec %}
+								<div class="image-container">
+									<div class="cutimage"
+										 style="height: {{ i }}%; top: {{ j }}%;">
+										<img src="{% static 'tree.png' %}">
+									</div>
 
-                                </div>
-                            {% endfor %}
-                        </div>
+								</div>
+							{% endfor %}
+						</div>
 
-                        <a href="https://www.flaticon.com/free-stickers/joshua-tree"
-                           title="joshua tree stickers"
-                           style="font-size: 10px;">
-                            Joshua tree stickers created by Gohsantosadrive - Flaticon
-                        </a>
-                    </div>
-                </div>
-                <div class="col-12 mb-4">
-                    <div class="card border-0 shadow">
-                        <div class="card-header">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <h2 class="fs-5 fw-bold mb-0"
-                                        id="compare2">各月用電量比較</h2>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table align-items-center table-flush">
-                                <thead class="thead-light">
-                                <tr>
-                                    <th class="border-bottom"
-                                        scope="col">月份
-                                    </th>
-                                    <th class="border-bottom"
-                                        scope="col">用電量
-                                    </th>
-                                    <th class="border-bottom"
-                                        scope="col">需種植樹木數量
-                                    </th>
-                                    <th class="border-bottom"
-                                        scope="col">與前一日相比
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody id="tb">
-                                <tr id="trr">
-                                    <th class="text-gray-900"
-                                        scope="row"
-                                        id="date2">
-                                        /demo/admin/index.html
-                                    </th>
-                                    <td class="fw-bolder"
-                                        id="ele2">
-                                        3,225
-                                    </td>
-                                    <td class="fw-bolder"
-                                        id="tree2">
-                                        $20
-                                    </td>
-                                    <td class="fw-bolder"
-                                        id="rate">
-                                        <div class="d-flex">
-                                            <svg class="icon icon-xs text-danger me-2"
-                                                 fill="currentColor"
-                                                 viewBox="0 0 20 20"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd"
-                                                      d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
-                                                      clip-rule="evenodd"></path>
-                                            </svg>
-                                        </div>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+						<a href="https://www.flaticon.com/free-stickers/joshua-tree"
+						   title="joshua tree stickers"
+						   style="font-size: 10px;">
+							Joshua tree stickers created by Gohsantosadrive - Flaticon
+						</a>
+					</div>
+				</div>
+				<div class="col-12 mb-4">
+					<div class="card border-0 shadow">
+						<div class="card-header">
+							<div class="row align-items-center">
+								<div class="col">
+									<h2 class="fs-5 fw-bold mb-0"
+										id="compare2">各月用電量比較</h2>
+								</div>
+							</div>
+						</div>
+						<div class="table-responsive">
+							<table class="table align-items-center table-flush">
+								<thead class="thead-light">
+								<tr>
+									<th class="border-bottom"
+										scope="col">月份
+									</th>
+									<th class="border-bottom"
+										scope="col">用電量
+									</th>
+									<th class="border-bottom"
+										scope="col">需種植樹木數量
+									</th>
+									<th class="border-bottom"
+										scope="col">與前一日相比
+									</th>
+								</tr>
+								</thead>
+								<tbody id="tb">
+								<tr id="trr">
+									<th class="text-gray-900"
+										scope="row"
+										id="date2">
+										/demo/admin/index.html
+									</th>
+									<td class="fw-bolder"
+										id="ele2">
+										3,225
+									</td>
+									<td class="fw-bolder"
+										id="tree2">
+										$20
+									</td>
+									<td class="fw-bolder"
+										id="rate">
+										<div class="d-flex">
+											<svg class="icon icon-xs text-danger me-2"
+												 fill="currentColor"
+												 viewBox="0 0 20 20"
+												 xmlns="http://www.w3.org/2000/svg">
+												<path fill-rule="evenodd"
+													  d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
+													  clip-rule="evenodd"></path>
+											</svg>
+										</div>
+									</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
 
-            </div>
-        </div>
-        <div class="col-12 col-xl-4">
-            <div class="card border-0 shadow mb-4">
-                <div class="card-header">
-                    <div class="row align-items-center">
-                        <div class="col">
-                            <h2 class="fs-5 fw-bold mb-0">宿舍最新消息</h2>
-                        </div>
-                        <div class="col text-end">
-                        </div>
-                    </div>
-                </div>
-                                <div class="card-body"
-                                     id="loader-container">
-                                    <div class="spinner-border"
-                                         role="status">
-                                        <span class="visually-hidden">Loading...</span>
-                                    </div>
-                                </div>
-                <ul class="list-group list-group-flush">
-                </ul>
-            </div>
-            <script>
+			</div>
+		</div>
+		<div class="col-12 col-xl-4">
+			<div class="card border-0 shadow mb-4">
+				<div class="card-header">
+					<div class="row align-items-center">
+						<div class="col">
+							<h2 class="fs-5 fw-bold mb-0">宿舍最新消息</h2>
+						</div>
+						<div class="col text-end">
+						</div>
+					</div>
+				</div>
+				<div class="card-body"
+					 id="loader-container">
+					<div class="spinner-border"
+						 role="status">
+						<span class="visually-hidden">Loading...</span>
+					</div>
+				</div>
+				<ul class="list-group list-group-flush">
+				</ul>
+			</div>
+			<script>
                 function hideLoader() {
                     document.getElementById("loader-container").style.display = "none";
                     document.getElementById("style-link-2").disabled = true;
                 }
+
+                hideLoader();
                 fetch('/requestnttu')
                     .then(response => response.json())
                     .then(data => {
                         // 在這裡處理返回的 JSON 數據
+
                         var title = data.title;
                         var link = data.link;
                         console.log(title, link);
@@ -486,514 +509,1310 @@
                     }
                     hideLoader();
                 }
-            </script>
-            <div class="card border-0 shadow mb-4">
-                <div class="card-header">
-                    <div class="row align-items-center">
-                        <div class="col">
-                            <h2 class="fs-5 fw-bold mb-0">臺電最新消息</h2>
-                        </div>
-                        <div class="col text-end">
-                        </div>
-                    </div>
+			</script>
+			<div class="card border-0 shadow mb-4">
+				<div class="card-header">
+					<div class="row align-items-center">
+						<div class="col">
+							<h2 class="fs-5 fw-bold mb-0">臺電最新消息</h2>
+						</div>
+						<div class="col text-end">
+						</div>
+					</div>
 
-                </div>
-                <div id="carouselExampleIndicators"
-                     class="carousel slide"
-                     data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators"
-                            data-slide-to="0"
-                            class="active"></li>
-                        {% for slide in slides %}
-                            <li data-target="#carouselExampleIndicators"
-                                data-slide-to="{{ forloop.counter }}"></li>
-                        {% endfor %}
-                    </ol>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <a href="{{ fslide.link }}"
-                               target="_blank"><img class="d-block w-100 carimg"
-                                                    src="{{ fslide.image }}"
-                                                    alt="0"></a>
-                            <div><p class="text-justify font-weight-bold">
-                                {{ fslide.description }}</p>
-                            </div>
-                        </div>
-                        {% for slide in slides %}
-                            <div class="carousel-item"><a href="{{ slide.link }}"
-                                                          target="_blank">
-                                <img class="d-block w-100 carimg"
-                                     src="{{ slide.image }}"
-                                     alt="{{ forloop.counter }}"></a>
-                                <div><p class="text-justify font-weight-bold">
-                                    {{ slide.description }}</p>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                    <a class="carousel-control-prev"
-                       href="#carouselExampleIndicators"
-                       role="button"
-                       data-slide="prev">
+				</div>
+				<div id="carouselExampleIndicators"
+					 class="carousel slide"
+					 data-ride="carousel">
+					<ol class="carousel-indicators">
+						<li data-target="#carouselExampleIndicators"
+							data-slide-to="0"
+							class="active"></li>
+						{% for slide in slides %}
+							<li data-target="#carouselExampleIndicators"
+								data-slide-to="{{ forloop.counter }}"></li>
+						{% endfor %}
+					</ol>
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<a href="{{ fslide.link }}"
+							   target="_blank"><img class="d-block w-100 carimg"
+													src="{{ fslide.image }}"
+													alt="0"></a>
+							<div><p class="text-justify font-weight-bold">
+								{{ fslide.description }}</p>
+							</div>
+						</div>
+						{% for slide in slides %}
+							<div class="carousel-item"><a href="{{ slide.link }}"
+														  target="_blank">
+								<img class="d-block w-100 carimg"
+									 src="{{ slide.image }}"
+									 alt="{{ forloop.counter }}"></a>
+								<div><p class="text-justify font-weight-bold">
+									{{ slide.description }}</p>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+					<a class="carousel-control-prev"
+					   href="#carouselExampleIndicators"
+					   role="button"
+					   data-slide="prev">
 							<span class="carousel-control-prev-icon"
-                                  aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next"
-                       href="#carouselExampleIndicators"
-                       role="button"
-                       data-slide="next">
+								  aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a>
+					<a class="carousel-control-next"
+					   href="#carouselExampleIndicators"
+					   role="button"
+					   data-slide="next">
 							<span class="carousel-control-next-icon"
-                                  aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 mb-4">
-            <div class="card">
-		<div class="card-header">
-			<div class="row align-items-center">
-				<div class="col">
-					<h2 class="fs-5 fw-bold mb-0">SDGs各項指標介紹</h2>
+								  aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
 				</div>
-				<div class="col text-end">
-				</div>
-			</div>
-		</div>
-		<div class="row card-body">
-			<div class="col-2 sdgside"></div>
-			<div style="text-align: center;"
-				 class="sdgdiv col-8">
-				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_1.png' %}"
-					 class="sdgimg">
-				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_2.png' %}"
-					 class="sdgimg">
-				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_3.png' %}"
-					 class="sdgimg">
-				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_4.png' %}"
-					 alt="SDG 4"
-					 class="sdgimg">
-				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_5.png' %}"
-					 alt="SDG 5"
-					 class="sdgimg">
-				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_6.png' %}"
-					 alt="SDG 6"
-					 class="sdgimg">
-				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_7.png' %}"
-					 alt="SDG 7"
-					 class="sdgimg">
-				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_8.png' %}"
-					 alt="SDG 8"
-					 class="sdgimg">
-				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_9.png' %}"
-					 alt="SDG 9"
-					 class="sdgimg">
-				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_10.png' %}"
-					 alt="SDG 10"
-					 class="sdgimg">
-				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_11.png' %}"
-					 alt="SDG 11"
-					 class="sdgimg">
-				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_12.png' %}"
-					 alt="SDG 12"
-					 class="sdgimg">
-				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_13.png' %}"
-					 alt="SDG 13"
-					 class="sdgimg">
-				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_14.png' %}"
-					 alt="SDG 14"
-					 class="sdgimg">
-				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_15.png' %}"
-					 alt="SDG 15"
-					 class="sdgimg">
-				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_16.png' %}"
-					 alt="SDG 16"
-					 class="sdgimg">
-				<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_17.png' %}"
-					 alt="SDG 17"
-					 class="sdgimg">
-			</div>
-			<div class="col-2 sdgside"></div>
-		</div>
-		<div id="carouselsdg"
-			 class="carousel slide"
-			 data-ride="carousel"
-			 data-interval="false">
-			<div class="carousel-inner sdgside">
-				<div class="carousel-item active"
-					 id="sdg1">
-					<h1 class="display-4">消除各地一切形式的貧窮</h1>
-					<div class="sdginf">
-						<div class="row justify-content-center">
-							<div class="card bg-light mb-3 mt-3"
-								 style="max-width: 18rem;">
-								<div class="card-header">
-									<strong>
-										萬華，原來如此》萬華，為何聚集如此多貧困者與性工作者？
-									</strong>
-								</div>
-								<div class="card-body">
-									<p class="card-text">最近「萬華」因為疫情的發展，頓時登上全國熱搜的關鍵字，特別是街友、阿公店、茶藝館等等「名詞」，甚至成為大家茶餘飯後重要話題<a
-											href="https://futurecity.cw.com.tw/article/2014"><br>閱讀更多</a></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="carousel-item"
-					 id="sdg2">
-					<h1 class="display-4">確保糧食安全，消除飢餓，促進永續農業</h1>
-					<div class="sdginf">
-						<div class="row justify-content-center">
-							<div class="card bg-light mb-3 mt-3"
-								 style="max-width: 18rem;">
-								<div class="card-header">
-									<strong>
-										過期其實還能吃！1/3食物被丟掉，瑞士教民眾一秘訣判斷剩食安全
-									</strong>
-								</div>
-								<div class="card-body">
-									<p class="card-text">
-										據統計，瑞士每年每人浪費掉90公斤食物，相當於620瑞郎（約1萬9,000元台幣）。剩食是個勞民傷財的議題，這兩年，瑞士民間與官方全面動起來，減少資源浪費<a
-											href="https://futurecity.cw.com.tw/article/2668"><br>閱讀更多</a></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="carousel-item"
-					 id="sdg3">
-					<h1 class="display-4">確保及促進各年齡層健康生活與福祉</h1>
-					<div class="sdginf">
-						<div class="row justify-content-center">
-							<div class="card bg-light mb-3 mt-3"
-								 style="max-width: 18rem;">
-								<div class="card-header">
-									<strong>
-										智慧醫療懶人包》八張圖，一次搞懂智慧醫療的定義、應用與台灣的挑戰
-									</strong>
-								</div>
-								<div class="card-body">
-									<p class="card-text">廣達集團創辦人林百里說，智慧醫療將是台灣的「第二座護國神山」。什麼是智慧醫療？它應用到哪些科技？台灣真的做得來嗎？<a
-											href="https://futurecity.cw.com.tw/article/1916"><br>閱讀更多</a></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="carousel-item"
-					 id="sdg4">
-					<h1 class="display-4">確保有教無類、公平以及高品質的教育，及提倡終身學習</h1>
-					<div class="sdginf">
-						<div class="row justify-content-center">
-							<div class="card bg-light mb-3 mt-3"
-								 style="max-width: 18rem;">
-								<div class="card-header">
-									<strong>
-										SDGs永續閱讀是什麼？100本永續書單一次收藏
-									</strong>
-								</div>
-								<div class="card-body">
-									<p class="card-text">一項新閱讀運動，如星火燎原般，在全球各地接力展開，在後疫情時代中更形成一股不容忽視的閱讀新浪潮<a
-											href="https://futurecity.cw.com.tw/article/2347"><br>閱讀更多</a></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="carousel-item"
-					 id="sdg5">
-					<h1 class="display-4">實現性別平等，並賦予婦女權力</h1>
-					<div class="sdginf">
-						<div class="row justify-content-center">
-							<div class="card bg-light mb-3 mt-3"
-								 style="max-width: 18rem;">
-								<div class="card-header">
-									<strong>
-										男人上下班，女人到處跑⋯⋯歐洲如何從交通打造性別平權城市？
-									</strong>
-								</div>
-								<div class="card-body">
-									<p class="card-text">一座城市，往往是在一群男性官員、男性建築師和男性都市規劃師手中誕生的<a
-											href="https://futurecity.cw.com.tw/article/2360"><br>閱讀更多</a></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="carousel-item"
-					 id="sdg6">
-					<h1 class="display-4">確保所有人都能享有水、衛生及其永續管理</h1>
-					<div class="sdginf">
-						<div class="row justify-content-center">
-							<div class="card bg-light mb-3 mt-3"
-								 style="max-width: 18rem;">
-								<div class="card-header">
-									<strong>
-										台北怎麼變「海綿城市」？土地多吸水一公分，就能容受1000座游泳池水量
-									</strong>
-								</div>
-								<div class="card-body">
-									<p class="card-text">透過保水的概念，利用滯洪與保水貯留設施來增加容受度，已取代過去期待迅速排水的思維，成為台北市的水利施政新目標<a
-											href="https://futurecity.cw.com.tw/article/870"><br>閱讀更多</a></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="carousel-item"
-					 id="sdg7">
-					<h1 class="display-4">確保所有的人都可取得負擔得起、可靠、永續及現代的能源</h1>
-					<div class="sdginf">
-						<div class="row justify-content-center">
-							<div class="card bg-light mb-3 mt-3"
-								 style="max-width: 18rem;">
-								<div class="card-header">
-									<strong>
-										成立能源合作社、社區團購電力，日本如何打開綠電新商機？
-									</strong>
-								</div>
-								<div class="card-body">
-									<p class="card-text">近期中國宣布2030年碳達峰、2060年碳中和目標，地方政府為達績效紛紛祭出限電令，確保碳排放不超標<a
-											href="https://futurecity.cw.com.tw/article/2286"><br>閱讀更多</a></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="carousel-item"
-					 id="sdg8">
-					<h1 class="display-4">促進包容且永續的經濟成長，讓每個人都有一份好工作</h1>
-					<div class="sdginf">
-						<div class="row justify-content-center">
-							<div class="card bg-light mb-3 mt-3"
-								 style="max-width: 18rem;">
-								<div class="card-header">
-									<strong>
-										冰島「周休三日」大成功！工時縮短效率卻增加
-									</strong>
-								</div>
-								<div class="card-body">
-									<p class="card-text">有關將周休二日延長為三日的相關討論近年經常被提出討論，而根據最新研究指出，冰島投入「一周工作四天」的實驗取得「壓倒性的成功」<a
-											href="https://futurecity.cw.com.tw/article/2102"><br>閱讀更多</a></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="carousel-item"
-					 id="sdg9">
-					<h1 class="display-4">建立具有韌性的基礎建設，促進包容且永續的工業，並加速創新</h1>
-					<div class="sdginf">
-						<div class="row justify-content-center">
-							<div class="card bg-light mb-3 mt-3"
-								 style="max-width: 18rem;">
-								<div class="card-header">
-									<strong>
-										趕路霸、移電箱　四年改54處通學廊道，學童不再冒險走快車道｜新北養工處
-									</strong>
-								</div>
-								<div class="card-body">
-									<p class="card-text">「原本的路一到晚上，家長和小朋友都不敢走，」新北市新埔國中校長郭月秀剛上任就收到反應，校園旁人行道寬度不到一公尺，又布滿變電箱、電桿與不平樹穴，行人像走障礙賽；加上樹多、路燈少，成了安全死角<a
-											href="https://futurecity.cw.com.tw/article/2896"><br>閱讀更多</a></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="carousel-item"
-					 id="sdg10">
-					<h1 class="display-4">減少國內及國家間的不平等</h1>
-					<div class="sdginf">
-						<div class="row justify-content-center">
-							<div class="card bg-light mb-3 mt-3"
-								 style="max-width: 18rem;">
-								<div class="card-header">
-									<strong>
-										經濟如何復甦？1000個城市的共同解答：更綠、更公平｜疫情城市預言5
-									</strong>
-								</div>
-								<div class="card-body">
-									<p class="card-text">新冠肺炎至今已為時一年，不僅造成國際秩序重新洗牌，對各國內部體制及規劃，也因疫情本身及複合性災害的發生，使過去治理規劃者對城市有機體所做的韌性規劃設計，被重新審視<a
-											href="https://futurecity.cw.com.tw/article/2182"><br>閱讀更多</a></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="carousel-item"
-					 id="sdg11">
-					<h1 class="display-4">建構具包容、安全、韌性及永續特質的城市與鄉村</h1>
-					<div class="sdginf">
-						<div class="row justify-content-center">
-							<div class="card bg-light mb-3 mt-3"
-								 style="max-width: 18rem;">
-								<div class="card-header">
-									<strong>
-										永續城市模範生！阿爾卑斯山谷裡的小城，為何能成為歐洲綠色首都？
-									</strong>
-								</div>
-								<div class="card-body">
-									<p class="card-text">法國城市格勒諾布爾獲得「2022歐洲綠色首都」肯定，並贏得「永續都市移動計畫獎」。它是如何擊敗歐洲諸多優異城市，獲得國際肯定的呢？<a
-											href="https://futurecity.cw.com.tw/article/2267"><br>閱讀更多</a></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="carousel-item"
-					 id="sdg12">
-					<h1 class="display-4">促進綠色經濟，確保永續消費及生產模式</h1>
-					<div class="sdginf">
-						<div class="row justify-content-center">
-							<div class="card bg-light mb-3 mt-3"
-								 style="max-width: 18rem;">
-								<div class="card-header">
-									<strong>
-										三級警戒垃圾增4%！兩個女生設計的「循環杯」如何幫台南減廢？｜黃偉哲專欄
-									</strong>
-								</div>
-								<div class="card-body">
-									<p class="card-text">全世界都在講的淨零減碳，台南市從大家手上的手搖杯開始做起<a
-											href="https://futurecity.cw.com.tw/article/2305"><br>閱讀更多</a></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="carousel-item"
-					 id="sdg13">
-					<h1 class="display-4">完備減緩調適行動，以因應氣候變遷及其影響</h1>
-					<div class="sdginf">
-						<div class="row justify-content-center">
-							<div class="card bg-light mb-3 mt-3"
-								 style="max-width: 18rem;">
-								<div class="card-header">
-									<strong>
-										美國每年熱死1萬多人！全球第一位「高溫長」，如何對抗城市熱浪？
-									</strong>
-								</div>
-								<div class="card-body">
-									<p class="card-text">聽過首席執行長，你有聽過首席高溫長嗎？<a
-											href="https://futurecity.cw.com.tw/article/2412"><br>閱讀更多</a></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="carousel-item"
-					 id="sdg14">
-					<h1 class="display-4">保育及永續利用海洋生態系，以確保生物多樣性並防止海洋環境劣化</h1>
-					<div class="sdginf">
-						<div class="row justify-content-center">
-							<div class="card bg-light mb-3 mt-3"
-								 style="max-width: 18rem;">
-								<div class="card-header">
-									<strong>
-										城市圖書館｜「不傷害我的事物，我不會傷害」帛琉在觀光客護照印上孩子寫的生態誓詞
-									</strong>
-								</div>
-								<div class="card-body">
-									<p class="card-text">對許多人來說，一生如果能有一次機會造訪帛琉潛水、釣魚，已經非常幸運了。我何其有幸，能在這美麗的島國生活兩年，也因此學到了許多寶貴的工作經驗。例如海洋保育的重要性<a
-											href="https://futurecity.cw.com.tw/article/904"><br>閱讀更多</a></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="carousel-item"
-					 id="sdg15">
-					<h1 class="display-4">保育及永續利用陸域生態系，確保生物多樣性並防止土地劣化</h1>
-					<div class="sdginf">
-						<div class="row justify-content-center">
-							<div class="card bg-light mb-3 mt-3"
-								 style="max-width: 18rem;">
-								<div class="card-header">
-									<strong>
-										將自然生態移植到現代城市　新加坡樟宜機場能，台灣能嗎？
-									</strong>
-								</div>
-								<div class="card-body">
-									<p class="card-text">城市中，人們如何與大自然互動？現代化城市可以營造出友善動物的自然生態區嗎？<a
-											href="https://futurecity.cw.com.tw/article/2409"><br>閱讀更多</a></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="carousel-item"
-					 id="sdg16">
-					<h1 class="display-4">促進和平多元的社會，確保司法平等，建立具公信力且廣納民意的體系</h1>
-					<div class="sdginf">
-						<div class="row justify-content-center">
-							<div class="card bg-light mb-3 mt-3"
-								 style="max-width: 18rem;">
-								<div class="card-header">
-									<strong>
-										數位時代，台灣如何靠資料治理實踐海洋國家冒險精神？
-									</strong>
-								</div>
-								<div class="card-body">
-									<p class="card-text">15到17世紀，是歐洲的地理大發現時期，期間發生了文藝復興、大航海乃至科學革命，故又稱為「發現時代」。這個時期的成就徹底翻轉世界版圖，使歐洲成為世界的中心<a
-											href="https://futurecity.cw.com.tw/article/2764"><br>閱讀更多</a></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="carousel-item"
-					 id="sdg17">
-					<h1 class="display-4">建立多元夥伴關係，協力促進永續願景</h1>
-					<div class="sdginf">
-						<div class="row justify-content-center">
-							<div class="card bg-light mb-3 mt-3"
-								 style="max-width: 18rem;">
-								<div class="card-header">
-									<strong>
-										除了17項目標，你更該知道SDGs兩大關鍵字：「所有」與「包容性」
-									</strong>
-								</div>
-								<div class="card-body">
-									<p class="card-text">2015年底，延續千禧年發展目標，聯合國大會提出永續發展目標，期待於2030年實現社會、經濟和環境三個層面的平衡發展<a
-											href="https://futurecity.cw.com.tw/article/1520"><br>閱讀更多</a></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
 			</div>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-12 mb-4">
+			<div class="card">
+				<div class="card-header">
+					<div class="row align-items-center">
+						<div class="col">
+							<h2 class="fs-5 fw-bold mb-0">SDGs各項指標介紹</h2>
+						</div>
+						<div class="col text-end">
+						</div>
+					</div>
+				</div>
+				<div class="row card-body"
+					 style="padding-bottom: 0;padding-top: 0">
+					<div class="col-2 sdgside"></div>
+					<div style="text-align: center;"
+						 class="sdgdiv col-8">
+						<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_1.png' %}"
+							 class="sdgimg">
+						<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_2.png' %}"
+							 class="sdgimg">
+						<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_3.png' %}"
+							 class="sdgimg">
+						<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_4.png' %}"
+							 alt="SDG 4"
+							 class="sdgimg">
+						<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_5.png' %}"
+							 alt="SDG 5"
+							 class="sdgimg">
+						<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_6.png' %}"
+							 alt="SDG 6"
+							 class="sdgimg">
+						<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_7.png' %}"
+							 alt="SDG 7"
+							 class="sdgimg">
+						<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_8.png' %}"
+							 alt="SDG 8"
+							 class="sdgimg">
+						<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_9.png' %}"
+							 alt="SDG 9"
+							 class="sdgimg">
+						<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_10.png' %}"
+							 alt="SDG 10"
+							 class="sdgimg">
+						<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_11.png' %}"
+							 alt="SDG 11"
+							 class="sdgimg">
+						<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_12.png' %}"
+							 alt="SDG 12"
+							 class="sdgimg">
+						<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_13.png' %}"
+							 alt="SDG 13"
+							 class="sdgimg">
+						<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_14.png' %}"
+							 alt="SDG 14"
+							 class="sdgimg">
+						<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_15.png' %}"
+							 alt="SDG 15"
+							 class="sdgimg">
+						<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_16.png' %}"
+							 alt="SDG 16"
+							 class="sdgimg">
+						<img src="{% static 'sdglogo/TheGlobalGoals_Icons_Color_Goal_17.png' %}"
+							 alt="SDG 17"
+							 class="sdgimg">
+					</div>
+					<div class="col-2 sdgside"></div>
+					<div id="carouselsdg"
+						 class="carousel slide"
+						 data-ride="carousel"
+						 data-interval="false"
+						 style="display: none;padding-left: 0;padding-right: 0">
+						<div class="carousel-inner sdgdiv">
+							<div class="carousel-item active"
+								 data-bs-parent="#SDGs-carousel-item"
+								 id="SDG1">
+								<div class="row justify-content-md-center"
+									 id="SDGs-content1">
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu22.png"/>
+											<div class="logo"
+												 id="logo21">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG1.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													食物銀行
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116446,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="carousel-item"
+								 data-bs-parent="#SDGs-carousel-item"
+								 id="SDG2">
+								<div class="row justify-content-md-center"
+									 id="SDGs-content2">
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu02.png"/>
+											<div class="logo"
+												 id="logo1">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													綠色知識經濟創新：永續與生態友善農業
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116415,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu11.png"/>
+											<div class="logo"
+												 id="logo10">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													農產品檢驗中心
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116432,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu21.png"/>
+											<div class="logo"
+												 id="logo20">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													友善環境農漁產業推廣中心
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116444,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="carousel-item"
+								 data-bs-parent="#SDGs-carousel-item"
+								 id="SDG3">
+								<div class="row justify-content-md-center"
+									 id="SDGs-content3">
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu01.png"/>
+											<div class="logo"
+												 id="logo0">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG7.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													綠色國際大學跨域學習與社區服務
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116410,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu11.png"/>
+											<div class="logo"
+												 id="logo10">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													農產品檢驗中心
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116432,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu13.png"/>
+											<div class="logo"
+												 id="logo12">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG9.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													跨領域微學程
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116434,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="carousel-item"
+								 data-bs-parent="#SDGs-carousel-item"
+								 id="SDG4">
+								<div class="row justify-content-md-center"
+									 id="SDGs-content4">
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu01.png"/>
+											<div class="logo"
+												 id="logo0">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG7.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													綠色國際大學跨域學習與社區服務
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116410,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu02.png"/>
+											<div class="logo"
+												 id="logo1">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													綠色知識經濟創新：永續與生態友善農業
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116415,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu03.png"/>
+											<div class="logo"
+												 id="logo2">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													綠色知識經濟創新：部落循環經濟生態系
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116417,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="carousel-item"
+								 data-bs-parent="#SDGs-carousel-item"
+								 id="SDG5">
+								<div class="row justify-content-md-center"
+									 id="SDGs-content5">
+								</div>
+							</div>
+
+							<div class="carousel-item"
+								 data-bs-parent="#SDGs-carousel-item"
+								 id="SDG6">
+								<div class="row justify-content-md-center"
+									 id="SDGs-content6">
+								</div>
+							</div>
+
+							<div class="carousel-item"
+								 data-bs-parent="#SDGs-carousel-item"
+								 id="SDG7">
+								<div class="row justify-content-md-center"
+									 id="SDGs-content7">
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu01.png"/>
+											<div class="logo"
+												 id="logo0">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG7.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													綠色國際大學跨域學習與社區服務
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116410,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu04.png"/>
+											<div class="logo"
+												 id="logo3">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG7.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													地熱溫泉發電
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116419,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu08.png"/>
+											<div class="logo"
+												 id="logo7">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG7.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													綠色能源科學教育
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116427,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="carousel-item"
+								 data-bs-parent="#SDGs-carousel-item"
+								 id="SDG8">
+								<div class="row justify-content-md-center"
+									 id="SDGs-content8">
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu01.png"/>
+											<div class="logo"
+												 id="logo0">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG7.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													綠色國際大學跨域學習與社區服務
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116410,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu03.png"/>
+											<div class="logo"
+												 id="logo2">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													綠色知識經濟創新：部落循環經濟生態系
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116417,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu05.png"/>
+											<div class="logo"
+												 id="logo4">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													都蘭之蘭調創新計畫
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116420,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="carousel-item"
+								 data-bs-parent="#SDGs-carousel-item"
+								 id="SDG9">
+								<div class="row justify-content-md-center"
+									 id="SDGs-content9">
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu13.png"/>
+											<div class="logo"
+												 id="logo12">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG9.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													跨領域微學程
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116434,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu19.png"/>
+											<div class="logo"
+												 id="logo18">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG9.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													東部生物經濟中心
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116440,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu26.png"/>
+											<div class="logo"
+												 id="logo25">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG9.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													跨域創新深耕邁進 東大高教深耕計畫成果展開跑
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/404-1048-140011,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="carousel-item"
+								 data-bs-parent="#SDGs-carousel-item"
+								 id="SDG10">
+								<div class="row justify-content-md-center"
+									 id="SDGs-content10">
+								</div>
+							</div>
+
+							<div class="carousel-item"
+								 data-bs-parent="#SDGs-carousel-item"
+								 id="SDG11">
+								<div class="row justify-content-md-center"
+									 id="SDGs-content11">
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu01.png"/>
+											<div class="logo"
+												 id="logo0">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG7.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													綠色國際大學跨域學習與社區服務
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116410,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu07.png"/>
+											<div class="logo"
+												 id="logo6">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													氣候變遷社區防災教育
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116423,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu13.png"/>
+											<div class="logo"
+												 id="logo12">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG9.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													跨領域微學程
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116434,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="carousel-item"
+								 data-bs-parent="#SDGs-carousel-item"
+								 id="SDG12">
+								<div class="row justify-content-md-center"
+									 id="SDGs-content12">
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu01.png"/>
+											<div class="logo"
+												 id="logo0">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG7.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													綠色國際大學跨域學習與社區服務
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116410,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu02.png"/>
+											<div class="logo"
+												 id="logo1">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													綠色知識經濟創新：永續與生態友善農業
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116415,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu03.png"/>
+											<div class="logo"
+												 id="logo2">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													綠色知識經濟創新：部落循環經濟生態系
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116417,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu05.png"/>
+											<div class="logo"
+												 id="logo4">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													都蘭之蘭調創新計畫
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116420,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu09.png"/>
+											<div class="logo"
+												 id="logo8">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													山海教育
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116428,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu10.png"/>
+											<div class="logo"
+												 id="logo9">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													社區環保志工
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116429,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu12.png"/>
+											<div class="logo"
+												 id="logo11">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													綠色辦公室認證
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116433,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu13.png"/>
+											<div class="logo"
+												 id="logo12">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG9.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													跨領域微學程
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116434,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu16.png"/>
+											<div class="logo"
+												 id="logo15">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													東大蔬食日
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116437,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu17.png"/>
+											<div class="logo"
+												 id="logo16">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													校園農夫市集
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116438,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="carousel-item"
+								 data-bs-parent="#SDGs-carousel-item"
+								 id="SDG13">
+								<div class="row justify-content-md-center"
+									 id="SDGs-content13">
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu01.png"/>
+											<div class="logo"
+												 id="logo0">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG7.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													綠色國際大學跨域學習與社區服務
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116410,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu07.png"/>
+											<div class="logo"
+												 id="logo6">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													氣候變遷社區防災教育
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116423,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu16.png"/>
+											<div class="logo"
+												 id="logo15">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													東大蔬食日
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116437,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="carousel-item"
+								 data-bs-parent="#SDGs-carousel-item"
+								 id="SDG14">
+								<div class="row justify-content-md-center"
+									 id="SDGs-content14">
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu06.png"/>
+											<div class="logo"
+												 id="logo5">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG14.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													海洋保育志工富山護漁區潛水清除覆網垃圾
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116421,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu15.png"/>
+											<div class="logo"
+												 id="logo14">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG14.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													淨灘活動
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116436,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="carousel-item"
+								 data-bs-parent="#SDGs-carousel-item"
+								 id="SDG15">
+								<div class="row justify-content-md-center"
+									 id="SDGs-content15">
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu01.png"/>
+											<div class="logo"
+												 id="logo0">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG7.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													綠色國際大學跨域學習與社區服務
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116410,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu02.png"/>
+											<div class="logo"
+												 id="logo1">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													綠色知識經濟創新：永續與生態友善農業
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116415,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<div class="card"
+											 style="width:95%; margin-bottom: 5px;">
+											<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu03.png"/>
+											<div class="logo"
+												 id="logo2">
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+												<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+											</div>
+											<div class="card-body"
+												 style="text-align: right;">
+												<h3 class="card-title"
+													style="text-align: left;color:#000000;">
+													綠色知識經濟創新：部落循環經濟生態系
+												</h3>
+												<a class="btn btn-primary"
+												   href="https://green.nttu.edu.tw/p/405-1048-116417,c11148.php?Lang=zh-tw"
+												   style="text-align: right;">
+													瀏覽
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<script>
+            var sdgimg = document.querySelectorAll(".sdgimg");
+            var sdgdiv = document.querySelector(".sdgdiv")
+            var carsdg = document.getElementById("carouselsdg")
+            console.log(carsdg);
+            var sdgprev = 0;
+
+            function moveImage(i) {
+                return function () {
+                    console.log(`sdg${i}`);
+                    var sdg = document.getElementById(`SDG${sdgprev + 1}`);
+                    sdg.classList.remove("active")
+                    sdg = document.getElementById(`SDG${i + 1}`);
+                    sdg.classList.add("active");
+                    sdgprev = i;
+                    carsdg.style.display = "block";
+                };
+            }
+
+            for (var i = 0; i < sdgimg.length; i++) {
+                sdgimg[i].addEventListener('click', moveImage(i));
+            }
+		</script>
+	</div>
+	</div>
 	<script>
-        var sdgimg = document.querySelectorAll(".sdgimg");
-        var sdgdiv = document.querySelector(".sdgdiv")
-        var carsdg = document.getElementById("carouselsdg")
-        console.log(carsdg);
-        var sdgprev = 0;
-
-        function moveImage(i) {
-            return function () {
-                console.log(`sdg${i}`);
-                var sdg = document.getElementById(`sdg${sdgprev + 1}`);
-                sdg.classList.remove("active")
-                sdg = document.getElementById(`sdg${i + 1}`);
-                sdg.classList.add("active");
-                sdgprev = i;
-            };
-        }
-
-        for (var i = 0; i < sdgimg.length; i++) {
-            sdgimg[i].addEventListener('click', moveImage(i));
-        }
-	</script>
-        </div>
-    </div>
-    <script>
         var m = 0;
         var dateall ={{ date|safe }};//以陣列存放個月日期 ex.一月dateall[0]=>[1,2,3...,31]
         var eleall ={{ ele|safe }};//電力用量,跟dateall是對應的
@@ -1010,30 +1829,30 @@
         var month_compare = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         var mtree = [];
         var month_result = [];
-        var date=[];
-        var ele=[];
-        var result=[];
-        var startDate,endDate;
-        var sum=0;
-        var abnormal=0;
-        var ifinit=false;
-        var month=[];
-        var m=0;
-        var abnormal_list=[];
+        var date = [];
+        var ele = [];
+        var result = [];
+        var startDate, endDate;
+        var sum = 0;
+        var abnormal = 0;
+        var ifinit = false;
+        var month = [];
+        var m = 0;
+        var abnormal_list = [];
         var markAreadata = [];
         var markPointData = [];
-        var ifchange=0;
-        var item=['冰箱','冷氣','熱水器'];
+        var ifchange = 0;
+        var item = ['冰箱', '冷氣', '熱水器'];
         // document.getElementById(acc).removeChild();
         var accordionItemTemplate;
         var clonedAccordionItem;
-        
-        function add_acc_item(acc,month){
+
+        function add_acc_item(acc, month) {
             accordionItemTemplate = document.querySelector('.accordion-item');
             clonedAccordionItem = accordionItemTemplate.cloneNode(true);
-            console.log("是"+month);
+            console.log("是" + month);
             console.log(clonedAccordionItem);
-            var newMonth = month+"月";
+            var newMonth = month + "月";
             var newAccordionButton = clonedAccordionItem.querySelector('.accordion-button');
             console.log(newAccordionButton);
             newAccordionButton.textContent = newMonth;
@@ -1043,18 +1862,18 @@
 
             acc.appendChild(clonedAccordionItem);
 
-            
+
         }
 
-        function test(){
+        function test() {
             var t_acc;
-            $(document).ready(function() {
+            $(document).ready(function () {
                 $('#hello').modal('show');
             });
 
             const acc = document.getElementById("acc");
             const acc_item = document.getElementById("acc_item");
-            
+
 
             // while(acc.firstChild){
             //     console.log(acc.firstChild);
@@ -1063,86 +1882,88 @@
 
             console.log("iiiii");
             console.log(acc);
-            
-            for(var i=0;i<markPointData.length;i++){
+
+            for (var i = 0; i < markPointData.length; i++) {
                 console.log(markPointData[i].month);
-                if(t_acc=document.getElementById("acc"+markPointData[i].month))console.log("success");
-                else{
+                if (t_acc = document.getElementById("acc" + markPointData[i].month)) console.log("success");
+                else {
                     console.log("fail");
-                    add_acc_item(acc,markPointData[i].month,clonedAccordionItem);
-                    t_acc=document.getElementById("acc"+markPointData[i].month);
-                };
-                
+                    add_acc_item(acc, markPointData[i].month, clonedAccordionItem);
+                    t_acc = document.getElementById("acc" + markPointData[i].month);
+                }
+                ;
+
                 var p = document.createElement('p');
                 p.classList.add("text-danger");
                 p.textContent = String(markPointData[i].month) + '月' + String(markPointData[i].date) + '日';
-                t_acc.appendChild(p); 
+                t_acc.appendChild(p);
 
-                
-                for(var j=0;j<item.length;j++){
+
+                for (var j = 0; j < item.length; j++) {
                     var label = document.createElement('label');
-                    var checkbox =document.createElement('input');
-                    label.textContent=item[j];
-                    checkbox.type='checkbox';
+                    var checkbox = document.createElement('input');
+                    label.textContent = item[j];
+                    checkbox.type = 'checkbox';
                     t_acc.appendChild(label);
                     t_acc.appendChild(checkbox);
                 }
-                
+
             }
         }
 
         // 建立所需範圍ele,date,result陣列，以便ecchart讀取
-        function buildData(startDate,endDate){
-            date=[];
-            ele=[];
-            result=[];
-            month=[];
-            var start=[startDate[0]-1,dateall[startDate[0]-1].indexOf(startDate[1])];
-            var end=[endDate[0]-1,dateall[endDate[0]-1].indexOf(endDate[1])];
-            
-            if(start[1]==-1||end[1]==-1)return 1;
-            while(1){
-                if(start[0]==end[0]&&start[1]==end[1]+1){
+        function buildData(startDate, endDate) {
+            date = [];
+            ele = [];
+            result = [];
+            month = [];
+            var start = [startDate[0] - 1, dateall[startDate[0] - 1].indexOf(startDate[1])];
+            var end = [endDate[0] - 1, dateall[endDate[0] - 1].indexOf(endDate[1])];
+
+            if (start[1] == -1 || end[1] == -1) return 1;
+            while (1) {
+                if (start[0] == end[0] && start[1] == end[1] + 1) {
                     return 0;
-                };
-                if(start[1]==dateall[start[0]].length){
-                    start[0]=start[0]+1;
-                    start[1]=0;
+                }
+                ;
+                if (start[1] == dateall[start[0]].length) {
+                    start[0] = start[0] + 1;
+                    start[1] = 0;
                     continue;
                 }
-                month.push(start[0]+1);
+                month.push(start[0] + 1);
                 date.push(dateall[start[0]][start[1]]);
                 ele.push(eleall[start[0]][start[1]]);
                 result.push(month_result[start[0]][start[1]]);
-                start[1]=start[1]+1;
-                
+                start[1] = start[1] + 1;
+
             }
             return 0;
         }
-        
+
         // 監測選月份事件重畫圖表
         const startDateInput = document.getElementById('start-date');
         const endDateInput = document.getElementById('end-date');
         startDateInput.addEventListener('change', checkBothDates);
         endDateInput.addEventListener('change', checkBothDates);
+
         function checkBothDates() {
-            if(startDateInput.value && endDateInput.value){
+            if (startDateInput.value && endDateInput.value) {
                 startDate = document.getElementById("start-date").value;
                 endDate = document.getElementById("end-date").value;
-                var datastartDate=[parseInt(startDate.slice(5,7)),parseInt(startDate.slice(8,10))];
-                var dataendDate=[parseInt(endDate.slice(5,7)),parseInt(endDate.slice(8,10))];
-                m=parseInt(startDate.slice(5,7));
-                
-                if(buildData(datastartDate,dataendDate)){
+                var datastartDate = [parseInt(startDate.slice(5, 7)), parseInt(startDate.slice(8, 10))];
+                var dataendDate = [parseInt(endDate.slice(5, 7)), parseInt(endDate.slice(8, 10))];
+                m = parseInt(startDate.slice(5, 7));
+
+                if (buildData(datastartDate, dataendDate)) {
                     alert("所選日期不存在")
-                }
-                else{
+                } else {
                     ecchart();
                     change_values();
                 }
-                
+
             }
-            
+
         }
 
         //以月份切割預測結果 
@@ -1160,7 +1981,7 @@
                 mtree[i] = mtree[i].toFixed(2);
             }
         }
-        
+
         // 各月用電量相比計算
         function calculate_month_rate() {
             for (var i = 1; i < 13; i++) {
@@ -1170,18 +1991,18 @@
                     month_compare[i] = (String(Math.round((1 - monthele[i] / monthele[i - 1]) * 100)) + '% ↓');
                 }
             }
-            month_compare[0]='Nan'
+            month_compare[0] = 'Nan'
         }
 
         // 計算總用電量
-        function calculate_use(arr){
-            sum=0;
-            for(var i=0;i<arr.length;i++){
-                sum+=arr[i];
+        function calculate_use(arr) {
+            sum = 0;
+            for (var i = 0; i < arr.length; i++) {
+                sum += arr[i];
             }
             return sum;
         }
-        
+
         // 計算異常天數
         function calculate_overstandard() {
             abnormal = 0;
@@ -1193,6 +2014,7 @@
         // 列出各月用電量比較
         tb.removeChild(origin_node);
         var node;
+
         function list_month_rate() {
             setTimeout(function () {
                 node = origin_node.cloneNode(true);
@@ -1219,24 +2041,24 @@
         }
 
         // 網頁數值變動
-        function change_values(){
-            var output='';
+        function change_values() {
+            var output = '';
             calculate_overstandard();
             calculate_use(ele);
             setTimeout(function () {
-                if(abnormal>0){
+                if (abnormal > 0) {
                     test();
                 }
                 // 在這裡執行你的操作
             }, 1000);
-            
 
-            if(ifinit)use.textContent =startDate.slice(5,10) + '到'+ endDate.slice(5,10) + '總共使用' + String(calculate_use(ele).toFixed(2)) + '度';
+
+            if (ifinit) use.textContent = startDate.slice(5, 10) + '到' + endDate.slice(5, 10) + '總共使用' + String(calculate_use(ele).toFixed(2)) + '度';
             else use.textContent = '一月總共使用' + String(sum) + '度';
 
-            average.textContent=(sum/ele.length).toFixed(2);
-            tree.textContent=(0.509 * sum / 550.5).toFixed(2);
-            overstandard.textContent=abnormal;
+            average.textContent = (sum / ele.length).toFixed(2);
+            tree.textContent = (0.509 * sum / 550.5).toFixed(2);
+            overstandard.textContent = abnormal;
 
         }
 
@@ -1246,134 +2068,134 @@
         var myChart = echarts.init(chartDom);
         var option;
 
-        
+
         function ecchart() {
             // console.log(date);
             markAreadata = [];
             markPointData = [];
-                for (var i = 0; i < ele.length; i++) {
-                    if (result[i] == '1') {
-                        var markPoint = {
-                            coord: [i, ele[i]], // 使用 [x, y] 坐標表示標記點位置
-                            value: ele[i],
-                            name: '數值: ' + ele[i], // 自定義標記點的名稱
-                            date:date[i],
-                            month:month[i]
-                        };
-                        var markarea = [
-                            {
-                                xAxis: i,
-                            },
-                            {
-                                xAxis: i + 1,
-                            }
+            for (var i = 0; i < ele.length; i++) {
+                if (result[i] == '1') {
+                    var markPoint = {
+                        coord: [i, ele[i]], // 使用 [x, y] 坐標表示標記點位置
+                        value: ele[i],
+                        name: '數值: ' + ele[i], // 自定義標記點的名稱
+                        date: date[i],
+                        month: month[i]
+                    };
+                    var markarea = [
+                        {
+                            xAxis: i,
+                        },
+                        {
+                            xAxis: i + 1,
+                        }
 
-                        ];
-                        markPointData.push(markPoint);
-                        markAreadata.push(markarea);
-                    }
+                    ];
+                    markPointData.push(markPoint);
+                    markAreadata.push(markarea);
                 }
-                option = {
-                    title: {
-                        // text: 'Distribution of Electricity',
-                        // subtext: '一月'
+            }
+            option = {
+                title: {
+                    // text: 'Distribution of Electricity',
+                    // subtext: '一月'
+                },
+                tooltip: {
+                    trigger: 'item',
+                    axisPointer: {
+                        type: 'cross'
                     },
-                    tooltip: {
-                        trigger: 'item',
-                        axisPointer: {
-                            type: 'cross'
-                        },
-                        formatter: function (arg) {
-                            // console.log(arg);
-                            if (arg.componentType === 'series') {
-                                // console.log(arg.componentType);
-                                return month[arg.dataIndex] + '月' + arg.name + '日' + "<br>" + '用電量 : ' + arg.value;
-                            } else if (arg.componentType === 'markPoint') {
-                                // console.log(arg.componentType);
-                                return arg.data.month + '月' + arg.data.date + '日' + "<br>" + '用電量 : ' + arg.value
-                            } else return '';
-                        }
+                    formatter: function (arg) {
+                        // console.log(arg);
+                        if (arg.componentType === 'series') {
+                            // console.log(arg.componentType);
+                            return month[arg.dataIndex] + '月' + arg.name + '日' + "<br>" + '用電量 : ' + arg.value;
+                        } else if (arg.componentType === 'markPoint') {
+                            // console.log(arg.componentType);
+                            return arg.data.month + '月' + arg.data.date + '日' + "<br>" + '用電量 : ' + arg.value
+                        } else return '';
+                    }
+                },
+                toolbox: {
+                    show: false,
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    // prettier-ignore
+                    data: date
+                },
+                yAxis: {
+                    type: 'value',
+                    axisLabel: {
+                        formatter: '{value} 度'
                     },
-                    toolbox: {
-                        show: false,
-                        feature: {
-                            saveAsImage: {}
-                        }
+                    axisPointer: {
+                        snap: true
+                    }
+                },
+                dataZoom: [
+                    {
+                        type: 'slider',  // 類型為滑動選擇器
+                        start: 0,       // 預設選擇的起始位置
+                        // end: 50         // 預設選擇的結束位置
                     },
-                    xAxis: {
-                        type: 'category',
-                        boundaryGap: false,
-                        // prettier-ignore
-                        data: date
-                    },
-                    yAxis: {
-                        type: 'value',
-                        axisLabel: {
-                            formatter: '{value} 度'
-                        },
-                        axisPointer: {
-                            snap: true
-                        }
-                    },
-                    dataZoom: [
-                        {
-                            type: 'slider',  // 類型為滑動選擇器
-                            start: 0,       // 預設選擇的起始位置
-                            // end: 50         // 預設選擇的結束位置
-                        },
-                        {
-                            type: 'inside'  // 類型為內部選擇器
-                        }
-                    ],
-                    series: [
-                        {
-                            data: ele,
+                    {
+                        type: 'inside'  // 類型為內部選擇器
+                    }
+                ],
+                series: [
+                    {
+                        data: ele,
 
-                            markPoint: {
-                                data: markPointData,
-                                itemStyle: {
-                                    color: 'red',
-                                    // borderColor: 'red',
-                                    // borderWidth: 3
+                        markPoint: {
+                            data: markPointData,
+                            itemStyle: {
+                                color: 'red',
+                                // borderColor: 'red',
+                                // borderWidth: 3
+                            }
+                        },
+                        lineStyle: {
+                            color: 'green', // 指定線條的顏色
+                            width: 4.5
+                        },
+                        itemStyle: {
+                            color: 'black', // 普通數據點的顏色
+                            borderColor: 'red', // 普通數據點的邊框顏色
+                            borderWidth: 2, // 普通數據點的邊框寬度
+                            opacity: 0.7 // 普通數據點的透明度
+                            // 其他樣式屬性
+                        },
+                        label: {
+                            show: true,
+                            formatter: function (params) {
+                                if (result[params.dataIndex] === '0') {
+                                    return ele[i];
+                                } else {
+                                    return '';
                                 }
                             },
-                            lineStyle: {
-                                color: 'green', // 指定線條的顏色
-                                width: 4.5
-                            },
+                        },
+                        name: '用電量(度)',
+                        type: 'line',
+                        smooth: true,
+                        // prettier-ignore
+
+                        markArea: {
                             itemStyle: {
-                                color: 'black', // 普通數據點的顏色
-                                borderColor: 'red', // 普通數據點的邊框顏色
-                                borderWidth: 2, // 普通數據點的邊框寬度
-                                opacity: 0.7 // 普通數據點的透明度
-                                // 其他樣式屬性
+                                color: 'rgba(255, 173, 177, 0.4)'
                             },
-                            label: {
-                                show: true,
-                                formatter: function (params) {
-                                    if (result[params.dataIndex] === '0') {
-                                        return ele[i];
-                                    } else {
-                                        return '';
-                                    }
-                                },
-                            },
-                            name: '用電量(度)',
-                            type: 'line',
-                            smooth: true,
-                            // prettier-ignore
+                            data: markAreadata,
 
-                            markArea: {
-                                itemStyle: {
-                                    color: 'rgba(255, 173, 177, 0.4)'
-                                },
-                                data: markAreadata,
-
-                            }
                         }
-                    ]
-                };
-            
+                    }
+                ]
+            };
+
             option && myChart.setOption(option);
         }
 
@@ -1385,23 +2207,23 @@
         // init
         split_result();
 
-        ele=eleall[0];
-        date=dateall[0];
-        result=month_result[0];
-        for(var i=0;i<ele.length;i++)month.push(1);
+        ele = eleall[0];
+        date = dateall[0];
+        result = month_result[0];
+        for (var i = 0; i < ele.length; i++) month.push(1);
 
         calculate_month_tree();
         calculate_month_rate();
         list_month_rate();
 
         ecchart();
-        
-        change_values();
-        
-        ifinit=true;
-    </script>
 
-    </div>
+        change_values();
+
+        ifinit = true;
+	</script>
+
+	</div>
 
 
 {% endblock content %}
