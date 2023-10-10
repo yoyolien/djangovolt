@@ -84,7 +84,11 @@ ol.carousel-indicators li.active {
     display: flex; /* 將這個容器的子元素變為 flex items */
     flex-wrap: wrap; /* 如果需要，允許元素換行 */
 }
-
+.sdgdiv .card-body{
+    display: block;
+    padding-left: 5%;
+    padding-right: 5%;
+}
 .post-container {
     overflow-x: scroll; /* 让div水平滚动 */
     white-space: nowrap; /* 防止贴文换行 */
@@ -181,5 +185,6 @@ ol.carousel-indicators li.active {
 
 .logo img {
     vertical-align: middle;
-    width: 20%;
+    width: 15%;
+    margin-bottom: 5px;
 }
