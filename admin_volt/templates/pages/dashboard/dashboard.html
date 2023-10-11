@@ -346,7 +346,7 @@
 					<div class="card border-0 shadow">
 						<div class="card-header border-bottom d-flex align-items-center justify-content-between">
 							<h2 class="fs-5 fw-bold mb-0 fs-4">今年電力使用共: {{ wholeusage }} 度
-														  約需要種植 {{ treec|length }} 棵樹</h2>
+															   約需要種植 {{ treec|length }} 棵樹</h2>
 							<!-- <a href="#" class="btn btn-sm btn-primary">See all</a> -->
 
 							<div class="tooltipa">
@@ -403,23 +403,23 @@
 							<table class="table align-items-center table-flush">
 								<thead class="thead-light">
 								<tr>
-									<th class="border-bottom"
+									<th class="border-bottom fs-5"
 										scope="col">月份
 									</th>
-									<th class="border-bottom"
+									<th class="border-bottom fs-5"
 										scope="col">用電量
 									</th>
-									<th class="border-bottom"
+									<th class="border-bottom fs-5"
 										scope="col">需種植樹木數量
 									</th>
-									<th class="border-bottom"
+									<th class="border-bottom fs-5"
 										scope="col">與前一日相比
 									</th>
 								</tr>
 								</thead>
 								<tbody id="tb">
 								<tr id="trr">
-									<th class="text-gray-900"
+									<th class="text-gray-900 fs-5"
 										scope="row"
 										id="date2">
 										/demo/admin/index.html
@@ -2042,10 +2042,14 @@
                     node.children["date2"].textContent = i;
                     node.children["ele2"].textContent = monthele[i - 1];
                     node.children["tree2"].textContent = mtree[i - 1] + "棵";
-
+                    node.children["date2"].classList.add("fs-5");
+                    node.children["rate"].classList.add("fs-5");
+                    node.children["ele2"].classList.add("fs-5");
+                    node.children["tree2"].classList.add("fs-5");
                     if (monthele[i - 1] >= monthele[i - 2]) {
                         node.children["rate"].textContent = month_compare[i - 1];
                         node.children["rate"].classList.add("text-danger");
+
                     } else {
                         node.children["rate"].textContent = month_compare[i - 1];
                         node.children["rate"].classList.add("text-success");
