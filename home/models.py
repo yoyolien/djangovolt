@@ -10,6 +10,8 @@ class predictionresult(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     result=models.TextField(null=False)
     date = models.DateField()
+    checked = models.BooleanField(default=True)
+
 class Slide(models.Model):
     id= models.TextField(primary_key=True)
     image = models.TextField()
@@ -24,3 +26,4 @@ class eledata(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     report_time = models.DateField()
     daliyusage = models.TextField()
+

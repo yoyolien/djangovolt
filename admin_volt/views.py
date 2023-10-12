@@ -25,7 +25,7 @@ def dashboard(request,message=None):
         requestmlresult(request.user)
         slides = list(Slide.objects.all())
         prediction = predictionresult.objects.filter(user_id=request.user.id)
-        result = [x.result[-5] for x in prediction]
+        result = [x.result for x in prediction]
         ele = eledata.objects.filter(user_id=request.user.id)
         label = [[] for _ in range(12)]
         dayusage = [[] for _ in range(12)]

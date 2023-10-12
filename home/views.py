@@ -54,12 +54,12 @@ def requestmlresult(u):
 		mlapiurl = f"http://127.0.0.1:8000/predict/?value=[{e.daliyusage}]&date={e.id[:10]}"
 		response = requests.get(mlapiurl)
 		if response.status_code == 200:
-			print(1)
 			result = predictionresult(
 				user=u,
 				date=e.id[:10],
-				result=json.loads(response.content)["result"],
-				id=e.id
+				result=json.loads(response.content)["result"]['label'][0],
+				id=e.id,
+				checked=False if json.loads(response.content)["result"]['label'][0]==1 else True
 			)
 			result.save()
 	return
