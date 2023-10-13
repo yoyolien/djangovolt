@@ -8,6 +8,7 @@ urlpatterns = [
     # path('index/', views.index, name="index"),
 
     # Pages
+    path('<message>', views.dashboard, name="dashboard"),
     path('', views.dashboard, name="dashboard"),
     path('pages/transaction/', views.transaction, name="transaction"),
     path('pages/settings/', views.settings, name="settings"),

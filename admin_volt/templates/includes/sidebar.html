@@ -83,10 +83,10 @@
                 </span>
               </span>
               {% if app.models %}
-                <div 
-                  class="multi-level collapse {% if 'tables-bootstrap-' in segment or app_label == app.label or app.url in request.path|urlencode %} show {% endif %}" 
-                  role="list" 
-                  id="submenu-dashboard{{app.app_label}}" 
+                <div
+                  class="multi-level collapse {% if 'tables-bootstrap-' in segment or app_label == app.label or app.url in request.path|urlencode %} show {% endif %}"
+                  role="list"
+                  id="submenu-dashboard{{app.app_label}}"
                   aria-expanded="{% if app_label == app.label or app.url in request.path|urlencode %}true{% else %}false{% endif %}">
                   <ul class="flex-column nav">
                     {% for model in app.models %}
@@ -102,7 +102,7 @@
                       {% endif %}
                     {% endfor %}
                   </ul>
-                </div> 
+                </div>
               {% endif %}
             </li>
           {% endif %}

@@ -1,7 +1,7 @@
 import random, urllib.request
 
 import requests
-from bs4 import BeautifulSoup
+
 from django.shortcuts import render, redirect
 from admin_volt.forms import RegistrationForm, LoginForm, UserPasswordResetForm, UserPasswordChangeForm, \
     UserSetPasswordForm
@@ -13,54 +13,6 @@ from django.contrib.auth.decorators import login_required
 import json
 import datetime
 import os
-
-
-def requesttaipower():
-    url = "https://www.taipower.com.tw/tc/news.aspx?mid=17"
-    save_path = "static/slides/"
-    print(save_path)
-    titles = []
-    links = []
-    imglinks = []
-    # 發送GET請求並取得響應
-    response = requests.get(url)
-    # 檢查是否成功取得響應
-    if response.status_code == 200:
-        Slide.objects.all().delete()
-        soup = BeautifulSoup(response.text, "html.parser")
-        # 找到包含新聞列表的 div 元素
-        box_list_div = soup.find("div", class_="box_list")
-        # 找到所有的 li 元素
-        news_list = box_list_div.find_all("li")
-        for i, news in enumerate(news_list):
-            title = news.select_one("a").text.strip()
-            # title=title.replace(" ", "").replace("\n", "").replace("\t", "")
-            img = news.select_one("img")["src"]
-            link = news.select_one("a")["href"]
-            if "/upload/" in img:
-                img_link = f"https://www.taipower.com.tw{img}"
-            else:
-                img_link = f"https://www.taipower.com.tw/tc/{img}"
-            titles.append(title)
-            links.append(f"https://www.taipower.com.tw/tc/{link}")
-            imglinks.append(img_link)
-        slides = []
-        for i, title in enumerate(titles):
-            slide = Slide()
-            slide.link = links[i]
-            slide.image = imglinks[i]
-            slide.description = title
-            slide.id = "img-" + str(i + 1)
-            slide.save()
-            slides.append(slide)
-        for index, slide in enumerate(slides):
-            slide.prev_id = slides[index - 1].id
-            slide.next_id = slides[(index + 1) % len(slides)].id
-            slide.save()
-    else:
-        print("無法取得響應")
-
-
 # Index
 def index(request):
     return render(request, 'pages/index.html')
@@ -68,20 +20,18 @@ def index(request):
 
 # Dashboard
 @login_required(login_url="/accounts/login/")
-def dashboard(request):
+def dashboard(request,message=None):
     try:
         requestmlresult(request.user)
         slides = list(Slide.objects.all())
         prediction = predictionresult.objects.filter(user_id=request.user.id)
-        result = list(map(lambda x: x.result[-5], prediction))
+        result = [x.result for x in prediction]
         ele = eledata.objects.filter(user_id=request.user.id)
         label = [[] for _ in range(12)]
         dayusage = [[] for _ in range(12)]
-        print(request.user.id)
-
         for i in ele:
             month = i.report_time.month
-            usage = sum(map(float, i.daliyusage.split(","))) / 1000
+            usage = sum(float(x) / 4 for x in i.daliyusage.split(",")) / 1000
             usage = float('%.2f' % usage)
             label[month - 1].append(i.report_time.day)
             dayusage[month - 1].append(usage)
@@ -90,13 +40,12 @@ def dashboard(request):
         wu = float('%.2f' % sum(mu))
         tree = 0.509 * wu / 550.5
         treec = []
-
+        
         for i in range(int(tree) + 1):
             if i + 1 < tree:
                 treec.append([100, 0])
             else:
                 treec.append([100 * (tree - i), 100 - 100 * (tree - i)])
-
         context = {
             'segment': 'dashboard',
             'ele': dayusage,
@@ -105,11 +54,11 @@ def dashboard(request):
             "todayusage": dayusage[-1][-1],
             "monthusage": mu,
             "wholeusage": wu,
-
             'standard': [float('%.2f' % (sum(i) / len(i))) for i in dayusage],
             "treec": treec,
             "slides": slides[1:],
             "fslide": slides[0],
+            "message":message,
         }
     except:
         context = {}
