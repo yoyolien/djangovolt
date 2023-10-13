@@ -169,7 +169,17 @@ ol.carousel-indicators li.active {
     width: 100px;
     margin: 10px;
 }
-
+.form-check{
+    display: inline-block;
+    vertical-align: auto;
+}
+.form-check-input{
+    width: 24px;
+    height: 24px;
+    margin-top: 0;
+    margin-bottom: 0;
+    z-index: 999;
+}
 .sdgdiv {
     background: #92d9b1;
     transition-property: all; /*元素要改變的width屬性*/

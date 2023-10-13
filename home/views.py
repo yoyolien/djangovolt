@@ -59,10 +59,30 @@ def requestmlresult(u):
 				date=e.id[:10],
 				result=json.loads(response.content)["result"]['label'][0],
 				id=e.id,
-				checked=False if json.loads(response.content)["result"]['label'][0]==1 else True
+				checked=0 if json.loads(response.content)["result"]['label'][0] == 1 else 7
 			)
 			result.save()
 	return
+
+
+# TODO:check
+def edit_result(request):
+	if request.method == 'POST':
+		try:
+			data = json.loads(request.body)
+			# 处理JSON数据
+			for item in data:
+				result_id = item.get('result_id')
+				checked_value = item.get('checked')
+
+				result = predictionresult.objects.get(id=result_id)
+				result.checked = checked_value
+				result.save()
+			return JsonResponse({'message':'successfully'})
+		except Exception as e:
+			return JsonResponse({'success':False,'error':str(e)},status=400)
+	else:
+		return JsonResponse({'error':'Invalid request method'},status=400)
 
 
 def test(request):
@@ -135,14 +155,14 @@ def requestnttu(request):
 		op.add_argument('--disable-gpu')
 		op.add_argument('--disable-dev-shm-usage')
 		driver = webdriver.Edge(service=service,options=op)
-		# linux server
-		# service = Service(executable_path="/snap/bin/chromium.chromedriver")
-		# op = webdriver.ChromeOptions()
-		# op.add_argument("--headless")
-		# op.add_argument('--no-sandbox')
-		# op.add_argument('--disable-gpu')
-		# op.add_argument('--disable-dev-shm-usage')
-		# driver = webdriver.Chrome(service=service,options=op)
+	# linux server
+	# service = Service(executable_path="/snap/bin/chromium.chromedriver")
+	# op = webdriver.ChromeOptions()
+	# op.add_argument("--headless")
+	# op.add_argument('--no-sandbox')
+	# op.add_argument('--disable-gpu')
+	# op.add_argument('--disable-dev-shm-usage')
+	# driver = webdriver.Chrome(service=service,options=op)
 	# 通用的爬取操作
 	url = "https://wdsa.nttu.edu.tw/p/403-1009-424-1.php?Lang=zh-tw"
 	driver.get(url=url)

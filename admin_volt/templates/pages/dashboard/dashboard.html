@@ -39,6 +39,7 @@
             fill: purple; /* 區域填充顏色為紅色 */
         }
 
+		{#TODO:日曆樣式#}
 	</style>
 	<div class="row">
 		<div class="modal fade"
@@ -1841,65 +1842,65 @@
         var tt = 0;
         var acc = document.getElementById("acc");
 
-		function create_accordionItem(month) {
-			var accordionItem = document.createElement("div");
-			accordionItem.classList.add("accordion-item");
-			accordionItem.id = "accitem" + month;
+        function create_accordionItem(month) {
+            var accordionItem = document.createElement("div");
+            accordionItem.classList.add("accordion-item");
+            accordionItem.id = "accitem" + month;
 
-			// 創建 h2 元素（標題部分）
-			var heading = document.createElement("h2");
-			heading.classList.add("accordion-header");
-			heading.setAttribute("id", "heading" + month); // 使用不同的 ID
+            // 創建 h2 元素（標題部分）
+            var heading = document.createElement("h2");
+            heading.classList.add("accordion-header");
+            heading.setAttribute("id", "heading" + month); // 使用不同的 ID
 
-			// 創建按鈕元素
-			var button = document.createElement("button");
-			button.classList.add("accordion-button");
-			button.setAttribute("type", "button");
-			button.setAttribute("data-bs-toggle", "collapse");
-			button.setAttribute("data-bs-target", "#collapse" + month); // 使用不同的 ID
-			button.setAttribute("aria-expanded", "false"); // 不同時展開
-			button.setAttribute("aria-controls", "collapse" + month);
-			button.textContent = month + "月";
+            // 創建按鈕元素
+            var button = document.createElement("button");
+            button.classList.add("accordion-button");
+            button.setAttribute("type", "button");
+            button.setAttribute("data-bs-toggle", "collapse");
+            button.setAttribute("data-bs-target", "#collapse" + month); // 使用不同的 ID
+            button.setAttribute("aria-expanded", "false"); // 不同時展開
+            button.setAttribute("aria-controls", "collapse" + month);
+            button.textContent = month + "月";
 
-			// 將按鈕元素添加到 h2 元素中
-			heading.appendChild(button);
+            // 將按鈕元素添加到 h2 元素中
+            heading.appendChild(button);
 
-			// 創建折疊內容的 div 元素
-			var collapse = document.createElement("div");
-			collapse.classList.add("accordion-collapse");
-			collapse.classList.add("collapse"); // 不同時展開
-			collapse.setAttribute("id", "collapse" + month); // 使用不同的 ID
-			collapse.setAttribute("aria-labelledby", "heading" + month); // 使用不同的 ID
-			collapse.setAttribute("data-bs-parent", "#accordionExample");
+            // 創建折疊內容的 div 元素
+            var collapse = document.createElement("div");
+            collapse.classList.add("accordion-collapse");
+            collapse.classList.add("collapse"); // 不同時展開
+            collapse.setAttribute("id", "collapse" + month); // 使用不同的 ID
+            collapse.setAttribute("aria-labelledby", "heading" + month); // 使用不同的 ID
+            collapse.setAttribute("data-bs-parent", "#accordionExample");
 
-			// 創建折疊內容的主體
-			var accordionBody = document.createElement("div");
-			accordionBody.classList.add("accordion-body");
-			accordionBody.setAttribute("id", "acc" + month);
+            // 創建折疊內容的主體
+            var accordionBody = document.createElement("div");
+            accordionBody.classList.add("accordion-body");
+            accordionBody.setAttribute("id", "acc" + month);
 
-			// 將折疊內容的主體添加到折疊內容 div 中
-			collapse.appendChild(accordionBody);
+            // 將折疊內容的主體添加到折疊內容 div 中
+            collapse.appendChild(accordionBody);
 
-			// 將 h2 元素和折疊內容 div 添加到 accordionItem 中
-			accordionItem.appendChild(heading);
-			accordionItem.appendChild(collapse);
+            // 將 h2 元素和折疊內容 div 添加到 accordionItem 中
+            accordionItem.appendChild(heading);
+            accordionItem.appendChild(collapse);
 
-			// 最後，將 accordionItem 添加到您希望的容器中
-			console.log(accordionItem);
-			acc.appendChild(accordionItem);
-			console.log(acc);
-		}
+            // 最後，將 accordionItem 添加到您希望的容器中
+            console.log(accordionItem);
+            acc.appendChild(accordionItem);
+            console.log(acc);
+        }
 
         function test() {
             var t_acc;
             $(document).ready(function () {
                 $('#hello').modal('show');
             });
-			while (acc.firstChild) {
-				acc.removeChild(acc.firstChild);
-			}
-			console.log("acc");
-			console.log(acc);
+            while (acc.firstChild) {
+                acc.removeChild(acc.firstChild);
+            }
+            console.log("acc");
+            console.log(acc);
 
             for (var i = 0; i < markPointData.length; i++) {
                 console.log(markPointData[i].month);
@@ -1908,9 +1909,10 @@
                     console.log("fail");
                     create_accordionItem(markPointData[i].month);
                     t_acc = document.getElementById("acc" + markPointData[i].month);
-					console.log(t_acc);
-                };
-                
+                    console.log(t_acc);
+                }
+                ;
+
 
                 var p = document.createElement('p');
                 p.classList.add("text-danger");
@@ -1923,8 +1925,10 @@
                     var checkbox = document.createElement('input');
                     label.textContent = item[j];
                     checkbox.type = 'checkbox';
-                    t_acc.appendChild(label);
+                    checkbox.classList = "form-check-input ml-1 form-check";
+                    label.classList = "form-check-label ml-2 form-check";
                     t_acc.appendChild(checkbox);
+                    t_acc.appendChild(label);
                 }
 
             }
@@ -1988,13 +1992,13 @@
         //以月份切割預測結果 
         function split_result() {
             for (var i = 0; i < 12; i++) {
-                month_result.push((resultall.slice(0, eleall[i].length)).map(function(str) {
-  return String(parseInt(str, 10));
-}));
+                month_result.push((resultall.slice(0, eleall[i].length)).map(function (str) {
+                    return String(parseInt(str, 10));
+                }));
                 resultall = resultall.slice(eleall[i].length);
             }
-			console.log("result");
-			console.log(month_result);
+            console.log("result");
+            console.log(month_result);
         }
 
         // 計算種幾棵樹
