@@ -29,7 +29,6 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 @api_view(['GET'])
 def predict_view(request):
-
     # Get the value parameter from the query string
     value = float(request.query_params.get('value'))
     userid=request.query_params.get('userid')
@@ -39,7 +38,6 @@ def predict_view(request):
     try:
         # Get the edata object for today's date
         d = edata.objects.get(date=str(datetime.datetime.now().date()),userid=userid)
-
         # Add the value to the elet list and save the edata object
         elist = json.JSONDecoder().decode(d.elet)
         elist.append(value)
