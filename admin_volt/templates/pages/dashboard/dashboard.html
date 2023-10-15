@@ -80,7 +80,6 @@
 								 data-bs-parent="#accordionExample">
 								<div class="accordion-body"
 									 id="acc1">
-
 								</div>
 							</div>
 						</div>
@@ -1813,6 +1812,7 @@
         var dateall ={{ date|safe }};//以陣列存放個月日期 ex.一月dateall[0]=>[1,2,3...,31]
         var eleall ={{ ele|safe }};//電力用量,跟dateall是對應的
         var resultall ={{ presult|safe }};
+		var tempresult=resultall;
         var standard = {{ standard|safe }};//平均值
         var sum ={{ wholeusage|safe }};//電力用量總和
         var monthele = {{ monthusage|safe }};
@@ -1841,6 +1841,7 @@
         var item = ['冰箱', '冷氣', '熱水器'];
         var tt = 0;
         var acc = document.getElementById("acc");
+		// var user=document.getElementById();
 
         function create_accordionItem(month) {
             var accordionItem = document.createElement("div");
@@ -1925,6 +1926,7 @@
                     var checkbox = document.createElement('input');
                     label.textContent = item[j];
                     checkbox.type = 'checkbox';
+					checkbox.id=String(i)+String(j);
                     checkbox.classList = "form-check-input ml-1 form-check";
                     label.classList = "form-check-label ml-2 form-check";
                     t_acc.appendChild(checkbox);
@@ -1932,6 +1934,49 @@
                 }
 
             }
+			var myModal = document.getElementById("hello");
+			var updata=[];
+			myModal.addEventListener("hidden.bs.modal", function () {
+				console.log("關閉");
+				var check;
+				for(var i=0 ; i< markPointData.length; i++){
+					check=0;
+					for (var j = 0; j < item.length; j++){
+
+						check*=2;
+
+						var n=document.getElementById(String(i)+String(j));
+						if(n.checked)check+=1;
+					}
+					console.log(markPointData[i].month+"-"+markPointData[i].date);
+					console.log(check);
+					var m=markPointData[i].month;
+					var d=markPointData[i].date;
+					if(m<10)m='0'+String(m);
+					if(d<10)d='0'+String(d);
+					updata.push({result_id: "2020-"+m+"-"+d+"yoyo",checked: check});
+				}
+				console.log(updata);
+			});
+
+			// 构建要发送的JSON数组，包含多个记录
+			var updateData = updata;
+
+			// 发送JSON数组到服务器
+			fetch('/predictionresult/edit', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(updateData)
+			})
+			.then(response => {
+				// 处理服务器的响应
+			})
+			.catch(error => {
+				// 处理错误
+			});
+		
         }
 
         // 建立所需範圍ele,date,result陣列，以便ecchart讀取
