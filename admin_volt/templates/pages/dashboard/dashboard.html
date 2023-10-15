@@ -1973,17 +1973,12 @@
                     var d = markPointData[i].date;
                     if (m < 10) m = '0' + String(m);
                     if (d < 10) d = '0' + String(d);
-                    updata.push({result_id: "2020-" + m + "-" + d + "yoyo", checked: check});
+                    updata.push({result_id: "2020-" + m + "-" + d + "{{ user.username }}", checked: check});
                 }
                 console.log(updata);
-            });
+                var updateData = updata;
 
-            // 构建要发送的JSON数组，包含多个记录
-            var updateData = updata;
-
-
-            // 发送JSON数组到服务器
-            fetch('/predictionresult/edit', {
+                fetch('/predictionresult/edit', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -1997,6 +1992,15 @@
                 .catch(error => {
                     // 处理错误
                 });
+
+
+            });
+
+            // 构建要发送的JSON数组，包含多个记录
+            
+
+            // 发送JSON数组到服务器
+            
 
         }
 
