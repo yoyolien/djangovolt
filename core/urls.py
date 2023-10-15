@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 import home.views
+import quickstart.views
 
 urlpatterns = [
     path('', include('home.urls')),
     path("admin/", admin.site.urls),
     path("", include('admin_volt.urls')),
-    path('test/',home.views.test),
+    path('test/', home.views.test),
+    path('predict/', quickstart.views.predict_view, name='predict'),
 ]
