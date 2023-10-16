@@ -494,7 +494,7 @@
             <script>
                 function hideLoader() {
                     document.getElementById("loader-container").style.display = "none";
-                    document.getElementById("style-link-2").disabled = true;
+                    {#document.getElementById("style-link-2").disabled = true;#}
                 }
 
                 hideLoader();
@@ -1931,7 +1931,7 @@
                     t_acc = document.getElementById("acc" + markPointData[i].month);
                     console.log(t_acc);
                 }
-                ;
+
 
 
                 var p = document.createElement('p');
@@ -2019,7 +2019,7 @@
                 if (start[0] == end[0] && start[1] == end[1] + 1) {
                     return 0;
                 }
-                ;
+
                 if (start[1] == dateall[start[0]].length) {
                     start[0] = start[0] + 1;
                     start[1] = 0;

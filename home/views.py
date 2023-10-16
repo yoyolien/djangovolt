@@ -65,7 +65,6 @@ def requestmlresult(u):
 	return
 
 
-# TODO:check
 def edit_result(request):
 	if request.method == 'POST':
 		try:
