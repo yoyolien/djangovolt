@@ -1,14 +1,19 @@
 import datetime
 import json
+
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, Group
+from django.http import JsonResponse
 from rest_framework import viewsets
 from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+
+from home.models import predictionresult, eledata
 from quickstart.serializers import UserSerializer, GroupSerializer
-from quickstart.models import  edata
 import pandas as pd
 from mlmodule.LoadModel import Model_load
+
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -27,54 +32,28 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-@api_view(['GET'])
-def predict_view(request):
-    # Get the value parameter from the query string
-    value = float(request.query_params.get('value'))
-    userid=request.query_params.get('userid')
-    value = '%.2f'%value
-    print(value,userid)
 
-    try:
-        # Get the edata object for today's date
-        d = edata.objects.get(date=str(datetime.datetime.now().date()),userid=userid)
-        # Add the value to the elet list and save the edata object
-        elist = json.JSONDecoder().decode(d.elet)
-        elist.append(value)
-        d.elet=json.dumps(elist)
-        l=len(elist)
-        d.save()
-        elesum=sum(map(float,elist))
-        # 預測
-        if len(elist)==96:
-            a = [i for i in range(96)]
-            a.insert(0, "Report_time")
-            elist=list(map(float,elist))
-            elist.insert(0,d.date)
-            data=pd.DataFrame(elist,index=a)
-            data=data.transpose()
-            print(data)
-            user00_model_load = Model_load(user_id="user00")
-            predict = user00_model_load.predict(data)
-            return Response({'result': predict,'sum':elesum,'len':96})
-
-    except edata.DoesNotExist:
-        # If there is no edata object for today's date, create a new one
-        d = edata()
-        d.userid=userid
-        d.date=datetime.datetime.now().date()
-        d.elet = json.dumps([value])
-        d.save()
-        elesum=value
-        l=1
-
-    return Response({'result':'success','sum':elesum,'len':l})
-@api_view(['GET'])
-def testdelet(request):
-    d = edata.objects.get(date=str(datetime.datetime.now().date()),userid=0)
-    elist = json.JSONDecoder().decode(d.elet)
-    elist.pop(-1)
-    datalen=len(elist)
-    d.elet = json.dumps(elist)
-    d.save()
-    return Response({'len':datalen})
+def newpredict(u):
+    edata = eledata.objects.filter(user_id=u.id).exclude(
+        id__in=predictionresult.objects.filter(user_id=u.id).values_list('id', flat=True)
+    )
+    for e in edata:
+        elist = e.daliyusage.split(",")
+        # elist = json.JSONDecoder().decode(e.daliyusage)
+        a = [i for i in range(96)]
+        a.insert(0, "Report_time")
+        elist = list(map(float, elist))
+        elist.insert(0, e.report_time)
+        data = pd.DataFrame(elist, index=a)
+        data = data.transpose()
+        user00_model_load = Model_load(user_id="user00")
+        predict = user00_model_load.predict(data)
+        result = predictionresult(
+            user=u,
+            date=e.id[:10],
+            result=predict['label'][0],
+            id=e.id,
+            checked=0 if predict['label'][0] == 1 else 7
+        )
+        result.save()
+    return JsonResponse({"result": 123})

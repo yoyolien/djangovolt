@@ -8,7 +8,7 @@ from admin_volt.forms import RegistrationForm, LoginForm, UserPasswordResetForm,
 from django.contrib.auth.views import LoginView, PasswordResetView, PasswordChangeView, PasswordResetConfirmView
 from django.contrib.auth import logout
 from home.models import *
-from home.views import requestmlresult
+from quickstart.views import newpredict
 from django.contrib.auth.decorators import login_required
 import json
 import datetime
@@ -22,7 +22,7 @@ def index(request):
 @login_required(login_url="/accounts/login/")
 def dashboard(request,message=None):
     try:
-        requestmlresult(request.user)
+        newpredict(request.user)
         slides = list(Slide.objects.all())
         prediction = predictionresult.objects.filter(user_id=request.user.id)
         result = [x.result for x in prediction]

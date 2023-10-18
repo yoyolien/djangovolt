@@ -23,5 +23,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include('admin_volt.urls')),
     path('test/', home.views.test),
-    path('predict/', quickstart.views.predict_view, name='predict'),
+    path('predictml/', quickstart.views.newpredict),
+    path('checklist/', home.views.dashboardcheck),
 ]

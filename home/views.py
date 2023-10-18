@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import AnonymousUser
 from django.shortcuts import render,redirect
 from django.http import HttpResponse,JsonResponse
@@ -44,26 +45,14 @@ def upload_data_view(request):
 		return redirect('dashboard',message="success upload")
 	else:
 		return redirect('dashboard',message="fail")
-
-
-def requestmlresult(u):
-	ele = eledata.objects.filter(user_id=u.id).exclude(
-		id__in=predictionresult.objects.filter(user_id=u.id).values_list('id',flat=True)
-	)
-	for e in ele:
-		mlapiurl = f"http://127.0.0.1:8000/predict/?value=[{e.daliyusage}]&date={e.id[:10]}"
-		response = requests.get(mlapiurl)
-		if response.status_code == 200:
-			result = predictionresult(
-				user=u,
-				date=e.id[:10],
-				result=json.loads(response.content)["result"]['label'][0],
-				id=e.id,
-				checked=0 if json.loads(response.content)["result"]['label'][0] == 1 else 7
-			)
-			result.save()
-	return
-
+@login_required(login_url="/accounts/login/")
+def dashboardcheck(request):
+	unchecklist = predictionresult.objects.filter(checked__lt=7,user_id=request.user.id)
+	list= {}
+	for i in unchecklist:
+		list[str(i.date)]=i.checked
+	print(list)
+	return JsonResponse(list)
 
 def edit_result(request):
 	if request.method == 'POST':
@@ -73,7 +62,6 @@ def edit_result(request):
 			for item in data:
 				result_id = item.get('result_id')
 				checked_value = item.get('checked')
-
 				result = predictionresult.objects.get(id=result_id)
 				result.checked = checked_value
 				result.save()

@@ -53,7 +53,6 @@
 		input[type="date"]::-webkit-calendar-picker-indicator {
 			/* position: relative;
 			left: -120px; */
-			background-image: <i class="fa-thin fa-calendar-days fa-beat-fade fa-lg" style="color: #62ad25;"></i>;
 		}
 	</style>
 	
@@ -431,7 +430,7 @@
                                         scope="col">需種植樹木數量
                                     </th>
                                     <th class="border-bottom fs-5"
-                                        scope="col">與前一日相比
+                                        scope="col">與前一月相比
                                     </th>
                                 </tr>
                                 </thead>
@@ -1975,16 +1974,13 @@
                     if (d < 10) d = '0' + String(d);
                     updata.push({result_id: "2020-" + m + "-" + d + "{{ user.username }}", checked: check});
                 }
-                console.log(updata);
-                var updateData = updata;
-
                 fetch('/predictionresult/edit', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'X-CSRFToken': '{{ csrf_token }}' ,
                 },
-                body: JSON.stringify(updateData)
+                body: JSON.stringify(updata)
             })
                 .then(response => {
                     // 处理服务器的响应
