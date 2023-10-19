@@ -1859,7 +1859,7 @@
         var markAreadata = [];
         var markPointData = [];
         var ifchange = 0;
-        var item = ['冰箱', '冷氣', '熱水器'];
+        var item = ['冷氣', '使用者1', '使用者2', '使用者3', '使用者4'];
         var tt = 0;
         var acc = document.getElementById("acc");
         var month_checked = [];
@@ -1867,14 +1867,13 @@
 
         async function get_checked() {
 
-            fetch('/get_checked/', {
+            return fetch('/get_checked/', {
                 method: 'GET'
             })
                 .then(response => response.json())
                 .then(data => {
-                    checked = data.checked
-                    console.log(checked);
-                    split_checked();
+                    checked = data.checked;
+                    Promise.resolve();
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -1932,22 +1931,28 @@
             console.log(acc);
         }
 
-        function test() {
+        // 找出對應日期索引
+        function find_day_index(m,d){
+            for(var i=0;i<dateall[m].length;i++){
+                if(d==dateall[m][i])return i;
+            }
+        }
 
+        async function test() {
 
             var t_acc;
             $(document).ready(function () {
                 $('#hello').modal('show');
             });
-            get_checked();
-            console.log('After get_checked is done.');
 
+            await get_checked();
+            console.log(checked);
+            await split_checked();
+            console.log(month_checked);
 
             while (acc.firstChild) {
                 acc.removeChild(acc.firstChild);
             }
-            // console.log("acc");
-            // console.log(acc);
 
             for (var i = 0; i < markPointData.length; i++) {
                 console.log(markPointData[i].month);
@@ -1964,8 +1969,9 @@
                 p.classList.add("text-danger");
                 p.textContent = String(markPointData[i].month) + '月' + String(markPointData[i].date) + '日';
                 t_acc.appendChild(p);
-
-
+                var day_checked=month_checked[markPointData[i].month-1][find_day_index(markPointData[i].month-1,markPointData[i].date)];
+                console.log(markPointData[i].month,markPointData[i].date,"check=");
+                console.log(day_checked);
                 for (var j = 0; j < item.length; j++) {
                     var label = document.createElement('label');
                     var checkbox = document.createElement('input');
@@ -1973,6 +1979,13 @@
                     checkbox.type = 'checkbox';
                     checkbox.id = String(i) + String(j);
                     checkbox.classList = "form-check-input ml-1 form-check";
+                    console.log("pow",Math.pow(2, 4-j));
+                    if(day_checked>=Math.pow(2, 4-j)){
+                        checkbox.checked=true;
+                        day_checked=day_checked-Math.pow(2, 4-j);
+                    }
+                    // day_checked=Math.floor(day_checked/2);
+                    console.log(day_checked);
                     label.classList = "form-check-label ml-2 form-check";
                     t_acc.appendChild(checkbox);
                     t_acc.appendChild(label);
@@ -2001,6 +2014,7 @@
                     if (d < 10) d = '0' + String(d);
                     updata.push({result_id: "2020-" + m + "-" + d + "{{ user.username }}", checked: check});
                 }
+
                 fetch('/predictionresult/edit', {
                     method: 'POST',
                     headers: {
