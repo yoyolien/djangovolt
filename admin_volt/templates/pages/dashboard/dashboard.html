@@ -1,10 +1,10 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
 {% block content %}
-	<!-- {#    <link rel="stylesheet" id="style-link-2" href="{% static "css/loading.css" %}">#} -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <!-- {#    <link rel="stylesheet" id="style-link-2" href="{% static "css/loading.css" %}">#} -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 
-	<style>
+    <style>
         .tooltipa {
             position: relative;
             display: inline-block;
@@ -41,65 +41,66 @@
             fill: purple; /* 區域填充顏色為紅色 */
         }
 
-		{#TODO:日曆樣式#}
+        {#TODO:日曆樣式#}
 
-		input{
-			outline-style: none ;
-			border: 1px solid #ccc; 
-			border-radius: 5px;
-			padding: 7px 0px;
-			
-		}
-		input[type="date"]::-webkit-calendar-picker-indicator {
-			/* position: relative;
-			left: -120px; */
-		}
-	</style>
-	
-	<div class="row">
-		<div class="modal fade"
-			 id="hello"
-			 tabindex="-1"
-			 aria-labelledby="exampleModalLabel"
-			 aria-hidden="true">
-			<div class="modal-dialog  modal-dialog-centered">
-				<div class="modal-content">
-					<div class="modal-header justify-content-center">
-						<h5 class="modal-title"
-							id="exampleModalLabel">
-							這些天數用電異常
-						</h5>
-					</div>
-					<div class=" m-2">
-						<ul id="abnormaldate">
-							<!-- <li>suas</li> -->
-						</ul>
-					</div>
-					<div class="accordion"
-						 id="acc">
-						<div class="accordion-item">
-							<h2 class="accordion-header"
-								id="headingOne">
-								<button class="accordion-button"
-										type="button"
-										data-bs-toggle="collapse"
-										data-bs-target="#collapseOne"
-										aria-expanded="true"
-										aria-controls="collapseOne">
-									1月
-								</button>
-							</h2>
-							<div id="collapseOne"
-								 class="accordion-collapse collapse show"
-								 aria-labelledby="headingOne"
-								 data-bs-parent="#accordionExample">
-								<div class="accordion-body"
-									 id="acc1">
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- <div class="m-4 text-center bg-yellow-100 rounded">
+        input {
+            outline-style: none;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 7px 0px;
+
+        }
+
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            /* position: relative;
+            left: -120px; */
+        }
+    </style>
+
+    <div class="row">
+        <div class="modal fade"
+             id="hello"
+             tabindex="-1"
+             aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog  modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center">
+                        <h5 class="modal-title"
+                            id="exampleModalLabel">
+                            這些天數用電異常
+                        </h5>
+                    </div>
+                    <div class=" m-2">
+                        <ul id="abnormaldate">
+                            <!-- <li>suas</li> -->
+                        </ul>
+                    </div>
+                    <div class="accordion"
+                         id="acc">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header"
+                                id="headingOne">
+                                <button class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne"
+                                        aria-expanded="true"
+                                        aria-controls="collapseOne">
+                                    1月
+                                </button>
+                            </h2>
+                            <div id="collapseOne"
+                                 class="accordion-collapse collapse show"
+                                 aria-labelledby="headingOne"
+                                 data-bs-parent="#accordionExample">
+                                <div class="accordion-body"
+                                     id="acc1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="m-4 text-center bg-yellow-100 rounded">
                         <p class=" fw-bolder">檢查以下電器是否正常運作</p>
                         <label>
                             <input type="checkbox" name="checkbox1"> 冰箱
@@ -112,43 +113,43 @@
                         </label>
                     </div> -->
 
-					<div class="modal-footer justify-content-center">
-						<button type="button"
-								class="btn btn-secondary"
-								data-bs-dismiss="modal">關閉
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-12 mb-4">
-			<div class="card bg-yellow-100 border-0 shadow">
-				<div class="card-header d-sm-flex flex-row align-items-center flex-0">
-					<div class="d-block mb-3 mb-sm-0">
+                    <div class="modal-footer justify-content-center">
+                        <button type="button"
+                                class="btn btn-secondary"
+                                data-bs-dismiss="modal">關閉
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 mb-4">
+            <div class="card bg-yellow-100 border-0 shadow">
+                <div class="card-header d-sm-flex flex-row align-items-center flex-0">
+                    <div class="d-block mb-3 mb-sm-0">
 
-						<h2 class="fs-3 fw-extrabold"
-							id="use"></h2>
-						<div class="small mt-2">
+                        <h2 class="fs-3 fw-extrabold"
+                            id="use"></h2>
+                        <div class="small mt-2">
                             <span class="text-success fw-bold"
-								  id="compare"></span>
-						</div>
-					</div>
-					<div class="d-sm-flex ms-auto align-items-center">
-						<label for="start-date" class="mb-0 fw-bolder">開始日期：</label>
-						<input type="date"
-							   id="start-date"
-							   name="start-date"
-							   class="mr-2 text-center"
-							   value="2023-01-01"><br><br>
+                                  id="compare"></span>
+                        </div>
+                    </div>
+                    <div class="d-sm-flex ms-auto align-items-center">
+                        <label for="start-date" class="mb-0 fw-bolder">開始日期：</label>
+                        <input type="date"
+                               id="start-date"
+                               name="start-date"
+                               class="mr-2 text-center"
+                               value="2023-01-01"><br><br>
 
-						<label for="end-date" class="m-0 fw-bolder">結束日期：</label>
-						<input type="date"
-							   id="end-date"
-							   name="end-date"
-							   class="mr-2 text-center"
-							   value="2023-01-30"><br><br>
-					</div>
-				</div>
+                        <label for="end-date" class="m-0 fw-bolder">結束日期：</label>
+                        <input type="date"
+                               id="end-date"
+                               name="end-date"
+                               class="mr-2 text-center"
+                               value="2023-01-30"><br><br>
+                    </div>
+                </div>
 
                 <div class="card-body p-2"
                      id="containbox"
@@ -229,8 +230,8 @@
         </div>
         <div class="col-12 col-sm-6 col-xl-4 mb-4">
             <div class="card border-0 shadow">
-                <div class="card-body">
-                    <div class="row d-block d-xl-flex align-items-center">
+                <div class="card-body d-flex justify-content-between">
+                    <div class="row d-block d-xl-flex align-items-center justify-content-between">
                         <div
                                 class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
                             <!-- 警告圖示 -->
@@ -286,6 +287,9 @@
                                 <h3 class="fw-extrabold mb-2"><span id="overstandard"></span>天</h3>
                             </div>
                         </div>
+                    </div>
+                    <div class="align-self-center">
+                        <button type="button" class="btn btn-primary" id="checkbutton">檢視異常</button>
                     </div>
                 </div>
             </div>
@@ -1858,24 +1862,24 @@
         var item = ['冰箱', '冷氣', '熱水器'];
         var tt = 0;
         var acc = document.getElementById("acc");
-        var month_checked=[];
+        var month_checked = [];
         var checked;
 
         async function get_checked() {
-            
+
             fetch('/get_checked/', {
                 method: 'GET'
             })
-            .then(response => response.json())
-            .then(data => {
-                checked=data.checked
-                console.log(checked);
-                split_checked();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-            
+                .then(response => response.json())
+                .then(data => {
+                    checked = data.checked
+                    console.log(checked);
+                    split_checked();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
         }
 
 
@@ -1929,7 +1933,7 @@
         }
 
         function test() {
-            
+
 
             var t_acc;
             $(document).ready(function () {
@@ -1937,7 +1941,7 @@
             });
             get_checked();
             console.log('After get_checked is done.');
-            
+
 
             while (acc.firstChild) {
                 acc.removeChild(acc.firstChild);
@@ -1954,7 +1958,6 @@
                     t_acc = document.getElementById("acc" + markPointData[i].month);
                     console.log(t_acc);
                 }
-
 
 
                 var p = document.createElement('p');
@@ -1999,22 +2002,21 @@
                     updata.push({result_id: "2020-" + m + "-" + d + "{{ user.username }}", checked: check});
                 }
                 fetch('/predictionresult/edit', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': '{{ csrf_token }}' ,
-                },
-                body: JSON.stringify(updata)
-            })
-                .then(response => {
-                    // 处理服务器的响应
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}',
+                    },
+                    body: JSON.stringify(updata)
                 })
-                .catch(error => {
-                    // 处理错误
-                });
+                    .then(response => {
+                        // 处理服务器的响应
+                    })
+                    .catch(error => {
+                        // 处理错误
+                    });
 
 
-                
             });
         }
 
@@ -2052,9 +2054,10 @@
         // 監測選月份事件重畫圖表
         const startDateInput = document.getElementById('start-date');
         const endDateInput = document.getElementById('end-date');
+        const checkb = document.getElementById('checkbutton');
         startDateInput.addEventListener('change', checkBothDates);
         endDateInput.addEventListener('change', checkBothDates);
-
+        checkb.addEventListener('click', change_values);
         function checkBothDates() {
             if (startDateInput.value && endDateInput.value) {
                 startDate = document.getElementById("start-date").value;
@@ -2076,7 +2079,7 @@
 
         //以月份切割預測結果 
         function split_result() {
-            month_result=[];
+            month_result = [];
             for (var i = 0; i < 12; i++) {
                 month_result.push((resultall.slice(0, eleall[i].length)).map(function (str) {
                     return String(parseInt(str, 10));
@@ -2089,7 +2092,7 @@
 
         //以月份切割check
         function split_checked() {
-            month_checked=[];
+            month_checked = [];
             console.log(checked);
             for (var i = 0; i < 12; i++) {
                 month_checked.push((checked.slice(0, eleall[i].length)).map(function (str) {

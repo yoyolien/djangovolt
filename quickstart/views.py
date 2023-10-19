@@ -53,7 +53,7 @@ def newpredict(u):
             date=e.id[:10],
             result=predict['label'][0],
             id=e.id,
-            checked=0 if predict['label'][0] == 1 else 7
+            checked=0 if predict['label'][0] == 1 else 31
         )
         result.save()
     return JsonResponse({"result": 123})
