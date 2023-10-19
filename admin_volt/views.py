@@ -13,6 +13,8 @@ from django.contrib.auth.decorators import login_required
 import json
 import datetime
 import os
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 # Index
 def index(request):
     return render(request, 'pages/index.html')
@@ -26,6 +28,7 @@ def dashboard(request,message=None):
         slides = list(Slide.objects.all())
         prediction = predictionresult.objects.filter(user_id=request.user.id)
         result = [x.result for x in prediction]
+        # date = [x.result for x in prediction]
         ele = eledata.objects.filter(user_id=request.user.id)
         label = [[] for _ in range(12)]
         dayusage = [[] for _ in range(12)]
@@ -64,7 +67,12 @@ def dashboard(request,message=None):
         context = {}
     return render(request, 'pages/dashboard/dashboard.html', context)
 
-
+def get_checked(request):
+    if request.method == 'GET':
+        prediction = predictionresult.objects.filter(user_id=request.user.id)
+        checked = [x.checked for x in prediction]
+        return JsonResponse({'checked': checked})
+    
 # Pages
 @login_required(login_url="/accounts/login/")
 def transaction(request):

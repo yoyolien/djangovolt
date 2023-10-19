@@ -1858,8 +1858,26 @@
         var item = ['冰箱', '冷氣', '熱水器'];
         var tt = 0;
         var acc = document.getElementById("acc");
+        var month_checked=[];
+        var checked;
 
-        // var user=document.getElementById();
+        async function get_checked() {
+            
+            fetch('/get_checked/', {
+                method: 'GET'
+            })
+            .then(response => response.json())
+            .then(data => {
+                checked=data.checked
+                console.log(checked);
+                split_checked();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+            
+        }
+
 
         function create_accordionItem(month) {
             var accordionItem = document.createElement("div");
@@ -1911,15 +1929,21 @@
         }
 
         function test() {
+            
+
             var t_acc;
             $(document).ready(function () {
                 $('#hello').modal('show');
             });
+            get_checked();
+            console.log('After get_checked is done.');
+            
+
             while (acc.firstChild) {
                 acc.removeChild(acc.firstChild);
             }
-            console.log("acc");
-            console.log(acc);
+            // console.log("acc");
+            // console.log(acc);
 
             for (var i = 0; i < markPointData.length; i++) {
                 console.log(markPointData[i].month);
@@ -1990,14 +2014,8 @@
                 });
 
 
+                
             });
-
-            // 构建要发送的JSON数组，包含多个记录
-            
-
-            // 发送JSON数组到服务器
-            
-
         }
 
 
@@ -2058,6 +2076,7 @@
 
         //以月份切割預測結果 
         function split_result() {
+            month_result=[];
             for (var i = 0; i < 12; i++) {
                 month_result.push((resultall.slice(0, eleall[i].length)).map(function (str) {
                     return String(parseInt(str, 10));
@@ -2066,6 +2085,20 @@
             }
             console.log("result");
             console.log(month_result);
+        }
+
+        //以月份切割check
+        function split_checked() {
+            month_checked=[];
+            console.log(checked);
+            for (var i = 0; i < 12; i++) {
+                month_checked.push((checked.slice(0, eleall[i].length)).map(function (str) {
+                    return String(parseInt(str, 10));
+                }));
+                checked = checked.slice(eleall[i].length);
+            }
+            console.log("checked");
+            console.log(month_checked);
         }
 
         // 計算種幾棵樹

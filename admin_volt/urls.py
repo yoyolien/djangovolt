@@ -50,4 +50,5 @@ urlpatterns = [
 
     # Extra
     path('pages/upgrade-to-pro/', views.upgrade_to_pro, name="upgrade_to_pro"),
+    path('get_checked/', views.get_checked, name='get_checked'),
 ]
