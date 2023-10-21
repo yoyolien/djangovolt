@@ -10,18 +10,7 @@ urlpatterns = [
     # Pages
     path('<message>', views.dashboard, name="dashboard"),
     path('', views.dashboard, name="dashboard"),
-    path('pages/transaction/', views.transaction, name="transaction"),
     path('pages/settings/', views.settings, name="settings"),
-
-    # Tables
-    path('tables/bs-tables/', views.bs_tables, name="bs_tables"),
-
-    # Components
-    path('components/buttons/', views.buttons, name="buttons"),
-    path('components/notifications/', views.notifications, name="notifications"),
-    path('components/forms/', views.forms, name="forms"),
-    path('components/modals/', views.modals, name="modals"),
-    path('components/typography/', views.typography, name="typography"),
 
     # Authentication
     path('accounts/register/', views.register_view, name="register"),
@@ -42,13 +31,9 @@ urlpatterns = [
         template_name='accounts/password-reset-complete.html'
     ), name='password_reset_complete'),
 
-    path('accounts/lock/', views.lock, name="lock"),
-
     # Errors
     path('error/404/', views.error_404, name="error_404"),
     path('error/500/', views.error_500, name="error_500"),
 
-    # Extra
-    path('pages/upgrade-to-pro/', views.upgrade_to_pro, name="upgrade_to_pro"),
     path('get_checked/', views.get_checked, name='get_checked'),
 ]
