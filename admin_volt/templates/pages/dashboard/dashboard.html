@@ -2048,13 +2048,14 @@
             await calculate_overstandard();
             calculate_use(ele);
             // setTimeout(function () {
-            //     if (abnormal > 0) {
-            //         test();
-            //     }
-            //     // 在這裡執行你的操作
+            //     // if (abnormal > 0) {
+            //     //     test();
+            //     // }
+            //     // // 在這裡執行你的操作
+                
             // }, 1000);
 
-
+            console.log(startDate);
             if (ifinit) use.textContent = startDate.slice(5, 10) + '到' + endDate.slice(5, 10) + '總共使用' + String(calculate_use(ele).toFixed(2)) + '度';
             else use.textContent = '一月總共使用' + String(sum) + '度';
             average.textContent = (sum / ele.length).toFixed(2);
@@ -2217,7 +2218,7 @@
         list_month_rate();
 
         ecchart();
-
+        checkBothDates();
         change_values();
 
         ifinit = true;
