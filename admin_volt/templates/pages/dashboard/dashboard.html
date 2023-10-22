@@ -1850,15 +1850,20 @@
                     if((b+1)%5==0){
                         // console.log(markPointData[a].month + "-" + markPointData[a].date);
                         // console.log(check);
+                        
                         var m = markPointData[a].month;
                         var d = markPointData[a].date;
+                        console.log(m,d);
                         if (m < 10) m = '0' + String(m);
                         if (d < 10) d = '0' + String(d);
                         updata.push({result_id: "2020-" + m + "-" + d + "{{ user.username }}", checked: check});
+                        if(check==31)abnormal-=1;
                         check=0;
                     }
-                }
 
+                }
+                overstandard.textContent = abnormal;
+                if(abnormal==0)checkb.style.display = "none";
                 fetch('/predictionresult/edit', {
                     method: 'POST',
                     headers: {
@@ -2000,6 +2005,8 @@
                 
                 if (result[i] == "1" &&checked[i]!=31) abnormal++;
             }
+            if(abnormal==0)checkb.style.display = "none";
+            else checkb.style.display = "block";
         }
 
         // 列出各月用電量比較
