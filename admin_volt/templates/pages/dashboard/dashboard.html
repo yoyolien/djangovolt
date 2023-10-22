@@ -219,7 +219,7 @@
                         </div>
                         <div class="col-12 col-xl-7 px-xl-0">
                             <div class="d-none d-sm-block">
-                                <h2 class="h6 text-gray-400 mb-0">該月平均電力用量</h2>
+                                <h2 class="h6 text-gray-400 mb-0">該區段平均電力用量</h2>
                                 <h3 class="fw-extrabold mb-2"><span id="average used"></span>度</h3>
                             </div>
 
@@ -283,7 +283,7 @@
                         </div>
                         <div class="col-12 col-xl-7 px-xl-0">
                             <div class="d-none d-sm-block">
-                                <h2 class="h6 text-gray-400 mb-0">該月異常天數</h2>
+                                <h2 class="h6 text-gray-400 mb-0">該區段未檢查天數</h2>
                                 <h3 class="fw-extrabold mb-2"><span id="overstandard"></span>天</h3>
                             </div>
                         </div>
@@ -353,7 +353,7 @@
                         </div>
                         <div class="col-12 col-xl-7 px-xl-0">
                             <div class="d-none d-sm-block">
-                                <h2 class="h6 text-gray-400 mb-0">該月需種植樹木數</h2>
+                                <h2 class="h6 text-gray-400 mb-0">該區段需種植樹木數</h2>
                                 <h3 class="fw-extrabold mb-2"><span id="tree"></span>棵</h3>
                             </div>
                         </div>
@@ -1698,6 +1698,8 @@
         var acc = document.getElementById("acc");
         var month_checked = [];
         var checked;
+        var id_list=[];
+        var temp_id_list=[];
 
         async function get_checked() {
 
@@ -1775,6 +1777,7 @@
         async function test() {
 
             var t_acc;
+            id_list=[];
             $(document).ready(function () {
                 $('#hello').modal('show');
             });
@@ -1789,64 +1792,74 @@
             }
 
             for (var i = 0; i < markPointData.length; i++) {
-                console.log(markPointData[i].month);
+                
+                var day_checked=month_checked[markPointData[i].month-1][find_day_index(markPointData[i].month-1,markPointData[i].date)];
+                console.log(markPointData[i].month,markPointData[i].date,"check=");
+                console.log(day_checked);
+                if(day_checked==31)continue;
+
                 if (t_acc = document.getElementById("acc" + markPointData[i].month)) ;
                 else {
-                    console.log("fail");
                     create_accordionItem(markPointData[i].month);
                     t_acc = document.getElementById("acc" + markPointData[i].month);
-                    console.log(t_acc);
                 }
 
-
+                
                 var p = document.createElement('p');
                 p.classList.add("text-danger");
                 p.textContent = String(markPointData[i].month) + '月' + String(markPointData[i].date) + '日';
                 t_acc.appendChild(p);
-                var day_checked=month_checked[markPointData[i].month-1][find_day_index(markPointData[i].month-1,markPointData[i].date)];
-                console.log(markPointData[i].month,markPointData[i].date,"check=");
-                console.log(day_checked);
+
                 for (var j = 0; j < item.length; j++) {
+                    id_list.push([i,j]);
                     var label = document.createElement('label');
                     var checkbox = document.createElement('input');
                     label.textContent = item[j];
                     checkbox.type = 'checkbox';
                     checkbox.id = String(i) + String(j);
                     checkbox.classList = "form-check-input ml-1 form-check";
-                    console.log("pow",Math.pow(2, 4-j));
+                    // console.log("pow",Math.pow(2, 4-j));
                     if(day_checked>=Math.pow(2, 4-j)){
                         checkbox.checked=true;
                         day_checked=day_checked-Math.pow(2, 4-j);
                     }
-                    // day_checked=Math.floor(day_checked/2);
-                    console.log(day_checked);
+                    // console.log(day_checked);
                     label.classList = "form-check-label ml-2 form-check";
                     t_acc.appendChild(checkbox);
                     t_acc.appendChild(label);
                 }
 
             }
+            
             var myModal = document.getElementById("hello");
             var updata = [];
+
             myModal.addEventListener("hidden.bs.modal", function () {
                 console.log("關閉");
-                var check;
-                for (var i = 0; i < markPointData.length; i++) {
-                    check = 0;
-                    for (var j = 0; j < item.length; j++) {
+                var check=0;
+                console.log(id_list.length);
+                for (var i = 0; i <id_list.length ; i++) {
+                    
+                    // console.log(id_list[i],j);
+                    check *= 2;
+                    var a=id_list[i][0];
+                    var b=id_list[i][1];
 
-                        check *= 2;
-
-                        var n = document.getElementById(String(i) + String(j));
-                        if (n.checked) check += 1;
+                    var n = document.getElementById(String(a) + String(b));
+                    console.log(n);
+                    if (n.checked) check += 1;
+                    // console.log(a);
+                    
+                    if((b+1)%5==0){
+                        console.log(markPointData[a].month + "-" + markPointData[a].date);
+                        console.log(check);
+                        var m = markPointData[a].month;
+                        var d = markPointData[a].date;
+                        if (m < 10) m = '0' + String(m);
+                        if (d < 10) d = '0' + String(d);
+                        updata.push({result_id: "2020-" + m + "-" + d + "{{ user.username }}", checked: check});
+                        check=0;
                     }
-                    console.log(markPointData[i].month + "-" + markPointData[i].date);
-                    console.log(check);
-                    var m = markPointData[i].month;
-                    var d = markPointData[i].date;
-                    if (m < 10) m = '0' + String(m);
-                    if (d < 10) d = '0' + String(d);
-                    updata.push({result_id: "2020-" + m + "-" + d + "{{ user.username }}", checked: check});
                 }
 
                 fetch('/predictionresult/edit', {
@@ -1905,7 +1918,7 @@
         const checkb = document.getElementById('checkbutton');
         startDateInput.addEventListener('change', checkBothDates);
         endDateInput.addEventListener('change', checkBothDates);
-        checkb.addEventListener('click', change_values);
+        checkb.addEventListener('click', test);
         function checkBothDates() {
             if (startDateInput.value && endDateInput.value) {
                 startDate = document.getElementById("start-date").value;
@@ -1941,15 +1954,15 @@
         //以月份切割check
         function split_checked() {
             month_checked = [];
-            console.log(checked);
+            // console.log(checked);
             for (var i = 0; i < 12; i++) {
                 month_checked.push((checked.slice(0, eleall[i].length)).map(function (str) {
                     return String(parseInt(str, 10));
                 }));
                 checked = checked.slice(eleall[i].length);
             }
-            console.log("checked");
-            console.log(month_checked);
+            // console.log("checked");
+            // console.log(month_checked);
         }
 
         // 計算種幾棵樹
@@ -1985,7 +1998,7 @@
         function calculate_overstandard() {
             abnormal = 0;
             for (var i = 0; i < result.length; i++) {
-                if (result[i] == "1") abnormal++;
+                if (result[i] == "1" ) abnormal++;
             }
         }
 
@@ -2027,12 +2040,12 @@
             var output = '';
             calculate_overstandard();
             calculate_use(ele);
-            setTimeout(function () {
-                if (abnormal > 0) {
-                    test();
-                }
-                // 在這裡執行你的操作
-            }, 1000);
+            // setTimeout(function () {
+            //     if (abnormal > 0) {
+            //         test();
+            //     }
+            //     // 在這裡執行你的操作
+            // }, 1000);
 
 
             if (ifinit) use.textContent = startDate.slice(5, 10) + '到' + endDate.slice(5, 10) + '總共使用' + String(calculate_use(ele).toFixed(2)) + '度';
