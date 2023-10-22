@@ -1709,6 +1709,7 @@
                 .then(response => response.json())
                 .then(data => {
                     checked = data.checked;
+                    console.log("Hi");
                     Promise.resolve();
                 })
                 .catch(error => {
@@ -1782,10 +1783,6 @@
                 $('#hello').modal('show');
             });
 
-            await get_checked();
-            console.log(checked);
-            await split_checked();
-            console.log(month_checked);
 
             while (acc.firstChild) {
                 acc.removeChild(acc.firstChild);
@@ -1846,13 +1843,13 @@
                     var b=id_list[i][1];
 
                     var n = document.getElementById(String(a) + String(b));
-                    console.log(n);
+                    // console.log(n);
                     if (n.checked) check += 1;
                     // console.log(a);
                     
                     if((b+1)%5==0){
-                        console.log(markPointData[a].month + "-" + markPointData[a].date);
-                        console.log(check);
+                        // console.log(markPointData[a].month + "-" + markPointData[a].date);
+                        // console.log(check);
                         var m = markPointData[a].month;
                         var d = markPointData[a].date;
                         if (m < 10) m = '0' + String(m);
@@ -1953,13 +1950,14 @@
 
         //以月份切割check
         function split_checked() {
+            var temp_checked=checked;
             month_checked = [];
             // console.log(checked);
             for (var i = 0; i < 12; i++) {
-                month_checked.push((checked.slice(0, eleall[i].length)).map(function (str) {
+                month_checked.push((temp_checked.slice(0, eleall[i].length)).map(function (str) {
                     return String(parseInt(str, 10));
                 }));
-                checked = checked.slice(eleall[i].length);
+                temp_checked = temp_checked.slice(eleall[i].length);
             }
             // console.log("checked");
             // console.log(month_checked);
@@ -1995,10 +1993,12 @@
         }
 
         // 計算異常天數
-        function calculate_overstandard() {
+        async function calculate_overstandard() {
             abnormal = 0;
+            console.log(checked);
             for (var i = 0; i < result.length; i++) {
-                if (result[i] == "1" ) abnormal++;
+                
+                if (result[i] == "1" &&checked[i]!=31) abnormal++;
             }
         }
 
@@ -2036,9 +2036,16 @@
         }
 
         // 網頁數值變動
-        function change_values() {
+        async function change_values() {
+            
+            await get_checked();
+            console.log(checked);
+            await split_checked();
+            console.log(month_checked);
+
             var output = '';
-            calculate_overstandard();
+            console.log("complete");
+            await calculate_overstandard();
             calculate_use(ele);
             // setTimeout(function () {
             //     if (abnormal > 0) {
