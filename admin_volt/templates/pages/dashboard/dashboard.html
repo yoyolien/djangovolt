@@ -1701,6 +1701,8 @@
         var id_list=[];
         var temp_id_list=[];
         var myModal;
+        var checked_range=[];
+        var checked_list=[];
 
         async function get_checked() {
 
@@ -1898,9 +1900,10 @@
             ele = [];
             result = [];
             month = [];
+            checked_list=[];
             var start = [startDate[0] - 1, dateall[startDate[0] - 1].indexOf(startDate[1])];
             var end = [endDate[0] - 1, dateall[endDate[0] - 1].indexOf(endDate[1])];
-
+            console.log(startDate);
             if (start[1] == -1 || end[1] == -1) return 1;
             while (1) {
                 if (start[0] == end[0] && start[1] == end[1] + 1) {
@@ -1912,10 +1915,13 @@
                     start[1] = 0;
                     continue;
                 }
+                // console.log(start[0],start[1]);
+                // console.log(month_checked);
                 month.push(start[0] + 1);
                 date.push(dateall[start[0]][start[1]]);
                 ele.push(eleall[start[0]][start[1]]);
                 result.push(month_result[start[0]][start[1]]);
+                checked_list.push(month_checked[start[0]][start[1]]);
                 start[1] = start[1] + 1;
 
             }
@@ -1972,8 +1978,8 @@
                 }));
                 temp_checked = temp_checked.slice(eleall[i].length);
             }
-            // console.log("checked");
-            // console.log(month_checked);
+            console.log("month_checked");
+            console.log(month_checked);
         }
 
         // 計算種幾棵樹
@@ -2008,10 +2014,10 @@
         // 計算異常天數
         async function calculate_overstandard() {
             abnormal = 0;
-            // console.log(checked);
-            for (var i = 0; i < result.length; i++) {
-                
-                if (result[i] == "1" &&checked[i]!=31) abnormal++;
+            console.log(checked_list);
+            console.log(checked);
+            for (var i = 0; i < checked_list.length; i++) {
+                if (checked_list[i]!=31) abnormal++;
             }
             if(abnormal==0)checkb.style.display = "none";
             else checkb.style.display = "block";
@@ -2050,12 +2056,17 @@
             }, 200);
         }
 
+        async function g(){
+            await get_checked();
+            console.log(checked);
+            await split_checked();
+        }
+
         // 網頁數值變動
         async function change_values() {
             
-            await get_checked();
-            // console.log(checked);
-            await split_checked();
+            if(ifinit);
+            else g();
             // console.log(month_checked);
 
             var output = '';
@@ -2224,9 +2235,15 @@
         list_month_rate();
 
         ecchart();
-        checkBothDates();
-        change_values();
+        async function aa(){
+            await g();
 
+            checkBothDates();
+            change_values();
+        
+            
+        }
+        aa();
         ifinit = true;
     </script>
 
