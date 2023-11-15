@@ -135,13 +135,22 @@ def requestnttu(request):
 		op.add_argument('--disable-dev-shm-usage')
 	else:
 		# Chrome 或 Edge
-		service = Service(executable_path="msedgedriver.exe")
-		op = webdriver.EdgeOptions()
-		op.add_argument("--headless")
-		op.add_argument('--no-sandbox')
-		op.add_argument('--disable-gpu')
-		op.add_argument('--disable-dev-shm-usage')
-		driver = webdriver.Edge(service=service,options=op)
+		try:
+			service = Service(executable_path="msedgedriver.exe")
+			op = webdriver.EdgeOptions()
+			op.add_argument("--headless")
+			op.add_argument('--no-sandbox')
+			op.add_argument('--disable-gpu')
+			op.add_argument('--disable-dev-shm-usage')
+			driver = webdriver.Edge(service=service,options=op)
+		except:
+			service = Service(executable_path="./chromedriver")
+			op = webdriver.ChromeOptions()
+			op.add_argument("--headless")
+			op.add_argument('--no-sandbox')
+			op.add_argument('--disable-gpu')
+			op.add_argument('--disable-dev-shm-usage')
+			driver = webdriver.Chrome(service=service, options=op)
 	# linux server
 	# service = Service(executable_path="/snap/bin/chromium.chromedriver")
 	# op = webdriver.ChromeOptions()

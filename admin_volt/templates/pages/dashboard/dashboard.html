@@ -1,7 +1,6 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
 {% block content %}
-    <!-- {#    <link rel="stylesheet" id="style-link-2" href="{% static "css/loading.css" %}">#} -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 
     <style>
@@ -500,7 +499,7 @@
                     {#document.getElementById("style-link-2").disabled = true;#}
                 }
 
-                hideLoader();
+
                 fetch('/requestnttu')
                     .then(response => response.json())
                     .then(data => {
@@ -509,9 +508,11 @@
                         var link = data.link;
                         console.log(title, link);
                         createli(title, link);
+                        hideLoader();
                     })
                     .catch(error => {
                         console.log(error);
+                        hideLoader();
                     });
 
                 function createli(title, link) {
@@ -1698,11 +1699,11 @@
         var acc = document.getElementById("acc");
         var month_checked = [];
         var checked;
-        var id_list=[];
-        var temp_id_list=[];
+        var id_list = [];
+        var temp_id_list = [];
         var myModal;
-        var checked_range=[];
-        var checked_list=[];
+        var checked_range = [];
+        var checked_list = [];
 
         async function get_checked() {
 
@@ -1773,71 +1774,71 @@
 
         //關閉事件
         function close() {
-                console.log("關閉");
-                updata = [];
-                var check=0;
-                console.log(updata);
-                for (var i = 0; i <id_list.length ; i++) {
-                    
-                    check *= 2;
-                    var a=id_list[i][0];
-                    var b=id_list[i][1];
+            console.log("關閉");
+            updata = [];
+            var check = 0;
+            console.log(updata);
+            for (var i = 0; i < id_list.length; i++) {
 
-                    var n = document.getElementById(String(a) + String(b));
-                    if (n.checked) check += 1;
-                    
-                    if((b+1)%5==0){
-                        
-                        var m = markPointData[a].month;
-                        var d = markPointData[a].date;
-                        month_checked[m-1][find_day_index(m-1,d)]=check;
-                        console.log(m,d);
-                        if (m < 10) m = '0' + String(m);
-                        if (d < 10) d = '0' + String(d);
-                        console.log(check);
-                        updata.push({result_id: "2020-" + m + "-" + d + "{{ user.username }}", checked: check});
-                        if(check==31)abnormal-=1;
-                        check=0;
-                        
-                    }
-                    
+                check *= 2;
+                var a = id_list[i][0];
+                var b = id_list[i][1];
+
+                var n = document.getElementById(String(a) + String(b));
+                if (n.checked) check += 1;
+
+                if ((b + 1) % 5 == 0) {
+
+                    var m = markPointData[a].month;
+                    var d = markPointData[a].date;
+                    month_checked[m - 1][find_day_index(m - 1, d)] = check;
+                    console.log(m, d);
+                    if (m < 10) m = '0' + String(m);
+                    if (d < 10) d = '0' + String(d);
+                    console.log(check);
+                    updata.push({result_id: "2020-" + m + "-" + d + "{{ user.username }}", checked: check});
+                    if (check == 31) abnormal -= 1;
+                    check = 0;
+
                 }
-                console.log(updata);
-                overstandard.textContent = abnormal;
-                if(abnormal==0)checkb.style.display = "none";
-
-                
-                fetch('/predictionresult/edit', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRFToken': '{{ csrf_token }}',
-                    },
-                    body: JSON.stringify(updata)
-                })
-                    .then(response => {
-                        // 处理服务器的响应
-                    })
-                    .catch(error => {
-                        // 处理错误
-                    });
-
-                myModal.removeEventListener("hidden.bs.modal", close);
-
 
             }
+            console.log(updata);
+            overstandard.textContent = abnormal;
+            if (abnormal == 0) checkb.style.display = "none";
+
+
+            fetch('/predictionresult/edit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}',
+                },
+                body: JSON.stringify(updata)
+            })
+                .then(response => {
+                    // 处理服务器的响应
+                })
+                .catch(error => {
+                    // 处理错误
+                });
+
+            myModal.removeEventListener("hidden.bs.modal", close);
+
+
+        }
 
         // 找出對應日期索引
-        function find_day_index(m,d){
-            for(var i=0;i<dateall[m].length;i++){
-                if(d==dateall[m][i])return i;
+        function find_day_index(m, d) {
+            for (var i = 0; i < dateall[m].length; i++) {
+                if (d == dateall[m][i]) return i;
             }
         }
 
         async function test() {
             console.log("-------------------test---------------------")
             var t_acc;
-            id_list=[];
+            id_list = [];
             $(document).ready(function () {
                 $('#hello').modal('show');
             });
@@ -1848,11 +1849,11 @@
             }
 
             for (var i = 0; i < markPointData.length; i++) {
-                
-                var day_checked=month_checked[markPointData[i].month-1][find_day_index(markPointData[i].month-1,markPointData[i].date)];
+
+                var day_checked = month_checked[markPointData[i].month - 1][find_day_index(markPointData[i].month - 1, markPointData[i].date)];
                 // console.log(markPointData[i].month,markPointData[i].date,"check=");
                 // console.log(day_checked);
-                if(day_checked==31)continue;
+                if (day_checked == 31) continue;
 
                 if (t_acc = document.getElementById("acc" + markPointData[i].month)) ;
                 else {
@@ -1860,24 +1861,24 @@
                     t_acc = document.getElementById("acc" + markPointData[i].month);
                 }
 
-                
+
                 var p = document.createElement('p');
                 p.classList.add("text-danger");
                 p.textContent = String(markPointData[i].month) + '月' + String(markPointData[i].date) + '日';
                 t_acc.appendChild(p);
 
                 for (var j = 0; j < item.length; j++) {
-                    id_list.push([i,j]);
+                    id_list.push([i, j]);
                     var label = document.createElement('label');
                     var checkbox = document.createElement('input');
                     label.textContent = item[j];
                     checkbox.type = 'checkbox';
                     checkbox.id = String(i) + String(j);
                     checkbox.classList = "form-check-input ml-1 form-check";
-                    
-                    if(day_checked>=Math.pow(2, 4-j)){
-                        checkbox.checked=true;
-                        day_checked=day_checked-Math.pow(2, 4-j);
+
+                    if (day_checked >= Math.pow(2, 4 - j)) {
+                        checkbox.checked = true;
+                        day_checked = day_checked - Math.pow(2, 4 - j);
                     }
                     // console.log(day_checked);
                     label.classList = "form-check-label ml-2 form-check";
@@ -1886,7 +1887,7 @@
                 }
 
             }
-            
+
             myModal = document.getElementById("hello");
             var updata = [];
 
@@ -1900,7 +1901,7 @@
             ele = [];
             result = [];
             month = [];
-            checked_list=[];
+            checked_list = [];
             var start = [startDate[0] - 1, dateall[startDate[0] - 1].indexOf(startDate[1])];
             var end = [endDate[0] - 1, dateall[endDate[0] - 1].indexOf(endDate[1])];
             console.log(startDate);
@@ -1935,6 +1936,7 @@
         startDateInput.addEventListener('change', checkBothDates);
         endDateInput.addEventListener('change', checkBothDates);
         checkb.addEventListener('click', test);
+
         function checkBothDates() {
             if (startDateInput.value && endDateInput.value) {
                 startDate = document.getElementById("start-date").value;
@@ -1969,7 +1971,7 @@
 
         //以月份切割check
         function split_checked() {
-            var temp_checked=checked;
+            var temp_checked = checked;
             month_checked = [];
             // console.log(checked);
             for (var i = 0; i < 12; i++) {
@@ -2017,9 +2019,9 @@
             console.log(checked_list);
             console.log(checked);
             for (var i = 0; i < checked_list.length; i++) {
-                if (checked_list[i]!=31) abnormal++;
+                if (checked_list[i] != 31) abnormal++;
             }
-            if(abnormal==0)checkb.style.display = "none";
+            if (abnormal == 0) checkb.style.display = "none";
             else checkb.style.display = "block";
         }
 
@@ -2056,7 +2058,7 @@
             }, 200);
         }
 
-        async function g(){
+        async function g() {
             await get_checked();
             console.log(checked);
             await split_checked();
@@ -2064,8 +2066,8 @@
 
         // 網頁數值變動
         async function change_values() {
-            
-            if(ifinit);
+
+            if (ifinit) ;
             else g();
             // console.log(month_checked);
 
@@ -2235,14 +2237,16 @@
         list_month_rate();
 
         ecchart();
-        async function aa(){
+
+        async function aa() {
             await g();
 
             checkBothDates();
             change_values();
-        
-            
+
+
         }
+
         aa();
         ifinit = true;
     </script>
