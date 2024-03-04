@@ -8,7 +8,7 @@
 build/
 env
 /staticfiles/
-
+.gitignore
 #src
 *.sqlite*
 chrome-linux64
