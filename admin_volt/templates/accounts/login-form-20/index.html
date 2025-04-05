@@ -13,13 +13,19 @@
 	<link rel="stylesheet" href="{% static "login-form-20/css/style.css" %}">
 
 	</head>
-	<body class="img js-fullheight" style="background-image: url({% static "login-form-20/images/ele.jpg" %});">
+	<body class="img js-fullheight" style="background-image: url({% static "assets/img/ele.jpg" %});">
 	<section class="ftco-section vh-100">
 		<div class="container">
 			<div class="row justify-content-center align-self-center">
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap p-0">
-		      	<h3 class="mb-4 text-center">帳號登入</h3>
+						<div class="logo text-center mb-3">
+							<img src="{% static 'nttulogo.jpg' %}" width="100px" height="100px" class="avatar rounded-circle">
+							<div class="media-body ms-2 text-dark align-items-center d-none d-lg-block">
+								<h3><p class="mb-0 font-large fw-bolder text-white">國立臺東大學電力診斷系統</p></h3>
+							</div>
+						</div>
+						
 		      	<form action="" method="post" class="signin-form">
 					{% csrf_token %}
 		      		<div class="form-group">

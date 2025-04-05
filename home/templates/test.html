@@ -1,38 +1,2004 @@
-<div class="fs-5 fw-normal mb-2">
-              <select id="monthSelect">
-                <option value="1">1月</option>
-                <option value="2">2月</option>
-                <option value="3">3月</option>
-                <option value="4">4月</option>
-                <option value="5">5月</option>
-                <option value="6">6月</option>
-                <option value="7">7月</option>
-                <option value="8">8月</option>
-                <option value="9">9月</option>
-                <option value="10">10月</option>
-                <option value="11">11月</option>
-                <option value="12">12月</option>
-            </select></div>
-<!-- 在HTML中創建一個區塊 -->
-<div id="content"></div>
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block content %}
+	<div class="carousel-item active"
+		 data-bs-parent="#SDGs-carousel-item"
+		 id="SDG1">
+		<div class="row"
+			 id="SDGs-content1">
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu22.png"/>
+					<div class="logo"
+						 id="logo21">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG1.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							食物銀行
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116446,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-<script>
-    const monthSelect = document.getElementById("monthSelect")
-    handleMonthChange();
-    function handleMonthChange() {
-        var a = monthSelect.value;
-        console.log(a)
-        // 使用Fetch API來請求HTML內容
-        fetch(`http://127.0.0.1:8000/requestchart/?m=${a}`)
-          .then(response => response.text())
-          .then(htmlContent => {
-            // 將HTML內容放置在網頁上
-            const contentDiv = document.getElementById('content');
-            contentDiv.innerHTML = htmlContent;
-          })
-          .catch(error => {
-            console.error('請求失敗：', error);
-          });
-    }
-    monthSelect.addEventListener('change', handleMonthChange);
-</script>
+	<div class="carousel-item"
+		 data-bs-parent="#SDGs-carousel-item"
+		 id="SDG2">
+		<div class="row"
+			 id="SDGs-content2">
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu01.png"/>
+					<div class="logo"
+						 id="logo0">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG7.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							綠色國際大學跨域學習與社區服務
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116410,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu02.png"/>
+					<div class="logo"
+						 id="logo1">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							綠色知識經濟創新：永續與生態友善農業
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116415,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu11.png"/>
+					<div class="logo"
+						 id="logo10">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							農產品檢驗中心
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116432,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu21.png"/>
+					<div class="logo"
+						 id="logo20">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							友善環境農漁產業推廣中心
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116444,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="carousel-item"
+		 data-bs-parent="#SDGs-carousel-item"
+		 id="SDG3">
+		<div class="row"
+			 id="SDGs-content3">
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu01.png"/>
+					<div class="logo"
+						 id="logo0">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG7.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							綠色國際大學跨域學習與社區服務
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116410,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu11.png"/>
+					<div class="logo"
+						 id="logo10">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							農產品檢驗中心
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116432,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu13.png"/>
+					<div class="logo"
+						 id="logo12">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG9.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							跨領域微學程
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116434,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu24.png"/>
+					<div class="logo"
+						 id="logo23">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							Covid-19校園防疫措施
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116449,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="carousel-item"
+		 data-bs-parent="#SDGs-carousel-item"
+		 id="SDG4">
+		<div class="row"
+			 id="SDGs-content4">
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu01.png"/>
+					<div class="logo"
+						 id="logo0">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG7.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							綠色國際大學跨域學習與社區服務
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116410,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu02.png"/>
+					<div class="logo"
+						 id="logo1">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							綠色知識經濟創新：永續與生態友善農業
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116415,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu03.png"/>
+					<div class="logo"
+						 id="logo2">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							綠色知識經濟創新：部落循環經濟生態系
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116417,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu04.png"/>
+					<div class="logo"
+						 id="logo3">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG7.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							地熱溫泉發電
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116419,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu06.png"/>
+					<div class="logo"
+						 id="logo5">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG14.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							海洋保育志工富山護漁區潛水清除覆網垃圾
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116421,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu07.png"/>
+					<div class="logo"
+						 id="logo6">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							氣候變遷社區防災教育
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116423,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu08.png"/>
+					<div class="logo"
+						 id="logo7">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG7.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							綠色能源科學教育
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116427,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu09.png"/>
+					<div class="logo"
+						 id="logo8">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							山海教育
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116428,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu10.png"/>
+					<div class="logo"
+						 id="logo9">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							社區環保志工
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116429,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu13.png"/>
+					<div class="logo"
+						 id="logo12">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG9.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							跨領域微學程
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116434,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu14.png"/>
+					<div class="logo"
+						 id="logo13">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							校園生態保育
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116435,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu15.png"/>
+					<div class="logo"
+						 id="logo14">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG14.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							淨灘活動
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116436,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu16.png"/>
+					<div class="logo"
+						 id="logo15">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							東大蔬食日
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116437,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu17.png"/>
+					<div class="logo"
+						 id="logo16">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							校園農夫市集
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116438,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu18.png"/>
+					<div class="logo"
+						 id="logo17">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							地球週活動
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116439,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu23.png"/>
+					<div class="logo"
+						 id="logo22">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							環境教育中心
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116447,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu26.png"/>
+					<div class="logo"
+						 id="logo25">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG9.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							跨域創新深耕邁進 東大高教深耕計畫成果展開跑
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/404-1048-140011,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu27.png"/>
+					<div class="logo"
+						 id="logo26">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							國立臺東大學實踐USR 深入在地原鄉 共創部落新旅力
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/404-1048-140016,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="carousel-item"
+		 data-bs-parent="#SDGs-carousel-item"
+		 id="SDG5">
+		<div class="row"
+			 id="SDGs-content5">
+		</div>
+	</div>
+
+	<div class="carousel-item"
+		 data-bs-parent="#SDGs-carousel-item"
+		 id="SDG6">
+		<div class="row"
+			 id="SDGs-content6">
+		</div>
+	</div>
+
+	<div class="carousel-item"
+		 data-bs-parent="#SDGs-carousel-item"
+		 id="SDG7">
+		<div class="row"
+			 id="SDGs-content7">
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu01.png"/>
+					<div class="logo"
+						 id="logo0">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG7.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							綠色國際大學跨域學習與社區服務
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116410,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu04.png"/>
+					<div class="logo"
+						 id="logo3">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG7.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							地熱溫泉發電
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116419,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu08.png"/>
+					<div class="logo"
+						 id="logo7">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG7.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							綠色能源科學教育
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116427,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="carousel-item"
+		 data-bs-parent="#SDGs-carousel-item"
+		 id="SDG8">
+		<div class="row"
+			 id="SDGs-content8">
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu01.png"/>
+					<div class="logo"
+						 id="logo0">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG7.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							綠色國際大學跨域學習與社區服務
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116410,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu03.png"/>
+					<div class="logo"
+						 id="logo2">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							綠色知識經濟創新：部落循環經濟生態系
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116417,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu05.png"/>
+					<div class="logo"
+						 id="logo4">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							都蘭之蘭調創新計畫
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116420,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu13.png"/>
+					<div class="logo"
+						 id="logo12">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG9.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							跨領域微學程
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116434,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu19.png"/>
+					<div class="logo"
+						 id="logo18">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG9.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							東部生物經濟中心
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116440,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu20.png"/>
+					<div class="logo"
+						 id="logo19">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							人文創新與社會實踐中心
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116442,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu21.png"/>
+					<div class="logo"
+						 id="logo20">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							友善環境農漁產業推廣中心
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116444,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu27.png"/>
+					<div class="logo"
+						 id="logo26">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							國立臺東大學實踐USR 深入在地原鄉 共創部落新旅力
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/404-1048-140016,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="carousel-item"
+		 data-bs-parent="#SDGs-carousel-item"
+		 id="SDG9">
+		<div class="row"
+			 id="SDGs-content9">
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu13.png"/>
+					<div class="logo"
+						 id="logo12">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG9.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							跨領域微學程
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116434,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu19.png"/>
+					<div class="logo"
+						 id="logo18">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG9.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							東部生物經濟中心
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116440,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu26.png"/>
+					<div class="logo"
+						 id="logo25">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG9.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							跨域創新深耕邁進 東大高教深耕計畫成果展開跑
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/404-1048-140011,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="carousel-item"
+		 data-bs-parent="#SDGs-carousel-item"
+		 id="SDG10">
+		<div class="row"
+			 id="SDGs-content10">
+		</div>
+	</div>
+
+	<div class="carousel-item"
+		 data-bs-parent="#SDGs-carousel-item"
+		 id="SDG11">
+		<div class="row"
+			 id="SDGs-content11">
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu01.png"/>
+					<div class="logo"
+						 id="logo0">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG7.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							綠色國際大學跨域學習與社區服務
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116410,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu07.png"/>
+					<div class="logo"
+						 id="logo6">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							氣候變遷社區防災教育
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116423,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu13.png"/>
+					<div class="logo"
+						 id="logo12">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG9.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							跨領域微學程
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116434,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu20.png"/>
+					<div class="logo"
+						 id="logo19">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							人文創新與社會實踐中心
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116442,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu27.png"/>
+					<div class="logo"
+						 id="logo26">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							國立臺東大學實踐USR 深入在地原鄉 共創部落新旅力
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/404-1048-140016,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="carousel-item"
+		 data-bs-parent="#SDGs-carousel-item"
+		 id="SDG12">
+		<div class="row"
+			 id="SDGs-content12">
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu01.png"/>
+					<div class="logo"
+						 id="logo0">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG7.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							綠色國際大學跨域學習與社區服務
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116410,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu02.png"/>
+					<div class="logo"
+						 id="logo1">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							綠色知識經濟創新：永續與生態友善農業
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116415,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu03.png"/>
+					<div class="logo"
+						 id="logo2">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							綠色知識經濟創新：部落循環經濟生態系
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116417,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu05.png"/>
+					<div class="logo"
+						 id="logo4">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							都蘭之蘭調創新計畫
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116420,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu09.png"/>
+					<div class="logo"
+						 id="logo8">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							山海教育
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116428,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu10.png"/>
+					<div class="logo"
+						 id="logo9">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							社區環保志工
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116429,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu12.png"/>
+					<div class="logo"
+						 id="logo11">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							綠色辦公室認證
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116433,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu13.png"/>
+					<div class="logo"
+						 id="logo12">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG9.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							跨領域微學程
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116434,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu16.png"/>
+					<div class="logo"
+						 id="logo15">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							東大蔬食日
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116437,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu17.png"/>
+					<div class="logo"
+						 id="logo16">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							校園農夫市集
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116438,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu18.png"/>
+					<div class="logo"
+						 id="logo17">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							地球週活動
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116439,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu19.png"/>
+					<div class="logo"
+						 id="logo18">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG9.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							東部生物經濟中心
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116440,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu20.png"/>
+					<div class="logo"
+						 id="logo19">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							人文創新與社會實踐中心
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116442,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu21.png"/>
+					<div class="logo"
+						 id="logo20">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							友善環境農漁產業推廣中心
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116444,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu25.png"/>
+					<div class="logo"
+						 id="logo24">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							校園固廢處理
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116450,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="carousel-item"
+		 data-bs-parent="#SDGs-carousel-item"
+		 id="SDG13">
+		<div class="row"
+			 id="SDGs-content13">
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu01.png"/>
+					<div class="logo"
+						 id="logo0">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG7.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							綠色國際大學跨域學習與社區服務
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116410,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu07.png"/>
+					<div class="logo"
+						 id="logo6">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							氣候變遷社區防災教育
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116423,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu16.png"/>
+					<div class="logo"
+						 id="logo15">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							東大蔬食日
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116437,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu17.png"/>
+					<div class="logo"
+						 id="logo16">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							校園農夫市集
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116438,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu18.png"/>
+					<div class="logo"
+						 id="logo17">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							地球週活動
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116439,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="carousel-item"
+		 data-bs-parent="#SDGs-carousel-item"
+		 id="SDG14">
+		<div class="row"
+			 id="SDGs-content14">
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu06.png"/>
+					<div class="logo"
+						 id="logo5">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG14.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							海洋保育志工富山護漁區潛水清除覆網垃圾
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116421,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu15.png"/>
+					<div class="logo"
+						 id="logo14">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG14.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							淨灘活動
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116436,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="carousel-item"
+		 data-bs-parent="#SDGs-carousel-item"
+		 id="SDG15">
+		<div class="row"
+			 id="SDGs-content15">
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu01.png"/>
+					<div class="logo"
+						 id="logo0">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG3.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG7.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG13.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							綠色國際大學跨域學習與社區服務
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116410,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu02.png"/>
+					<div class="logo"
+						 id="logo1">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							綠色知識經濟創新：永續與生態友善農業
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116415,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu03.png"/>
+					<div class="logo"
+						 id="logo2">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							綠色知識經濟創新：部落循環經濟生態系
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116417,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu14.png"/>
+					<div class="logo"
+						 id="logo13">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							校園生態保育
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116435,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu20.png"/>
+					<div class="logo"
+						 id="logo19">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG11.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							人文創新與社會實踐中心
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116442,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu21.png"/>
+					<div class="logo"
+						 id="logo20">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG2.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG8.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG12.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							友善環境農漁產業推廣中心
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116444,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="card"
+					 style="width:95%; margin-bottom: 5px;">
+					<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/nttu23.png"/>
+					<div class="logo"
+						 id="logo22">
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG4.png"/>
+						<img src="https://green.nttu.edu.tw/var/file/48/1048/img/1757/SDG15.png"/>
+					</div>
+					<div class="card-body"
+						 style="text-align: right;">
+						<h3 class="card-title"
+							style="text-align: left;color:#000000;">
+							環境教育中心
+						</h3>
+						<a class="btn btn-primary"
+						   href="https://green.nttu.edu.tw/p/405-1048-116447,c11148.php?Lang=zh-tw"
+						   style="text-align: right;">
+							瀏覽
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+        var sdgimg = document.querySelectorAll(".sdgimg");
+        var sdgdiv = document.querySelector(".sdgdiv")
+        var carsdg = document.getElementById("carouselsdg")
+        console.log(carsdg);
+        var sdgprev = 0;
+
+        function moveImage(i) {
+            return function () {
+                console.log(`sdg${i}`);
+                var sdg = document.getElementById(`sdg${sdgprev + 1}`);
+                sdg.classList.remove("active")
+                sdg = document.getElementById(`sdg${i + 1}`);
+                sdg.classList.add("active");
+                sdgprev = i;
+            };
+        }
+
+        for (var i = 0; i < sdgimg.length; i++) {
+            sdgimg[i].addEventListener('click', moveImage(i));
+        }
+	</script>
+{% endblock %}

@@ -8,8 +8,10 @@
 build/
 env
 /staticfiles/
-
+.gitignore
 #src
 *.sqlite*
-
+chrome-linux64
 .env
+*db.sqlite3
+*.sqlite3
